@@ -60,15 +60,20 @@ const featuresPair = () => `<!-- wp:group {"className":"features-pair"} -->
 </div>
 <!-- /wp:group -->`;
 
-// Exact spec confirmed via direct Figma read (node 7:21): gold quote-mark glyph on its own line,
-// no literal quote marks in the quote text itself, attribution always prefixed "– Name" — the
-// builder enforces the dash prefix so every real per-page attribution stays consistent; callers
-// pass just the bare name (e.g. "Olga R."), never a pre-formatted string.
-const testimonial = ({ quote, attribution, card = false }) => `<!-- wp:group {"className":"testimonial${card ? ' testimonial--card' : ''}"} -->
-<div class="wp-block-group testimonial${card ? ' testimonial--card' : ''}">
-<!-- wp:paragraph {"className":"testimonial__mark"} --><p class="testimonial__mark">&#8220;</p><!-- /wp:paragraph -->
-<!-- wp:paragraph {"className":"testimonial__quote"} --><p class="testimonial__quote">${quote}</p><!-- /wp:paragraph -->
-<!-- wp:paragraph {"className":"testimonial__attribution"} --><p class="testimonial__attribution">&#8211; ${attribution}</p><!-- /wp:paragraph -->
+// Canonical "Testimonial Template" (Figma node 103:177): full-bleed rounded photo card, "Skyline
+// Testimonials" heading fixed, quote wrapped in literal curly quotes (not a separate glyph),
+// attribution prefixed with a plain hyphen "- Name" (this template's own convention — the plain
+// flat "7:21" version used elsewhere had a different en-dash convention; don't mix the two up).
+// Heading + background photo are fixed section chrome; only quote + attribution vary per page.
+// NOTE: the `card` param is a placeholder for a possible School Events variant — unverified
+// against that category's real Figma node, don't trust it until checked directly.
+const testimonial = ({ quote, attribution, bgImage = '', card = false }) => `<!-- wp:group {"className":"testimonial-outer"} -->
+<div class="wp-block-group testimonial-outer">
+<div class="testimonial${card ? ' testimonial--card' : ''}" style="background-image:url(${bgImage})">
+<!-- wp:heading {"level":2,"className":"testimonial__heading"} --><h2 class="testimonial__heading">Skyline <em>Testimonials</em></h2><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"testimonial__quote"} --><p class="testimonial__quote">&#8220;${quote}&#8221;</p><!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"testimonial__attribution"} --><p class="testimonial__attribution">- ${attribution}</p><!-- /wp:paragraph -->
+</div>
 </div>
 <!-- /wp:group -->`;
 

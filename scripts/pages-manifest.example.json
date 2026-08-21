@@ -29,7 +29,8 @@
 			},
 			"testimonial": {
 				"quote": "An unforgettable night on the water &#8211; the crew went above and beyond and the views of the city were incredible.",
-				"attribution": "Olga R."
+				"attribution": "Olga R.",
+				"bgImage": "/wp-content/uploads/nightSkyline.jpg"
 			},
 			"closingCta": {
 				"heading": "Ready To Set Sail?",

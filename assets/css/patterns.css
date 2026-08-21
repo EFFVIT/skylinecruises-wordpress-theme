@@ -179,48 +179,69 @@
 }
 
 /* ===== testimonial (patterns/testimonial.php) ===== */
-/* Exact spec confirmed via direct Figma read (node 7:21): flex column, 24px gap between the
-   glyph/quote/attribution, centered, 1000px max quote width, bg matches page bg (not light-blue). */
+/* Canonical "Testimonial Template" (Figma node 103:177) — full-bleed rounded photo card, same
+   inset-card family as the hero and newsletter (~23px radius). Overlay is two stacked FLAT tints
+   (not a directional gradient): rgba(0,0,0,0.32) under rgba(11,44,77,0.703). Heading/photo are
+   fixed section chrome; only quote + attribution vary per page. */
+.testimonial-outer {
+  background: var(--color-bg-light-blue);
+  padding: 30px 23px;
+}
+
 .testimonial {
-  background: var(--color-page-bg);
+  position: relative;
+  border-radius: 23px;
+  overflow: hidden;
+  min-height: 456px;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 24px;
-  padding: 90px 300px;
+  padding: 60px 143px;
   text-align: center;
 }
 
-.testimonial--card {
-  background: var(--color-white);
-  border: 1px solid var(--color-divider);
-  border-radius: 24px;
-  margin: 0 var(--side-margin);
-  padding: 60px;
+.testimonial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)), linear-gradient(0deg, rgba(11, 44, 77, 0.703), rgba(11, 44, 77, 0.703));
 }
 
-.testimonial__mark {
+.testimonial__heading {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 1;
+  font-size: 60px;
+  line-height: 61px;
+  color: var(--color-white);
+}
+
+.testimonial__heading em {
+  font-style: italic;
   color: var(--color-gold);
 }
 
 .testimonial__quote {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 28px;
-  line-height: 42px;
-  color: var(--color-navy);
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-intro);
+  font-size: 18px;
+  line-height: 32.4px;
+  color: var(--color-white);
   max-width: 1000px;
 }
 
 .testimonial__attribution {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 16px;
-  color: var(--color-body-gray);
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 32.4px;
+  color: var(--color-white);
 }
 
 /* ===== closing-cta (patterns/closing-cta.php) ===== */
