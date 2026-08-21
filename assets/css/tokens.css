@@ -112,6 +112,23 @@ figure.wp-block-image {
   display: contents;
 }
 
+/* THE core structural fix for this theme: WordPress's core/group block ALWAYS wraps its actual
+   content in an extra ".wp-block-group__inner-container" div (confirmed by direct inspection of
+   live HTML — every wp:group on every page has one, regardless of whether a layout attribute is
+   set). Every pattern in this theme writes `<!-- wp:group {"className":"X"} --><div
+   class="wp-block-group X">content</div>` expecting THAT div's own flex/grid CSS (e.g.
+   .features-pair, .card-grid, .photo-checklist-row__list) to lay out its real children directly
+   — but those children are actually one level deeper, inside the injected wrapper, so the
+   flex/grid container only ever sees ONE child (the wrapper) and everything inside it just
+   stacks in normal block flow instead. This single rule fixes every instance of that at once by
+   making the wrapper disappear from the box model entirely, promoting the real content back up
+   to be direct children of our own named class — do not remove this without re-auditing every
+   multi-column pattern (features-pair, card-grid, photo-checklist-row__list, marina-grid,
+   ports-list, entertainment-chips, testimonial-quote__grid, bio-photo-gallery__body, etc). */
+.wp-block-group__inner-container {
+  display: contents;
+}
+
 /* Regression from dequeuing core CSS: core used to give this an implicit display:inline-block,
    which is exactly what let text-align:center on a section correctly center a lone button.
    Without it, this div defaults to the browser's plain block behavior (full container width,
