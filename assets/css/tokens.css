@@ -94,6 +94,28 @@ a {
   color: inherit;
 }
 
+/* Reset WordPress core's own block-wrapper defaults. functions.php dequeues core's block CSS
+   file entirely, but this is a defensive baseline in case anything still injects inline (the
+   block editor's own iframe, a plugin, a future core update) — every visual rule for these
+   elements should come from patterns.css classes, never from an inherited WP default. */
+.wp-block-group,
+.wp-block-buttons,
+.wp-block-button,
+.wp-block-image,
+.wp-block-heading,
+figure.wp-block-image {
+  margin: 0;
+  padding: 0;
+}
+
+.wp-block-buttons {
+  display: contents;
+}
+
+.wp-block-button__link {
+  all: unset;
+}
+
 .container {
   max-width: var(--content-width);
   margin-inline: auto;

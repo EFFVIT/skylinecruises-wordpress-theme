@@ -19,6 +19,22 @@ function skyline_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'skyline_enqueue_assets' );
 
+/**
+ * This theme has its own complete design system (tokens.css + patterns.css) for every block
+ * used on the front end. WordPress core loads its own default block CSS on every page
+ * regardless — including opinionated default spacing/layout for buttons and groups — which
+ * was fighting our custom .btn/.btn-gold and .wp-block-group styling (the cause of buttons
+ * appearing to "float" and sections misaligning). Turning core's block CSS off entirely rather
+ * than trying to out-specificity it section by section.
+ */
+function skyline_dequeue_core_block_styles() {
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+	wp_dequeue_style( 'global-styles' );
+	wp_dequeue_style( 'classic-theme-styles' );
+}
+add_action( 'wp_enqueue_scripts', 'skyline_dequeue_core_block_styles', 20 );
+
 function skyline_theme_support() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
