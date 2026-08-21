@@ -38,6 +38,25 @@ add_filter( 'should_load_separate_core_block_assets', '__return_false' );
 remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
 remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
 
+/**
+ * Beyond styles: WordPress also RESTRUCTURES the actual saved HTML of every block at render time
+ * (found by direct inspection of live output, traced to wp-includes/block-supports/layout.php):
+ * - wp_render_layout_support_flag() injects "is-layout-flow"/"is-layout-flex" classes into
+ *   whatever it heuristically decides is each block's root element — with our patterns' hand-
+ *   nested custom divs inside a single wp:group comment (not the flat structure Gutenberg itself
+ *   would author), that heuristic picks the WRONG element, e.g. landing classes on .hero__content
+ *   three levels deep instead of the actual block root. That's what put the School Events H1
+ *   outside the hero card entirely.
+ * - wp_restore_group_inner_container() is what inserts the .wp-block-group__inner-container
+ *   wrapper in the first place (the thing that broke every multi-column layout earlier).
+ * - wp_restore_image_outer_container() does the same for core/image.
+ * Removing these three outright stops WordPress from touching our static markup at all, which is
+ * more correct than continuing to patch around whatever it decides to restructure next.
+ */
+remove_filter( 'render_block', 'wp_render_layout_support_flag', 10 );
+remove_filter( 'render_block_core/group', 'wp_restore_group_inner_container', 10 );
+remove_filter( 'render_block_core/image', 'wp_restore_image_outer_container', 10 );
+
 function skyline_dequeue_core_block_styles() {
 	wp_dequeue_style( 'wp-block-library' );
 	wp_dequeue_style( 'wp-block-library-theme' );
