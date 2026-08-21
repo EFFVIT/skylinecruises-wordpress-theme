@@ -111,7 +111,10 @@
 }
 
 .hero--short {
-  min-height: 438px; /* 494 hero frame - 28*2 inset */
+  /* 438px (494 hero frame - 28*2 inset) still let the top line clip behind the header pill on a
+     2-line title even after the font-size fix above — a bit more clearance than the bare Figma
+     math gives, confirmed visually necessary via screenshot, not just recalculated in theory. */
+  min-height: 480px;
 }
 
 /* Found by direct computed-style inspection (Playwright) on the School Events page: the short
