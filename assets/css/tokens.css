@@ -112,6 +112,15 @@ figure.wp-block-image {
   display: contents;
 }
 
+/* Regression from dequeuing core CSS: core used to give this an implicit display:inline-block,
+   which is exactly what let text-align:center on a section correctly center a lone button.
+   Without it, this div defaults to the browser's plain block behavior (full container width,
+   ignores the ancestor's text-align) — that's what was pinning every centered CTA button to the
+   far left. Explicit now so it never depends on core CSS again. */
+.wp-block-button {
+  display: inline-block;
+}
+
 .wp-block-button__link {
   all: unset;
 }
