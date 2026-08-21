@@ -40,6 +40,153 @@
 		}
 	},
 	{
+		"title": "NYC Dinner Cruise Buffet Menu",
+		"slug": "nyc-dinner-cruise-buffet-menu",
+		"parent": 0,
+		"template": "Buffet Menu",
+		"data": {
+			"hero": {
+				"h1": "NYC Dinner Cruise Buffet Menu",
+				"cta": "Book Your Dinner Cruise Now!",
+				"bgImage": "/wp-content/uploads/dinner-menu-header.jpg"
+			},
+			"intro": {
+				"heading": "A Truly Memorable Dinner",
+				"paragraphs": [
+					"Enjoy the stunning New York harbor on the beautiful Skyline Princess for a memorable occasion. A leisurely cruise around the world-famous Statue of Liberty, Brooklyn Bridge and other iconic landmarks while enjoying fabulous food, entertainment and spectacular views is the perfect way to celebrate a special event &#8211; or make any day one of a kind."
+				]
+			},
+			"checklist": {
+				"heading": "Some Dinner Buffet Options",
+				"intro": "",
+				"photo": "/wp-content/uploads/buffet-food-photo.jpg",
+				"items": [
+					"Caesar Salad",
+					"Freshly baked rolls",
+					"Braised Boneless Short Rib of Beef",
+					"Grilled Bruschetta Chicken",
+					"Lemon Sole Stuffed with Crabmeat",
+					"Vegetarian Pasta or Vegetarian Entr&eacute;e",
+					"Roasted New Bliss Potatoes",
+					"Freshly Steamed Vegetables",
+					"Selection of Gourmet Cakes",
+					"Coffee, Tea, and Water included"
+				],
+				"itemClass": "checklist-item--lg",
+				"cta": "Book Your Dinner Cruise Now!"
+			},
+			"testimonial": {
+				"quote": "Wow what a great service&#8230; and the food is spectacular",
+				"attribution": "Christopher L.",
+				"bgImage": "/wp-content/uploads/nightSkyline.jpg"
+			},
+			"closingCta": {
+				"heading": "Ready To Set Sail?",
+				"body": "For more information about our public NYC dinner cruises, give us a call at (718) 446-1100 or contact us through the inquiry form on our contact us page. We look forward to cruising with you.",
+				"cta": "Book Your Dinner Cruise Now!"
+			}
+		}
+	},
+	{
+		"title": "Birthday Party Cruises",
+		"slug": "birthday-party-cruises",
+		"parent": 0,
+		"template": "Private Event/Party",
+		"data": {
+			"hero": {
+				"h1": "Birthday Party Cruises in NYC",
+				"cta": "Get a Quote",
+				"bgImage": "/wp-content/uploads/skyline-1.jpg"
+			},
+			"intro": {
+				"heading": "NYC's Floating Birthday Venue",
+				"paragraphs": [
+					"Your birthday is a special day &#8211; a holiday that is all yours &#8211; and what better way to celebrate than to take your birthday party out on the water? Mark your personal milestone with an event your friends and family will always remember.",
+					"The New York City skyline has graced films and TV shows for decades, and now it can be part of your party. Over the course of your cruise, a variety of the city's iconic and historic sites join the celebration and supply a rotating backdrop for your birthday photos, including the Statue of Liberty, Brooklyn Bridge, Ellis Island, the Empire State Building, and more."
+				]
+			},
+			"tierCards": {
+				"heading": "Birthday Parties Large and Small",
+				"cards": [
+					{ "title": "Intimate Gatherings", "body": "The Skyline Princess is one of the most versatile charter yachts in the NYC area. Smaller, more intimate gatherings can book one or more tables during our private cruises, which have both day and nighttime options." },
+					{ "title": "Full Deck Rental", "body": "Thinking bigger? Rent a full deck to give yourself the extra capacity and elbow room you need. Each deck has its own independent full-service bar, and if dancing is on the docket, our Skylight Deck has the largest dance floor area in local waters." },
+					{ "title": "Whole Ship Charter", "body": "For truly large-scale festivities, inquire about our whole ship rentals and have the Skyline Princess all to yourselves. We are U.S. Coast Guard certified for a capacity of up to 450 passengers, with each deck customizable to a different theme." }
+				]
+			},
+			"styleCards": {
+				"heading": "Realizing Your Birthday Vision",
+				"subheading": "Birthday parties are very personal things, and our event planners will work with you to create exactly the atmosphere you want.",
+				"cards": [
+					{ "title": "Fairgrounds Fun", "body": "Considering a fairgrounds atmosphere? We can arrange for photo booths, Foosball tables, and the appropriate food and decor to match." },
+					{ "title": "Black Tie Elegance", "body": "Black tie more your style? Dance the evening away under the stars on the Skylight Deck as the NYC skyline unreels behind and around you." }
+				],
+				"closing": "And, of course, there is the food. Our expert chefs can create a custom menu for you, or you can bring in your own caterers if you have a preference."
+			},
+			"closingCta": {
+				"heading": "Ready To Set Sail?",
+				"body": "For more information about Birthday Party cruises and yacht rentals, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Get a Quote"
+			}
+		}
+	},
+	{
+		"title": "School Events",
+		"slug": "school-events",
+		"parent": 0,
+		"template": "School Events",
+		"data": {
+			"hero": {
+				"h1": "School Events Aboard the Skyline Princess",
+				"cta": "Request a Quote",
+				"bgImage": "/wp-content/uploads/skyline-1.jpg"
+			},
+			"intro": {
+				"heading": "School Events on the Skyline Princess",
+				"paragraphs": [
+					"For a spectacular school event, book a Skyline Cruise with one of three scenic itineraries &#8211; stunning NY Harbor, the picturesque New Jersey coast, or the beautiful Long Island Sound/Connecticut coastline. Whether you're celebrating a milestone, prom, graduation, or doing a field trip, the Skyline Princess event planners will work with you to create a memorable event your students will rave about for years.",
+					"Plan an amazing school event with the perfect type of food for your theme. Whether the tone of your event is educational or celebratory, Skyline Cruises will exceed your expectations. Many schools have sailed with Skyline Cruises every semester for more than 12 years."
+				],
+				"ctaLine": "Contact Us To Plan Your School Event!"
+			},
+			"itinerarySections": {
+				"heading": "Have a Fun and Educational Time Aboard the Skyline Princess",
+				"paragraphs": [
+					"School event cruises can focus on one of two primary itineraries:",
+					"NY Harbor cruises spotlight iconic NYC locations including the Statue of Liberty, Brooklyn Bridge, Ellis Island, the South Street Seaport, and more.",
+					"Long Island Sound cruises sail past Gold Coast mansions, lighthouses, and other landmarks.",
+					"For full-ship charters, you can select from one of the following departure and arrival points for your convenience:"
+				]
+			},
+			"marinaGrid": {
+				"items": [
+					"The World's Fair Marina &#8211; Flushing, Queens, NY",
+					"Pier 36 &#8211; Downtown Manhattan, NY",
+					"Chelsea Piers &#8211; Manhattan, NY",
+					"Liberty Landing Marina &#8211; Jersey City, NJ",
+					"Yonkers City Pier &#8211; Yonkers, NY",
+					"Municipal Marina &#8211; New Rochelle, NY",
+					"Town Dock Park &#8211; Port Washington, NY",
+					"Ponus Yacht Club &#8211; Stamford, CT",
+					"Veteran's Memorial Park Marina &#8211; Norwalk, CT"
+				]
+			},
+			"spectacularViews": {
+				"heading": "Spectacular Views for Any School Event",
+				"paragraphs": [
+					"The Skyline Princess is a year-round, all-weather yacht, making it perfect for any type of school event, any time of the year. From fall back-to-school events and homecomings to proms and prom afterparties, to graduations with educational field trips in between, Skyline Cruises can accommodate any school or university's need. The Skyline Princess features a fully enclosed third deck that provides outstanding views, complete with a dance floor for proms and graduation parties."
+				]
+			},
+			"testimonial": {
+				"quote": "&#8220;Cherry Valley Elementary school and I would like to thank you and all of your staff for an absolutely memorable day. All of the 5th graders and their parents had a wonderful time. Everything from the food to the service we all received was top notch. The parents could not believe how beautiful the yacht was. They all enjoyed being able to relax and not have to worry about their children getting lost. For many children, it was the first time they have ever seen many of the historical NYC sites. A week later, parents and children are still coming up to me and thanking me for the day. Some parents have asked me for your phone number so that they can book their school reunions with you. Again, thank you all for a spectacular day to remember! &#8211; Sincerely, Susan Fitzgerald"
+			},
+			"closingCta": {
+				"heading": "Skyline Cruises will make your school event truly memorable! Start Planning Today!",
+				"body": "For more information about our public NYC dinner cruises, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Request a Quote"
+			}
+		}
+	},
+	{
 		"title": "Liberty Landing Marina",
 		"slug": "liberty-landing-marina",
 		"parent": 0,
@@ -47,17 +194,26 @@
 		"data": {
 			"hero": {
 				"h1": "Liberty Landing Marina",
-				"addressSubhead": "Liberty State Park, Jersey City, NJ",
+				"addressSubhead": "80 Audrey Zapp Drive, Liberty State Park, Jersey City, NJ 07305",
 				"cta": "Book Now",
 				"bgImage": "/wp-content/uploads/skyline-1.jpg"
 			},
+			"intro": {
+				"paragraphs": [
+					"Directly west from Battery Park City in NYC, across the Hudson River in the Morris Canal, lies New Jersey's Liberty Landing Marina. The marina has 520 wet slips and can hold boats up to 200ft in length. The amenities include picnic areas, a nearby playground, a fuel pump station and a marine service center.",
+					"How many people can say their catering halls drift on the open water with spectacular views? If you decide to set sail from this location you will be able to see famous NYC landmarks such as Ellis Island and the Statue of Liberty. Any of our charter cruises can be launched from this location including a dinner cruise, an after-prom cruise, or a school event cruise like a field trip or a project graduation.",
+					"Please keep in mind that this port is used for private yacht charters only.",
+					"To book a Liberty Landing yacht charter, give us a call today!"
+				]
+			},
 			"directions": {
-				"intro": "Liberty Landing Marina is easily accessible by car or public transit.",
+				"heading": "Directions to Liberty Landing Marina",
+				"intro": "There are several different routes to get to Liberty Landing Marina whether it's by mass transit or through driving.",
 				"routes": [
-					{ "from": "From Manhattan", "directions": "Take the Holland Tunnel to NJ-78, then follow signs to Liberty State Park." },
-					{ "from": "From New Jersey and Upstate New York", "directions": "Take the NJ Turnpike South to Exit 14B, then follow signs to Liberty State Park." }
+					{ "from": "From Manhattan", "directions": "Take the I-78 W through Holland Tunnel. Once through the tunnel, continue to follow I-78 and enter New Jersey. Turn left onto Grove St/Manila Ave. Continue to follow Grove St. Turn right onto Grand St. Turn left onto Pacific Ave. Turn left onto Johnston Ave. Continue onto Audrey Zapp Drive passing the first parking lot on the left. Parking for Liberty Landing Marina is the second parking lot on the left." },
+					{ "from": "From New Jersey and Upstate New York", "directions": "Take Interstate 95 S. Get off at exit 14-14 A-14 B-14 C for I-78 toward US-1/US-9/US-22/Newark Airport/Holland Tunnel. Keep left at the fork to continue on Exits 14A-14B-14C, follow signs for Interstate 78 E/Jersey City/Holland Tunnel/Bayonne and merge onto I-78 E. Take the exit toward Liberty Science Ctr/Light Rail/Park Rail. Turn right onto Jersey City Blvd. Turn left onto Phillip St. Turn right onto Audrey Zapp Drive. Pass first parking lot. Parking for Liberty Landing Marina is at the second parking lot on the left." }
 				],
-				"transit": "Take the Light Rail to Liberty State Park Station, a short walk from the marina."
+				"transit": "The simplest and easiest way to get to Liberty Landing Marina is via water taxi from NYC or the Liberty Landing ferry located at The World Financial Center."
 			}
 		}
 	}

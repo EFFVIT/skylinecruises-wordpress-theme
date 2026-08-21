@@ -3,6 +3,8 @@
  * Directions block — Port/Location category, using "48 Liberty Landing Marina" as the clean
  * reference. Nested Driving (named sub-routes) / Mass Transit structure. Port pages are the
  * leanest template (hero + intro + this + newsletter + footer, no Features/Testimonial/CTA).
+ * Heading is per-page real copy ("Directions to Liberty Landing Marina"), NOT a generic
+ * "Getting There" — build-pages.js\'s directionsBlock() takes a `heading` param for this.
  */
 return [
 	'title'       => __( 'Directions Block', 'skyline-cruises' ),
@@ -11,7 +13,7 @@ return [
 	'content'     => '<!-- wp:group {"className":"directions-block"} -->
 <div class="wp-block-group directions-block">
 <!-- wp:heading {"level":2} -->
-<h2>Getting There</h2>
+<h2>Directions to Liberty Landing Marina</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
 <p>Liberty Landing Marina is easily accessible by car or public transit.</p>

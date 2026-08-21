@@ -244,6 +244,49 @@
   color: var(--color-white);
 }
 
+/* School Events "Testimonial Card" variant — confirmed via direct Figma read (node 120:282):
+   a genuinely DIFFERENT, simpler component, not just a modifier on the photo card above. Flat
+   light-gray box, no photo, no overlay, Poppins fonts throughout (not Playfair/italic-gold),
+   centered. The real quote text on this variant embeds its own sign-off inline (e.g. "...Again,
+   thank you all! – Sincerely, Susan Fitzgerald") rather than using a separate attribution line —
+   so ".testimonial__attribution" is hidden for this variant; fold the sign-off into the quote text
+   itself when composing a real School Events page. */
+.testimonial--card {
+  background: #f5f7fa;
+  border-radius: 16px;
+  min-height: unset;
+  padding: 40px 100px;
+}
+
+.testimonial--card::before {
+  display: none;
+}
+
+.testimonial--card .testimonial__heading {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: normal;
+  color: var(--color-navy);
+}
+
+.testimonial--card .testimonial__heading em {
+  font-style: normal;
+  color: var(--color-navy);
+}
+
+.testimonial--card .testimonial__quote {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-body-gray);
+  max-width: 1199px;
+}
+
+.testimonial--card .testimonial__attribution {
+  display: none;
+}
+
 /* ===== closing-cta (patterns/closing-cta.php) ===== */
 .closing-cta {
   background: var(--color-navy);
@@ -270,6 +313,23 @@
 .photo-checklist-row__intro {
   max-width: var(--content-width);
   margin-bottom: 48px;
+}
+
+/* ===== text-section (patterns/text-section.php) =====
+   Plain heading + paragraphs, no photo — shared across Private Event/Party, School Events, and
+   Port/Location intro sections (confirmed via direct Figma read, not a category-specific shape). */
+.text-section {
+  padding: 80px var(--side-margin);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.text-section__cta-line {
+  font-weight: 700;
+  color: var(--color-navy);
 }
 
 .photo-checklist-row__body {
@@ -315,8 +375,8 @@
 /* Confirmed via direct Figma read (node 32:11): the Buffet Menu category's menu-grid checkmark
    is a 40px instance, larger than the 24px used in Public Cruise Service's single-column list. */
 .checklist-item--lg .check-icon {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
 }
 
 /* ===== route-map (patterns/route-map.php) — Public Cruise Service only ===== */
@@ -355,11 +415,12 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+/* Confirmed via direct Figma read (node 96:152 "Tier Card"): white bg, 12px radius (not 24px),
+   padding 32px/28px, no box-shadow, Poppins BOLD 20px navy heading, 15px/24px gray body. */
 .offering-card {
   background: var(--color-white);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 4px 20px rgba(11, 44, 77, 0.08);
+  border-radius: 12px;
+  padding: 32px 28px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -367,14 +428,32 @@
 
 .offering-card h3 {
   margin: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-navy);
 }
 
-/* ===== marina-grid-3x3 / ports-list (patterns/*.php) — School Events ===== */
+.offering-card p {
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--color-body-gray);
+}
+
+/* ===== marina-grid-3x3 / ports-list (patterns/*.php) — School Events =====
+   Confirmed via direct Figma read (node 120:236 "Check circle" instance): this category's
+   marina-grid checkmark is 28px, distinct from both the 24px default and the 40px Buffet grid. */
 .marina-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px 40px;
   padding: 80px var(--side-margin);
+}
+
+.marina-grid .check-icon,
+.marina-grid svg {
+  width: 28px;
+  height: 28px;
 }
 
 .ports-list {
