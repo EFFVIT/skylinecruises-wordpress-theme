@@ -73,7 +73,7 @@ const featuresPair = () => `<!-- wp:group {"className":"features-pair"} -->
 // its own sign-off inline (e.g. "...thank you all! – Sincerely, Susan Fitzgerald") rather than
 // using a separate attribution line — so `attribution` is ignored and no attribution paragraph
 // is rendered when card=true; fold the sign-off into `quote` itself for that variant.
-const testimonial = ({ quote, attribution, bgImage = '', card = false }) => `<!-- wp:group {"className":"testimonial-outer"} -->
+const testimonial = ({ quote, attribution, bgImage = '/wp-content/themes/skylinecruises-wordpress-theme/assets/images/testimonial-bg.jpg', card = false }) => `<!-- wp:group {"className":"testimonial-outer"} -->
 <div class="wp-block-group testimonial-outer">
 <div class="testimonial${card ? ' testimonial--card' : ''}"${card ? '' : ` style="background-image:url(${bgImage})"`}>
 <!-- wp:heading {"level":2,"className":"testimonial__heading"} --><h2 class="testimonial__heading">Skyline <em>Testimonials</em></h2><!-- /wp:heading -->

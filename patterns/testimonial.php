@@ -16,7 +16,7 @@ return [
 	'categories'  => [ 'skyline-sections' ],
 	'content'     => '<!-- wp:group {"className":"testimonial-outer"} -->
 <div class="wp-block-group testimonial-outer">
-<div class="testimonial" style="background-image:url(' . esc_url( get_template_directory_uri() . '/assets/images/testimonial-bg-placeholder.jpg' ) . ')">
+<div class="testimonial" style="background-image:url(' . esc_url( get_template_directory_uri() . '/assets/images/testimonial-bg.jpg' ) . ')">
 <!-- wp:heading {"level":2,"className":"testimonial__heading"} -->
 <h2 class="testimonial__heading">Skyline <em>Testimonials</em></h2>
 <!-- /wp:heading -->
