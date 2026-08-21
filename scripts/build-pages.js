@@ -60,10 +60,15 @@ const featuresPair = () => `<!-- wp:group {"className":"features-pair"} -->
 </div>
 <!-- /wp:group -->`;
 
+// Exact spec confirmed via direct Figma read (node 7:21): gold quote-mark glyph on its own line,
+// no literal quote marks in the quote text itself, attribution always prefixed "– Name" — the
+// builder enforces the dash prefix so every real per-page attribution stays consistent; callers
+// pass just the bare name (e.g. "Olga R."), never a pre-formatted string.
 const testimonial = ({ quote, attribution, card = false }) => `<!-- wp:group {"className":"testimonial${card ? ' testimonial--card' : ''}"} -->
 <div class="wp-block-group testimonial${card ? ' testimonial--card' : ''}">
-<!-- wp:paragraph {"className":"testimonial__quote"} --><p class="testimonial__quote">"${quote}"</p><!-- /wp:paragraph -->
-<!-- wp:paragraph {"className":"testimonial__attribution"} --><p class="testimonial__attribution">${attribution}</p><!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"testimonial__mark"} --><p class="testimonial__mark">&#8220;</p><!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"testimonial__quote"} --><p class="testimonial__quote">${quote}</p><!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"testimonial__attribution"} --><p class="testimonial__attribution">&#8211; ${attribution}</p><!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->`;
 
