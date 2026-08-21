@@ -77,28 +77,41 @@
   padding: 0;
 }
 
-/* ===== hero (patterns/hero.php) ===== */
-.hero {
+/* ===== hero (patterns/hero.php) =====
+   Confirmed via direct Figma read of node 109:9 "Photo Card" (interior page 02): the hero photo
+   is a ROUNDED CARD inset 28px on every side of the hero frame, border-radius 23px, not a flush
+   full-bleed rectangle. Overlay is a horizontal (90deg, left-to-right) gradient, not vertical. */
+.hero-outer {
   position: relative;
   width: var(--page-width);
   max-width: 100%;
-  min-height: 620px;
+  padding: 28px;
+  background: var(--color-page-bg);
+}
+
+.hero {
+  position: relative;
+  border-radius: 23px;
+  overflow: hidden;
+  min-height: 564px; /* 620 hero frame - 28*2 inset */
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: flex-end;
-  padding: 0 var(--side-margin) 80px;
+  padding: 0 calc(var(--side-margin) - 28px) 80px;
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11, 44, 77, 0.15) 0%, rgba(11, 44, 77, 0.75) 100%);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0.24) 100%),
+    linear-gradient(90deg, rgba(11, 44, 77, 0.89) 0%, rgba(11, 44, 77, 0.3) 100%);
 }
 
 .hero--short {
-  min-height: 494px;
+  min-height: 438px; /* 494 hero frame - 28*2 inset */
 }
 
 .hero__content {

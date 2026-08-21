@@ -37,13 +37,18 @@ const checkIcon = '/wp-content/themes/skylinecruises-wordpress-theme/assets/icon
 
 // ---- Section builders — mirror the block markup registered in /patterns/*.php, parameterized ----
 
-const hero = ({ h1, addressSubhead = '', cta = 'Book Now', bgImage = '', short = false }) => `<!-- wp:group {"className":"hero${short ? ' hero--short' : ''}","style":{"background":{"backgroundImage":{"url":"${bgImage}"}}}} -->
-<div class="wp-block-group hero${short ? ' hero--short' : ''}">
+// Hero photo is a rounded card (border-radius 23px) inset 28px on every side of the hero frame,
+// confirmed via direct Figma read of node 109:9 "Photo Card" — not a flush full-bleed rectangle.
+// ".hero-outer" is the inset/page-bg frame; ".hero" is the rounded card itself.
+const hero = ({ h1, addressSubhead = '', cta = 'Book Now', bgImage = '', short = false }) => `<!-- wp:group {"className":"hero-outer"} -->
+<div class="wp-block-group hero-outer">
+<div class="hero${short ? ' hero--short' : ''}" style="background-image:url(${bgImage})">
 <div class="hero__content">
 <!-- wp:heading {"level":1} --><h1>${h1}</h1><!-- /wp:heading -->
 ${addressSubhead ? `<!-- wp:paragraph {"className":"hero__address"} --><p class="hero__address">${addressSubhead}</p><!-- /wp:paragraph -->` : ''}
 <!-- wp:paragraph {"className":"trust-badges"} --><p class="trust-badges"><span class="trust-badge"><span>Since 1993</span></span><span class="trust-badge"><span>A+ BBB Rating</span></span><span class="trust-badge"><span>30+ Years Excellence</span></span></p><!-- /wp:paragraph -->
 <!-- wp:buttons {"className":"hero__cta"} --><div class="wp-block-buttons hero__cta"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link btn btn-gold" href="/contact-us/request-your-quote/">${cta}</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
+</div>
 </div>
 </div>
 <!-- /wp:group -->`;
