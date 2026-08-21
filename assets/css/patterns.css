@@ -312,6 +312,13 @@
   margin-top: 2px;
 }
 
+/* Confirmed via direct Figma read (node 32:11): the Buffet Menu category's menu-grid checkmark
+   is a 40px instance, larger than the 24px used in Public Cruise Service's single-column list. */
+.checklist-item--lg .check-icon {
+  width: 32px;
+  height: 32px;
+}
+
 /* ===== route-map (patterns/route-map.php) — Public Cruise Service only ===== */
 .route-map {
   padding: 80px var(--side-margin);
