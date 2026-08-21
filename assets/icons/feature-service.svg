@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none">
-  <!-- Memorable Service: covered serving tray on an open hand -->
-  <path d="M18 40a18 18 0 0 1 36 0" stroke="#2ebf9b" stroke-width="2.2" stroke-linecap="round"/>
-  <line x1="14" y1="40" x2="58" y2="40" stroke="#2ebf9b" stroke-width="2.2" stroke-linecap="round"/>
-  <circle cx="36" cy="19" r="2.2" fill="#2ebf9b"/>
-  <path d="M10 48c4 4 10 6 26 6s22-2 26-6" stroke="#2ebf9b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <path d="M14 48v4c0 2 2 4 4 4h36c2 0 4-2 4-4v-4" stroke="#2ebf9b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-</svg>

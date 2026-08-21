@@ -4,8 +4,8 @@
  * Buffet Menu, and Private Event/Party pages only — confirmed absent on School Events, Graduation,
  * and Port/Location pages. Not a truly global pattern, so it's opt-in per page, not in page.php.
  */
-$service_icon = get_template_directory_uri() . '/assets/icons/feature-service.svg';
-$sailing_icon = get_template_directory_uri() . '/assets/icons/feature-sailing.svg';
+$service_icon = get_template_directory_uri() . '/assets/icons/feature-service.png';
+$sailing_icon = get_template_directory_uri() . '/assets/icons/feature-sailing.png';
 
 return [
 	'title'       => __( 'Features Pair', 'skyline-cruises' ),
