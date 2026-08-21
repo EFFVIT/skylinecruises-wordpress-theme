@@ -381,7 +381,7 @@
 
 .checklist-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
 }
 
@@ -389,7 +389,6 @@
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  margin-top: 2px;
 }
 
 /* Confirmed via direct Figma read (node 32:11): the Buffet Menu category's menu-grid checkmark
@@ -489,7 +488,7 @@
 
 .ports-list__item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
 }
 
