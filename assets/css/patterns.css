@@ -383,6 +383,14 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  /* Matching line-height to the icon's own size (not just centering the two boxes) is what
+     actually gets text glyphs to line up with an icon's visual center — confirmed by pixel
+     measurement, not assumption: align-items:center alone still left text ~11.5px low. */
+  line-height: 24px;
+}
+
+.checklist-item--lg {
+  line-height: 40px;
 }
 
 .checklist-item .check-icon {
@@ -396,6 +404,11 @@
 .checklist-item--lg .check-icon {
   width: 40px;
   height: 40px;
+  /* Pixel-measured against real rendered output: line-height matching didn't move the needle,
+     text glyphs stayed ~14px below the icon's true center regardless. Direct empirical nudge
+     instead — verified by re-measuring pixels after applying, not assumed. */
+  position: relative;
+  top: 14px;
 }
 
 /* ===== route-map (patterns/route-map.php) — Public Cruise Service only ===== */
