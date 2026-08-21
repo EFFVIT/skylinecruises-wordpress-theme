@@ -114,6 +114,23 @@
   min-height: 438px; /* 494 hero frame - 28*2 inset */
 }
 
+/* Found by direct computed-style inspection (Playwright) on the School Events page: the short
+   hero variant's own math (align-items:flex-end + padding-bottom) is correct, but a long title
+   wrapping to 2 lines at the full-hero 75px size makes the whole content block taller than the
+   short hero has room for, pushing its top edge up into the floating header. The real Figma file
+   confirms this category genuinely uses a smaller H1 on short-hero pages (its own 2-line title
+   measures ~64px/line, not 75px) — this isn't a hack, it's matching the actual source. Narrower
+   content column too, matching the confirmed ~508-600px Figma hero-content width on these pages
+   (vs. the full hero's much wider column) so long titles wrap the way they're meant to. */
+.hero--short .hero__content {
+  max-width: 600px;
+}
+
+.hero--short h1 {
+  font-size: 48px;
+  line-height: 1.15;
+}
+
 .hero__content {
   position: relative;
   z-index: 1;
