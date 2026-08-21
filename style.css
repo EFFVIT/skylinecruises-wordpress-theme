@@ -1,0 +1,13 @@
+/*
+Theme Name: Skyline Cruises
+Theme URI: https://github.com/EFFVIT/skylinecruises-wordpress-theme
+Author: EFFVIT
+Description: Custom theme for the Skyline Cruises site rebuild. Native block editor + registered block patterns, no page builder. Design tokens and section patterns sourced directly from the "Skyline Redesign v2" Figma file (zLYZyLCy4w7JAO6EeF5jGl).
+Version: 0.1.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: skyline-cruises
+*/
+
+/* Actual styles live in assets/css/tokens.css and assets/css/patterns.css, enqueued via functions.php.
+   Keeping this file to the required theme header only, per standard WP convention. */

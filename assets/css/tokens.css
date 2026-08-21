@@ -1,0 +1,128 @@
+/* Design tokens — confirmed by direct Figma reads against "Skyline Redesign v2" (zLYZyLCy4w7JAO6EeF5jGl).
+   None of these are synced Figma Variables/Styles (the file's only published variables belong to an
+   unrelated shared library) — these are hardcoded fills in the source file, so they're hardcoded here too. */
+
+:root {
+  /* Colors */
+  --color-navy: #0b2c4d;
+  --color-gold: #decb56;
+  --color-bg-light-blue: #dae5f4;
+  --color-page-bg: #fafbfc;
+  --color-body-gray: #4b5563;
+  --color-footer-text: #252a32;
+  --color-teal-icon: #2ebf9b;
+  --color-white: #ffffff;
+  --color-divider: rgba(11, 44, 77, 0.25);
+  --color-placeholder: rgba(17, 24, 39, 0.5);
+
+  /* Layout */
+  --page-width: 1713px;
+  --content-width: 1400px;
+  --side-margin: 157px;
+  --grid-columns: 12;
+  --grid-gutter: 40px;
+
+  /* Fonts */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Poppins", -apple-system, sans-serif;
+  --font-intro: "Lato", -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-page-bg);
+  color: var(--color-body-gray);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-navy);
+}
+
+/* H1 — hero, 75/79, always white (sits on hero photo) */
+.hero h1 {
+  font-size: 75px;
+  line-height: 79px;
+  color: var(--color-white);
+}
+
+/* H2 — section heading, 60/61 */
+h2 {
+  font-size: 60px;
+  line-height: 61px;
+}
+
+h2 em,
+h1 em {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+/* H3 — card/feature heading */
+h3 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+  color: var(--color-navy);
+}
+
+p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.intro-copy {
+  font-family: var(--font-intro);
+  font-size: 18px;
+  line-height: 32.4px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.full-bleed {
+  width: 100%;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 0 32px;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+.btn-gold:hover {
+  filter: brightness(1.05);
+}
