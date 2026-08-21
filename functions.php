@@ -21,19 +21,30 @@ add_action( 'wp_enqueue_scripts', 'skyline_enqueue_assets' );
 
 /**
  * This theme has its own complete design system (tokens.css + patterns.css) for every block
- * used on the front end. WordPress core loads its own default block CSS on every page
- * regardless — including opinionated default spacing/layout for buttons and groups — which
- * was fighting our custom .btn/.btn-gold and .wp-block-group styling (the cause of buttons
- * appearing to "float" and sections misaligning). Turning core's block CSS off entirely rather
- * than trying to out-specificity it section by section.
+ * used on the front end — WordPress core's own block CSS should never be relied on.
+ *
+ * First pass at this (dequeuing just the 'wp-block-library' handle) turned out to be incomplete:
+ * since WP 6.3, core splits each block's CSS into its OWN small stylesheet/inline snippet
+ * (`wp-block-group-inline-css`, `wp-block-buttons-inline-css`, etc. — one per block TYPE actually
+ * used on the page) instead of one bundle, specifically so unused blocks' CSS never loads. That
+ * splitting is controlled by `should_load_separate_core_block_assets` — forcing it false collapses
+ * everything back into the single legacy bundle, which the dequeue below then correctly removes
+ * in one place again. Separately, `wp_enqueue_global_styles()` prints its own
+ * `global-styles-inline-css` block directly rather than through a dequeue-able style call in the
+ * normal way it appeared to; removing the action outright (both hook points core uses) is more
+ * reliable than trying to dequeue after the fact.
  */
+add_filter( 'should_load_separate_core_block_assets', '__return_false' );
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
+
 function skyline_dequeue_core_block_styles() {
 	wp_dequeue_style( 'wp-block-library' );
 	wp_dequeue_style( 'wp-block-library-theme' );
 	wp_dequeue_style( 'global-styles' );
 	wp_dequeue_style( 'classic-theme-styles' );
 }
-add_action( 'wp_enqueue_scripts', 'skyline_dequeue_core_block_styles', 20 );
+add_action( 'wp_enqueue_scripts', 'skyline_dequeue_core_block_styles', 100 );
 
 function skyline_theme_support() {
 	add_theme_support( 'title-tag' );
