@@ -1,0 +1,12 @@
+{
+	"name": "skylinecruises-build-pages",
+	"private": true,
+	"version": "0.1.0",
+	"description": "Bulk WordPress REST API page-creation script for the Skyline Cruises theme rebuild.",
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"build-pages": "node build-pages.js"
+	}
+}

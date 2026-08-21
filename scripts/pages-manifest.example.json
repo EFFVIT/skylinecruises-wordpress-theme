@@ -1,0 +1,63 @@
+[
+	{
+		"title": "NYC Dinner Cruises",
+		"slug": "nyc-dinner-cruises",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "NYC Dinner Cruises",
+				"cta": "Book Now",
+				"bgImage": "/wp-content/uploads/skyline-1.jpg"
+			},
+			"checklist": {
+				"heading": "A Truly Memorable Dinner Cruise",
+				"intro": "Step aboard for an unforgettable evening on the water, complete with skyline views, great food, and live entertainment.",
+				"photo": "/wp-content/uploads/dinner-cruise-checklist.jpg",
+				"items": [
+					"Complimentary hors d&#8217;oeuvres upon boarding",
+					"Live DJ and dance floor",
+					"Indoor and outdoor deck seating",
+					"Full-service cash bar",
+					"Panoramic Manhattan skyline views",
+					"Climate-controlled interior cabin",
+					"Professional, attentive crew"
+				]
+			},
+			"routeMap": {
+				"image": "/wp-content/uploads/route-map.jpg"
+			},
+			"testimonial": {
+				"quote": "An unforgettable night on the water &#8211; the crew went above and beyond and the views of the city were incredible.",
+				"attribution": "Olga R."
+			},
+			"closingCta": {
+				"heading": "Ready To Set Sail?",
+				"body": "Reserve your spot today and experience New York City like never before &#8211; from the deck of a Skyline Cruises yacht.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "Liberty Landing Marina",
+		"slug": "liberty-landing-marina",
+		"parent": 0,
+		"template": "Port/Location",
+		"data": {
+			"hero": {
+				"h1": "Liberty Landing Marina",
+				"addressSubhead": "Liberty State Park, Jersey City, NJ",
+				"cta": "Book Now",
+				"bgImage": "/wp-content/uploads/skyline-1.jpg"
+			},
+			"directions": {
+				"intro": "Liberty Landing Marina is easily accessible by car or public transit.",
+				"routes": [
+					{ "from": "From Manhattan", "directions": "Take the Holland Tunnel to NJ-78, then follow signs to Liberty State Park." },
+					{ "from": "From New Jersey and Upstate New York", "directions": "Take the NJ Turnpike South to Exit 14B, then follow signs to Liberty State Park." }
+				],
+				"transit": "Take the Light Rail to Liberty State Park Station, a short walk from the marina."
+			}
+		}
+	}
+]

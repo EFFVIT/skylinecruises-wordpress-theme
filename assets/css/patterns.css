@@ -275,6 +275,236 @@
   border-radius: 24px;
 }
 
+/* ===== tier-cards-3up / style-cards-2up (patterns/*.php) — Private Event/Party ===== */
+.card-grid-section {
+  padding: 80px var(--side-margin);
+}
+
+.card-grid-section__intro {
+  max-width: var(--content-width);
+  margin-bottom: 48px;
+}
+
+.card-grid {
+  display: grid;
+  gap: 32px;
+}
+
+.card-grid--3up {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card-grid--2up {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.offering-card {
+  background: var(--color-white);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(11, 44, 77, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.offering-card h3 {
+  margin: 0;
+}
+
+/* ===== marina-grid-3x3 / ports-list (patterns/*.php) — School Events ===== */
+.marina-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 40px;
+  padding: 80px var(--side-margin);
+}
+
+.ports-list {
+  padding: 80px var(--side-margin);
+}
+
+.ports-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.ports-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.ports-list__item .private-flag {
+  color: var(--color-gold);
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+/* ===== entertainment-chips (patterns/entertainment-chips.php) — School Events (Graduation) ===== */
+.entertainment-chips {
+  padding: 80px var(--side-margin);
+}
+
+.entertainment-chips__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.entertainment-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-bg-light-blue);
+  border-radius: 9999px;
+  padding: 10px 20px;
+  font-size: 15px;
+  color: var(--color-navy);
+}
+
+.entertainment-chip .check-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== directions-block (patterns/directions-block.php) — Port/Location ===== */
+.directions-block {
+  padding: 80px var(--side-margin);
+}
+
+.directions-block__group {
+  margin-top: 32px;
+}
+
+.directions-block__group h3 {
+  margin-bottom: 12px;
+}
+
+.directions-block__route {
+  margin-bottom: 20px;
+}
+
+.directions-block__route strong {
+  color: var(--color-navy);
+}
+
+/* ===== hero-prose-cta / faq-accordion / testimonial-quote / bio-photo-gallery — About/Info ===== */
+.hero-prose-cta {
+  padding: 80px var(--side-margin);
+}
+
+.hero-prose-cta__body {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  margin-top: 32px;
+}
+
+.hero-prose-cta__body img {
+  width: 480px;
+  border-radius: 24px;
+  flex-shrink: 0;
+}
+
+.hero-prose-cta__cta {
+  margin-top: 24px;
+}
+
+.faq-accordion {
+  padding: 80px var(--side-margin);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.faq-item summary {
+  padding: 24px 0;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--color-navy);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 24px;
+  color: var(--color-gold);
+}
+
+.faq-item[open] summary::after {
+  content: "\2212"; /* minus sign */
+}
+
+.faq-item p {
+  padding: 0 0 24px;
+}
+
+.testimonial-quote {
+  padding: 80px var(--side-margin);
+}
+
+.testimonial-quote__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.bio-photo-gallery {
+  padding: 80px var(--side-margin);
+}
+
+.bio-photo-gallery__body {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  margin-top: 32px;
+}
+
+.bio-photo-gallery__body img {
+  width: 400px;
+  border-radius: 24px;
+  flex-shrink: 0;
+}
+
+.bio-photo-gallery__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.bio-photo-gallery__gallery img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* ===== form-page-shell (patterns/form-page-shell.php) — Utility/Form ===== */
+.form-page-shell {
+  padding: 80px var(--side-margin);
+}
+
+.form-page-shell__intro {
+  max-width: var(--content-width);
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.form-page-shell__embed {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
 /* ===== newsletter-cta (template-parts/newsletter-cta.php) ===== */
 .newsletter-section {
   width: var(--page-width);
