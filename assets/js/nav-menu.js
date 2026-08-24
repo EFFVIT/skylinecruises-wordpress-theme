@@ -45,6 +45,29 @@
 			} );
 		} );
 
+		// 'tabs' style dropdowns (Cruises): click a tab in the left-hand list to switch which
+		// content panel shows on the right — mirrors Biltmore's own Surgical/Non-Surgical tabs.
+		document.querySelectorAll( '.nav-dropdown--tabs' ).forEach( function ( dropdown ) {
+			var tabs = dropdown.querySelectorAll( '.nav-tabs__tab' );
+			var panels = dropdown.querySelectorAll( '.nav-tabs__panel' );
+
+			tabs.forEach( function ( tab ) {
+				tab.addEventListener( 'click', function () {
+					var index = tab.getAttribute( 'data-tab-index' );
+
+					tabs.forEach( function ( t ) {
+						var active = t === tab;
+						t.classList.toggle( 'is-active', active );
+						t.setAttribute( 'aria-selected', active ? 'true' : 'false' );
+					} );
+
+					panels.forEach( function ( panel ) {
+						panel.classList.toggle( 'is-active', panel.getAttribute( 'data-tab-panel' ) === index );
+					} );
+				} );
+			} );
+		} );
+
 		document.addEventListener( 'click', function ( e ) {
 			if ( ! e.target.closest( '.nav-pill__item--has-dropdown' ) ) {
 				closeAll();

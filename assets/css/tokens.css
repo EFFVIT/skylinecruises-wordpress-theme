@@ -223,7 +223,9 @@ figure.wp-block-image {
   .entertainment-chip:hover,
   .btn-gold,
   .btn-gold:hover,
-  .nav-chevron {
+  .nav-chevron,
+  .nav-icon-badge,
+  .nav-dropdown__row-link:hover .nav-icon-badge {
     transition: none;
     animation: none;
     transform: none;
