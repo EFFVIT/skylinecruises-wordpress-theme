@@ -43,6 +43,19 @@
 					// Second tap on an already-open item falls through and navigates normally.
 				}
 			} );
+
+			// Real bug found 2026-08-24: clicking a focusable descendant (a 'tabs'-style dropdown's
+			// tab button) leaves it holding keyboard focus, and :focus-within in patterns.css keeps
+			// this LI's dropdown open on that basis alone — so moving the mouse away to hover a
+			// DIFFERENT nav item left the old dropdown stuck open underneath/behind the new one,
+			// both visible at once. Clearing focus on mouseleave (only when focus is actually inside
+			// this LI) fixes it without touching real keyboard-only navigation at all: a keyboard
+			// user tabbing through items never fires mouseleave in the first place.
+			li.addEventListener( 'mouseleave', function () {
+				if ( li.contains( document.activeElement ) ) {
+					document.activeElement.blur();
+				}
+			} );
 		} );
 
 		// 'tabs' style dropdowns (Cruises): click a tab in the left-hand list to switch which
