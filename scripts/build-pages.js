@@ -109,12 +109,30 @@ ${checklistItems(items, itemClass)}
 </div>
 <!-- /wp:group -->`;
 
-const routeMap = ({ image }) => `<!-- wp:group {"className":"route-map"} -->
+// Real Leaflet/OpenStreetMap embed (see patterns/route-map.php + assets/js/route-map.js) — pins
+// the real departure marina + real NYC landmarks, never a fabricated route line (2026-08-21
+// decision). `departure` and `landmarks` default to the standard World's Fair Marina -> NYC
+// Harbor route shared by most Public Cruise Service pages; pass real overrides in a manifest
+// row's `routeMap` data for pages with a genuinely different route (Long Island Lighthouse,
+// Connecticut Cruises) rather than reusing this default.
+const DEFAULT_DEPARTURE = { lat: 40.7591, lng: -73.8459, label: "World's Fair Marina — Departure" };
+const DEFAULT_LANDMARKS = [
+  { lat: 40.7061, lng: -73.9969, label: 'Brooklyn Bridge' },
+  { lat: 40.7127, lng: -74.0134, label: 'One World Trade Center' },
+  { lat: 40.6995, lng: -74.0396, label: 'Ellis Island' },
+  { lat: 40.6892, lng: -74.0445, label: 'Statue of Liberty' },
+];
+const routeMap = ({ departure = DEFAULT_DEPARTURE, landmarks = DEFAULT_LANDMARKS } = {}) => {
+  const escAttr = (s) => s.replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+  return `<!-- wp:group {"className":"route-map"} -->
 <div class="wp-block-group route-map">
 <!-- wp:heading {"level":2} --><h2>Our Cruise Route</h2><!-- /wp:heading -->
-<!-- wp:image --><figure class="wp-block-image"><img src="${image}" alt="Skyline Cruises route map" /></figure><!-- /wp:image -->
+<!-- wp:html -->
+<div class="route-map__canvas" data-departure="${escAttr(JSON.stringify(departure))}" data-landmarks="${escAttr(JSON.stringify(landmarks))}" role="img" aria-label="Map of the Skyline Cruises route from ${departure.label.split(' —')[0]} past ${landmarks.map((l) => l.label).join(', ')}"></div>
+<!-- /wp:html -->
 </div>
 <!-- /wp:group -->`;
+};
 
 // Directions heading is real per-page copy ("Directions to Liberty Landing Marina"), never a
 // generic "Getting There" — confirmed via direct Figma read (node 134:137).

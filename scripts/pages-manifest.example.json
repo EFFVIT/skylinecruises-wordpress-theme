@@ -25,7 +25,14 @@
 				]
 			},
 			"routeMap": {
-				"image": "/wp-content/uploads/route-map.jpg"
+				"_comment": "Omit this key entirely to use the default World's Fair Marina -> NYC Harbor landmark pins (build-pages.js DEFAULT_DEPARTURE/DEFAULT_LANDMARKS). Override departure/landmarks here only for a page with a genuinely different real route (e.g. Long Island Lighthouse, Connecticut Cruises).",
+				"departure": { "lat": 40.7591, "lng": -73.8459, "label": "World's Fair Marina — Departure" },
+				"landmarks": [
+					{ "lat": 40.7061, "lng": -73.9969, "label": "Brooklyn Bridge" },
+					{ "lat": 40.7127, "lng": -74.0134, "label": "One World Trade Center" },
+					{ "lat": 40.6995, "lng": -74.0396, "label": "Ellis Island" },
+					{ "lat": 40.6892, "lng": -74.0445, "label": "Statue of Liberty" }
+				]
 			},
 			"testimonial": {
 				"quote": "An unforgettable night on the water &#8211; the crew went above and beyond and the views of the city were incredible.",

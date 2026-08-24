@@ -16,6 +16,15 @@ function skyline_enqueue_assets() {
 	);
 	wp_enqueue_style( 'skyline-tokens', get_template_directory_uri() . '/assets/css/tokens.css', [], '0.1.0' );
 	wp_enqueue_style( 'skyline-patterns', get_template_directory_uri() . '/assets/css/patterns.css', [ 'skyline-tokens' ], '0.1.0' );
+
+	// Route Map pattern (Public Cruise Service pages only) embeds a real Leaflet/OpenStreetMap
+	// map — self-hosted (not a CDN) so the page never depends on a third party being up. Only
+	// enqueued on pages that actually contain the pattern's markup, not site-wide.
+	if ( is_singular() && is_a( get_post(), 'WP_Post' ) && str_contains( get_post()->post_content, 'route-map__canvas' ) ) {
+		wp_enqueue_style( 'leaflet', get_template_directory_uri() . '/assets/vendor/leaflet/leaflet.css', [], '1.9.4' );
+		wp_enqueue_script( 'leaflet', get_template_directory_uri() . '/assets/vendor/leaflet/leaflet.js', [], '1.9.4', true );
+		wp_enqueue_script( 'skyline-route-map', get_template_directory_uri() . '/assets/js/route-map.js', [ 'leaflet' ], '0.1.0', true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'skyline_enqueue_assets' );
 
