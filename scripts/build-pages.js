@@ -28,7 +28,10 @@ const WP_BASE_URL = process.env.WP_BASE_URL;
 const WP_USERNAME = process.env.WP_USERNAME;
 const WP_APP_PASSWORD = process.env.WP_APP_PASSWORD;
 
-if (!WP_BASE_URL || !WP_USERNAME || !WP_APP_PASSWORD) {
+// Only enforced when this file is actually run directly (the REST-push path) — guarded so
+// scripts/compose-about-info.js can `require()` this file just for its section composers without
+// needing WP credentials, since composing HTML has nothing to do with pushing it.
+if (require.main === module && (!WP_BASE_URL || !WP_USERNAME || !WP_APP_PASSWORD)) {
 	console.error('Missing WP_BASE_URL, WP_USERNAME, or WP_APP_PASSWORD env vars. See file header for usage.');
 	process.exit(1);
 }
@@ -226,6 +229,88 @@ const formPageShell = ({ heading, intro, embedHtml }) => `<!-- wp:group {"classN
 </div>
 <!-- /wp:group -->`;
 
+// ---- About/Info composers, added 2026-08-24 for the 23-page About/Info + 6-page Utility/Form
+// batch — these mirror patterns/hero-prose-cta.php, faq-accordion.php, testimonial-quote.php, and
+// bio-photo-gallery.php exactly, just parameterized (the PHP patterns only ever shipped with
+// hardcoded placeholder content for the block-editor UI, never a real JS composer for bulk push).
+
+// `paragraphs` (plural) not the PHP pattern's single hardcoded <p> — real About/Info pages vary
+// from 1 to several paragraphs. `cta`/`ctaHref` both optional; omitting `cta` drops the whole
+// buttons block (several About/Info pages have no CTA at all, matching their "None / Soft CTA"
+// spreadsheet column).
+const heroProseCta = ({ heading, photo = '', paragraphs, cta = '', ctaHref = '/contact-us/request-your-quote/' }) => `<!-- wp:group {"className":"hero-prose-cta"} -->
+<div class="wp-block-group hero-prose-cta">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:group {"className":"hero-prose-cta__body"} -->
+<div class="wp-block-group hero-prose-cta__body">
+${photo ? `<!-- wp:image --><figure class="wp-block-image"><img src="${photo}" alt="" /></figure><!-- /wp:image -->` : ''}
+<!-- wp:group -->
+<div class="wp-block-group">
+${paragraphs.map((p) => `<!-- wp:paragraph --><p>${p}</p><!-- /wp:paragraph -->`).join('\n')}
+${cta ? `<!-- wp:buttons {"className":"hero-prose-cta__cta"} --><div class="wp-block-buttons hero-prose-cta__cta"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link btn btn-gold" href="${ctaHref}">${cta}</a></div><!-- /wp:button --></div><!-- /wp:buttons -->` : ''}
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->`;
+
+// Native <details>/<summary> accordion — no JS needed. `faqs`: real [{q, a}, ...] pulled verbatim
+// from the live flat-paragraph Q&A pairs.
+const faqAccordion = ({ heading = 'Frequently Asked Questions', faqs }) => `<!-- wp:group {"className":"faq-accordion"} -->
+<div class="wp-block-group faq-accordion">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:html -->
+${faqs.map((f) => `<details class="faq-item"><summary>${f.q}</summary><p>${f.a}</p></details>`).join('\n')}
+<!-- /wp:html -->
+</div>
+<!-- /wp:group -->`;
+
+// `items`: real [{quote, attribution}, ...] — the live site's Strong Testimonials slider, static
+// grid version here (matches patterns/testimonial-quote.php).
+const testimonialQuote = ({ heading = 'What Our Guests Say', items }) => `<!-- wp:group {"className":"testimonial-quote"} -->
+<div class="wp-block-group testimonial-quote">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:group {"className":"testimonial-quote__grid"} -->
+<div class="wp-block-group testimonial-quote__grid">
+${items.map((i) => `<!-- wp:group {"className":"offering-card"} --><div class="wp-block-group offering-card"><!-- wp:paragraph --><p>&#8220;${i.quote}&#8221;</p><!-- /wp:paragraph --><!-- wp:paragraph {"className":"testimonial__attribution"} --><p class="testimonial__attribution">${i.attribution}</p><!-- /wp:paragraph --></div><!-- /wp:group -->`).join('\n')}
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->`;
+
+// Flexible for BOTH real uses found in the live-site audit: a captain/staff bio (heading + photo
+// + paragraphs + gallery) AND a pure photo-gallery page (Picture Gallery, Party Pictures, etc. —
+// just omit `photo`/`paragraphs` and this renders as a heading + gallery grid only, arbitrary
+// image count, not the PHP pattern's hardcoded 3).
+const bioPhotoGallery = ({ heading, photo = '', paragraphs = [], galleryImages }) => `<!-- wp:group {"className":"bio-photo-gallery"} -->
+<div class="wp-block-group bio-photo-gallery">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+${(photo || paragraphs.length) ? `<!-- wp:group {"className":"bio-photo-gallery__body"} -->
+<div class="wp-block-group bio-photo-gallery__body">
+${photo ? `<!-- wp:image --><figure class="wp-block-image"><img src="${photo}" alt="" /></figure><!-- /wp:image -->` : ''}
+${paragraphs.map((p) => `<!-- wp:paragraph --><p>${p}</p><!-- /wp:paragraph -->`).join('\n')}
+</div>
+<!-- /wp:group -->` : ''}
+<!-- wp:gallery {"columns":3,"className":"bio-photo-gallery__gallery"} -->
+<figure class="wp-block-gallery bio-photo-gallery__gallery">
+${galleryImages.map((src) => `<figure class="wp-block-image"><img src="${src}" alt="" /></figure>`).join('\n')}
+</figure>
+<!-- /wp:gallery -->
+</div>
+<!-- /wp:group -->`;
+
+// New 2026-08-24 — Site Map and Friends & Affiliates are real link directories, not prose. Real
+// `<ul><li><a>` markup (not text jammed into a <p>, which isn't valid HTML for block content).
+const linkList = ({ heading, links }) => `<!-- wp:group {"className":"link-list"} -->
+<div class="wp-block-group link-list">
+${heading ? `<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->` : ''}
+<!-- wp:list --><ul class="link-list__items">
+${links.map((l) => `<li><a href="${l.href}"${l.external ? ' target="_blank" rel="noopener"' : ''}>${l.label}</a></li>`).join('\n')}
+</ul><!-- /wp:list -->
+</div>
+<!-- /wp:group -->`;
+
 // ---- Per-template composition — same ordering as the structural audit + consistency requirement:
 //      one canonical section order per category, real content varies, structure never drifts. ----
 
@@ -380,4 +465,16 @@ async function main() {
 	}
 }
 
-main();
+// Only auto-run when invoked directly (`node scripts/build-pages.js manifest.json`) — guarded so
+// scripts/compose-about-info.js (added 2026-08-24) can `require()` this file to reuse its section
+// composers (heroProseCta, faqAccordion, testimonialQuote, bioPhotoGallery, linkList, textSection,
+// etc.) without also triggering a live REST push as a side effect of importing it.
+if (require.main === module) {
+	main();
+}
+
+module.exports = {
+	hero, featuresPair, testimonial, closingCta, checklistItems, photoChecklistRow, routeMap,
+	textSection, tierCards3up, styleCards2up, marinaGrid3x3, portsList, directionsBlock, formPageShell,
+	heroProseCta, faqAccordion, testimonialQuote, bioPhotoGallery, linkList,
+};
