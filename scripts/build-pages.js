@@ -110,11 +110,14 @@ ${checklistItems(items, itemClass)}
 <!-- /wp:group -->`;
 
 // Real Leaflet/OpenStreetMap embed (see patterns/route-map.php + assets/js/route-map.js) — pins
-// the real departure marina + real NYC landmarks, never a fabricated route line (2026-08-21
-// decision). `departure` and `landmarks` default to the standard World's Fair Marina -> NYC
-// Harbor route shared by most Public Cruise Service pages; pass real overrides in a manifest
-// row's `routeMap` data for pages with a genuinely different route (Long Island Lighthouse,
-// Connecticut Cruises) rather than reusing this default.
+// the real departure marina + real NYC landmarks, plus a route line traced along the real
+// navigable waterway (East River -> Upper NY Bay) between them. A boat can only travel on water,
+// so following the real channel is a true depiction of the route even without the vessel's exact
+// GPS track (2026-08-24, supersedes the earlier pins-only-no-line decision from 2026-08-21).
+// `departure`/`landmarks`/`routePath` default to the standard World's Fair Marina -> NYC Harbor
+// route shared by most Public Cruise Service pages; pass real overrides in a manifest row's
+// `routeMap` data for pages with a genuinely different route (Long Island Lighthouse, Connecticut
+// Cruises) rather than reusing this default.
 const DEFAULT_DEPARTURE = { lat: 40.7591, lng: -73.8459, label: "World's Fair Marina — Departure" };
 const DEFAULT_LANDMARKS = [
   { lat: 40.7061, lng: -73.9969, label: 'Brooklyn Bridge' },
@@ -122,13 +125,25 @@ const DEFAULT_LANDMARKS = [
   { lat: 40.6995, lng: -74.0396, label: 'Ellis Island' },
   { lat: 40.6892, lng: -74.0445, label: 'Statue of Liberty' },
 ];
-const routeMap = ({ departure = DEFAULT_DEPARTURE, landmarks = DEFAULT_LANDMARKS } = {}) => {
+// Real East River / Upper NY Bay channel waypoints, open water the whole way.
+const DEFAULT_ROUTE_PATH = [
+  { lat: 40.7591, lng: -73.8459 }, // World's Fair Marina (Flushing Bay)
+  { lat: 40.7825, lng: -73.8802 }, // exit Flushing Bay, south of Rikers Island
+  { lat: 40.7823, lng: -73.9165 }, // Hell Gate (East River, north end)
+  { lat: 40.7648, lng: -73.9385 }, // East River off Astoria / Roosevelt Island (north tip)
+  { lat: 40.7527, lng: -73.9610 }, // East River off Queensboro Bridge / Roosevelt Island (south tip)
+  { lat: 40.7143, lng: -73.9725 }, // East River off Williamsburg Bridge
+  { lat: 40.7061, lng: -73.9969 }, // Brooklyn Bridge
+  { lat: 40.7009, lng: -74.0135 }, // The Battery (tip of Manhattan)
+  { lat: 40.6892, lng: -74.0445 }, // Statue of Liberty
+];
+const routeMap = ({ departure = DEFAULT_DEPARTURE, landmarks = DEFAULT_LANDMARKS, routePath = DEFAULT_ROUTE_PATH } = {}) => {
   const escAttr = (s) => s.replace(/"/g, '&quot;').replace(/'/g, '&#039;');
   return `<!-- wp:group {"className":"route-map"} -->
 <div class="wp-block-group route-map">
 <!-- wp:heading {"level":2} --><h2>Our Cruise Route</h2><!-- /wp:heading -->
 <!-- wp:html -->
-<div class="route-map__canvas" data-departure="${escAttr(JSON.stringify(departure))}" data-landmarks="${escAttr(JSON.stringify(landmarks))}" role="img" aria-label="Map of the Skyline Cruises route from ${departure.label.split(' —')[0]} past ${landmarks.map((l) => l.label).join(', ')}"></div>
+<div class="route-map__canvas" data-departure="${escAttr(JSON.stringify(departure))}" data-landmarks="${escAttr(JSON.stringify(landmarks))}" data-route-path="${escAttr(JSON.stringify(routePath))}" role="img" aria-label="Map of the Skyline Cruises route from ${departure.label.split(' —')[0]} along the East River past ${landmarks.map((l) => l.label).join(', ')}"></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->`;

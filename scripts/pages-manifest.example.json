@@ -25,13 +25,24 @@
 				]
 			},
 			"routeMap": {
-				"_comment": "Omit this key entirely to use the default World's Fair Marina -> NYC Harbor landmark pins (build-pages.js DEFAULT_DEPARTURE/DEFAULT_LANDMARKS). Override departure/landmarks here only for a page with a genuinely different real route (e.g. Long Island Lighthouse, Connecticut Cruises).",
+				"_comment": "Omit this key entirely to use the default World's Fair Marina -> NYC Harbor landmark pins + East River route line (build-pages.js DEFAULT_DEPARTURE/DEFAULT_LANDMARKS/DEFAULT_ROUTE_PATH). Override departure/landmarks/routePath here only for a page with a genuinely different real route (e.g. Long Island Lighthouse, Connecticut Cruises).",
 				"departure": { "lat": 40.7591, "lng": -73.8459, "label": "World's Fair Marina — Departure" },
 				"landmarks": [
 					{ "lat": 40.7061, "lng": -73.9969, "label": "Brooklyn Bridge" },
 					{ "lat": 40.7127, "lng": -74.0134, "label": "One World Trade Center" },
 					{ "lat": 40.6995, "lng": -74.0396, "label": "Ellis Island" },
 					{ "lat": 40.6892, "lng": -74.0445, "label": "Statue of Liberty" }
+				],
+				"routePath": [
+					{ "lat": 40.7591, "lng": -73.8459 },
+					{ "lat": 40.7825, "lng": -73.8802 },
+					{ "lat": 40.7823, "lng": -73.9165 },
+					{ "lat": 40.7648, "lng": -73.9385 },
+					{ "lat": 40.7527, "lng": -73.9610 },
+					{ "lat": 40.7143, "lng": -73.9725 },
+					{ "lat": 40.7061, "lng": -73.9969 },
+					{ "lat": 40.7009, "lng": -74.0135 },
+					{ "lat": 40.6892, "lng": -74.0445 }
 				]
 			},
 			"testimonial": {

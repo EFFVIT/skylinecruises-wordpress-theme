@@ -27,6 +27,7 @@
 	function initMap( el ) {
 		var departure = JSON.parse( el.getAttribute( 'data-departure' ) || 'null' );
 		var landmarks = JSON.parse( el.getAttribute( 'data-landmarks' ) || '[]' );
+		var routePath = JSON.parse( el.getAttribute( 'data-route-path' ) || '[]' );
 
 		if ( ! departure ) {
 			return;
@@ -43,6 +44,33 @@
 		} ).addTo( map );
 
 		var bounds = [ [ departure.lat, departure.lng ] ];
+
+		// Real navigable-waterway route line (East River -> Upper NY Bay) — traced along open
+		// water the whole way, not a straight-line fabrication. Drawn first so the pins sit on
+		// top of it. A thin white halo underneath the green line matches the brand's existing
+		// gold-on-navy contrast approach and keeps the line legible over busy OSM tile detail.
+		if ( routePath.length > 1 ) {
+			var latlngs = routePath.map( function ( pt ) {
+				return [ pt.lat, pt.lng ];
+			} );
+			L.polyline( latlngs, {
+				color: '#ffffff',
+				weight: 9,
+				opacity: 0.9,
+				lineCap: 'round',
+				lineJoin: 'round',
+			} ).addTo( map );
+			L.polyline( latlngs, {
+				color: '#1b5e20',
+				weight: 5,
+				opacity: 0.95,
+				lineCap: 'round',
+				lineJoin: 'round',
+			} ).addTo( map );
+			latlngs.forEach( function ( ll ) {
+				bounds.push( ll );
+			} );
+		}
 
 		L.marker( [ departure.lat, departure.lng ], { icon: navyPin() } )
 			.addTo( map )
