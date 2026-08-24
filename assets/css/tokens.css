@@ -164,6 +164,7 @@ figure.wp-block-image {
   font-size: 16px;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .btn-gold {
@@ -173,4 +174,66 @@ figure.wp-block-image {
 
 .btn-gold:hover {
   filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(222, 203, 86, 0.45);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+/* ===== Scroll-reveal (assets/js/scroll-reveal.js) =====
+   JS adds .reveal to each top-level page section on load, then .is-revealed once it scrolls into
+   view (IntersectionObserver, fires once — no re-hide on scroll back up). Elements never depend
+   on JS to become visible: .reveal alone still renders at full opacity if the script fails to
+   load or run, only .reveal.is-pending (added by the script itself right before the transition
+   starts) actually hides them — see scroll-reveal.js for why it's split this way. */
+.reveal.is-pending {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+.reveal {
+  transition: opacity 0.7s cubic-bezier(0.16, 0.84, 0.44, 1), transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+/* Respect prefers-reduced-motion sitewide: turn off every custom animation/transition added for
+   polish (hero entrance, scroll-reveal, hover-lift, nav dropdown motion) without touching layout.
+   Anything essential to using the page (e.g. the FAQ accordion's open/close) is untouched since
+   it isn't listed here. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__content {
+    animation: none;
+  }
+
+  .reveal,
+  .reveal.is-pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .offering-card,
+  .offering-card:hover,
+  .photo-checklist-row__photo img,
+  .photo-checklist-row__photo:hover img,
+  .features-pair__item img,
+  .features-pair__item:hover img,
+  .entertainment-chip,
+  .entertainment-chip:hover,
+  .btn-gold,
+  .btn-gold:hover,
+  .nav-chevron {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+
+  /* .nav-dropdown's transform is load-bearing (it's how the panel stays horizontally centered
+     under its trigger, not just an animation) — only drop the transition/animation timing here,
+     never the transform itself, or the panel would render off-center. */
+  .nav-dropdown {
+    transition: none;
+    animation: none;
+  }
 }

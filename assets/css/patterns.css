@@ -49,6 +49,150 @@
   white-space: nowrap;
 }
 
+/* ===== Nav dropdowns (Cruises / Special Events / Weddings / The Ship) =====
+   Real sub-pages pulled from the live site's own mega menu, reorganized under this redesign's
+   approved 8-item top-level nav. Opens on hover/focus via a plain CSS :hover/:focus-within rule
+   (works with no JS at all) — assets/js/nav-menu.js only adds click-to-toggle for touch devices
+   and closes an open panel when focus leaves it. Fade + slide-down open animation mirrors the
+   live site's own Max Mega Menu "fade_up" effect (data-effect="fade_up" on its nav), so this reads
+   as a faithful upgrade of the real thing, not an invented interaction. */
+.nav-pill__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-pill__trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-chevron {
+  width: 10px;
+  height: 7px;
+  color: var(--color-navy);
+  transition: transform 0.2s ease;
+}
+
+.nav-pill__item--has-dropdown:hover .nav-chevron,
+.nav-pill__item--has-dropdown.is-open .nav-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 22px);
+  left: 50%;
+  transform: translate(-50%, -8px);
+  background: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(11, 44, 77, 0.18);
+  padding: 28px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 30;
+}
+
+.nav-dropdown--simple {
+  left: 0;
+  transform: translateY(-8px);
+  min-width: 260px;
+}
+
+.nav-pill__item--has-dropdown:hover .nav-dropdown,
+.nav-pill__item--has-dropdown:focus-within .nav-dropdown,
+.nav-pill__item--has-dropdown.is-open .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.nav-dropdown--simple.is-open,
+.nav-pill__item--has-dropdown:hover .nav-dropdown--simple,
+.nav-pill__item--has-dropdown:focus-within .nav-dropdown--simple {
+  transform: translateY(0);
+}
+
+.nav-dropdown__columns {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-dropdown--mega .nav-dropdown__columns {
+  min-width: 620px;
+}
+
+.nav-dropdown__column {
+  min-width: 200px;
+}
+
+.nav-dropdown__heading {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  opacity: 0.55;
+  margin: 0 0 12px;
+}
+
+.nav-dropdown__column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-dropdown__column > ul > li > a {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-navy);
+  position: relative;
+  transition: color 0.15s ease;
+}
+
+.nav-dropdown__column > ul > li > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-gold);
+  transition: width 0.2s ease;
+}
+
+.nav-dropdown__column > ul > li > a:hover {
+  color: var(--color-gold);
+}
+
+.nav-dropdown__column > ul > li > a:hover::after {
+  width: 100%;
+}
+
+.nav-dropdown__sublist {
+  margin-top: 8px !important;
+  padding-left: 16px !important;
+  gap: 6px !important;
+}
+
+.nav-dropdown__sublist a {
+  font-size: 13.5px;
+  color: var(--color-body-gray);
+}
+
+.nav-dropdown__sublist a:hover {
+  color: var(--color-gold);
+}
+
 .header-right {
   display: flex;
   align-items: center;
@@ -129,6 +273,25 @@
   max-width: 600px;
 }
 
+/* Hero entrance animation — the one animation that can't wait for a scroll-reveal observer since
+   it's above the fold on page load. Pure CSS (no JS needed): fades up + very slightly scales in
+   on load. Skipped entirely under prefers-reduced-motion, see the media query at the end of this
+   file. */
+.hero__content {
+  animation: skyline-hero-enter 0.9s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+}
+
+@keyframes skyline-hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .hero--short h1 {
   font-size: 48px;
   line-height: 1.15;
@@ -196,6 +359,11 @@
 .features-pair__item img {
   width: 72px;
   height: 72px;
+  transition: transform 0.3s ease;
+}
+
+.features-pair__item:hover img {
+  transform: scale(1.12) rotate(-4deg);
 }
 
 /* ===== testimonial (patterns/testimonial.php) ===== */
@@ -370,6 +538,11 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.photo-checklist-row__photo:hover img {
+  transform: scale(1.05);
 }
 
 .photo-checklist-row__list {
@@ -492,6 +665,12 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.offering-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(11, 44, 77, 0.14);
 }
 
 .offering-card h3 {
@@ -568,6 +747,12 @@
   padding: 10px 20px;
   font-size: 15px;
   color: var(--color-navy);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.entertainment-chip:hover {
+  transform: translateY(-3px);
+  background: var(--color-gold);
 }
 
 .entertainment-chip .check-icon {

@@ -31,6 +31,12 @@ function skyline_enqueue_assets() {
 	wp_enqueue_style( 'skyline-tokens', get_template_directory_uri() . '/assets/css/tokens.css', [], skyline_asset_version( '/assets/css/tokens.css' ) );
 	wp_enqueue_style( 'skyline-patterns', get_template_directory_uri() . '/assets/css/patterns.css', [ 'skyline-tokens' ], skyline_asset_version( '/assets/css/patterns.css' ) );
 
+	// Site-wide, every page: nav dropdown touch/keyboard support + scroll-reveal section
+	// animations. Both degrade gracefully with no JS (dropdowns still work via CSS :hover, sections
+	// just render already-visible instead of animating in).
+	wp_enqueue_script( 'skyline-nav-menu', get_template_directory_uri() . '/assets/js/nav-menu.js', [], skyline_asset_version( '/assets/js/nav-menu.js' ), true );
+	wp_enqueue_script( 'skyline-scroll-reveal', get_template_directory_uri() . '/assets/js/scroll-reveal.js', [], skyline_asset_version( '/assets/js/scroll-reveal.js' ), true );
+
 	// Route Map pattern (Public Cruise Service pages only) embeds a real Leaflet/OpenStreetMap
 	// map — self-hosted (not a CDN) so the page never depends on a third party being up. Only
 	// enqueued on pages that actually contain the pattern's markup, not site-wide.
