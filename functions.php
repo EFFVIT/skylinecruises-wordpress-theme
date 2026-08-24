@@ -7,6 +7,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * filemtime() of the actual file, not a hand-maintained version string — a static '0.1.0' left
+ * unbumped is exactly what let a browser keep serving a stale cached copy of patterns.css after
+ * an edit (real incident, 2026-08-24: the route-map CSS shipped correctly to the server but a
+ * visitor's browser kept the old cached stylesheet since the URL's ?ver= never changed). Deriving
+ * the version from the file's own mtime means every future edit auto-busts the cache, the same
+ * "fix the class of bug, not the instance" approach used for the core block-restructuring filters
+ * above — never hardcode a version string for theme-owned CSS/JS again.
+ */
+function skyline_asset_version( $relative_path ) {
+	$file = get_template_directory() . $relative_path;
+	return file_exists( $file ) ? filemtime( $file ) : '0.1.0';
+}
+
 function skyline_enqueue_assets() {
 	wp_enqueue_style(
 		'skyline-google-fonts',
@@ -14,8 +28,8 @@ function skyline_enqueue_assets() {
 		[],
 		null
 	);
-	wp_enqueue_style( 'skyline-tokens', get_template_directory_uri() . '/assets/css/tokens.css', [], '0.1.0' );
-	wp_enqueue_style( 'skyline-patterns', get_template_directory_uri() . '/assets/css/patterns.css', [ 'skyline-tokens' ], '0.1.0' );
+	wp_enqueue_style( 'skyline-tokens', get_template_directory_uri() . '/assets/css/tokens.css', [], skyline_asset_version( '/assets/css/tokens.css' ) );
+	wp_enqueue_style( 'skyline-patterns', get_template_directory_uri() . '/assets/css/patterns.css', [ 'skyline-tokens' ], skyline_asset_version( '/assets/css/patterns.css' ) );
 
 	// Route Map pattern (Public Cruise Service pages only) embeds a real Leaflet/OpenStreetMap
 	// map — self-hosted (not a CDN) so the page never depends on a third party being up. Only
@@ -23,7 +37,7 @@ function skyline_enqueue_assets() {
 	if ( is_singular() && is_a( get_post(), 'WP_Post' ) && str_contains( get_post()->post_content, 'route-map__canvas' ) ) {
 		wp_enqueue_style( 'leaflet', get_template_directory_uri() . '/assets/vendor/leaflet/leaflet.css', [], '1.9.4' );
 		wp_enqueue_script( 'leaflet', get_template_directory_uri() . '/assets/vendor/leaflet/leaflet.js', [], '1.9.4', true );
-		wp_enqueue_script( 'skyline-route-map', get_template_directory_uri() . '/assets/js/route-map.js', [ 'leaflet' ], '0.1.0', true );
+		wp_enqueue_script( 'skyline-route-map', get_template_directory_uri() . '/assets/js/route-map.js', [ 'leaflet' ], skyline_asset_version( '/assets/js/route-map.js' ), true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'skyline_enqueue_assets' );
