@@ -41,7 +41,15 @@
   list-style: none;
 }
 
-.nav-pill__links a {
+/* Real bug found 2026-08-24: this was `.nav-pill__links a` (any descendant link), which — since
+   the dropdown panels live inside the same <li>, several levels deeper — ALSO matched every
+   nested dropdown row link, not just the 8 top-level nav items it was meant for. Its
+   white-space:nowrap then inherited straight down into every row title's text (nothing further
+   down overrode it), which is why a long title like "Connecticut Cruises & Yacht Charters" was
+   rendering as one unbroken line and overlapping its neighboring grid column instead of wrapping.
+   Scoped to `> li > a` (direct children only) so it can only ever match the top-level trigger/
+   flat-link anchors, never anything nested inside a dropdown panel. */
+.nav-pill__links > li > a {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 17px;
@@ -164,6 +172,11 @@
 
 .nav-dropdown__row {
   list-style: none;
+  /* Real bug found 2026-08-24: a grid item's default min-width:auto lets its max-content size
+     (an unbroken long title like "Connecticut Cruises & Yacht Charters") force the grid track
+     wider than the panel, pushing the text past the visible card's right edge instead of wrapping.
+     min-width:0 lets the track — and this row's text — actually shrink to wrap normally. */
+  min-width: 0;
 }
 
 .nav-dropdown__row-link {
@@ -172,6 +185,7 @@
   gap: 12px;
   padding: 8px;
   border-radius: 10px;
+  min-width: 0;
   transition: background 0.15s ease;
 }
 
@@ -204,23 +218,40 @@
   white-space: normal;
 }
 
+/* Sub-items (e.g. "Dinner Cruise Buffet Menu" under "NYC Dinner Cruises") get the SAME icon-badge
+   row treatment as their parent, just smaller and indented — real bug found 2026-08-24: they were
+   rendering as bare unstyled text links, visibly missing the icon/style treatment every sibling
+   row has, once a user actually looked at the rendered Cruises dropdown. */
 .nav-dropdown__sublist {
   list-style: none;
-  margin: 2px 0 6px 46px !important;
-  padding: 0 !important;
+  margin: 2px 0 6px 0 !important;
+  padding-left: 46px !important;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
-.nav-dropdown__sublist a {
+.nav-dropdown__row--sub .nav-dropdown__row-link {
+  padding: 4px 8px;
+}
+
+.nav-icon-badge--sm {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-icon-badge--sm svg {
+  width: 11px;
+  height: 11px;
+}
+
+.nav-dropdown__row--sub .nav-dropdown__row-title {
   font-size: 13px;
   color: var(--color-body-gray);
-  transition: color 0.15s ease;
 }
 
-.nav-dropdown__sublist a:hover {
-  color: var(--color-gold);
+.nav-dropdown__row--sub .nav-dropdown__row-link:hover .nav-dropdown__row-title {
+  color: var(--color-navy);
 }
 
 /* --- 'list' style (Special Events): headed columns of icon+label rows, mirrors Biltmore's

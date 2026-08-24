@@ -63,13 +63,13 @@ $nav_menu = [
 				'label' => 'Public Cruises',
 				'items' => [
 					[ 'icon' => 'utensils', 'label' => 'NYC Dinner Cruises', 'href' => '/nyc-dinner-cruises/', 'description' => 'An evening cruise with dinner, live DJ, and skyline views.', 'children' => [
-						[ 'label' => 'Dinner Cruise Buffet Menu', 'href' => '/nyc-dinner-cruises/menu/' ],
+						[ 'icon' => 'utensils', 'label' => 'Dinner Cruise Buffet Menu', 'href' => '/nyc-dinner-cruises/menu/' ],
 					] ],
 					[ 'icon' => 'sun', 'label' => 'NYC Brunch Cruises', 'href' => '/nyc-brunch-cruises/', 'description' => 'A daytime cruise with brunch and harbor views.', 'children' => [
-						[ 'label' => 'Brunch Cruise Buffet Menu', 'href' => '/nyc-brunch-cruises/brunch-menu/' ],
+						[ 'icon' => 'utensils', 'label' => 'Brunch Cruise Buffet Menu', 'href' => '/nyc-brunch-cruises/brunch-menu/' ],
 					] ],
 					[ 'icon' => 'utensils', 'label' => 'NYC Lunch Cruises', 'href' => '/nyc-lunch-cruises/', 'description' => 'A midday cruise with lunch and skyline views.', 'children' => [
-						[ 'label' => 'Lunch Cruise Buffet Menu', 'href' => '/nyc-lunch-cruises/lunch-menu/' ],
+						[ 'icon' => 'utensils', 'label' => 'Lunch Cruise Buffet Menu', 'href' => '/nyc-lunch-cruises/lunch-menu/' ],
 					] ],
 				],
 			],
@@ -124,7 +124,7 @@ $nav_menu = [
 				'heading' => 'Corporate & Charters',
 				'items'   => [
 					[ 'icon' => 'briefcase', 'label' => 'Corporate Cruises', 'href' => '/corporate-cruises/', 'children' => [
-						[ 'label' => 'Fundraisers', 'href' => '/corporate-cruises/fundraisers/' ],
+						[ 'icon' => 'heart', 'label' => 'Fundraisers', 'href' => '/corporate-cruises/fundraisers/' ],
 					] ],
 					[ 'icon' => 'anchor', 'label' => 'Private Yacht Charters', 'href' => '/yacht-charter/' ],
 					[ 'icon' => 'map-pin', 'label' => 'Waterfront Event Venue', 'href' => '/yacht-charter/waterfront-event-venue/' ],
@@ -191,7 +191,11 @@ function skyline_render_nav_row( $item, $with_description = false ) {
 	if ( ! empty( $item['children'] ) ) {
 		echo '<ul class="nav-dropdown__sublist">';
 		foreach ( $item['children'] as $child ) {
-			echo '<li><a href="' . esc_url( $child['href'] ) . '">' . esc_html( $child['label'] ) . '</a></li>';
+			echo '<li class="nav-dropdown__row nav-dropdown__row--sub">';
+			echo '<a class="nav-dropdown__row-link" href="' . esc_url( $child['href'] ) . '">';
+			echo '<span class="nav-icon-badge nav-icon-badge--sm">' . skyline_nav_icon( $child['icon'] ?? 'utensils' ) . '</span>';
+			echo '<span class="nav-dropdown__row-text"><span class="nav-dropdown__row-title">' . esc_html( $child['label'] ) . '</span></span>';
+			echo '</a></li>';
 		}
 		echo '</ul>';
 	}
