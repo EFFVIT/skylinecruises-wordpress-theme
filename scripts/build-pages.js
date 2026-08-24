@@ -244,11 +244,15 @@ const TEMPLATE_BUILDERS = {
 	// (Bar/Bat Mitzvah, Baby Shower, Sweet 16/Quinceañera) this recipe has no other slot for —
 	// inserted after the testimonial, before the closing CTA, so a page with none (the common
 	// case) renders identically to before.
+	// `noRouteMap: true` (added 2026-08-24) omits the "Our Cruise Route" section entirely — used
+	// for Long Island Lighthouse Cruise and Connecticut Cruises at the user's explicit request.
+	// Omitting `routeMap` from `d` (the default, most pages) still renders the section with the
+	// standard NYC Harbor route; `noRouteMap: true` is a distinct signal from "use the default."
 	'Public Cruise Service': (d) => [
 		hero(d.hero),
 		photoChecklistRow(d.checklist),
 		featuresPair(),
-		routeMap(d.routeMap),
+		...(d.noRouteMap ? [] : [routeMap(d.routeMap)]),
 		testimonial(d.testimonial),
 		...(d.extraTextSections || []).map(textSection),
 		closingCta(d.closingCta),

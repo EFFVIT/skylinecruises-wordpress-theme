@@ -391,102 +391,7 @@
 				"body": "For more information about our Lighthouse Cruises or hosting a private party, an affordable yet luxurious wedding, or corporate event aboard the Skyline Princess, simply fill out the contact form or give us a call at (718) 446-1100. We look forward to cruising with you.",
 				"cta": "Book Now"
 			},
-			"routeMap": {
-				"departure": {
-					"lat": 40.7591,
-					"lng": -73.8459,
-					"label": "World's Fair Marina — Departure"
-				},
-				"landmarks": [
-					{
-						"lat": 40.8006,
-						"lng": -73.8265,
-						"label": "The Bronx-Whitestone Bridge"
-					},
-					{
-						"lat": 40.7871,
-						"lng": -73.781,
-						"label": "Fort Totten"
-					},
-					{
-						"lat": 40.8028,
-						"lng": -73.7923,
-						"label": "The Throgs Neck Bridge"
-					},
-					{
-						"lat": 40.8057,
-						"lng": -73.7864,
-						"label": "Fort Schuyler"
-					},
-					{
-						"lat": 40.8508,
-						"lng": -73.7654,
-						"label": "Hart Island"
-					},
-					{
-						"lat": 40.8103,
-						"lng": -73.7649,
-						"label": "Kings Point Merchant Marine Academy"
-					},
-					{
-						"lat": 40.82,
-						"lng": -73.7733,
-						"label": "Stepping Stones Lighthouses"
-					},
-					{
-						"lat": 40.8781,
-						"lng": -73.7378,
-						"label": "Execution Rocks"
-					},
-					{
-						"lat": 40.8639,
-						"lng": -73.7136,
-						"label": "Sands Point"
-					}
-				],
-				"routePath": [
-					{
-						"lat": 40.7591,
-						"lng": -73.8459
-					},
-					{
-						"lat": 40.8006,
-						"lng": -73.8265
-					},
-					{
-						"lat": 40.7871,
-						"lng": -73.781
-					},
-					{
-						"lat": 40.8028,
-						"lng": -73.7923
-					},
-					{
-						"lat": 40.8057,
-						"lng": -73.7864
-					},
-					{
-						"lat": 40.8508,
-						"lng": -73.7654
-					},
-					{
-						"lat": 40.8103,
-						"lng": -73.7649
-					},
-					{
-						"lat": 40.82,
-						"lng": -73.7733
-					},
-					{
-						"lat": 40.8781,
-						"lng": -73.7378
-					},
-					{
-						"lat": 40.8639,
-						"lng": -73.7136
-					}
-				]
-			}
+			"noRouteMap": true
 		}
 	},
 	{
@@ -652,30 +557,7 @@
 				"body": "Our public dinner cruises are convenient from CT located just over the Whitestone Bridge in Queens. They are ideal for everything from romantic dinners for two, office parties, birthdays and all celebrations for groups of from 2-400. We have cruises viewing the NYC Skyline, Long Island Sounds Lighthouses and Mansions as well as fireworks cruises. We are an owner-operated company, so our clients work directly with the people responsible for delivering the personalized service that they deserve. We also offer flexibility that can't be found elsewhere in regard to times, menus and locations. To book a Connecticut yacht charter or dinner cruise with us today, call (718) 446-1100.",
 				"cta": "Book Now"
 			},
-			"routeMap": {
-				"departure": {
-					"lat": 41.0367889,
-					"lng": -73.5428695,
-					"label": "Ponus Yacht Club, Stamford, CT — Departure"
-				},
-				"landmarks": [
-					{
-						"lat": 41.0979,
-						"lng": -73.4101,
-						"label": "Veterans Memorial Park and Marina, Norwalk, CT"
-					}
-				],
-				"routePath": [
-					{
-						"lat": 41.0367889,
-						"lng": -73.5428695
-					},
-					{
-						"lat": 41.0979,
-						"lng": -73.4101
-					}
-				]
-			}
+			"noRouteMap": true
 		}
 	},
 	{
