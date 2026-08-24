@@ -1,0 +1,773 @@
+[
+	{
+		"title": "NYC Brunch Cruises",
+		"slug": "nyc-brunch-cruises",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "NYC Brunch Cruises",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/brunch-hero.jpg"
+			},
+			"checklist": {
+				"heading": "A Truly Memorable Brunch Experience",
+				"intro": "What better way to start your day than enjoying a delightful brunch aboard the Skyline Princess, cruising along the Ney York harbor? Experience the breathtaking views of one of the world's most famous skyline. New York City landmarks, such as the Statue of Liberty and the Brooklyn Bridge, are a great backdrop for pictures and make any event that much more special and unique.",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/brunch-checklist.jpg",
+				"items": [
+					"An enchanting 4-hour cruise of the NYC harbor",
+					"Scenic views of the Manhattan skyline including the Statue of Liberty, Brooklyn Bridge, Ellis Island, the South Street Seaport and more",
+					"A delicious three-course meal prepared by our celebrated chefs",
+					"Lively musical entertainment and a dance floor",
+					"Three all-weather decks and a climate-controlled cabin",
+					"A reserved table for the size of your group",
+					"Free parking"
+				]
+			},
+			"testimonial": {
+				"quote": "Amazing Cruise! The staff was professional and courteous. The drinks and the dinner buffet was wonderful. We had a great time in the Skyline Cruise. I definitely recommend.",
+				"attribution": "Olga R.",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/brunch-testimonial.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "For more information about our public NYC dinner cruises, give us a call at (718) 446-1100 or contact us today. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "NYC Lunch Cruises",
+		"slug": "nyc-lunch-cruises",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "NYC Lunch Cruises",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/lunch-hero.jpg"
+			},
+			"checklist": {
+				"heading": "A Truly Memorable Lunch Experience",
+				"intro": "What better way to start your day than enjoying a delightful lunch aboard the Skyline Princess, cruising along the Ney York harbor? Experience the breathtaking views of one of the world's most famous skyline. New York City landmarks, such as the Statue of Liberty and the Brooklyn Bridge, are a great backdrop for pictures and make any event that much more special and unique.",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/lunch-checklist.jpg",
+				"items": [
+					"An enchanting 4-hour cruise of the NYC harbor",
+					"Scenic views of the Manhattan skyline including the Statue of Liberty, Brooklyn Bridge, Ellis Island, the South Street Seaport, and more",
+					"A delicious three-course meal prepared by our celebrated chefs",
+					"Lively musical entertainment and a dance floor",
+					"Three all-weather decks and a climate-controlled cabin",
+					"A reserved table for the size of your group",
+					"Free parking"
+				]
+			},
+			"testimonial": {
+				"quote": "Amazing Cruise! The staff was professional and courteous. The drinks and the dinner buffet was wonderful. We had a great time in the Skyline Cruise. I definitely recommend.",
+				"attribution": "Olga R.",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/lunch-testimonial.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "For more information about our public NYC dinner cruises, give us a call at (718) 446-1100 or contact us today. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "NYC Holiday Cruises",
+		"slug": "nyc-holiday-cruises",
+		"parent": 0,
+		"template": "Holiday Hub",
+		"data": {
+			"hero": {
+				"h1": "NYC Holiday Cruises",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/holiday-hub-hero.jpg"
+			},
+			"intro": {
+				"heading": "Holiday Cruises Around New York Harbor",
+				"paragraphs": [
+					"For unforgettable holiday celebrations, make Skyline Cruises your destination.",
+					"You'll make unforgettable memories and cherish the fabulous photos you'll take with the Statue of Liberty and other world-famous New York landmarks in the background. The Skyline Princess offers unparalleled access to its three decks, including our all-weather rooftop deck with a dance floor and dedicated DJ space, if you hire one. Event/party hosts can hire a caterer to provide food and drinks and can bring in their own staff to accommodate guest needs during private events. Alcohol is allowed on a limited basis. We can provide a list of recommended vendors or you can choose your own. We provide the space; you bring the party!",
+					"Why watch fireworks on TV when you can see spectacular <a href=\"/nyc-holiday-cruises/4th-of-july/\">4th of July</a> and <a href=\"/nyc-holiday-cruises/new-years-eve/\">New Year's Eve</a> fireworks from the skylight deck of the Skyline Princess? The climate-controlled cabin and enclosed all-weather rooftop deck provide spectacular views of the celebrations. Bring that special someone or a group of special someones. Our popular cruises are sure to make these holidays even more fun.",
+					"For <a href=\"/nyc-holiday-cruises/valentines-day/\">Valentine's Day</a>, <a href=\"/nyc-holiday-cruises/mothers-day/\">Mother's Day</a>, and <a href=\"/nyc-holiday-cruises/fathers-day/\">Father's Day</a>, Skyline offers special holiday cruises that will make it a magical day for your loved ones. Lovely brunch cruises are a great way to let Mom and Dad know how special they are to the family. A dinner cruise on Valentine's Day is a romantic and unique way to say I love you to that special person in your life. The Skyline Princess is always a popular choice for company holiday celebrations as well."
+				]
+			},
+			"features": {
+				"heading": "A NYC Holiday Cruise Features:",
+				"intro": "",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/holiday-hub-checklist.jpg",
+				"items": [
+					"A cruise around the picturesque NYC harbor",
+					"Gorgeous views of the New York City skyline",
+					"An up-close visual tour of historic landmarks including the Empire State Building, the BMW bridges (Brooklyn, Manhattan, and Williamsburg), and the Statue of Liberty and Ellis Island",
+					"Free parking at the World's Fair Marina, our Queens home port with other ports available"
+				]
+			},
+			"smoothSailing": {
+				"heading": "Smooth Sailing",
+				"paragraphs": [
+					"Our yacht is designed for year-round cruising. It is fully climate-controlled for year-round outings and because it sails in the calm, sheltered waters of the famous New York Harbor or Long Island Sound, you'll experience smooth sailing."
+				]
+			},
+			"datesBookFast": {
+				"heading": "Holiday Dates Book Fast",
+				"paragraphs": [
+					"Prime holiday dates and times book up fast! Contact Skyline Cruises for our holiday party options, which are perfect for groups of any size.",
+					"If you want to reserve a spot on one of our holiday cruises or if you are interested in booking a full ship yacht charter, a private party, or a corporate party, then call (718) 446-1100 now or use our form to contact us today."
+				]
+			},
+			"marinaNote": {
+				"heading": "",
+				"paragraphs": [
+					"Our holiday cruises depart from the World's Fair Marina in Flushing, NY. Speak with one of our experienced event planners and learn how affordable NYC holiday party cruises can be."
+				]
+			},
+			"testimonial": {
+				"quote": "We very much enjoyed our evening aboard the Skyline Princess. Weather was just great! The food was delicious, service impeccable, comfort and enjoyment was excellent. Will definitely board again for future corporate events. Again, thank you, and a big thank you to the staff on board the Skyline Princess, a truly memorable event.",
+				"attribution": "Janice, BASF Beauty Creations",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/holiday-hub-testimonial-bg.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "For more information about our NYC holiday cruises or to book your holiday party now, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "NYC New Years Eve Cruise",
+		"slug": "nyc-holiday-cruises-new-years-eve",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "NYC New Years Eve Cruise",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/nye-hero.jpg"
+			},
+			"checklist": {
+				"heading": "Your Skyline Experience Includes:",
+				"intro": "Whether you're looking for fun or romance – or both – on New Year's Eve, Skyline Cruises will make sure that you have the time of your life. Our special New Year's Eve packages include:",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/nye-checklist.jpg",
+				"items": [
+					"A 5-hour cruise of historic New York Harbor, featuring views of the Statue of Liberty, the Brooklyn Bridge, South Street Seaport, and New York City's world-famous skyline.",
+					"A great view of the fireworks.",
+					"A gourmet, three-course dinner.",
+					"Open bar featuring premium liquors, wines, beer, soda, juice, coffee, tea, and water.",
+					"Music and dance floor overseen by our DJs.",
+					"Party favors (hats, noisemakers, etc.)",
+					"Champagne toast at midnight.",
+					"Attentive wait staff to take care of your needs.",
+					"Free parking at the marina."
+				]
+			},
+			"testimonial": {
+				"quote": "We had an amazing night at the skyline princess on new year's eve!!! Lovely furniture with round tables, funny celebration stuff on them (like hats, crowns, bracelets…) for the guests, very friendly and obliging staff, good music and dance possibilities on a separate deck, and a stunning view over the skyline, Statue of Liberty, and the fireworks right next to it. All drinks and food were included. The food was very delicious and the drinks were good mixed. They even had Malibu!!! We would definitely recommend these guys!! It was an excellent experience and definitely the better option than spending New Year's Eve at the cold and overcrowded Times Square.",
+				"attribution": "Elena S",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/nye-testimonial-bg.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "For more information about our New Year's Eve cruise, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "NYC Valentine's Day Dinner Cruise",
+		"slug": "nyc-holiday-cruises-valentines-day",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "NYC Valentine's Day Dinner Cruise",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/vday-hero.jpg"
+			},
+			"checklist": {
+				"heading": "The Skyline Valentine's Day Experience includes:",
+				"intro": "",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/vday-checklist.jpg",
+				"items": [
+					"Our NYC cruise features icon views and sights NYC is known for including the Statue of Liberty, the United Nations Building, Roosevelt Island, Riker's Island, and more",
+					"A delicious, freshly prepared buffet meal, prepared by our chef",
+					"Three all-weather decks, fully climate-controlled cabins, and a heated all-weather rooftop deck with an enclosed dance floor",
+					"Free parking at the marina"
+				]
+			},
+			"testimonial": {
+				"quote": "My hubby surprised me with this beautiful Valentine's Day dinner. Filled with family and friends. We had friends who were running late, the captain held the ship for them to board. They also called to verify where they were. I was blown away by the customer service, food, and the great DJ. We had an amazing time! Even my mother-in-law who isn't easily impressed enjoyed her time as well, which made me really happy. Overall I recommend this dinner cruise and will probably be back during the summer.",
+				"attribution": "Patti E. Bronx, NY",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/vday-testimonial-bg.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "For more information about our Valentine's Day cruise, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "Mother’s Day Dinner Cruises In NYC",
+		"slug": "nyc-holiday-cruises-mothers-day",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "Mother’s Day Dinner Cruises In NYC",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/mothersday-hero.jpg"
+			},
+			"checklist": {
+				"heading": "A Truly Memorable Mothers Day Event",
+				"intro": "Show your mom how special she is with one of Skyline Cruises’ stunning Mother’s Day brunch cruises or dinner cruises. Flowers fade but memories of your NY Harbor cruise will last a lifetime.",
+				"photo": "",
+				"items": [
+					"A lovely 4-hour cruise of NYC harbor",
+					"A delicious three-course meal",
+					"Beautiful views of the Manhattan skyline including the Statue of Liberty, Brooklyn Bridge, Ellis Island, the South Street Seaport, and more",
+					"Musical entertainment and a top deck dance floor",
+					"A reserved table for the size of your group",
+					"Three all-weather decks and climate-controlled cabins",
+					"Free parking at the marina"
+				]
+			},
+			"testimonial": {
+				"quote": "Mother’s Day dinner cruise 2018, had a wonderful time with family and friends. The staff was great, wonderful crowd, overall it was a beautiful evening although the weather wasn’t very good.",
+				"attribution": "R. West",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/mothersday-testimonial.jpg"
+			},
+			"closingCta": {
+				"heading": "Skyline Cruises will make your Mother’s Day special. Book now for a truly unique experience!",
+				"body": "For more information about Skyline’s Mother’s Day cruise, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "NYC Father’s Day Cruises",
+		"slug": "nyc-holiday-cruises-fathers-day",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "NYC Father’s Day Cruises",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/fathersday-hero.jpg"
+			},
+			"checklist": {
+				"heading": "Father’s Day Brunch and Dinner Cruises",
+				"intro": "Do something different for dad and spend Father’s Day on the Skyline Princess, NYC’s number one luxury yacht tour. A stately excursion around historic New York Harbor with Skyline Cruises is the perfect Father’s Day celebration.",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/fathersday-checklist.jpg",
+				"items": [
+					"A relaxing 4-hour cruise of NYC harbor",
+					"A delicious three-course meal",
+					"Beautiful views of the Manhattan skyline including the Statue of Liberty, Brooklyn Bridge, Ellis Island, the South Street Seaport, and more",
+					"Musical entertainment and a top deck dance floor",
+					"A reserved table for the size of your group",
+					"Three all-weather decks and climate-controlled cabins",
+					"Free parking at the marina"
+				]
+			},
+			"testimonial": {
+				"quote": "My family and I had a great experience on Father’s Day. The food (brunch and dessert) was delicious and the drinks were good (paid extra for unlimited drinks which was worth it). We took beautiful pictures outside as we passed by NYC landmarks. My family had a memorable time and are looking forward to making this experience a yearly one.",
+				"attribution": "L. Zhinin",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/fathersday-testimonial.jpg"
+			},
+			"closingCta": {
+				"heading": "Skyline Cruises will make your Father’s Day special. Book now!",
+				"body": "For more information about Skyline’s Father’s Day cruise, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you!",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "NYC 4th of July Firework Dinner Cruises",
+		"slug": "nyc-holiday-cruises-4th-of-july",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "NYC 4th of July Firework Dinner Cruises",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-hero.jpg"
+			},
+			"checklist": {
+				"heading": "4th of July Fireworks Cruises In NYC",
+				"intro": "Book a front-row seat now on board the Skyline Princess for the famous Macy’s Fireworks Spectacular against the world-famous New York skyline. Our 4th of July fireworks dinner cruise is our most popular event every year and sells out well in advance because of its stunning views of the legendary fireworks show.",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-checklist.jpg",
+				"items": [
+					"The best view for the fabulous NY Harbor fireworks",
+					"A 5-hour cruise featuring iconic sights including the United Nations Building, Roosevelt Island, Riker’s Island, and more",
+					"A delicious, freshly prepared buffet meal, hand-selected by our chef",
+					"Three all-weather decks, climate-controlled cabin and rooftop deck, enclosed dance floor",
+					"A 4 1/2 hour open bar and a delicious three-course meal",
+					"Free parking at the marina"
+				]
+			},
+			"testimonial": {
+				"quote": "I could not have thought of a better way to spend my 4th of July. Worth every penny.",
+				"attribution": "Dennis H.",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-testimonial.jpg"
+			},
+			"closingCta": {
+				"heading": "Our 4th of July Cruises Sell Out Quickly So Book Now!",
+				"body": "For more information about our 4th of July dinner cruises, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "NYC Booze Cruises",
+		"slug": "nyc-booze-cruises",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "NYC Booze Cruises",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/booze-hero.jpg"
+			},
+			"checklist": {
+				"heading": "Premier Luxury Yacht for NYC Booze Cruises",
+				"intro": "You can choose from one of our existing booze cruises or charter a private cruise around New York City, Long Island, or Connecticut shore communities or New Jersey shore communities. Our affordable booze cruises depart from Queens, Manhattan, Long Island, New Jersey, Connecticut, and Westchester, making your booze cruise as convenient as possible.",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/booze-checklist.jpg",
+				"items": [
+					"Our luxury super yacht, the Skyline Princess has three large levels, three bars, and three large dance floors, complete with an upscale luxury yacht ambiance.",
+					"This unique yacht is the perfect venue for a wide range of events from corporate entertaining, birthday parties, class reunions, employee appreciation cruises, clubs, and social gatherings of all kinds.",
+					"You can choose from one of our existing booze cruises or charter a private cruise around New York City, Long Island, or Connecticut shore communities or New Jersey shore communities.",
+					"Our affordable booze cruises depart from Queens, Manhattan, Long Island, New Jersey, Connecticut, and Westchester, making your booze cruise as convenient as possible.",
+					"Skyline's NYC booze cruises keep the drinks coming, the music playing, and the party hopping no matter what the occasion!"
+				]
+			},
+			"testimonial": {
+				"quote": "Skyline rocks!!!!!",
+				"attribution": "Marino Catalan",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/booze-testimonial-bg.jpg"
+			},
+			"closingCta": {
+				"heading": "Book Your Booze Cruise With Skyline.",
+				"body": "For more information about our booze cruises or public NYC dinner cruises, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "Long Island Sound Lighthouse Sightseeing Cruises",
+		"slug": "long-island-lighthouse-cruise",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "Long Island Sound Lighthouse Sightseeing Cruises",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/lighthouse-hero.jpg"
+			},
+			"checklist": {
+				"heading": "Long Island Lighthouse Sightseeing Cruises",
+				"intro": "For a memorable trip with your friends and family, a Skyline Princess lighthouse cruise is the perfect answer. Combining both beauty and history, it's a unique sightseeing tour of the magnificent lighthouses on both sides of Long Island Sound. Departing from the World's Fair Marina in Flushing, Queens, your group will enjoy a delightful day sightseeing. It's an enjoyable alternative from our popular New York Harbor public dinner cruises. It's a fantastic tour for business outings, school groups, families, travel groups, senior citizens, and a wide variety of organizations.",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/lighthouse-checklist.jpg",
+				"items": [
+					"Fort Schuyler",
+					"Fort Totten",
+					"Sands Point",
+					"Stepping Stones Lighthouses",
+					"Kings Point Merchant Marine Academy",
+					"Execution Rocks",
+					"The Throgs Neck Bridge",
+					"Hart Island",
+					"The Bronx-Whitestone Bridge",
+					"Long Island North Shore Gold Coast mansions"
+				]
+			},
+			"testimonial": {
+				"quote": "I had my wedding there 2 years ago and it was great had over 80 guests. Everyone said it was awesome. The staff is very polite, [the] food was delicious, and if you spring for some of the extra spreads, you won't regret it. I've also been out a few times for the lighthouse tour and brunch. Going out again with a few people in a couple of weeks. Enjoy.",
+				"attribution": "Paul Q.",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/lighthouse-testimonial-bg.jpg"
+			},
+			"closingCta": {
+				"heading": "Skyline Cruises will make any day special. Book now!",
+				"body": "For more information about our Lighthouse Cruises or hosting a private party, an affordable yet luxurious wedding, or corporate event aboard the Skyline Princess, simply fill out the contact form or give us a call at (718) 446-1100. We look forward to cruising with you.",
+				"cta": "Book Now"
+			},
+			"routeMap": {
+				"departure": {
+					"lat": 40.7591,
+					"lng": -73.8459,
+					"label": "World's Fair Marina — Departure"
+				},
+				"landmarks": [
+					{
+						"lat": 40.8006,
+						"lng": -73.8265,
+						"label": "The Bronx-Whitestone Bridge"
+					},
+					{
+						"lat": 40.7871,
+						"lng": -73.781,
+						"label": "Fort Totten"
+					},
+					{
+						"lat": 40.8028,
+						"lng": -73.7923,
+						"label": "The Throgs Neck Bridge"
+					},
+					{
+						"lat": 40.8057,
+						"lng": -73.7864,
+						"label": "Fort Schuyler"
+					},
+					{
+						"lat": 40.8508,
+						"lng": -73.7654,
+						"label": "Hart Island"
+					},
+					{
+						"lat": 40.8103,
+						"lng": -73.7649,
+						"label": "Kings Point Merchant Marine Academy"
+					},
+					{
+						"lat": 40.82,
+						"lng": -73.7733,
+						"label": "Stepping Stones Lighthouses"
+					},
+					{
+						"lat": 40.8781,
+						"lng": -73.7378,
+						"label": "Execution Rocks"
+					},
+					{
+						"lat": 40.8639,
+						"lng": -73.7136,
+						"label": "Sands Point"
+					}
+				],
+				"routePath": [
+					{
+						"lat": 40.7591,
+						"lng": -73.8459
+					},
+					{
+						"lat": 40.8006,
+						"lng": -73.8265
+					},
+					{
+						"lat": 40.7871,
+						"lng": -73.781
+					},
+					{
+						"lat": 40.8028,
+						"lng": -73.7923
+					},
+					{
+						"lat": 40.8057,
+						"lng": -73.7864
+					},
+					{
+						"lat": 40.8508,
+						"lng": -73.7654
+					},
+					{
+						"lat": 40.8103,
+						"lng": -73.7649
+					},
+					{
+						"lat": 40.82,
+						"lng": -73.7733
+					},
+					{
+						"lat": 40.8781,
+						"lng": -73.7378
+					},
+					{
+						"lat": 40.8639,
+						"lng": -73.7136
+					}
+				]
+			}
+		}
+	},
+	{
+		"title": "NYC Anniversary Dinner Cruises",
+		"slug": "nyc-anniversary-cruise",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "NYC Anniversary Dinner Cruises",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/anniversary-hero.jpg"
+			},
+			"checklist": {
+				"heading": "Anniversary Dinner Cruises",
+				"intro": "Celebrate your anniversary in style aboard the Skyline Princess. Whether it's a milestone anniversary or you just want to treat each other to a unique experience, a cruise along the historic NY Harbor with views of the iconic Manhattan skyline will make memories you'll cherish for years.",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/anniversary-checklist.jpg",
+				"items": [
+					"The World's Fair Marina, Flushing, Queens, NY",
+					"Chelsea Piers, Manhattan, NY",
+					"Municipal Marina, New Rochelle, NY",
+					"Town Dock Park, Port Washington, NY",
+					"Liberty Landing Marina, Jersey City, NJ",
+					"Lincoln Harbor, Weehawken, NJ",
+					"Veteran's Memorial Park and Marina, Norwalk, CT",
+					"Ponus Yacht Club, Stamford, CT",
+					"Yonkers City Pier, Yonkers, NY",
+					"Pier 36, Downtown Manhattan, NYC"
+				]
+			},
+			"testimonial": {
+				"quote": "We could not have spent our parents' 50th anniversary in a more special way. Skyline Princess cruises provided our group of 20 with a delicious dinner with champagne, open bar dessert, and music! The city views were unbelievable!! The kids' ages ranged from 9-17 and they all had a blast. The adults were from 30-75. The DJ truly caught the ambiance with the best music. The backdrop for our family pictures was priceless. Our parents said that they had the times of their lives with the people who mean the most to them while also doing something they have never done before and will never forget! The maitre'd also came out on deck to take pictures of us so we could all the capture this special day. We cannot thank Pete and his crew enough for a time that our family will treasure for years to come.",
+				"attribution": "Shannon Q.",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/testimonial-shared-bg.jpg"
+			},
+			"closingCta": {
+				"heading": "Skyline Cruises will make your anniversary special. Book now!",
+				"body": "For more information about our anniversary cruises or one of our public NYC dinner cruises, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "Celebration Cruises",
+		"slug": "celebration-cruises-nyc",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "Celebration Cruises",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/celebration-hero.jpg"
+			},
+			"checklist": {
+				"heading": "Book Your Event",
+				"intro": "No matter what the celebration, Skyline Princess Cruise is the perfect yacht charter for your special event!",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/celebration-hero.jpg",
+				"items": [
+					"Schedule: NYC Skyline Dinner Cruises",
+					"View Our Super Discounts",
+					"Book Your Corporate Event",
+					"Book Your Private Charter"
+				]
+			},
+			"testimonial": {
+				"quote": "Fantastic views, value and FUN!!! Been going on this cruise once a year for the past 18 years. A great value, no extra Port fees, no charge for parking. You get to see more of the east side as it does not leave from west side manhattan. LAGUARDIA airport takeoffs and landings always exciting. DJ has a great mix to dance. This is the best bang for your buck whether group celebration, romantic night out, or solo adventure. Can't say more about the friendly and accommodating staff and management.",
+				"attribution": "Gar Leu",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/testimonial-shared-bg.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "For more information about our public NYC dinner cruises, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			},
+			"extraTextSections": [
+				{
+					"heading": "Long Island & NYC Bar/Bat Mitzvah Cruises",
+					"paragraphs": [
+						"The celebration of your child´s Bar/Bat Mitzvah honors their accomplishments and gives loved ones an opportunity to show how proud you are of them. Let us help you make this day special with a Bat Mitzvah or Bar Mitzvah party on a Skyline Princess yacht charter. You and your guests will enjoy viewing the Manhattan Skyline or the mansions and lighthouses of Long Island Sound. This provides a special backdrop for photos and makes the event one that will be talked about for years to come.",
+						"All of our New York Bat Mitzvah and Bar Mitzvah parties are completely custom-designed to create a special ambiance. Themed decorations, custom menus, exciting entertainment options and beautiful Long Island Sound or Manhattan skyline cruise views create an event as unique and as special as your child. Bar Mitzvah cruises and Bat Mitzvah cruises on the Skyline Princess offer a flexibility that can´t be found elsewhere. We would be happy to work with you to accommodate any special needs you may have including creative floor plans, seating arrangements, and specialty menus. For the past ten years, Skyline Cruises has provided the ultimate Bar/Bar Mitzvah party cruising experience on NY, NJ and Connecticut waterways. Don´t trust your event to anyone not intimately familiar with your needs.",
+						"Mazel Tov on the water!"
+					]
+				},
+				{
+					"heading": "Baby Shower Cruises",
+					"paragraphs": [
+						"Having your Baby Shower aboard the Skyline Princess offers a unique venue for an event that is truly one-of-a-kind. Our flexible schedules can accommodate any need. From a four hour cruise or a three-hour cruise, sailing in NY Harbor on a New York City Cruise, Long Island Sound Cruise or on a Lighthouse Cruise. Our experienced staff can assist you in planning your baby shower event from start to finish."
+					]
+				},
+				{
+					"heading": "Extravagant Sweet 16 & Quinceañera Cruises",
+					"paragraphs": [
+						"Sweet 16 and Quinceanera are a special time in your loved one’s life. It’s a day they will never forget. The Skyline Princess is the perfect vessel for your little ‘Princess’. We will cruise the harbors of your Port of Departure showing you the sights that it has to offer. A beautiful moving Panoramic view, with elegant service to match. The Skyline Deck features a dance floor, for your Princess and her friends to dance and have a great time as we spin her favorite songs. So, contact us, make sure she’s always happy with you because you didn’t let her day getaway!"
+					]
+				}
+			]
+		}
+	},
+	{
+		"title": "US OPEN Charters and Transportation",
+		"slug": "us-open-charters",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "US OPEN Charters and Transportation",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/usopen-hero.png"
+			},
+			"checklist": {
+				"heading": "Private Event Cruise Ports",
+				"intro": "We sail from several ports throughout the tri-state area. Our super yacht, the Skyline Princess, was specifically designed for year-round, all-weather operation. The entire vessel is fully climate-controlled. Our third deck can be open or completely enclosed, so no matter what the season, you have complete use of all levels, and your plans never have to change based on weather conditions.",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/usopen-checklist.jpg",
+				"items": [
+					"Flushing, Queens, NY",
+					"Manhattan, NY",
+					"Bronx, NY",
+					"New Jersey: Jersey City",
+					"Long Island: Port Washington and Glen Cove, NY",
+					"Connecticut: Stamford and Norwalk, CT",
+					"Westchester: New Rochelle and Yonkers"
+				]
+			},
+			"testimonial": {
+				"quote": "Great lunch staff and views of East River and Harbor. No brainer. Just do it!",
+				"attribution": "Donald Berman",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/usopen-testimonial-bg.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "For more information about our public NYC dinner cruises, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "Connecticut Cruises and Yacht Charters",
+		"slug": "connecticut-cruises",
+		"parent": 0,
+		"template": "Public Cruise Service",
+		"data": {
+			"hero": {
+				"h1": "Connecticut Cruises and Yacht Charters",
+				"cta": "Book Now",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/connecticut-hero.jpg"
+			},
+			"checklist": {
+				"heading": "Convenient Connecticut Ports",
+				"intro": "Our Connecticut departure ports are in Stamford & Norwalk which makes the Skyline Princess an ideal location for corporate entertaining.",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/connecticut-checklist.jpg",
+				"items": [
+					"Stamford, CT",
+					"Norwalk, CT"
+				]
+			},
+			"testimonial": {
+				"quote": "We thoroughly enjoyed our dinner cruise with Skyline Cruises and highly recommend others to come aboard. From the expert and patient attention, from the booking agent, Buck Tanzi, to the attention of the staff on board, to the quality of the food, everything and everyone was top notch! The boat was clean and spacious. All decks afforded great views. New York is one of the world's most beautiful cities, and seeing it at night is a wonderful experience. We can't wait to do this again.",
+				"attribution": "B. Klag",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/connecticut-testimonial-bg.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "Our public dinner cruises are convenient from CT located just over the Whitestone Bridge in Queens. They are ideal for everything from romantic dinners for two, office parties, birthdays and all celebrations for groups of from 2-400. We have cruises viewing the NYC Skyline, Long Island Sounds Lighthouses and Mansions as well as fireworks cruises. We are an owner-operated company, so our clients work directly with the people responsible for delivering the personalized service that they deserve. We also offer flexibility that can't be found elsewhere in regard to times, menus and locations. To book a Connecticut yacht charter or dinner cruise with us today, call (718) 446-1100.",
+				"cta": "Book Now"
+			},
+			"routeMap": {
+				"departure": {
+					"lat": 41.0367889,
+					"lng": -73.5428695,
+					"label": "Ponus Yacht Club, Stamford, CT — Departure"
+				},
+				"landmarks": [
+					{
+						"lat": 41.0979,
+						"lng": -73.4101,
+						"label": "Veterans Memorial Park and Marina, Norwalk, CT"
+					}
+				],
+				"routePath": [
+					{
+						"lat": 41.0367889,
+						"lng": -73.5428695
+					},
+					{
+						"lat": 41.0979,
+						"lng": -73.4101
+					}
+				]
+			}
+		}
+	},
+	{
+		"title": "Brunch Cruise Buffet Menu",
+		"slug": "nyc-brunch-cruise-buffet-menu",
+		"parent": 0,
+		"template": "Buffet Menu",
+		"data": {
+			"hero": {
+				"h1": "Brunch Cruise Buffet Menu",
+				"cta": "Skyline will make your day special. Book now!",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/brunch-menu-hero.jpg"
+			},
+			"intro": {
+				"heading": "A Truly Memorable Brunch",
+				"paragraphs": [
+					"The Skyline Princess hosts a variety of brunch cruises. Whether it be an occasion such as Mother's Day, Father's Day, or a Lighthouse Cruise or a private event for either a business function or a private party like a bridal shower, Skyline Cruises is the perfect venue. We offer spectacular views of the New York skyline. The Statue of Liberty, Brooklyn Bridge, and Empire State Buildings are just a few of the iconic landmarks you and your guests will see as you leisurely cruise the New York Harbor."
+				]
+			},
+			"checklist": {
+				"heading": "Some Brunch Buffet Options",
+				"intro": "",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/brunch-menu-food.jpg",
+				"items": [
+					"Breakfast pastries served with assorted jellies, cream cheese, and butter",
+					"Freshly baked rolls",
+					"Omelets",
+					"Home Fried Potatoes",
+					"Bacon and Sausage",
+					"Caesar Salad",
+					"Fresh Roasted Turkey Breast",
+					"Short Ribs of Beef",
+					"Vegetarian Pasta or Vegetarian Entrée",
+					"Selection of Gourmet Cakes",
+					"Coffee, Tea, and Water Included"
+				]
+			},
+			"testimonial": {
+				"quote": "Amazing Cruise! The staff was professional and courteous. The drinks and the dinner buffet was wonderful. We had a great time in the Skyline Cruise. I definitely recommend.",
+				"attribution": "Olga R.",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/brunch-menu-testimonial.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "For more information about our public NYC brunch cruises, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	},
+	{
+		"title": "Lunch Cruise Buffet Menu",
+		"slug": "nyc-lunch-cruise-buffet-menu",
+		"parent": 0,
+		"template": "Buffet Menu",
+		"data": {
+			"hero": {
+				"h1": "Lunch Cruise Buffet Menu",
+				"cta": "Skyline will make your day special. Book now!",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/lunch-menu-hero.jpg"
+			},
+			"intro": {
+				"heading": "A Truly Memorable Lunch",
+				"paragraphs": [
+					"Skyline Cruises is the perfect venue to host a lunch cruise for company events such as a fundraiser and private charters for a special birthday, school event, or other celebration. The stunning views of famous New York landmarks such as the Statue of Liberty are a great backdrop for any event. Enjoy a spectacular day that includes a delicious buffet of expertly prepared lunch options and fun entertainment."
+				]
+			},
+			"checklist": {
+				"heading": "Some Lunch Buffet Options",
+				"intro": "",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/lunch-menu-food.jpg",
+				"items": [
+					"Caesar Salad",
+					"Freshly Baked Rolls",
+					"Braised Boneless Short Rib of Beef",
+					"Grilled Bruschetta Chicken",
+					"Vegetarian Pasta or Vegetarian Entrée",
+					"Roasted New Bliss Potatoes",
+					"Freshly Steamed Vegetables",
+					"Selection of Gourmet Cakes",
+					"Coffee, Tea, and Water Included"
+				]
+			},
+			"testimonial": {
+				"quote": "Amazing Cruise! The staff was professional and courteous. The drinks and the dinner buffet was wonderful. We had a great time in the Skyline Cruise. I definitely recommend.",
+				"attribution": "Olga R.",
+				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/lunch-menu-testimonial.jpg"
+			},
+			"closingCta": {
+				"heading": "",
+				"body": "For more information about our public NYC lunch cruises, give us a call at (718) 446-1100 or contact us through the inquiry form. We look forward to cruising with you.",
+				"cta": "Book Now"
+			}
+		}
+	}
+]

@@ -95,13 +95,17 @@ const checklistItems = (items, itemClass = 'checklist-item') => items.map(
 	(item) => `<!-- wp:paragraph {"className":"${itemClass}"} --><p class="${itemClass}"><img class="check-icon" src="${checkIcon}" alt="" />${item}</p><!-- /wp:paragraph -->`
 ).join('\n');
 
-const photoChecklistRow = ({ heading, intro, photo, items, gridCols = 1, itemClass = 'checklist-item', cta = 'Book Now' }) => `<!-- wp:group {"className":"photo-checklist-row"} -->
+// `photo` is optional — real bug found while building the Mother's Day page: its live checklist
+// genuinely has no adjacent photo at all (not every cruise-type page pairs one), so forcing an
+// `<img src="">` would render a broken image. Omit the photo figure entirely when absent instead
+// of inventing one, and let the list use the freed-up width.
+const photoChecklistRow = ({ heading, intro, photo = '', items, gridCols = 1, itemClass = 'checklist-item', cta = 'Book Now' }) => `<!-- wp:group {"className":"photo-checklist-row"} -->
 <div class="wp-block-group photo-checklist-row">
 <!-- wp:group {"className":"photo-checklist-row__intro"} --><div class="wp-block-group photo-checklist-row__intro"><!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->${intro ? `<!-- wp:paragraph {"className":"intro-copy"} --><p class="intro-copy">${intro}</p><!-- /wp:paragraph -->` : ''}</div><!-- /wp:group -->
 <!-- wp:group {"className":"photo-checklist-row__body"} -->
 <div class="wp-block-group photo-checklist-row__body">
-<!-- wp:image {"className":"photo-checklist-row__photo"} --><figure class="wp-block-image photo-checklist-row__photo"><img src="${photo}" alt="" /></figure><!-- /wp:image -->
-<!-- wp:group {"className":"photo-checklist-row__list"} --><div class="wp-block-group photo-checklist-row__list"${gridCols > 1 ? ` style="display:grid;grid-template-columns:repeat(${gridCols},1fr);gap:16px 32px;"` : ''}>
+${photo ? `<!-- wp:image {"className":"photo-checklist-row__photo"} --><figure class="wp-block-image photo-checklist-row__photo"><img src="${photo}" alt="" /></figure><!-- /wp:image -->` : ''}
+<!-- wp:group {"className":"photo-checklist-row__list"} --><div class="wp-block-group photo-checklist-row__list"${gridCols > 1 ? ` style="display:grid;grid-template-columns:repeat(${gridCols},1fr);gap:16px 32px;"` : (!photo ? ' style="max-width:800px;margin-inline:auto;"' : '')}>
 ${checklistItems(items, itemClass)}
 <!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link btn btn-gold" href="/contact-us/request-your-quote/">${cta}</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
 </div><!-- /wp:group -->
@@ -229,11 +233,42 @@ const formPageShell = ({ heading, intro, embedHtml }) => `<!-- wp:group {"classN
 // built page in that category (node ids in the comment on each), not inferred or guessed.
 const TEMPLATE_BUILDERS = {
 	// 02 - NYC Dinner Cruises (node 3:575)
+	// `extraTextSections` (optional, array of RAW {heading, paragraphs} data objects — deliberately
+	// NOT the same convention as 'School Events (non-hub)'s pre-built-string `extraSections` below;
+	// real bug caught immediately after the first live push: passing raw data objects into that
+	// convention's `...(arr)` spread produces literal "[object Object]" in the rendered page, since
+	// spreading an array of plain objects into the content-strings array just calls each object's
+	// default toString() when everything gets `.join('\n')`ed at the end — it never runs them
+	// through textSection() at all. Mapping through textSection() here first is the fix.) —
+	// added 2026-08-24 for "Celebration Cruises", whose real live page has 3 genuine subsections
+	// (Bar/Bat Mitzvah, Baby Shower, Sweet 16/Quinceañera) this recipe has no other slot for —
+	// inserted after the testimonial, before the closing CTA, so a page with none (the common
+	// case) renders identically to before.
 	'Public Cruise Service': (d) => [
 		hero(d.hero),
 		photoChecklistRow(d.checklist),
 		featuresPair(),
 		routeMap(d.routeMap),
+		testimonial(d.testimonial),
+		...(d.extraTextSections || []).map(textSection),
+		closingCta(d.closingCta),
+	],
+	// "NYC Holiday Cruises" — a real directory/hub page linking out to the 5 specific holiday
+	// occasions, not a standard cruise-product page. Composed directly from its own real section
+	// order (confirmed via live-site extraction 2026-08-24) rather than forced into the standard
+	// recipe: intro (with inline links to the 5 sub-pages) -> features checklist w/ photo ->
+	// "Smooth Sailing" (shared static block, same as featuresPair conceptually but this page's
+	// real copy is prose, not the icon pair) -> "Holiday Dates Book Fast" -> an unheaded
+	// departure-marina paragraph -> an unheaded testimonial -> closing CTA. A dated 2020-era
+	// COVID-19 safety section on the live page was deliberately dropped as outdated, not carried
+	// forward (same call made on a similar section during the Private Event/Party batch).
+	'Holiday Hub': (d) => [
+		hero(d.hero),
+		textSection(d.intro),
+		photoChecklistRow(d.features),
+		textSection(d.smoothSailing),
+		textSection(d.datesBookFast),
+		textSection(d.marinaNote),
 		testimonial(d.testimonial),
 		closingCta(d.closingCta),
 	],
