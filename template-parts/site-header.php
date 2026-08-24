@@ -48,6 +48,8 @@ function skyline_nav_icon( $name ) {
 		'compass'   => '<circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11"/>',
 		'gem'       => '<path d="M6 8l6-5 6 5-6 13z"/><path d="M6 8h12M9 8l3 13 3-13"/>',
 		'sun'       => '<circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.6" y1="4.6" x2="6.7" y2="6.7"/><line x1="17.3" y1="17.3" x2="19.4" y2="19.4"/><line x1="4.6" y1="19.4" x2="6.7" y2="17.3"/><line x1="17.3" y1="6.7" x2="19.4" y2="4.6"/>',
+		'moon'      => '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
+		'clock'     => '<circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 15,14"/>',
 	];
 	$inner = $paths[ $name ] ?? $paths['anchor'];
 	return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $inner . '</svg>';
@@ -62,10 +64,10 @@ $nav_menu = [
 			[
 				'label' => 'Public Cruises',
 				'items' => [
-					[ 'icon' => 'utensils', 'label' => 'NYC Dinner Cruises', 'href' => '/nyc-dinner-cruises/', 'description' => 'An evening cruise with dinner, live DJ, and skyline views.', 'children' => [
+					[ 'icon' => 'moon', 'label' => 'NYC Dinner Cruises', 'href' => '/nyc-dinner-cruises/', 'description' => 'An evening cruise with dinner, live DJ, and skyline views.', 'children' => [
 						[ 'icon' => 'utensils', 'label' => 'Dinner Cruise Buffet Menu', 'href' => '/nyc-dinner-cruises/menu/' ],
 					] ],
-					[ 'icon' => 'utensils', 'label' => 'NYC Lunch Cruises', 'href' => '/nyc-lunch-cruises/', 'description' => 'A midday cruise with lunch and skyline views.', 'children' => [
+					[ 'icon' => 'clock', 'label' => 'NYC Lunch Cruises', 'href' => '/nyc-lunch-cruises/', 'description' => 'A midday cruise with lunch and skyline views.', 'children' => [
 						[ 'icon' => 'utensils', 'label' => 'Lunch Cruise Buffet Menu', 'href' => '/nyc-lunch-cruises/lunch-menu/' ],
 					] ],
 					[ 'icon' => 'sun', 'label' => 'NYC Brunch Cruises', 'href' => '/nyc-brunch-cruises/', 'description' => 'A daytime cruise with brunch and harbor views.', 'children' => [
