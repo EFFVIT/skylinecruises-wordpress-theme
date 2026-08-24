@@ -30,7 +30,7 @@ $year = wp_date( 'Y' );
 		<div class="site-footer__services">
 			<h4>Our Services</h4>
 			<ul>
-				<li><a href="/dinner-cruises/">Dinner Cruises</a></li>
+				<li><a href="/nyc-dinner-cruises/">Dinner Cruises</a></li>
 				<li><a href="/private-events/">Private Charters</a></li>
 				<li><a href="/weddings/">Wedding Packages</a></li>
 				<li><a href="/corporate-events/">Corporate Events</a></li>
@@ -41,12 +41,12 @@ $year = wp_date( 'Y' );
 		<div class="site-footer__quicklinks">
 			<h4>Quick Links</h4>
 			<ul>
-				<li><a href="/about/">About Us</a></li>
+				<li><a href="/about-skyline-cruises/">About Us</a></li>
 				<li><a href="/the-ship/">Our Fleet</a></li>
-				<li><a href="/about/clients-testimonials/">Testimonials</a></li>
-				<li><a href="/gallery/">Gallery</a></li>
-				<li><a href="/blog/">Blog</a></li>
-				<li><a href="/about/faq/">FAQs</a></li>
+				<li><a href="/about-clients-testimonials/">Testimonials</a></li>
+				<li><a href="/picture-gallery/">Gallery</a></li>
+				<li><a href="/notes-from-the-deck/">Blog</a></li>
+				<li><a href="/about-faq/">FAQs</a></li>
 			</ul>
 		</div>
 

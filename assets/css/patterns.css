@@ -1300,3 +1300,13 @@
 .page-content {
   position: relative;
 }
+
+/* The site header floats absolutely (top:86px, height:72px -> bottom edge ~158px) on top of
+   the page. Hero sections clear it naturally (tall photo card + bottom-aligned content), but
+   any page whose first section is plain content (text-section, link-list, faq-accordion,
+   testimonial-quote, bio-photo-gallery, directions-block, form-page-shell, etc.) has nothing
+   pushing it down and the intro text collides with the floating nav pill. Give the first
+   non-hero section extra top clearance so it never sits under the header. */
+.page-content > *:first-child:not(.hero-outer) {
+  margin-top: 130px;
+}
