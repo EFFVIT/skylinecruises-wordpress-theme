@@ -176,10 +176,18 @@ $nav_menu = [
 	],
 ];
 
-/** Renders one icon+label(+description) row, used by both the 'tabs' content panel and 'list'/'simple' columns. */
+/**
+ * Renders one icon+label(+description) row, used by both the 'tabs' content panel and
+ * 'list'/'simple' columns. A row with `children` (e.g. "NYC Dinner Cruises" -> "Buffet Menu")
+ * becomes its own hover-flyout trigger — flush against the row with zero gap (top:100%, no
+ * padding-top bridge needed) so it can't reintroduce the same hover-dead-zone bug the main nav
+ * dropdowns had; opens downward, not to the side, so it can't reintroduce the same off-screen
+ * edge-cutoff bug either, regardless of which grid column the trigger sits in.
+ */
 function skyline_render_nav_row( $item, $with_description = false ) {
-	$external = ! empty( $item['external'] ) ? ' target="_blank" rel="noopener"' : '';
-	echo '<li class="nav-dropdown__row">';
+	$external  = ! empty( $item['external'] ) ? ' target="_blank" rel="noopener"' : '';
+	$has_kids  = ! empty( $item['children'] );
+	echo '<li class="nav-dropdown__row' . ( $has_kids ? ' nav-dropdown__row--flyout-parent' : '' ) . '">';
 	echo '<a class="nav-dropdown__row-link" href="' . esc_url( $item['href'] ) . '"' . $external . '>';
 	echo '<span class="nav-icon-badge">' . skyline_nav_icon( $item['icon'] ?? 'anchor' ) . '</span>';
 	echo '<span class="nav-dropdown__row-text">';
@@ -187,9 +195,13 @@ function skyline_render_nav_row( $item, $with_description = false ) {
 	if ( $with_description && ! empty( $item['description'] ) ) {
 		echo '<span class="nav-dropdown__row-desc">' . esc_html( $item['description'] ) . '</span>';
 	}
-	echo '</span></a>';
-	if ( ! empty( $item['children'] ) ) {
-		echo '<ul class="nav-dropdown__sublist">';
+	echo '</span>';
+	if ( $has_kids ) {
+		echo '<svg class="nav-flyout-chevron" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+	}
+	echo '</a>';
+	if ( $has_kids ) {
+		echo '<ul class="nav-dropdown__flyout">';
 		foreach ( $item['children'] as $child ) {
 			echo '<li class="nav-dropdown__row nav-dropdown__row--sub">';
 			echo '<a class="nav-dropdown__row-link" href="' . esc_url( $child['href'] ) . '">';

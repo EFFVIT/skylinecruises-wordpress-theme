@@ -218,24 +218,61 @@
   white-space: normal;
 }
 
-/* Sub-items (e.g. "Dinner Cruise Buffet Menu" under "NYC Dinner Cruises") get the SAME icon-badge
-   row treatment as their parent, just a size step down and indented — real bug found 2026-08-24:
-   they were rendering as bare unstyled text links, visibly missing the icon/style treatment every
-   sibling row has. First fix (22px badge / 13px text) read as cramped/too-small once actually
-   looked at — decided against a hover-flyout for what's just a single link each (unnecessary extra
-   interaction layer for one item) and instead sized this up closer to the parent so it still
-   reads as a clear sub-item without looking like an afterthought. */
-.nav-dropdown__sublist {
-  list-style: none;
-  margin: 4px 0 8px 0 !important;
-  padding-left: 46px !important;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+/* Sub-items (e.g. "Dinner Cruise Buffet Menu" under "NYC Dinner Cruises") get their own hover
+   FLYOUT, not an always-visible inline list — went through a few passes on this before landing
+   here per an explicit user decision to make these real nested dropdowns.
+   REAL BUG caught by live screenshot verification, not just code review: a first pass used
+   `position: absolute` to open downward without disturbing layout — but that meant the flyout
+   floated ON TOP of whatever row came next in the same column (in "Corporate Cruises" -> a live
+   screenshot showed it visibly overlapping/obscuring "Great Escape Yacht Rental" below it, text
+   fragments peeking out from behind the card). Fixed by making this a real in-flow accordion
+   instead of a floating overlay: `max-height` collapses it to 0 and expands it on hover/focus,
+   which actually pushes subsequent rows down (CSS Grid grows that row's track to fit; a flex
+   column just reflows normally) — it can never overlap a sibling because it isn't floating over
+   anything anymore. */
+.nav-flyout-chevron {
+  width: 9px;
+  height: 6px;
+  margin-left: auto;
+  padding-left: 8px;
+  flex-shrink: 0;
+  color: var(--color-body-gray);
+  transition: transform 0.2s ease;
 }
 
-.nav-dropdown__row--sub .nav-dropdown__row-link {
-  padding: 6px 8px;
+.nav-dropdown__row--flyout-parent:hover .nav-flyout-chevron,
+.nav-dropdown__row--flyout-parent:focus-within .nav-flyout-chevron {
+  transform: rotate(180deg);
+  color: var(--color-navy);
+}
+
+.nav-dropdown__flyout {
+  overflow: hidden;
+  max-height: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: max-height 0.25s ease;
+}
+
+/* 200px is a generous cap for what's currently always exactly one short row — if a flyout ever
+   needs to hold more than 1-2 children, bump this (or switch to measuring real content height in
+   JS), since a max-height transition can't animate to "auto". */
+.nav-dropdown__row--flyout-parent:hover .nav-dropdown__flyout,
+.nav-dropdown__row--flyout-parent:focus-within .nav-dropdown__flyout {
+  max-height: 200px;
+}
+
+.nav-dropdown__flyout .nav-dropdown__row-link {
+  background: var(--color-bg-light-blue);
+  margin-top: 4px;
+}
+
+.nav-dropdown__row--flyout-parent:hover .nav-dropdown__flyout,
+.nav-dropdown__row--flyout-parent:focus-within .nav-dropdown__flyout {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .nav-icon-badge--sm {
