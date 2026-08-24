@@ -397,6 +397,15 @@
   display: grid;
 }
 
+/* Public Cruises has only 3 items — a 2-column grid left an awkward empty gap under the lone
+   last item ("NYC Brunch Cruises"), flagged directly by the user from a screenshot. Single column
+   instead for any tab with <=3 items; tabs with more (Holiday Cruises, More Ways to Cruise) keep
+   the 2-column grid since they actually fill it out. */
+.nav-tabs__panel--1col {
+  grid-template-columns: 1fr;
+  max-width: 340px;
+}
+
 .header-right {
   display: flex;
   align-items: center;

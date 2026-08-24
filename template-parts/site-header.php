@@ -65,11 +65,11 @@ $nav_menu = [
 					[ 'icon' => 'utensils', 'label' => 'NYC Dinner Cruises', 'href' => '/nyc-dinner-cruises/', 'description' => 'An evening cruise with dinner, live DJ, and skyline views.', 'children' => [
 						[ 'icon' => 'utensils', 'label' => 'Dinner Cruise Buffet Menu', 'href' => '/nyc-dinner-cruises/menu/' ],
 					] ],
-					[ 'icon' => 'sun', 'label' => 'NYC Brunch Cruises', 'href' => '/nyc-brunch-cruises/', 'description' => 'A daytime cruise with brunch and harbor views.', 'children' => [
-						[ 'icon' => 'utensils', 'label' => 'Brunch Cruise Buffet Menu', 'href' => '/nyc-brunch-cruises/brunch-menu/' ],
-					] ],
 					[ 'icon' => 'utensils', 'label' => 'NYC Lunch Cruises', 'href' => '/nyc-lunch-cruises/', 'description' => 'A midday cruise with lunch and skyline views.', 'children' => [
 						[ 'icon' => 'utensils', 'label' => 'Lunch Cruise Buffet Menu', 'href' => '/nyc-lunch-cruises/lunch-menu/' ],
+					] ],
+					[ 'icon' => 'sun', 'label' => 'NYC Brunch Cruises', 'href' => '/nyc-brunch-cruises/', 'description' => 'A daytime cruise with brunch and harbor views.', 'children' => [
+						[ 'icon' => 'utensils', 'label' => 'Brunch Cruise Buffet Menu', 'href' => '/nyc-brunch-cruises/brunch-menu/' ],
 					] ],
 				],
 			],
@@ -240,7 +240,14 @@ function skyline_render_nav_row( $item, $with_description = false ) {
 								</div>
 								<div class="nav-tabs__panels">
 									<?php foreach ( $item['tabs'] as $i => $tab ) : ?>
-										<ul class="nav-tabs__panel<?php echo 0 === $i ? ' is-active' : ''; ?>" data-tab-panel="<?php echo esc_attr( $i ); ?>" role="tabpanel">
+										<?php
+										// Few enough items (e.g. Public Cruises: Dinner/Brunch/Lunch) that a 2-column
+										// grid leaves an awkward empty gap under a lone last item — single-column
+										// instead, still all visible at once, just no dead space. Real user-flagged
+										// visual issue (screenshot showed the empty space under "NYC Brunch Cruises").
+										$single_col = count( $tab['items'] ) <= 3;
+										?>
+										<ul class="nav-tabs__panel<?php echo $single_col ? ' nav-tabs__panel--1col' : ''; ?><?php echo 0 === $i ? ' is-active' : ''; ?>" data-tab-panel="<?php echo esc_attr( $i ); ?>" role="tabpanel">
 											<?php foreach ( $tab['items'] as $row ) : ?>
 												<?php skyline_render_nav_row( $row, true ); ?>
 											<?php endforeach; ?>
