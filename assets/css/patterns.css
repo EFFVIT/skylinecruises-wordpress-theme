@@ -219,34 +219,37 @@
 }
 
 /* Sub-items (e.g. "Dinner Cruise Buffet Menu" under "NYC Dinner Cruises") get the SAME icon-badge
-   row treatment as their parent, just smaller and indented — real bug found 2026-08-24: they were
-   rendering as bare unstyled text links, visibly missing the icon/style treatment every sibling
-   row has, once a user actually looked at the rendered Cruises dropdown. */
+   row treatment as their parent, just a size step down and indented — real bug found 2026-08-24:
+   they were rendering as bare unstyled text links, visibly missing the icon/style treatment every
+   sibling row has. First fix (22px badge / 13px text) read as cramped/too-small once actually
+   looked at — decided against a hover-flyout for what's just a single link each (unnecessary extra
+   interaction layer for one item) and instead sized this up closer to the parent so it still
+   reads as a clear sub-item without looking like an afterthought. */
 .nav-dropdown__sublist {
   list-style: none;
-  margin: 2px 0 6px 0 !important;
+  margin: 4px 0 8px 0 !important;
   padding-left: 46px !important;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .nav-dropdown__row--sub .nav-dropdown__row-link {
-  padding: 4px 8px;
+  padding: 6px 8px;
 }
 
 .nav-icon-badge--sm {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
 }
 
 .nav-icon-badge--sm svg {
-  width: 11px;
-  height: 11px;
+  width: 14px;
+  height: 14px;
 }
 
 .nav-dropdown__row--sub .nav-dropdown__row-title {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-body-gray);
 }
 
