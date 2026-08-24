@@ -231,11 +231,11 @@ figure.wp-block-image {
     transform: none;
   }
 
-  /* .nav-dropdown's transform is load-bearing (it's how the panel stays horizontally centered
-     under its trigger, not just an animation) — only drop the transition/animation timing here,
-     never the transform itself, or the panel would render off-center. */
+  /* .nav-dropdown's transform is pure open/close animation now (left-aligned positioning uses
+     `left`, not `transform`, since the 2026-08-24 off-screen-panel fix) — safe to drop entirely. */
   .nav-dropdown {
     transition: none;
     animation: none;
+    transform: none;
   }
 }

@@ -81,11 +81,18 @@
   transform: rotate(180deg);
 }
 
+/* Left-aligned to the trigger (NOT centered under it) — real bug found 2026-08-24 via a user
+   screenshot: centering a wide mega panel (the tabs/list styles run 620-720px) under "Cruises",
+   the leftmost nav item, pushed its left edge off the visible page/nav pill entirely. Every
+   dropdown in this nav (Cruises, Special Events, Weddings, The Ship) sits in the left/middle of
+   the pill, so left-aligning to the trigger keeps all of them fully on screen; revisit with a
+   real overflow-aware reposition (JS measuring viewport width) if a future dropdown ever needs to
+   live near the pill's right edge. */
 .nav-dropdown {
   position: absolute;
   top: calc(100% + 22px);
-  left: 50%;
-  transform: translate(-50%, -8px);
+  left: 0;
+  transform: translateY(-8px);
   background: var(--color-white);
   border-radius: 16px;
   box-shadow: 0 16px 40px rgba(11, 44, 77, 0.18);
@@ -98,8 +105,6 @@
 }
 
 .nav-dropdown--simple {
-  left: 0;
-  transform: translateY(-8px);
   min-width: 280px;
   padding: 16px;
 }
@@ -110,12 +115,6 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translate(-50%, 0);
-}
-
-.nav-dropdown--simple.is-open,
-.nav-pill__item--has-dropdown:hover .nav-dropdown--simple,
-.nav-pill__item--has-dropdown:focus-within .nav-dropdown--simple {
   transform: translateY(0);
 }
 
