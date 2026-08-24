@@ -87,24 +87,41 @@
    dropdown in this nav (Cruises, Special Events, Weddings, The Ship) sits in the left/middle of
    the pill, so left-aligning to the trigger keeps all of them fully on screen; revisit with a
    real overflow-aware reposition (JS measuring viewport width) if a future dropdown ever needs to
-   live near the pill's right edge. */
+   live near the pill's right edge.
+
+   Split into an outer hit-area (.nav-dropdown) and an inner visible card (.nav-dropdown__panel) —
+   second real bug found 2026-08-24, this time by the user actually trying to use it: the visual
+   gap between the trigger and the panel (originally a `top: calc(100% + 22px)` offset) was a dead
+   zone the cursor had to cross to reach the dropdown, and since nothing hoverable occupied that
+   gap, :hover on the trigger's <li> broke exactly when the mouse crossed it, closing the panel
+   before it could be reached. Fix: the OUTER box now sits flush against the trigger (top: 100%,
+   zero gap) and extends the invisible buffer as real `padding-top` — padding is still part of the
+   hoverable box, so the cursor never leaves .nav-pill__item while crossing it. All the actual
+   visible styling (background, radius, shadow) moved to the INNER .nav-dropdown__panel, offset
+   down by its own `margin-top` so the visual gap still looks the same as before; only the invisible
+   outer box changed shape, not the appearance. */
 .nav-dropdown {
   position: absolute;
-  top: calc(100% + 22px);
+  top: 100%;
   left: 0;
-  transform: translateY(-8px);
+  padding-top: 22px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s;
+  z-index: 30;
+}
+
+.nav-dropdown__panel {
   background: var(--color-white);
   border-radius: 16px;
   box-shadow: 0 16px 40px rgba(11, 44, 77, 0.18);
   padding: 28px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-  z-index: 30;
+  transform: translateY(-8px);
+  transition: transform 0.2s ease;
 }
 
-.nav-dropdown--simple {
+.nav-dropdown--simple .nav-dropdown__panel {
   min-width: 280px;
   padding: 16px;
 }
@@ -115,6 +132,11 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+
+.nav-pill__item--has-dropdown:hover .nav-dropdown__panel,
+.nav-pill__item--has-dropdown:focus-within .nav-dropdown__panel,
+.nav-pill__item--has-dropdown.is-open .nav-dropdown__panel {
   transform: translateY(0);
 }
 
@@ -246,7 +268,7 @@
    icon+title+description rows, mirrors Biltmore's "Treatments" dropdown exactly — active tab
    gets a light-blue pill background (Skyline's existing section-bg tint, standing in for
    Biltmore's own light teal-gray tab highlight), a vertical divider separates list from panel. --- */
-.nav-dropdown--tabs {
+.nav-dropdown--tabs .nav-dropdown__panel {
   display: flex;
   gap: 24px;
   min-width: 720px;

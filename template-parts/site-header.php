@@ -216,19 +216,21 @@ function skyline_render_nav_row( $item, $with_description = false ) {
 							<svg class="nav-chevron" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
 						</a>
 						<div class="nav-dropdown nav-dropdown--tabs">
-							<div class="nav-tabs__list" role="tablist">
-								<?php foreach ( $item['tabs'] as $i => $tab ) : ?>
-									<button type="button" class="nav-tabs__tab<?php echo 0 === $i ? ' is-active' : ''; ?>" data-tab-index="<?php echo esc_attr( $i ); ?>" role="tab" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>"><?php echo esc_html( $tab['label'] ); ?></button>
-								<?php endforeach; ?>
-							</div>
-							<div class="nav-tabs__panels">
-								<?php foreach ( $item['tabs'] as $i => $tab ) : ?>
-									<ul class="nav-tabs__panel<?php echo 0 === $i ? ' is-active' : ''; ?>" data-tab-panel="<?php echo esc_attr( $i ); ?>" role="tabpanel">
-										<?php foreach ( $tab['items'] as $row ) : ?>
-											<?php skyline_render_nav_row( $row, true ); ?>
-										<?php endforeach; ?>
-									</ul>
-								<?php endforeach; ?>
+							<div class="nav-dropdown__panel">
+								<div class="nav-tabs__list" role="tablist">
+									<?php foreach ( $item['tabs'] as $i => $tab ) : ?>
+										<button type="button" class="nav-tabs__tab<?php echo 0 === $i ? ' is-active' : ''; ?>" data-tab-index="<?php echo esc_attr( $i ); ?>" role="tab" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>"><?php echo esc_html( $tab['label'] ); ?></button>
+									<?php endforeach; ?>
+								</div>
+								<div class="nav-tabs__panels">
+									<?php foreach ( $item['tabs'] as $i => $tab ) : ?>
+										<ul class="nav-tabs__panel<?php echo 0 === $i ? ' is-active' : ''; ?>" data-tab-panel="<?php echo esc_attr( $i ); ?>" role="tabpanel">
+											<?php foreach ( $tab['items'] as $row ) : ?>
+												<?php skyline_render_nav_row( $row, true ); ?>
+											<?php endforeach; ?>
+										</ul>
+									<?php endforeach; ?>
+								</div>
 							</div>
 						</div>
 					</li>
@@ -239,17 +241,19 @@ function skyline_render_nav_row( $item, $with_description = false ) {
 							<svg class="nav-chevron" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
 						</a>
 						<div class="nav-dropdown nav-dropdown--list">
-							<div class="nav-dropdown__columns">
-								<?php foreach ( $item['columns'] as $column ) : ?>
-									<div class="nav-dropdown__column">
-										<p class="nav-dropdown__heading"><?php echo esc_html( $column['heading'] ); ?></p>
-										<ul>
-											<?php foreach ( $column['items'] as $row ) : ?>
-												<?php skyline_render_nav_row( $row, false ); ?>
-											<?php endforeach; ?>
-										</ul>
-									</div>
-								<?php endforeach; ?>
+							<div class="nav-dropdown__panel">
+								<div class="nav-dropdown__columns">
+									<?php foreach ( $item['columns'] as $column ) : ?>
+										<div class="nav-dropdown__column">
+											<p class="nav-dropdown__heading"><?php echo esc_html( $column['heading'] ); ?></p>
+											<ul>
+												<?php foreach ( $column['items'] as $row ) : ?>
+													<?php skyline_render_nav_row( $row, false ); ?>
+												<?php endforeach; ?>
+											</ul>
+										</div>
+									<?php endforeach; ?>
+								</div>
 							</div>
 						</div>
 					</li>
@@ -260,11 +264,13 @@ function skyline_render_nav_row( $item, $with_description = false ) {
 							<svg class="nav-chevron" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
 						</a>
 						<div class="nav-dropdown nav-dropdown--simple">
-							<ul>
-								<?php foreach ( $item['items'] as $row ) : ?>
-									<?php skyline_render_nav_row( $row, false ); ?>
-								<?php endforeach; ?>
-							</ul>
+							<div class="nav-dropdown__panel">
+								<ul>
+									<?php foreach ( $item['items'] as $row ) : ?>
+										<?php skyline_render_nav_row( $row, false ); ?>
+									<?php endforeach; ?>
+								</ul>
+							</div>
 						</div>
 					</li>
 				<?php endif; ?>

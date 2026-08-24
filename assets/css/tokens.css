@@ -231,9 +231,11 @@ figure.wp-block-image {
     transform: none;
   }
 
-  /* .nav-dropdown's transform is pure open/close animation now (left-aligned positioning uses
-     `left`, not `transform`, since the 2026-08-24 off-screen-panel fix) — safe to drop entirely. */
-  .nav-dropdown {
+  /* Neither .nav-dropdown (the invisible hit-area) nor .nav-dropdown__panel (the visible card,
+     which carries the actual slide-down transform) depend on transform for positioning anymore —
+     safe to drop both entirely under reduced motion. */
+  .nav-dropdown,
+  .nav-dropdown__panel {
     transition: none;
     animation: none;
     transform: none;
