@@ -360,9 +360,12 @@ ${paragraphs.map((p) => `<!-- wp:paragraph --><p>${p}</p><!-- /wp:paragraph -->`
 </div>
 <!-- /wp:group -->`;
 
-// Real content: only the first ("Weddings") of the 5 offset photo cards has a visible
-// title/description/link in the Figma design — the other 4 are deliberately caption-less photos
-// in a staggered collage (confirmed via get_design_context, not an oversight/omission on my part).
+// Only the first ("Weddings") of the 5 offset photo cards has an always-visible
+// title/description/link in the Figma design — the other 4 are caption-less photos in a
+// staggered collage there (confirmed via get_design_context). Per real user request (not a
+// Figma-match item), the other 4 now reveal their own title+description as a hover/focus
+// overlay in the same visual style as Weddings' static caption — `photos` entries can be a
+// plain src string (no hover caption, old behavior) or `{photo, title, description}`.
 const eventsCaterGrid = ({ heading, subheading, featured, photos }) => `<!-- wp:group {"className":"events-cater"} -->
 <div class="wp-block-group events-cater">
 <!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
@@ -373,7 +376,13 @@ const eventsCaterGrid = ({ heading, subheading, featured, photos }) => `<!-- wp:
 <img src="${featured.photo}" alt="" />
 <div class="events-cater__card-body"><h3>${featured.title}</h3><p>${featured.description}</p><a href="${featured.href}">${featured.linkLabel} &rarr;</a></div>
 </div>
-${photos.map((src) => `<div class="events-cater__card"><img src="${src}" alt="" /></div>`).join('\n')}
+${photos
+	.map((p) =>
+		typeof p === 'string'
+			? `<div class="events-cater__card"><img src="${p}" alt="" /></div>`
+			: `<div class="events-cater__card" tabindex="0"><img src="${p.photo}" alt="" /><div class="events-cater__card-hover"><h3>${p.title}</h3><p>${p.description}</p></div></div>`
+	)
+	.join('\n')}
 </div>
 <!-- /wp:html -->
 </div>
