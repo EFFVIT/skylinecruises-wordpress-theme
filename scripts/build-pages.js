@@ -158,12 +158,17 @@ const routeMap = ({ departure = DEFAULT_DEPARTURE, landmarks = DEFAULT_LANDMARKS
 
 // Directions heading is real per-page copy ("Directions to Liberty Landing Marina"), never a
 // generic "Getting There" — confirmed via direct Figma read (node 134:137).
+// `r.from` is optional per-route (added 2026-08-24, gap-fill batch) — several real port pages
+// only have ONE undifferentiated "Driving:" route with no distinct named origin (unlike Pier 36's
+// 6 real labeled variants), and repeating the section's own fixed "Driving" h3 as the route's
+// `from` label too would render as a literal "Driving: Driving: ..." duplicate. Omit the
+// `<strong>{from}:</strong>` prefix entirely when `from` is falsy/generic rather than render that.
 const directionsBlock = ({ heading, intro, routes, transit }) => `<!-- wp:group {"className":"directions-block"} -->
 <div class="wp-block-group directions-block">
 <!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p>${intro}</p><!-- /wp:paragraph -->
 <!-- wp:group {"className":"directions-block__group"} --><div class="wp-block-group directions-block__group"><!-- wp:heading {"level":3} --><h3>Driving</h3><!-- /wp:heading -->
-${routes.map((r) => `<!-- wp:paragraph {"className":"directions-block__route"} --><p class="directions-block__route"><strong>${r.from}:</strong> ${r.directions}</p><!-- /wp:paragraph -->`).join('\n')}
+${routes.map((r) => `<!-- wp:paragraph {"className":"directions-block__route"} --><p class="directions-block__route">${r.from ? `<strong>${r.from}:</strong> ` : ''}${r.directions}</p><!-- /wp:paragraph -->`).join('\n')}
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"directions-block__group"} --><div class="wp-block-group directions-block__group"><!-- wp:heading {"level":3} --><h3>Mass Transit</h3><!-- /wp:heading --><!-- wp:paragraph --><p>${transit}</p><!-- /wp:paragraph --></div><!-- /wp:group -->
 </div>
@@ -372,13 +377,33 @@ const TEMPLATE_BUILDERS = {
 		closingCta(d.closingCta),
 	],
 	// 20 - Birthday Party Cruises (node 96:90) — CTA is "Get a Quote" everywhere on this
-	// category, NOT "Book Now". No testimonial section on this category at all.
+	// category, NOT "Book Now". No testimonial section on this category at all on the pilot,
+	// but real subsequent rows (21-38, added 2026-08-24) vary a lot more than Birthday's own
+	// shape — tierCards/styleCards/featuresPair/testimonial are now all OPTIONAL (only Birthday
+	// itself has all of tierCards+styleCards; most of rows 21-38's real copy has neither, per
+	// direct live-site content), matching the "only include a section when the page's real copy
+	// actually has it" rule already established for featuresPair in the earlier Figma build.
 	'Private Event/Party': (d) => [
 		hero({ ...d.hero, cta: d.hero.cta || 'Get a Quote' }),
 		textSection(d.intro),
-		tierCards3up(d.tierCards),
-		styleCards2up(d.styleCards),
-		featuresPair(),
+		...(d.tierCards ? [tierCards3up(d.tierCards)] : []),
+		...(d.styleCards ? [styleCards2up(d.styleCards)] : []),
+		...(d.featuresPair ? [featuresPair()] : []),
+		...(d.testimonial ? [testimonial(d.testimonial)] : []),
+		...(d.extraTextSections || []).map(textSection),
+		closingCta({ ...d.closingCta, cta: d.closingCta.cta || 'Get a Quote' }),
+	],
+	// Hub pages inside the Private Event/Party sheet template (Weddings, Corporate Cruises,
+	// Yacht Charter, NYC Party Cruises) — real directory pages linking out to their own real
+	// subpages, not a standard single-occasion product page. Added 2026-08-24 alongside the
+	// 33-page gap-fill batch, mirroring the 'School Events' hub-vs-non-hub split already
+	// established. `linkList.links` are the hub's own real subpage links (verbatim hrefs/labels).
+	'Private Event/Party (hub)': (d) => [
+		hero({ ...d.hero, cta: d.hero.cta || 'Get a Quote' }),
+		textSection(d.intro),
+		linkList(d.linkList),
+		...(d.extraTextSections || []).map(textSection),
+		...(d.testimonial ? [testimonial(d.testimonial)] : []),
 		closingCta({ ...d.closingCta, cta: d.closingCta.cta || 'Get a Quote' }),
 	],
 	// 39 - School Events hub (node 117:209) — CTA is "Request a Quote". No features-pair
@@ -408,10 +433,22 @@ const TEMPLATE_BUILDERS = {
 	// 48 - Liberty Landing Marina (node 133:225) — leanest template, confirmed: hero (short,
 	// with an address subhead, CTA "Book Now") + plain intro + directions block only. No
 	// features/testimonial/closing-CTA-button section exists on this category at all — don't add one.
+	// `directions` is optional (added 2026-08-24, gap-fill batch) — Glen Cove Ferry Terminal's
+	// real live page has no Directions section at all (just an embedded map, no driving/transit
+	// copy), and forcing one would either crash (directionsBlock destructuring undefined) or
+	// invent content that doesn't exist on the real page.
 	'Port/Location': (d) => [
 		hero({ ...d.hero, short: true, cta: d.hero.cta || 'Book Now' }),
 		textSection(d.intro),
-		directionsBlock(d.directions),
+		...(d.directions ? [directionsBlock(d.directions)] : []),
+	],
+	// 44 - Departure Ports Overview (hub, node 126:2 in the earlier Figma batch) — a real
+	// directory linking out to the 10 individual port pages, not a leaf port page itself, so it
+	// has no single address/directions to show. Added 2026-08-24 alongside the gap-fill batch.
+	'Port/Location (hub)': (d) => [
+		hero({ ...d.hero, short: true, cta: d.hero.cta || 'Book Now' }),
+		textSection(d.intro),
+		linkList(d.linkList),
 	],
 	'About/Info': (d) => [...(d.sections || [])],
 	'Utility/Form': (d) => [formPageShell(d.formShell)],
@@ -477,4 +514,5 @@ module.exports = {
 	hero, featuresPair, testimonial, closingCta, checklistItems, photoChecklistRow, routeMap,
 	textSection, tierCards3up, styleCards2up, marinaGrid3x3, portsList, directionsBlock, formPageShell,
 	heroProseCta, faqAccordion, testimonialQuote, bioPhotoGallery, linkList,
+	TEMPLATE_BUILDERS, // exported for dry-run validation of a manifest before a real REST push
 };

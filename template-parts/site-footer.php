@@ -31,10 +31,10 @@ $year = wp_date( 'Y' );
 			<h4>Our Services</h4>
 			<ul>
 				<li><a href="/nyc-dinner-cruises/">Dinner Cruises</a></li>
-				<li><a href="/private-events/">Private Charters</a></li>
+				<li><a href="/yacht-charter/">Private Charters</a></li>
 				<li><a href="/weddings/">Wedding Packages</a></li>
-				<li><a href="/corporate-events/">Corporate Events</a></li>
-				<li><a href="/special-events/">Special Occasions</a></li>
+				<li><a href="/corporate-cruises/">Corporate Events</a></li>
+				<li><a href="/nyc-party-cruises/">Special Occasions</a></li>
 			</ul>
 		</div>
 

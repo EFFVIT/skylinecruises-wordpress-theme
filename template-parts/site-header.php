@@ -99,6 +99,10 @@ $nav_menu = [
 		],
 	],
 	[
+		// Hrefs fixed 2026-08-24 (gap-fill batch): this project's pages are ALL flat-slug (no
+		// nested paths, see project memory) — several of these still pointed at the live site's
+		// OLD nested URL shape from before those 18 real pages existed. Now that they're real
+		// pushed pages, every href below is the actual flat slug the page was created with.
 		'label' => 'Special Events',
 		'href'  => '/nyc-party-cruises/',
 		'style' => 'list',
@@ -108,30 +112,34 @@ $nav_menu = [
 				'items'   => [
 					[ 'icon' => 'gift', 'label' => 'Birthday Party Cruises', 'href' => '/birthday-party-cruises/' ],
 					[ 'icon' => 'star', 'label' => 'Celebration Cruises', 'href' => '/celebration-cruises-nyc/' ],
-					[ 'icon' => 'star', 'label' => 'Bar/Bat Mitzvah Cruises', 'href' => '/nyc-party-cruises/nyc-bar-bat-mitzvah-cruise/' ],
-					[ 'icon' => 'star', 'label' => 'Sweet 16 Cruises', 'href' => '/nyc-party-cruises/sweet-16-party-cruise/' ],
-					[ 'icon' => 'star', 'label' => 'Quinceañera Cruises', 'href' => '/nyc-party-cruises/quinceanera-cruises-nyc/' ],
-					[ 'icon' => 'users', 'label' => 'Church Group Cruises', 'href' => '/nyc-party-cruises/church-group-outings/' ],
+					[ 'icon' => 'star', 'label' => 'Bar/Bat Mitzvah Cruises', 'href' => '/bar-bat-mitzvah-cruises/' ],
+					[ 'icon' => 'star', 'label' => 'Sweet 16 Cruises', 'href' => '/sweet-16-party-cruise/' ],
+					[ 'icon' => 'star', 'label' => 'Quinceañera Cruises', 'href' => '/quinceanera-cruises/' ],
+					[ 'icon' => 'users', 'label' => 'Church Group Cruises', 'href' => '/church-group-outings/' ],
 				],
 			],
 			[
 				'heading' => 'School Events',
 				'items'   => [
 					[ 'icon' => 'grad-cap', 'label' => 'All School Events', 'href' => '/school-events/' ],
-					[ 'icon' => 'grad-cap', 'label' => 'Graduation Cruises & Parties', 'href' => '/school-events/graduation-cruises-parties/' ],
-					[ 'icon' => 'star', 'label' => 'Prom & After Prom', 'href' => '/school-events/prom/' ],
-					[ 'icon' => 'grad-cap', 'label' => 'College Cruises', 'href' => '/school-events/college-cruises/' ],
+					[ 'icon' => 'grad-cap', 'label' => 'Graduation Cruises & Parties', 'href' => '/graduation-cruises-parties/' ],
+					[ 'icon' => 'star', 'label' => 'Prom & After Prom', 'href' => '/prom-after-prom-cruises/' ],
+					[ 'icon' => 'grad-cap', 'label' => 'College Cruises', 'href' => '/college-cruises/' ],
+					[ 'icon' => 'grad-cap', 'label' => 'College Alumni Cruises', 'href' => '/college-alumni-cruises/' ],
 				],
 			],
 			[
 				'heading' => 'Corporate & Charters',
 				'items'   => [
 					[ 'icon' => 'briefcase', 'label' => 'Corporate Cruises', 'href' => '/corporate-cruises/', 'children' => [
-						[ 'icon' => 'heart', 'label' => 'Fundraisers', 'href' => '/corporate-cruises/fundraisers/' ],
+						[ 'icon' => 'heart', 'label' => 'Fundraisers', 'href' => '/fundraiser-cruises/' ],
+						[ 'icon' => 'anchor', 'label' => 'Connecticut Corporate Cruises', 'href' => '/connecticut-corporate-cruises/' ],
 					] ],
-					[ 'icon' => 'anchor', 'label' => 'Private Yacht Charters', 'href' => '/yacht-charter/' ],
-					[ 'icon' => 'map-pin', 'label' => 'Waterfront Event Venue', 'href' => '/yacht-charter/waterfront-event-venue/' ],
-					[ 'icon' => 'anchor', 'label' => 'Great Escape Yacht Rental', 'href' => '/the-great-escape-yacht-rental/' ],
+					[ 'icon' => 'anchor', 'label' => 'Private Yacht Charters', 'href' => '/yacht-charter/', 'children' => [
+						[ 'icon' => 'map-pin', 'label' => 'Waterfront Event Venue', 'href' => '/waterfront-event-venue/' ],
+						[ 'icon' => 'anchor', 'label' => 'Great Escape Yacht Rental', 'href' => '/the-great-escape-yacht-rental/' ],
+					] ],
+					[ 'icon' => 'utensils', 'label' => 'Cruise Catering', 'href' => '/cruise-catering/' ],
 				],
 			],
 		],
@@ -142,12 +150,12 @@ $nav_menu = [
 		'style' => 'simple',
 		'items' => [
 			[ 'icon' => 'heart', 'label' => 'Weddings', 'href' => '/weddings/' ],
-			[ 'icon' => 'users', 'label' => 'Meet Captain Arnold', 'href' => '/weddings/captain-arnold-wedding-officiant/' ],
-			[ 'icon' => 'heart', 'label' => 'LGBT Wedding Cruises', 'href' => '/weddings/lgbt-wedding-cruises/' ],
+			[ 'icon' => 'users', 'label' => 'Meet Captain Arnold', 'href' => '/captain-arnold-wedding-officiant/' ],
+			[ 'icon' => 'heart', 'label' => 'LGBTQ+ Wedding Cruises', 'href' => '/lgbtq-wedding-cruises/' ],
 			[ 'icon' => 'heart', 'label' => 'Anniversary Cruise', 'href' => '/nyc-anniversary-cruise/' ],
-			[ 'icon' => 'gem', 'label' => 'Engagement Party', 'href' => '/weddings/engagement-party-cruises-nyc/' ],
-			[ 'icon' => 'gift', 'label' => 'Bridal Showers', 'href' => '/weddings/bridal-showers/' ],
-			[ 'icon' => 'users', 'label' => 'Bridal Shows', 'href' => '/weddings/bridal-show-cruises/' ],
+			[ 'icon' => 'gem', 'label' => 'Engagement Party', 'href' => '/engagement-party-cruises/' ],
+			[ 'icon' => 'gift', 'label' => 'Bridal Showers', 'href' => '/bridal-shower-cruises/' ],
+			[ 'icon' => 'users', 'label' => 'Bridal Shows', 'href' => '/bridal-show-cruises/' ],
 		],
 	],
 	[
@@ -158,7 +166,22 @@ $nav_menu = [
 			[ 'icon' => 'compass', 'label' => "The Ship's Layout", 'href' => '/the-ships-layout/' ],
 			[ 'icon' => 'camera', 'label' => 'Virtual Tour (360°)', 'href' => '/skyline-princess-360-photosphere/' ],
 			[ 'icon' => 'camera', 'label' => 'Photo Gallery', 'href' => '/picture-gallery/' ],
-			[ 'icon' => 'map-pin', 'label' => 'Our Departure Ports', 'href' => '/ports/' ],
+			// All 11 real port pages now exist (10 pushed 2026-08-24 gap-fill batch + Liberty
+			// Landing already live) — this flyout genuinely needs to hold more than 1-2 children
+			// for the first time, see the bumped .nav-dropdown__flyout max-height in patterns.css.
+			[ 'icon' => 'map-pin', 'label' => 'Our Departure Ports', 'href' => '/departure-ports/', 'children' => [
+				[ 'icon' => 'anchor', 'label' => "World's Fair Marina", 'href' => '/worlds-fair-marina/' ],
+				[ 'icon' => 'anchor', 'label' => 'Chelsea Piers', 'href' => '/chelsea-piers/' ],
+				[ 'icon' => 'anchor', 'label' => 'Pier 36', 'href' => '/pier-36/' ],
+				[ 'icon' => 'anchor', 'label' => 'Liberty Landing Marina', 'href' => '/liberty-landing-marina/' ],
+				[ 'icon' => 'anchor', 'label' => 'Town Dock Park', 'href' => '/town-dock-park/' ],
+				[ 'icon' => 'anchor', 'label' => 'Ponus Yacht Club', 'href' => '/ponus-yacht-club/' ],
+				[ 'icon' => 'anchor', 'label' => 'Veterans Memorial Park', 'href' => '/veterans-memorial-park-marina/' ],
+				[ 'icon' => 'anchor', 'label' => 'New Rochelle Municipal Marina', 'href' => '/new-rochelle-municipal-marina/' ],
+				[ 'icon' => 'anchor', 'label' => 'Yonkers City Pier', 'href' => '/yonkers-city-pier/' ],
+				[ 'icon' => 'anchor', 'label' => 'Glen Cove Ferry Terminal', 'href' => '/glen-cove-ferry-terminal/' ],
+				[ 'icon' => 'anchor', 'label' => 'Lincoln Harbor', 'href' => '/lincoln-harbor/' ],
+			] ],
 		],
 	],
 	[

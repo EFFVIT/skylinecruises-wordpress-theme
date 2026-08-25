@@ -255,12 +255,16 @@
   transition: max-height 0.25s ease;
 }
 
-/* 200px is a generous cap for what's currently always exactly one short row — if a flyout ever
-   needs to hold more than 1-2 children, bump this (or switch to measuring real content height in
-   JS), since a max-height transition can't animate to "auto". */
+/* Bumped 200 -> 600px (2026-08-24, gap-fill batch): "Our Departure Ports" now genuinely has 11
+   real children (was always 1-2 elsewhere) — 200px would clip most of that list. A larger
+   max-height than a flyout's real content doesn't stretch it (overflow:hidden + max-height is an
+   upper bound, not a forced height, so the 1-2-item flyouts elsewhere render at their own natural
+   height, unaffected) — the only real tradeoff is those smaller flyouts now reach their full
+   height slightly faster than the full 0.25s transition (max-height transitions interpolate the
+   numeric property, not "auto"), a minor animation-timing nit, not a visual bug. */
 .nav-dropdown__row--flyout-parent:hover .nav-dropdown__flyout,
 .nav-dropdown__row--flyout-parent:focus-within .nav-dropdown__flyout {
-  max-height: 200px;
+  max-height: 600px;
 }
 
 .nav-dropdown__flyout .nav-dropdown__row-link {
@@ -470,8 +474,15 @@
 .hero--short {
   /* 438px (494 hero frame - 28*2 inset) still let the top line clip behind the header pill on a
      2-line title even after the font-size fix above — a bit more clearance than the bare Figma
-     math gives, confirmed visually necessary via screenshot, not just recalculated in theory. */
-  min-height: 480px;
+     math gives, confirmed visually necessary via screenshot, not just recalculated in theory.
+     Bumped 480 -> 540 (2026-08-24, gap-fill batch): the 480px value was tuned against School
+     Events pages, which never have an `.hero__address` line. Port/Location's short hero DOES add
+     that line (addressSubhead), and a real screenshot of World's Fair Marina — a 2-line title
+     PLUS an address line — showed the h1 genuinely overlapping the floating nav pill by ~31px
+     (measured via getBoundingClientRect, not guessed). +60px clears that with real margin on the
+     worst real case in this project (confirmed via the same measurement method) without visibly
+     over-inflating the shorter School Events hero, which still has plenty of headroom at 540. */
+  min-height: 540px;
 }
 
 /* Found by direct computed-style inspection (Playwright) on the School Events page: the short
