@@ -140,6 +140,17 @@ figure.wp-block-image {
 
 .wp-block-button__link {
   all: unset;
+  /* `all: unset` resets EVERY property to its initial value, including box-sizing — which means
+     this anchor quietly falls back to the browser default `content-box`, opting it out of the
+     sitewide `* { box-sizing: border-box }` rule at the top of this file. Invisible on most
+     buttons (they're centered inline-flex with slack space around them, so a little extra
+     padding-added-on-top-of-width just nudges things rather than overflowing anything), but real
+     and visible on any button whose width is set as a percentage/fr of a tight parent — exactly
+     the homepage hero's two full-width CTAs, where the added padding pushed the button ~30-48px
+     past the hero's own right edge, silently clipped by .hero's overflow:hidden (never showing up
+     as page-level horizontal scroll, only visible in an actual screenshot). Restore border-box
+     explicitly rather than special-casing every future full-width button one at a time. */
+  box-sizing: border-box;
 }
 
 .container {

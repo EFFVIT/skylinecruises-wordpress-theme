@@ -1662,6 +1662,13 @@
   text-align: center;
   margin-bottom: 24px;
   text-transform: capitalize;
+  /* Explicit override, per the same rule every other dark-bg heading in this theme already
+     needed (hero h1, who-we-are__panel h2, cruise-gallery h2, testimonial__heading, why-skyline
+     card h3): the global `h3 { color: var(--color-navy) }` base rule targets this element
+     directly, and a rule declared on the element itself always wins over an inherited color from
+     a parent, regardless of selector specificity — this card was sitting navy-on-translucent-
+     white-over-a-dark-photo until now. */
+  color: var(--color-white);
 }
 .homepage-lead-form form {
   display: flex;

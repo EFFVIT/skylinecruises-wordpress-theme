@@ -125,6 +125,32 @@
     grid-template-columns: 1fr !important;
     gap: 12px !important;
   }
+
+  /* homepage-hero__ctas — real bug caught via a user screenshot, reproduced and root-caused
+     with a live bounding-box check rather than guessed: this fix was originally only added at
+     the 600px breakpoint below, which fixed it on true phone widths but left the SAME clipping
+     live anywhere from 601-900px, since .homepage-hero doesn't stack until 600px and the desktop
+     `grid-template-columns: max-content` rule was still active in that gap. Moved up here so it
+     applies everywhere the hero is narrow enough to matter, independent of whether the hero
+     itself has stacked yet. Root cause was actually two layered bugs: (1) the grid track sizes to
+     the longest label's UNWRAPPED intrinsic width, which is wider than the available column on
+     any narrow screen — invisible to a bodyScrollWidth check because .hero's own
+     overflow:hidden clips it before it can cause page-level scroll; (2) once the column could
+     shrink and the label wraps to multiple lines, the sitewide .btn class's fixed `height:50px`
+     let the wrapped text overflow past the pill's own top/bottom edge instead of the pill growing
+     to fit it. (A third, sitewide contributor also existed here — .wp-block-button__link's
+     `all:unset` was silently opting these buttons out of the sitewide border-box box model,
+     adding their padding on top of a already-100%-width box instead of inside it; fixed at the
+     root in tokens.css, not here, since it could affect any full-width button on any page.) */
+  .homepage-hero__ctas {
+    grid-template-columns: 1fr;
+  }
+  .homepage-hero__ctas .btn {
+    height: auto;
+    min-height: 50px;
+    padding: 14px 24px;
+    line-height: 1.35;
+  }
 }
 
 /* ===== 600px: real phone width — shrink the margin/type/padding scale itself ===== */
@@ -397,29 +423,5 @@
     flex-basis: auto;
     min-width: 0;
     width: 100%;
-  }
-  /* Real bug caught via screenshot: .homepage-hero__ctas sizes its grid track to
-     `max-content` (both buttons share the widest label's UNWRAPPED intrinsic width) — fine on
-     desktop where "The Great Escape – Private Yacht Charter" fits inside the 800px content
-     column with room to spare, but on a 390px screen that intrinsic width is wider than the
-     entire viewport, so both buttons got clipped by .hero's own overflow:hidden (page never
-     scrolled horizontally, so this didn't show up in the bodyScrollWidth check — only in an
-     actual screenshot). Fixed by letting the column stretch to the available row width instead
-     of sizing to content; each .btn's existing white-space:normal then wraps its label onto a
-     second line within that real width. */
-  .homepage-hero__ctas {
-    grid-template-columns: 1fr;
-  }
-  /* Follow-up bug from the fix above: once the column could stretch to full width, the longer
-     label ("The Great Escape – Private Yacht Charter for Up to 6 Guests, Discover More Here")
-     wraps to 3 lines — but the sitewide .btn class has a fixed `height: 50px` (right for every
-     single-line button elsewhere on the site), so the wrapped text just overflowed past the
-     pill's own rounded edge top and bottom instead of the pill growing to fit it. Only these two
-     hero buttons need a real auto-height pill on mobile; nothing else in .btn changes. */
-  .homepage-hero__ctas .btn {
-    height: auto;
-    min-height: 50px;
-    padding: 14px 24px;
-    line-height: 1.35;
   }
 }
