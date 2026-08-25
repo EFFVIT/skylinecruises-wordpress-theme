@@ -1816,10 +1816,46 @@
    old short-photo-plus-white-caption-box version) and asked for all 5 to look consistent —
    every card is now a plain full photo revealing its own title+description on hover/focus. --- */
 .events-cater {
+  position: relative;
   max-width: var(--content-width);
   margin: 0 auto;
   padding: 60px var(--side-margin);
   text-align: center;
+}
+/* Real gap found via a user screenshot, confirmed against Figma (node 1:33, "Background"): a
+   rounded light-blue panel is supposed to sit behind the heading, wider than the text column
+   and tall enough to dip slightly under the top edge of the photo row below it — the built page
+   never had it at all (heading/subcopy/photos were rendered directly on the plain page
+   background).
+   --ec-panel-extend is how far the panel pokes out past .events-cater's own padding box on each
+   side. A first pass just used a fixed `calc(var(--side-margin) * -0.45)` offset — looked right
+   at full desktop width, but real bodyScrollWidth overflow at 1100px (measured: 1171 vs a 1100px
+   viewport) exposed why that's unsafe: .events-cater has no width of its own, only
+   `max-width:var(--content-width)`, so between roughly 600-1400px viewport it fills the ENTIRE
+   viewport with zero spare margin around it — any fixed negative offset there pushes the panel
+   straight past both screen edges. Fixed with a real min(): only extend by the smaller of (a)
+   the desired amount or (b) however much genuinely empty gutter actually exists outside
+   .events-cater's box (`(100vw - content-width)/2`, floored at 0 so it's never negative) — so
+   the panel can never extend into space that isn't there, at any width. */
+.events-cater {
+  --ec-panel-extend: min(calc(var(--side-margin) * 0.45), max(0px, calc((100vw - var(--content-width)) / 2)));
+}
+.events-cater::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--ec-panel-extend));
+  right: calc(-1 * var(--ec-panel-extend));
+  height: 260px;
+  background: var(--color-bg-light-blue);
+  border-radius: 20px;
+  z-index: 0;
+}
+.events-cater h2,
+.events-cater .intro-copy,
+.events-cater__grid {
+  position: relative;
+  z-index: 1;
 }
 .events-cater h2 {
   margin-bottom: 12px;
