@@ -1379,8 +1379,12 @@
   align-items: flex-start;
   padding-top: 120px;
 }
+/* Real user request: at the old 700px width, "NYC Dinner Cruises & Private Yacht Charters"
+   wrapped to 3 lines. Widened to 800px (the narrowest width that tested out to a clean 2-line
+   wrap: "NYC Dinner Cruises &" / "Private Yacht Charters") — still leaves 151px clear of the
+   lead-form card starting at x=1108, no collision. */
 .homepage-hero__content {
-  max-width: 700px;
+  max-width: 800px;
   gap: 24px;
 }
 .homepage-hero__content p {
@@ -1397,14 +1401,17 @@
 .homepage-hero__ctas .wp-block-button {
   width: 100%;
 }
+/* Real user request: buttons felt too big. Dropped the fixed 64px height (which was forcing
+   extra bulk even where the wider 800px column now lets both CTAs fit on one line) in favor of
+   padding-based sizing, and brought the font down from 17px closer to the sitewide .btn
+   baseline (16px). */
 .homepage-hero__ctas .btn {
   width: 100%;
-  height: 64px;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 15px;
   white-space: normal;
   text-align: center;
-  padding: 12px 24px;
+  padding: 16px 24px;
 }
 .homepage-lead-form {
   position: absolute;
