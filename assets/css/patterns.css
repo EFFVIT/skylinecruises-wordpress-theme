@@ -1410,6 +1410,23 @@
   text-align: center;
 }
 
+/* Real bug found in the 2026-08-25 copy audit: these 3 pages never rendered a visible page
+   title at all (this theme has no generic page-title output; only hero-style patterns provide
+   one, and form-page-shell never did). Added the real title as an <h1> — but with no explicit
+   size, it inherited the plain browser h1 default, which rendered SMALLER than the sitewide
+   h2 rule (60px) directly below it, reading backwards. Styled as a small uppercase eyebrow label
+   instead of trying to out-size the real question/heading beneath it, which is what these pages
+   actually want to emphasize. */
+.form-page-shell__intro h1 {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--color-body-gray);
+  margin-bottom: 12px;
+}
+
 .form-page-shell__embed {
   max-width: 720px;
   margin: 0 auto;
