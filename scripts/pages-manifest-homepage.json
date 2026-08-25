@@ -36,27 +36,32 @@
           {
             "photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/home-events-featured-full.png",
             "title": "Weddings",
-            "description": "Create unforgettable memories with a waterfront wedding ceremony and reception surrounded by the NYC skyline."
+            "description": "Create unforgettable memories with a waterfront wedding ceremony and reception surrounded by the NYC skyline.",
+            "link": "/weddings/"
           },
           {
             "photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/home-events-photo2.png",
             "title": "Corporate Cruises",
-            "description": "The Skyline Princess can accommodate a wide range of business functions, large and small. Book your next business event with us!"
+            "description": "The Skyline Princess can accommodate a wide range of business functions, large and small. Book your next business event with us!",
+            "link": "/corporate-cruises/"
           },
           {
             "photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/home-events-photo3.png",
             "title": "Private Parties",
-            "description": "The Skyline Princess is an extravagant NYC party boat experience fit for any occasion. Eat, drink and dance the night away under the city skyline!"
+            "description": "The Skyline Princess is an extravagant NYC party boat experience fit for any occasion. Eat, drink and dance the night away under the city skyline!",
+            "link": "/nyc-party-cruises/"
           },
           {
             "photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/home-events-photo4.png",
             "title": "Holiday Cruises",
-            "description": "We offer turnkey packages that can be customized for your group, times, menus, and port locations. Plan your NYC Holiday party with one call."
+            "description": "We offer turnkey packages that can be customized for your group, times, menus, and port locations. Plan your NYC Holiday party with one call.",
+            "link": "/nyc-holiday-cruises/"
           },
           {
             "photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/home-events-photo5.png",
             "title": "NYC Private Event Cruises",
-            "description": "The Skyline Princess is perfect for groups of any size! Private party rooms available. NYC Skyline Dinner Cruise with cocktails, buffet, and DJ."
+            "description": "The Skyline Princess is perfect for groups of any size! Private party rooms available. NYC Skyline Dinner Cruise with cocktails, buffet, and DJ.",
+            "link": "/the-great-escape-yacht-rental/"
           }
         ]
       },

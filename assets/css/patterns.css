@@ -1977,6 +1977,26 @@
   line-height: 1.6;
   margin: 0;
 }
+/* Real user request: a "Learn More" link under each card's body copy, to its own real matching
+   page (see build-pages.js's eventsCaterGrid() `link` field / pages-manifest-homepage.json) —
+   gold text (this theme's standing accent-on-dark-background color, same family as the nav's
+   gold hover state and the testimonial heading's gold italic word) rather than a full button,
+   since these cards are compact and already show a heading + several lines of description. */
+.events-cater__card-hover a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.events-cater__card-hover a:hover {
+  text-decoration: underline;
+}
 /* Staggered vertical offsets pulled directly from the Figma design (node 1:39's real child
    y-positions) — this row is a deliberate masonry stagger, not a flat aligned grid. */
 .events-cater__card:nth-child(1) {

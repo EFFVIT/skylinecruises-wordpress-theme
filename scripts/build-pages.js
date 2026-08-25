@@ -376,7 +376,7 @@ ${photos
 	.map((p) =>
 		typeof p === 'string'
 			? `<div class="events-cater__card"><img src="${p}" alt="" /></div>`
-			: `<div class="events-cater__card" tabindex="0"><img src="${p.photo}" alt="" /><div class="events-cater__card-hover"><h3>${p.title}</h3><p>${p.description}</p></div></div>`
+			: `<div class="events-cater__card" tabindex="0"><img src="${p.photo}" alt="" /><div class="events-cater__card-hover"><h3>${p.title}</h3><p>${p.description}</p>${p.link ? `<a href="${p.link}">Learn More &rarr;</a>` : ''}</div></div>`
 	)
 	.join('\n')}
 </div>
