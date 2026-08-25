@@ -30,6 +30,13 @@ function skyline_enqueue_assets() {
 	);
 	wp_enqueue_style( 'skyline-tokens', get_template_directory_uri() . '/assets/css/tokens.css', [], skyline_asset_version( '/assets/css/tokens.css' ) );
 	wp_enqueue_style( 'skyline-patterns', get_template_directory_uri() . '/assets/css/patterns.css', [ 'skyline-tokens' ], skyline_asset_version( '/assets/css/patterns.css' ) );
+	// Mobile breakpoints, loaded LAST and depending on both of the above so its overrides always
+	// win the cascade without needing !important anywhere except the handful of spots fighting an
+	// inline style attribute (see mobile.css's own header comment). Every desktop pattern in this
+	// theme is authored at full 1713px scale with hardcoded --side-margin/80px paddings and fixed
+	// px widths on flex/grid children (620px feature icons, 560px checklist photos, etc.) — none
+	// of that shrinks on its own, so this file is where every section actually becomes responsive.
+	wp_enqueue_style( 'skyline-mobile', get_template_directory_uri() . '/assets/css/mobile.css', [ 'skyline-tokens', 'skyline-patterns' ], skyline_asset_version( '/assets/css/mobile.css' ) );
 
 	// Site-wide, every page: nav dropdown touch/keyboard support + scroll-reveal section
 	// animations. Both degrade gracefully with no JS (dropdowns still work via CSS :hover, sections

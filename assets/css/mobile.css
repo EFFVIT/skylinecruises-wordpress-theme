@@ -1,0 +1,425 @@
+/* Mobile breakpoints for every shared pattern in this theme. Loaded LAST (see functions.php's
+   skyline-mobile enqueue), depending on both skyline-tokens and skyline-patterns, so everything
+   here wins the cascade on selector-weight ties without needing !important — EXCEPT the handful
+   of spots fighting an inline `style="display:grid;grid-template-columns:..."` attribute written
+   directly into a composer's HTML output (occasion-checklist__grid, photo-checklist-row__list's
+   menu-grid variant) — an inline style beats any stylesheet rule regardless of specificity, so
+   those two need `!important`, flagged individually below. Don't add !important anywhere else in
+   this file; if a rule here isn't winning, the real fix is more specificity or fixing the source
+   order, not reaching for !important as a first resort.
+
+   Two breakpoints, matching the convention already established in patterns.css's own tablet
+   collapses (see e.g. .sailing-from, .who-we-are, .why-skyline at max-width:900px):
+   - 900px: finishes the multi-column -> single/2-column collapse for every pattern that never
+     got one (most of them were only ever built/tested at full 1713px desktop width). Below this,
+     the floating desktop nav pill also switches to the fixed mobile bar (see patterns.css).
+   - 600px: real phone width (covers 375-428px devices). Shrinks --side-margin, headline sizes,
+     and every hardcoded desktop-scale padding (80px sections, 143px testimonial sides, etc.) that
+     would otherwise leave almost no usable content width once side-margin alone stops being 157px
+     on each side of a 375px screen. */
+
+/* ===== 900px: finish multi-column -> single-column collapses that were never given one ===== */
+@media (max-width: 900px) {
+  /* features-pair (Public Cruise Service / Buffet Menu / Private Event/Party) — two 620px-wide
+     flex items side by side never had a breakpoint at all; 620*2 + 80px gap = 1320px minimum
+     content width, so this was overflowing horizontally on every screen under ~1650px wide
+     (1320 + 2*157 side-margin), not just phones. */
+  .features-pair {
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    padding: 56px var(--side-margin);
+  }
+  .features-pair__item {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  /* photo-checklist-row__body (Public Cruise Service intro, Buffet Menu, etc.) — flex row with a
+     flex-shrink:0, 560px-wide photo never had a breakpoint either; same class of overflow. */
+  .photo-checklist-row__body {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .photo-checklist-row__photo {
+    width: 100%;
+  }
+  /* Buffet Menu's 2-column menu-grid checklist is an INLINE style
+     (`style="display:grid;grid-template-columns:repeat(2,1fr)"`, written by build-pages.js /
+     menu-grid-checklist.php) — a stylesheet rule can't out-rank an inline style attribute except
+     with !important. Harmless no-op on the plain single-column variant (that one is display:flex,
+     not grid, so setting grid-template-columns on it does nothing). */
+  .photo-checklist-row__list {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* tier-cards-3up / style-cards-2up (Private Event/Party — Birthday, etc.) — never had a
+     breakpoint; 3 or 2 fixed 1fr columns of real card content wrapping/crowding badly under
+     ~700px per column. */
+  .card-grid--3up,
+  .card-grid--2up {
+    grid-template-columns: 1fr;
+  }
+
+  /* marina-grid-3x3 (School Events) — same missing breakpoint. */
+  .marina-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* testimonial-quote__grid (About/Info) — 2-col grid, no breakpoint. */
+  .testimonial-quote__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* hero-prose-cta__body (About/Info) — flex row + fixed 480px image, no breakpoint. */
+  .hero-prose-cta__body {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .hero-prose-cta__body img {
+    width: 100%;
+  }
+
+  /* bio-photo-gallery__body (About/Info bios) — flex row + fixed 400px image, no breakpoint;
+     the 3-across sub-gallery underneath also never had one. */
+  .bio-photo-gallery__body {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .bio-photo-gallery__body img {
+    width: 100%;
+  }
+  .bio-photo-gallery__gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* link-list (Site Map, Friends & Affiliates) — 2-col link grid, no breakpoint; real risk of a
+     long link label crowding/overlapping its neighboring column at narrow widths. */
+  .link-list__items {
+    grid-template-columns: 1fr;
+  }
+
+  /* site-footer — 4 fixed 1fr columns, NO breakpoint at all until this file. This is very likely
+     the single biggest contributor to the real bodyScrollWidth:787-vs-390-viewport horizontal
+     overflow measured at the end of the 2026-08-24 mobile-nav session — 4 columns of real nav
+     link lists (some genuinely long labels) squeezed to ~1/4 width each forces the grid track,
+     and therefore the whole page, wider than the viewport. Two steps: 2-col at tablet, 1-col at
+     phone (see the 600px block below) — a single jump straight to 1-col reads oddly wide/empty
+     on a mid-size tablet, confirmed against this theme's own general "collapse gradually" pattern
+     used everywhere else (sailing-from, why-skyline, etc. all go straight to 1-col at 900 though,
+     since those only have 2 columns to begin with — footer gets the extra step because it starts
+     from 4). */
+  .site-footer__columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+
+  /* occasion-checklist's 12-item checklist ("Perfect for Any Occasion") is ALSO an inline style
+     (`style="display:grid;grid-template-columns:repeat(2,1fr)"`, from build-pages.js's
+     occasionChecklist()) — same !important requirement as photo-checklist-row__list above. Two
+     columns of icon+text rows can survive down to phone width fine content-wise (each item is
+     short, e.g. "Live DJ & Dance Floor"), but the overlay's own 64px padding (fixed below) was
+     eating real width first — collapsing to 1 column here removes the last real cramping risk. */
+  .occasion-checklist__grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+}
+
+/* ===== 600px: real phone width — shrink the margin/type/padding scale itself ===== */
+@media (max-width: 600px) {
+  :root {
+    /* This one variable is read by padding on nearly every section in patterns.css
+       (`padding: Npx var(--side-margin)`) — redefining it here is the single highest-leverage fix
+       in this file: 157px on each side of a 375px screen would otherwise leave just 61px for
+       actual content on every section that uses it. */
+    --side-margin: 20px;
+  }
+
+  h2 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .intro-copy {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  /* ===== hero ===== */
+  .hero-outer {
+    padding: 16px;
+  }
+  .hero {
+    min-height: 460px;
+    border-radius: 16px;
+    padding: 0 20px 40px;
+  }
+  .hero--short {
+    min-height: 420px;
+  }
+  .hero h1 {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+  .hero--short h1 {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+  .hero__address {
+    font-size: 16px;
+  }
+
+  /* trust-badges — 3 nowrap pills ("Since 1993" / "A+ BBB Rating" / "30+ Years Excellence") in
+     one flex row with no wrap was never checked against a 375px hero column; their combined
+     min-content width (each pill's text can't shrink, white-space:nowrap by design) is wider
+     than that, forcing the hero's own content wider than its column. Letting them wrap keeps
+     every pill's text on one line each (still not allowed to break mid-label) while the row
+     itself takes 2 lines instead of pushing the layout wider. */
+  .trust-badges {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .trust-badge {
+    height: 34px;
+    padding: 0 14px;
+  }
+  .trust-badge span {
+    font-size: 12px;
+  }
+
+  /* ===== features-pair ===== */
+  .features-pair {
+    padding: 48px 20px;
+  }
+
+  /* ===== testimonial ===== */
+  .testimonial-outer {
+    padding: 16px;
+  }
+  .testimonial {
+    min-height: auto;
+    border-radius: 16px;
+    padding: 40px 24px;
+    gap: 16px;
+  }
+  .testimonial__heading {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .testimonial__quote {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .testimonial__attribution {
+    font-size: 16px;
+  }
+  .testimonial--card {
+    padding: 32px 20px;
+  }
+
+  /* ===== closing-cta ===== */
+  .closing-cta {
+    padding: 48px 20px;
+  }
+
+  /* ===== photo-checklist-row / text-section / route-map / card-grid-section / marina-grid /
+     ports-list / entertainment-chips / directions-block / hero-prose-cta / faq-accordion /
+     testimonial-quote / bio-photo-gallery / link-list / form-page-shell / site-footer —
+     every one of these shares the same `padding: 80px var(--side-margin)` shape. --side-margin
+     already shrunk above; this just tightens the vertical rhythm to match on a short viewport. */
+  .photo-checklist-row,
+  .text-section,
+  .route-map,
+  .card-grid-section,
+  .marina-grid,
+  .ports-list,
+  .entertainment-chips,
+  .directions-block,
+  .hero-prose-cta,
+  .faq-accordion,
+  .testimonial-quote,
+  .bio-photo-gallery,
+  .link-list,
+  .form-page-shell {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  /* ===== occasion-checklist ("Perfect for Any Occasion") ===== */
+  .occasion-checklist {
+    margin: 40px 20px;
+    border-radius: 16px;
+  }
+  .occasion-checklist__overlay {
+    padding: 32px 24px;
+  }
+
+  /* ===== office-locations ("Have Questions?") ===== */
+  .office-locations {
+    padding: 48px 20px;
+  }
+  .office-locations__card {
+    padding: 24px;
+  }
+  .office-locations__card h3 {
+    font-size: 21px;
+  }
+
+  /* ===== who-we-are ===== */
+  .who-we-are {
+    margin: 40px auto;
+    border-radius: 20px;
+  }
+  /* object-fit:cover photo relies on its grid cell having a real height — that cell's height
+     comes from the auto-sized row when stacked (patterns.css collapses this to 1 column at
+     900px), which is fine once the panel's own content gives the row a height, but an explicit
+     height here avoids depending on that indirectly and matches how every other stacked
+     photo+panel pattern on this page (who-we-are, hero-prose-cta) gets a real measured height. */
+  .who-we-are__photo {
+    height: 260px;
+  }
+  .who-we-are__panel {
+    padding: 32px 24px;
+  }
+
+  /* ===== why-skyline ===== */
+  .why-skyline {
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  .why-skyline__card {
+    padding: 24px;
+    min-height: 180px;
+  }
+
+  /* ===== cruise-gallery ===== */
+  .cruise-gallery {
+    margin: 40px 20px;
+    padding: 32px 20px;
+    border-radius: 20px;
+  }
+  /* 266px-tall thumbnails were sized for a 4-across (then 2-across at 900px) desktop/tablet
+     column width — at ~155px column width on a 375px screen the same height reads as a very
+     narrow, oddly cropped sliver of each photo. Shortening it keeps the crop looking intentional
+     at this column width instead of just shrinking the same desktop aspect ratio down. */
+  .cruise-gallery__grid img {
+    height: 140px;
+  }
+
+  /* ===== blog-teasers ===== */
+  .blog-teasers {
+    padding: 48px 20px;
+  }
+
+  /* ===== events-cater — the 5-card masonry collage already collapses to a 2-col wrap at 1100px
+     (patterns.css), which is fine down to tablet width, but at true phone width a 410px-tall photo
+     inside a ~155px-wide column (half of ~340px available after side-margin) is a very tall,
+     narrow sliver — full-width single column reads much better and still shows every photo. ===== */
+  .events-cater {
+    padding: 48px 20px;
+  }
+  .events-cater__grid {
+    flex-direction: column;
+  }
+  .events-cater__card {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  .events-cater__card img {
+    height: 240px;
+  }
+
+  /* ===== sailing-from ===== */
+  /* The -96px overlap pulling this card up over the hero's bottom edge is real Figma math for the
+     DESKTOP hero's height (1117px frame). The mobile hero above is a completely different height
+     (~460-540px, see .hero/.hero--short overrides in this file) — carrying the same -96px pull
+     forward risks the card creeping up far enough to cover the hero's own H1/CTA content instead
+     of just sitting flush against its bottom edge. Rather than re-deriving a new overlap fraction
+     with no real design reference for it at this size, drop the overlap entirely on mobile: the
+     card just follows normally in flow with regular spacing above it, which reads fine as its own
+     section and carries zero collision risk. */
+  .sailing-from {
+    margin: 24px 20px;
+    padding: 28px 24px;
+    border-radius: 20px;
+    gap: 24px;
+  }
+
+  /* ===== newsletter-cta ===== */
+  .newsletter-section {
+    padding: 16px;
+  }
+  .newsletter-card {
+    min-height: auto;
+    padding: 40px 24px;
+    border-radius: 20px;
+  }
+  .newsletter-form {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .newsletter-form .btn-gold {
+    width: 100%;
+  }
+
+  /* ===== site-footer ===== */
+  .site-footer__columns {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .site-footer__copyright {
+    margin-top: 32px;
+    padding-top: 24px;
+  }
+
+  /* ===== Homepage-only sections ===== */
+  /* Homepage hero: content (min-width:0, so it CAN shrink) sharing a flex row with a
+     min-width:300px lead-form card was confirmed overlap-free down to 375px, but "doesn't
+     overlap" isn't the same as "readable" — with the form's 300px floor plus a 40px gap eating
+     most of a 375px viewport, the content column is left with only a few px to work with,
+     forcing the real H1/paragraph text into an unreadably narrow squeeze. Stacking on true phone
+     width (this rule was never tested against actual legibility, only against overlap) is the
+     real fix; the earlier "stay side by side, never stack" decision was about the 1100-1700px
+     tablet/laptop range where there's genuinely enough room for both, not this width. */
+  .homepage-hero {
+    flex-direction: column;
+    padding-top: 40px;
+    min-height: auto;
+    gap: 32px;
+  }
+  .homepage-hero__content {
+    max-width: 100%;
+  }
+  .homepage-lead-form {
+    flex-basis: auto;
+    min-width: 0;
+    width: 100%;
+  }
+  /* Real bug caught via screenshot: .homepage-hero__ctas sizes its grid track to
+     `max-content` (both buttons share the widest label's UNWRAPPED intrinsic width) — fine on
+     desktop where "The Great Escape – Private Yacht Charter" fits inside the 800px content
+     column with room to spare, but on a 390px screen that intrinsic width is wider than the
+     entire viewport, so both buttons got clipped by .hero's own overflow:hidden (page never
+     scrolled horizontally, so this didn't show up in the bodyScrollWidth check — only in an
+     actual screenshot). Fixed by letting the column stretch to the available row width instead
+     of sizing to content; each .btn's existing white-space:normal then wraps its label onto a
+     second line within that real width. */
+  .homepage-hero__ctas {
+    grid-template-columns: 1fr;
+  }
+  /* Follow-up bug from the fix above: once the column could stretch to full width, the longer
+     label ("The Great Escape – Private Yacht Charter for Up to 6 Guests, Discover More Here")
+     wraps to 3 lines — but the sitewide .btn class has a fixed `height: 50px` (right for every
+     single-line button elsewhere on the site), so the wrapped text just overflowed past the
+     pill's own rounded edge top and bottom instead of the pill growing to fit it. Only these two
+     hero buttons need a real auto-height pill on mobile; nothing else in .btn changes. */
+  .homepage-hero__ctas .btn {
+    height: auto;
+    min-height: 50px;
+    padding: 14px 24px;
+    line-height: 1.35;
+  }
+}
