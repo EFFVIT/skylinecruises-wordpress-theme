@@ -475,12 +475,32 @@ ${posts.map((p) => `<div class="blog-teasers__card"><img src="${p.photo}" alt=""
 // project's own Port/Location batch, North Cove Marina and the already-covered Liberty Landing
 // Marina — kept verbatim from the Figma design, not cross-checked against the Ports hub's own
 // 10-port list since this card is real content in its own right, not required to be a subset).
-const sailingFromCard = ({ primary, also }) => `<!-- wp:group {"className":"sailing-from"} -->
+// Real Figma mismatch found via user screenshot: the design is a floating white card (rounded,
+// drop-shadow) that overlaps the hero's bottom edge, with a small uppercase gray label + icon,
+// a bold dark "name" line, then plain address lines, then a smaller gray note — not a plain h3 +
+// flat paragraph list sitting below the hero on the page background. `primary`'s first line is
+// always the bold name and its last line is always the small note (matches every real use of
+// this composer); `also`'s lines are "Name, Rest" — split at the first comma so the marina name
+// renders bold like Figma, without changing this function's external data shape.
+const sailingFromCard = ({ primary, also }) => {
+  const [name, ...restLines] = primary;
+  const note = restLines[restLines.length - 1];
+  const middle = restLines.slice(0, -1);
+  const alsoItems = also
+    .map((l) => {
+      const idx = l.indexOf(',');
+      return idx > -1 ? `<li>&bull; <strong>${l.slice(0, idx + 1)}</strong>${l.slice(idx + 1)}</li>` : `<li>&bull; ${l}</li>`;
+    })
+    .join('\n');
+  return `<!-- wp:group {"className":"sailing-from"} -->
 <div class="wp-block-group sailing-from">
-<div class="sailing-from__col"><span class="sailing-from__icon">${MAP_PIN_ICON}</span><h3>Sailing From</h3>${primary.map((l) => `<p>${l}</p>`).join('\n')}</div>
-<div class="sailing-from__col"><span class="sailing-from__icon">${MAP_PIN_ICON}</span><h3>Also Sailing From</h3><ul>${also.map((l) => `<li>${l}</li>`).join('\n')}</ul></div>
+<div class="sailing-from__col"><div class="sailing-from__label"><span class="sailing-from__icon">${MAP_PIN_ICON}</span><span>Sailing From</span></div><p class="sailing-from__name">${name}</p>
+${middle.map((l) => `<p>${l}</p>`).join('\n')}
+<p class="sailing-from__note">${note}</p></div>
+<div class="sailing-from__col"><div class="sailing-from__label"><span class="sailing-from__icon">${MAP_PIN_ICON}</span><span>Also Sailing From</span></div><ul>${alsoItems}</ul></div>
 </div>
 <!-- /wp:group -->`;
+};
 
 // ---- Per-template composition — same ordering as the structural audit + consistency requirement:
 //      one canonical section order per category, real content varies, structure never drifts. ----
