@@ -151,6 +151,19 @@
     padding: 14px 24px;
     line-height: 1.35;
   }
+
+  /* events-cater's background panel (patterns.css) is tuned to pull up behind .sailing-from by a
+     fixed px amount, sized against THIS theme's own real .sailing-from height at each of its two
+     shapes (not Figma's, which is a different fixed-height component) — .sailing-from collapses
+     to a single stacked column at this same 900px breakpoint (see .sailing-from above), roughly
+     doubling its height, so the pull-up needs to grow here too or the panel would fall well short
+     of reaching the now-much-taller card. Bottom edge (and therefore the separately-tuned ~50%
+     overlap into the first photo card) stays fixed by growing height by the same amount. */
+  .events-cater::before {
+    top: -200px;
+    /* 360px into-photo (matches the trimmed desktop value in patterns.css) + 200px pull-up. */
+    height: 560px;
+  }
 }
 
 /* ===== 600px: real phone width — shrink the margin/type/padding scale itself ===== */
@@ -174,8 +187,11 @@
   }
 
   /* ===== hero ===== */
-  .hero-outer {
-    padding: 16px;
+  /* Redefine the shared --hero-inset variable itself (tokens.css) rather than overriding
+     .hero-outer's padding directly — the events-cater panel below reads this same variable to
+     stay pixel-exact-matched to hero's real width at every breakpoint, not just desktop. */
+  :root {
+    --hero-inset: 16px;
   }
   .hero {
     min-height: 460px;
@@ -351,9 +367,23 @@
      drops to 48px above, and the ≤1100px breakpoint already flattens the stagger to 0 before
      this one even applies), so 430px unchanged would swallow the entire first stacked card
      (240px tall) and spill into the second one. Re-tuned to the same ~50% overlap of ONE card's
-     height, using this breakpoint's own real numbers instead of reusing the desktop value. */
+     height, using this breakpoint's own real numbers instead of reusing the desktop value.
+     top/height both include the pull-up into .sailing-from too (measured against this theme's
+     own real height at this breakpoint, ~190px here vs 200px at the 900px tier above — smaller
+     because .sailing-from sits closer to .events-cater at true phone width) — same "grow the
+     height by however much the top moves up" approach as every other tier, so the bottom edge
+     (and this tier's own already-tuned photo overlap) doesn't shift. */
   .events-cater::before {
-    height: 290px;
+    top: -190px;
+    height: 480px;
+    /* Direct user request: on mobile the panel should read as a full-bleed band — flush to both
+       screen edges, no rounded corners visible — rather than continuing the "inset card matching
+       hero's width" treatment used at every wider breakpoint. .events-cater itself already spans
+       the full viewport at this width (its max-width:var(--content-width) cap is inactive below
+       1400px), so left:0/right:0 here land exactly on the real screen edges, not an approximation. */
+    left: 0;
+    right: 0;
+    border-radius: 0;
   }
   .events-cater__grid {
     flex-direction: column;

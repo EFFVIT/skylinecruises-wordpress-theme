@@ -704,7 +704,7 @@
      100% already shrinks it to fill the viewport, so there's no room for it to be off-center),
      which is why it went unnoticed until someone actually looked at this on a wide monitor. */
   margin-inline: auto;
-  padding: 28px;
+  padding: var(--hero-inset);
   background: var(--color-page-bg);
 }
 
@@ -1748,6 +1748,11 @@
    frame height 1117 minus this card's y of 1021 = 96px. */
 .sailing-from {
   position: relative;
+  /* The events-cater background panel now reaches up behind this card (see .events-cater::before
+     below) — without an explicit z-index here, this card and that later-in-DOM ::before would
+     stack in plain DOM order (events-cater painting on top, since it comes after), covering this
+     card's white background wherever the two overlap. Raises it above that panel explicitly. */
+  z-index: 2;
   max-width: var(--content-width);
   margin: -96px auto 60px;
   background: var(--color-white);
@@ -1819,10 +1824,11 @@
   position: relative;
   max-width: var(--content-width);
   margin: 0 auto;
-  /* Top padding bumped 60px -> 140px specifically for this section, per a direct pixel-measured
-     comparison against the Figma reference (below) — the heading sits noticeably lower inside
-     its panel there than a plain 60px (this theme's normal section-padding default) gives it. */
-  padding: 140px var(--side-margin) 60px;
+  /* Top padding: bumped 60px -> 140px in an earlier pass per a pixel-measured comparison against
+     Figma, then brought back down to 70px on direct user feedback that 140px read as too much
+     empty space above the heading. Panel height (below) was trimmed by the same 70px so the
+     overlap into the first photo card doesn't grow to compensate for the extra room freed up. */
+  padding: 70px var(--side-margin) 60px;
   text-align: center;
 }
 /* Real gap found via a user screenshot, confirmed against Figma (node 1:33, "Background"): a
@@ -1842,29 +1848,47 @@
    ~10% extra width and ~27% overlap — both real, measurable shortfalls, not a subjective
    "doesn't feel right".
 
-   --ec-panel-extend target is now derived from --page-width directly (page-width minus the
-   already-established 48px inset this same Figma file reuses for every full-bleed background
-   panel — see Who We Are's and the testimonials section's own matching rectangles — minus
-   content-width, halved) instead of an arbitrary fraction of --side-margin. Still wrapped in the
-   same min()/max() safety clamp as the first pass so it can never extend past a viewport that
-   has no spare gutter to extend into (confirmed zero overflow down to 375px after this pass). */
+   --ec-panel-extend is now derived directly from --hero-inset (the SAME variable
+   .hero-outer's own padding uses, tokens.css) instead of an independently-tuned approximation —
+   per direct user request, the panel needs to be pixel-EXACT to the hero photo's own rendered
+   width, not just close to it. `min(var(--page-width),100vw) - hero-inset*2` reproduces hero's
+   own width formula exactly (including its 100%-of-viewport clamp), and
+   `min(var(--content-width),100vw)` reproduces .events-cater's own real rendered width the same
+   way — the difference between the two, halved, is exactly how far the panel needs to extend
+   past .events-cater's own edges to land on hero's exact edges. This naturally goes negative
+   (insetting the panel instead of extending it) once the viewport gets narrow enough that
+   .events-cater's own box is wider than hero's photo would be — mathematically safe on its own
+   with no separate overflow clamp needed, since the result can never exceed hero's own
+   already-viewport-safe width.
+
+   Second real user correction: the panel also needs to extend up and sit behind the "Sailing
+   From" card above it, not just the heading — confirmed against Figma's real absolute
+   coordinates (Sailing From frame 1:501 bottom vs the panel's own top, both measured in the same
+   homepage-wide coordinate space) that the panel's real top edge overlaps the BOTTOM ~35% of
+   that card, not just its own section's top padding. Implemented as a negative `top` (pulling
+   the ::before up past .events-cater's own top edge, into the gap after Sailing From) sized from
+   a live measurement of this theme's own .sailing-from height (not Figma's, since ours renders
+   at a different height) at the same 35% fraction — this is a fixed px value, re-measured and
+   re-tuned per breakpoint in mobile.css below rather than computed from a live CSS variable,
+   since .sailing-from's own height genuinely differs by breakpoint (single column vs two) in a
+   way that doesn't reduce to one clean formula. Height increased by the same amount so the
+   BOTTOM edge — and therefore the already-tuned ~50% overlap into the first photo card — stays
+   exactly where it was. */
 .events-cater {
-  --ec-panel-extend: min(
-    calc((var(--page-width) - 48px - var(--content-width)) / 2),
-    max(0px, calc((100vw - var(--content-width)) / 2))
+  --ec-panel-extend: calc(
+    (min(var(--page-width), 100vw) - (var(--hero-inset) * 2) - min(var(--content-width), 100vw)) / 2
   );
 }
 .events-cater::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: -175px;
   left: calc(-1 * var(--ec-panel-extend));
   right: calc(-1 * var(--ec-panel-extend));
-  /* Tuned to overlap ~50% of the first (most-staggered) card's height, matching the Figma
-     pixel-scan above, given this section's new 140px top padding. Overridden smaller on mobile
-     (see mobile.css) where the stagger is flattened and photos are much shorter, so the same
-     absolute height would otherwise swallow the entire first stacked card. */
-  height: 430px;
+  /* 360px (this section's own heading/photo overlap — 430 minus the 70px padding-top trim above,
+     so the bottom edge doesn't drift and swallow more of the first photo than before) + 175px
+     (the pull-up into Sailing From) = 535px total. */
+  height: 535px;
   background: var(--color-bg-light-blue);
   border-radius: 20px;
   z-index: 0;

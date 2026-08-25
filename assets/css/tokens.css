@@ -21,6 +21,13 @@
   --side-margin: 157px;
   --grid-columns: 12;
   --grid-gutter: 40px;
+  /* .hero-outer's own inset padding, pulled out into a shared variable (used by both
+     .hero-outer itself and the events-cater background panel's width calc) so the panel is
+     GUARANTEED to always compute out to hero's exact rendered width, not just an independently-
+     tuned approximation of it — per direct user request ("same width as the hero image").
+     Redefined to 16px at the mobile breakpoint (mobile.css), same as hero-outer's own padding
+     always was. */
+  --hero-inset: 28px;
 
   /* Fonts */
   --font-display: "Playfair Display", Georgia, serif;
