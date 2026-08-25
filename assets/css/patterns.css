@@ -1321,3 +1321,538 @@
 .page-content > *:first-child:not(.hero-outer) {
   margin-top: 130px;
 }
+
+/* ===== Homepage-only sections (added 2026-08-24 — see build-pages.js's "Homepage-only
+   composers" comment for why this page was built so late in the project). All section
+   backgrounds/spacing reuse the same tokens as every other page (navy/gold/light-blue, Playfair
+   Display headings, 157px side margins) — no new design language introduced. ===== */
+
+.btn-outline-white {
+  background: transparent;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+}
+.btn-outline-white:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-outline-navy {
+  background: transparent;
+  color: var(--color-navy);
+  border: 2px solid var(--color-navy);
+}
+.btn-outline-navy:hover {
+  background: rgba(11, 44, 77, 0.06);
+}
+
+/* --- Homepage hero: two CTAs (stacked, not side-by-side — real 2nd CTA label is a full
+   sentence, not a short button label) + a floating lead-inquiry form card. --- */
+.homepage-hero {
+  min-height: 700px;
+  align-items: flex-start;
+  padding-top: 120px;
+}
+.homepage-hero__content {
+  max-width: 700px;
+  gap: 24px;
+}
+.homepage-hero__content p {
+  color: var(--color-white);
+  font-size: 16px;
+  line-height: 22px;
+}
+.homepage-hero__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.homepage-hero__ctas .wp-block-button {
+  width: 100%;
+}
+.homepage-hero__ctas .btn {
+  width: 100%;
+  height: 64px;
+  font-weight: 700;
+  font-size: 17px;
+  white-space: normal;
+  text-align: center;
+  padding: 12px 24px;
+}
+.homepage-lead-form {
+  position: absolute;
+  right: var(--side-margin);
+  top: 120px;
+  width: 420px;
+  max-width: calc(100% - 314px);
+  background: rgba(224, 239, 251, 0.12);
+  backdrop-filter: blur(6px);
+  border-radius: 24px;
+  padding: 32px;
+  color: var(--color-white);
+}
+.homepage-lead-form h3 {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 24px;
+  text-transform: capitalize;
+}
+.homepage-lead-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.homepage-lead-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+}
+.homepage-lead-form input[type="text"],
+.homepage-lead-form input[type="email"],
+.homepage-lead-form input[type="tel"] {
+  height: 47px;
+  border-radius: 4px;
+  border: none;
+  background: #f7fafc;
+  padding: 0 14px;
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+.homepage-lead-form__consent {
+  flex-direction: row;
+  align-items: flex-start;
+  font-size: 12px;
+  gap: 10px;
+}
+.homepage-lead-form__consent input {
+  margin-top: 2px;
+}
+.homepage-lead-form button[type="submit"] {
+  width: 100%;
+  height: 50px;
+  border: none;
+  margin-top: 8px;
+}
+@media (max-width: 1200px) {
+  .homepage-lead-form {
+    position: static;
+    width: auto;
+    max-width: none;
+    margin: 40px var(--side-margin) 0;
+  }
+}
+
+/* --- Sailing From — simple 2-column info card, sits right after the hero. --- */
+.sailing-from {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: var(--content-width);
+  margin: 60px auto;
+  padding: 40px var(--side-margin);
+}
+.sailing-from__col h3 {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-navy);
+  margin: 12px 0 16px;
+}
+.sailing-from__icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--color-navy);
+}
+.sailing-from__col p {
+  margin: 0 0 4px;
+  color: var(--color-body-gray);
+}
+.sailing-from__col ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--color-body-gray);
+}
+.sailing-from__col li {
+  margin-bottom: 8px;
+}
+
+/* --- Events We Cater — offset masonry-style photo collage, only the featured card has text. --- */
+.events-cater {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 60px var(--side-margin);
+  text-align: center;
+}
+.events-cater h2 {
+  margin-bottom: 12px;
+}
+.events-cater .intro-copy {
+  color: var(--color-body-gray);
+  font-family: var(--font-intro);
+  font-size: 18px;
+  margin-bottom: 48px;
+}
+.events-cater__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  text-align: left;
+}
+.events-cater__card {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(11, 44, 77, 0.08);
+  background: var(--color-white);
+}
+.events-cater__card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+.events-cater__card--featured {
+  grid-row: span 1;
+}
+.events-cater__card--featured img {
+  height: 200px;
+}
+.events-cater__card-body {
+  padding: 24px;
+}
+.events-cater__card-body h3 {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+.events-cater__card-body p {
+  font-size: 14px;
+  color: var(--color-body-gray);
+  margin: 0 0 16px;
+  line-height: 1.6;
+}
+.events-cater__card-body a {
+  color: var(--color-navy);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
+}
+.events-cater__card-body a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 1100px) {
+  .events-cater__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Perfect for Any Occasion — real photo bg + dark overlay + 2-col checklist. --- */
+.occasion-checklist {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 23px;
+  margin: 60px var(--side-margin);
+  overflow: hidden;
+}
+.occasion-checklist::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 44, 77, 0.72);
+}
+.occasion-checklist__overlay {
+  position: relative;
+  z-index: 1;
+  padding: 64px;
+  text-align: center;
+}
+.occasion-checklist h2,
+.occasion-checklist__sub {
+  color: var(--color-white);
+}
+.occasion-checklist__sub {
+  font-family: var(--font-body);
+  font-size: 16px;
+  margin: 12px 0 40px;
+}
+.occasion-checklist__grid {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+.checklist-item--light {
+  color: var(--color-white);
+}
+.checklist-item--light .check-icon {
+  filter: none;
+}
+
+/* --- Have Questions? service-area cards. --- */
+.office-locations {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 60px var(--side-margin);
+  text-align: center;
+}
+.office-locations .intro-copy {
+  color: var(--color-body-gray);
+  margin-bottom: 40px;
+}
+.office-locations__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: left;
+}
+.office-locations__card {
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 10px rgba(11, 44, 77, 0.06);
+}
+.office-locations__icon svg {
+  width: 32px;
+  height: 32px;
+  color: var(--color-navy);
+}
+.office-locations__card h3 {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 16px 0 8px;
+  color: var(--color-navy);
+}
+.office-locations__card p {
+  margin: 0;
+  color: var(--color-body-gray);
+  font-size: 15px;
+}
+@media (max-width: 900px) {
+  .office-locations__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Who We Are — real photo + navy text panel. --- */
+.who-we-are {
+  display: grid;
+  grid-template-columns: 536px 1fr;
+  max-width: var(--content-width);
+  margin: 60px auto;
+  border-radius: 32px;
+  overflow: hidden;
+}
+.who-we-are__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.who-we-are__panel {
+  background: var(--color-navy);
+  color: var(--color-white);
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.who-we-are__panel h2 {
+  color: var(--color-white);
+  text-align: left;
+  margin-bottom: 24px;
+}
+.who-we-are__panel p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .who-we-are {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Why Skyline Cruises — 4 real photo-bg cards, navy tint + 20%-opacity photo. --- */
+.why-skyline {
+  max-width: var(--content-width);
+  margin: 60px auto;
+  padding: 0 var(--side-margin);
+  text-align: center;
+}
+.why-skyline h2 {
+  margin-bottom: 48px;
+}
+.why-skyline__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  text-align: left;
+}
+.why-skyline__card {
+  position: relative;
+  border-radius: 24px;
+  padding: 32px;
+  min-height: 226px;
+  background-color: var(--color-navy);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: luminosity;
+  color: var(--color-white);
+}
+.why-skyline__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 44, 77, 0.85);
+  border-radius: 24px;
+  z-index: 0;
+}
+/* Real legibility bug found via screenshot: card 4's real source photo has a bright area
+   (light clothing/ceiling) landing right where the heading sits — the flat 80%-opacity navy tint
+   alone wasn't enough contrast there, and bumping tint opacity for one photo isn't robust against
+   whichever photo ends up in this slot next. A text-shadow (same class of fix the hero uses via
+   its gradient overlay) guarantees legibility against ANY photo brightness, not just this one. */
+.why-skyline__card h3,
+.why-skyline__card p {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.why-skyline__card h3 {
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+.why-skyline__card p {
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .why-skyline__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Cruise Gallery — navy bg + 4 real photos + Instagram CTA. --- */
+.cruise-gallery {
+  background: var(--color-navy);
+  border-radius: 32px;
+  margin: 60px var(--side-margin);
+  padding: 64px;
+  text-align: center;
+}
+.cruise-gallery h2,
+.cruise-gallery__sub {
+  color: var(--color-white);
+}
+.cruise-gallery__sub {
+  font-family: var(--font-body);
+  font-size: 16px;
+  margin: 12px 0 40px;
+}
+.cruise-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.cruise-gallery__grid img {
+  width: 100%;
+  height: 266px;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 4px solid var(--color-white);
+  box-shadow: 8px 8px 18px rgba(0, 0, 0, 0.4);
+}
+.cruise-gallery__cta {
+  display: inline-flex;
+  text-decoration: none;
+}
+@media (max-width: 900px) {
+  .cruise-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Notes From the Deck — real blog teaser cards, link to the real archive (no individual
+   post entities exist yet, same call made for the Site Map's blog-index link). --- */
+.blog-teasers {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 60px var(--side-margin);
+  text-align: center;
+}
+.blog-teasers .intro-copy {
+  color: var(--color-body-gray);
+  margin-bottom: 32px;
+}
+.blog-teasers__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  text-align: left;
+  margin-bottom: 40px;
+}
+.blog-teasers__card {
+  background: var(--color-white);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(11, 44, 77, 0.08);
+}
+.blog-teasers__card img {
+  width: 100%;
+  height: 223px;
+  object-fit: cover;
+  display: block;
+}
+.blog-teasers__body {
+  padding: 32px;
+}
+.blog-teasers__date {
+  font-family: "Montserrat", var(--font-body);
+  font-size: 14px;
+  color: var(--color-body-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.35px;
+}
+.blog-teasers__card h3 {
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-navy);
+  margin: 16px 0 12px;
+  line-height: 1.3;
+}
+.blog-teasers__card p {
+  font-size: 15px;
+  color: var(--color-body-gray);
+  line-height: 1.55;
+  margin: 0 0 16px;
+}
+.blog-teasers__card a {
+  color: var(--color-navy);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 16px;
+}
+.blog-teasers__card a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .blog-teasers__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- FAQ "View More" link, homepage only (the real full FAQ page has 21 real questions; this
+   page only shows the 4 whose real answers matched the Figma design's own questions). --- */
+.faq-view-more {
+  text-align: center;
+  padding: 0 var(--side-margin) 60px;
+}

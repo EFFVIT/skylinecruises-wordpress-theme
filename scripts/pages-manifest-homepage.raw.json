@@ -1,0 +1,118 @@
+[
+	{
+		"title": "Homepage",
+		"slug": "home",
+		"parent": 0,
+		"template": "Homepage",
+		"data": {
+			"hero": {
+				"h1": "NYC Dinner Cruises &amp; Private Yacht Charters",
+				"paragraphs": [
+					"For more than 30 years, Skyline Cruises has been hailed for its outstanding service and best overall value for NYC dinner cruises, Long Island Charters, NY yacht charters, Westchester Cruises, Connecticut Charters, NJ Charters, and New York Harbor party boat cruises. Between the many well-known organizations that regularly hold events on Skyline Cruises and an A+ rating with the Better Business Bureau, it&#8217;s easy to see why we are trusted with so many special event cruises for everything from birthdays and weddings to major corporate galas.",
+					"Our &#8220;Super Yacht&#8221; Skyline Princess is the only one sailing NY Harbor with an enclosed rooftop deck. Our all-weather, year-round yacht is considered the most versatile charter yacht in the Northeast. Its public dinner cruises sail out to the Statue of Liberty for stunning views. Private yacht cruises sail in New York, New Jersey, Connecticut and the Long Island Sound."
+				],
+				"ctaPrimary": "Schedule a Public Skyline Cruise",
+				"ctaSecondary": "The Great Escape &#8211; Private Yacht Charter for Up to 6 Guests, Discover More Here",
+				"bgImageLocalFile": "home-hero-bg",
+				"consentText": "By submitting this form, you agree to be contacted by Skyline Cruises about your cruise inquiry. We&#8217;ll never share your information."
+			},
+			"sailingFrom": {
+				"primary": [
+					"World&#8217;s Fair Marina",
+					"1 World&#8217;s Fair Marina",
+					"Flushing, NY 11368",
+					"Free parking available"
+				],
+				"also": [
+					"Lincoln Harbor, Weehawken, NJ",
+					"North Cove Marina, Battery Park",
+					"Liberty Landing Marina, Jersey City"
+				]
+			},
+			"eventsCater": {
+				"heading": "Events We Cater",
+				"subheading": "From intimate gatherings to grand celebrations",
+				"featured": {
+					"title": "Weddings",
+					"description": "Create unforgettable memories with a waterfront wedding ceremony and reception surrounded by the NYC skyline.",
+					"linkLabel": "Learn More",
+					"href": "/weddings/",
+					"photoLocalFile": "home-events-featured"
+				},
+				"photosLocalFiles": ["home-events-photo2", "home-events-photo3", "home-events-photo4", "home-events-photo5"]
+			},
+			"occasionChecklist": {
+				"heading": "Perfect for <em>Any Occasion</em>",
+				"subheading": "Whatever you&#8217;re celebrating, we&#8217;ll make it extraordinary",
+				"bgImageLocalFile": "home-checklist-bg",
+				"items": [
+					"<strong>Weddings</strong> &amp; Receptions",
+					"<strong>Corporate</strong> Events",
+					"<strong>Birthday</strong> Celebrations",
+					"<strong>Anniversaries</strong>",
+					"Bar &amp; <strong>Bat Mitzvahs</strong>",
+					"<strong>Graduation</strong> Parties",
+					"<strong>Holiday</strong> Parties",
+					"<strong>Team Building</strong> Events",
+					"<strong>Product</strong> Launches",
+					"Client <strong>Appreciation</strong>",
+					"<strong>Retirement</strong> Parties",
+					"<strong>Engagement</strong> Celebrations"
+				]
+			},
+			"officeLocations": {
+				"heading": "Have Questions?",
+				"subheading": "Speak with one of our event planners today.",
+				"locations": [
+					{ "city": "Westchester", "area": "Yonkers &amp; New Rochelle" },
+					{ "city": "Queens", "area": "Flushing Meadows Park" },
+					{ "city": "Manhattan", "area": "Chelsea Piers, WTC, Pier36" },
+					{ "city": "New Jersey", "area": "Jersey City" },
+					{ "city": "Connecticut", "area": "Stamford &amp; Norwalk" },
+					{ "city": "Long Island", "area": "Port Washington &amp; Glen Cove" }
+				]
+			},
+			"whoWeAre": {
+				"heading": "Who We Are",
+				"paragraph": "For over three decades, Skyline Cruises has been New York&#8217;s premier provider of luxury yacht experiences. Founded in 1993, we&#8217;ve hosted thousands of unforgettable events on the waters surrounding Manhattan, combining breathtaking views with world-class service and cuisine. Our fleet of elegantly appointed yachts provides the perfect setting for your most important celebrations, from intimate gatherings to grand affairs. With our commitment to excellence and attention to detail, we transform your vision into an extraordinary experience that you and your guests will treasure forever.",
+				"photoLocalFile": "home-who-we-are"
+			},
+			"whySkyline": {
+				"heading": "Why Skyline Cruises",
+				"cards": [
+					{ "title": "Unmatched Views", "description": "Sail past iconic landmarks including the Statue of Liberty, Brooklyn Bridge, and the glittering Manhattan skyline. Our routes are carefully planned to showcase the best of New York Harbor.", "photoLocalFile": "home-why-1" },
+					{ "title": "Exceptional Cuisine", "description": "Our expert culinary team creates custom menus featuring fresh, locally-sourced ingredients. From elegant plated dinners to lavish buffets, every dish is prepared to perfection.", "photoLocalFile": "home-why-2" },
+					{ "title": "Professional Service", "description": "Our experienced crew and event coordinators ensure every detail is flawlessly executed. From planning to execution, we&#8217;re with you every step of the way.", "photoLocalFile": "home-why-3" },
+					{ "title": "Flexible Options", "description": "Choose from our public dinner cruises or charter an entire yacht for your private event. We offer customizable packages to fit any budget and vision.", "photoLocalFile": "home-why-4" }
+				]
+			},
+			"cruiseGallery": {
+				"heading": "Cruise <em>Gallery</em>",
+				"subheading": "See what makes our experiences unforgettable",
+				"photosLocalFiles": ["home-gallery-1", "home-gallery-2", "home-gallery-3", "home-gallery-4"]
+			},
+			"blogTeasers": {
+				"heading": "Notes From the Deck",
+				"subheading": "Tips, stories, and inspiration from our crew",
+				"posts": [
+					{ "date": "February 15, 2026", "title": "Planning the Perfect Yacht Wedding in NYC", "excerpt": "Discover our top tips for creating a magical waterfront wedding experience, from choosing the perfect time of day to selecting your menu.", "photoLocalFile": "home-blog-1" },
+					{ "date": "February 8, 2026", "title": "Best Times to Cruise New York Harbor", "excerpt": "Learn about the most spectacular times to see the NYC skyline from the water, including golden hour and sunset cruises.", "photoLocalFile": "home-blog-2" },
+					{ "date": "January 28, 2026", "title": "5 Reasons to Choose a Yacht for Your Corporate Event", "excerpt": "Explore why hosting your next corporate gathering on a yacht creates lasting impressions and strengthens team bonds.", "photoLocalFile": "home-blog-3" }
+				]
+			},
+			"testimonial": {
+				"quote": "Carol, a sincere thanks to you and the entire crew of Skyline Cruises. You really made my husband Nygil&#8217;s 50th Birthday a memorable one. All of my guests were very impressed and had a wonderful time aboard the yacht. Brunch was fantastic as well as the hospitality of the crew. Carol, you are a very wonderful person to work with. You made everything seem so easy that at one point, I wondered if my party was going to come off, but with your assurance, I trusted you and it worked out perfectly! I am looking forward to doing this again. Many thanks and God Blessings.",
+				"attribution": "Leslin Fraiser"
+			},
+			"faq": {
+				"heading": "Frequently Asked Questions",
+				"faqs": [
+					{ "q": "Isn&#8217;t chartering a yacht for my party more expensive than catering halls &amp; restaurants?", "a": "The costs are not as different as you think; there are many different pricing options available to meet most budgets. Seasonally the prices can even be lower than land-based catering halls. It&#180;s also about value. Isn&#180;t planning an event that is unique and exciting for your guests and that will leave a lasting impression worth a little more?" },
+					{ "q": "What will happen if the weather is bad? Will my guests get seasick?", "a": "No need to worry, the Skyline Princess is designed to sail rain or shine. Our yacht is like being inside a floating catering hall and is designed to be unaffected by the weather. The Skyline Princess is a unique yacht that is designed specifically to be comfortable in all kinds of weather conditions and is fully climate-controlled for all year round parties and events. We sail in calm sheltered harbor waters, not the ocean, so seasickness is never a problem." },
+					{ "q": "Is the food as good as a restaurant and other catering halls?", "a": "Our world-class food is some of the best in NY harbor. The food is prepared on board in our full galley (kitchen) the day of the event by our own Chef. Our cuisine is offered with high-quality premium liquors on every event." },
+					{ "q": "I have a large party, are there boats big enough?", "a": "The Skyline Princess is 120-feet long and 31-feet wide with three full passenger levels, featuring an enclosable third deck, complete with skylights and a private bridal suite. The Skyline Princess is US Coast Guard certified for up to 450 passengers. This makes the Skyline Princess the perfect venue for larger parties. The Skyline Princess has the highest passenger capacity of any yacht in New York-based outside of Manhattan and is widely considered the New York Harbors most versatile dinner cruise charter yacht." }
+				]
+			}
+		}
+	}
+]

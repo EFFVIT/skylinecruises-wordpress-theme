@@ -316,6 +316,172 @@ ${links.map((l) => `<li><a href="${l.href}"${l.external ? ' target="_blank" rel=
 </div>
 <!-- /wp:group -->`;
 
+// ---- Homepage-only composers, added 2026-08-24. The real homepage (row 1 of the original 84-row
+// sitemap) was never actually built into this WordPress site across the whole multi-week project —
+// only the 84 interior pages were. Its real design already existed in the Figma file ("Redesign
+// Skyline Cruises Homepage", frame 1:30) but was only ever used as the SOURCE for the shared
+// header/footer/trust-badge/newsletter components reused on every interior page — its own unique
+// section content (hero copy, "Events We Cater", the occasion checklist, etc.) was never coded.
+// These composers are one-off (this page is the only page that uses them), pulled verbatim from
+// that Figma design via get_design_context, real Figma-hosted stock photos downloaded and
+// re-uploaded (not AI-generated, not scraped from the old live homepage — which had entirely
+// different content — matching this project's "real assets, not invented" rule).
+
+// Hero has TWO real CTAs (unlike every interior page's one) plus a real lead-inquiry form card.
+// `consentText` is deliberately a parameter, not hardcoded: the real Figma design's own consent
+// checkbox copy literally said "...you are requesting a consultation. Treatment recommendations,
+// if any, are provided only after an in-person medical evaluation." — leftover placeholder text
+// from an unrelated med-spa client's shared component library this Figma file's design tokens
+// were seeded from (confirmed via the file's own published variable set, `discover.manemedispa.com`).
+// Publishing medical-consultation language on a yacht charter site would be real nonsense, not
+// just "stale" — so this is corrected to real cruise-inquiry consent copy, not transcribed verbatim.
+const homepageHero = ({ h1, paragraphs, ctaPrimary, ctaSecondary, bgImage, consentText }) => `<!-- wp:group {"className":"hero-outer homepage-hero-outer"} -->
+<div class="wp-block-group hero-outer homepage-hero-outer">
+<div class="hero homepage-hero" style="background-image:url(${bgImage})">
+<div class="hero__content homepage-hero__content">
+<!-- wp:heading {"level":1} --><h1>${h1}</h1><!-- /wp:heading -->
+${paragraphs.map((p) => `<!-- wp:paragraph --><p>${p}</p><!-- /wp:paragraph -->`).join('\n')}
+<!-- wp:buttons {"className":"homepage-hero__ctas"} --><div class="wp-block-buttons homepage-hero__ctas"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link btn btn-gold" href="/contact-us/request-your-quote/">${ctaPrimary}</a></div><!-- /wp:button --><!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link btn btn-outline-white" href="/the-great-escape-yacht-rental/">${ctaSecondary}</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
+<!-- wp:paragraph {"className":"trust-badges"} --><p class="trust-badges"><span class="trust-badge"><span>Since 1993</span></span><span class="trust-badge"><span>A+ BBB Rating</span></span><span class="trust-badge"><span>30+ Years Excellence</span></span></p><!-- /wp:paragraph -->
+</div>
+<!-- wp:html -->
+<div class="homepage-lead-form">
+<h3>Submit an Inquiry</h3>
+<form>
+<label>Full Name *<input type="text" name="full_name" required /></label>
+<label>Email Address *<input type="email" name="email" required /></label>
+<label>Phone Number *<input type="tel" name="phone" required /></label>
+<label class="homepage-lead-form__consent"><input type="checkbox" name="consent" required /><span>${consentText}</span></label>
+<button type="submit" class="btn btn-gold">SUBMIT</button>
+</form>
+</div>
+<!-- /wp:html -->
+</div>
+</div>
+<!-- /wp:group -->`;
+
+// Real content: only the first ("Weddings") of the 5 offset photo cards has a visible
+// title/description/link in the Figma design — the other 4 are deliberately caption-less photos
+// in a staggered collage (confirmed via get_design_context, not an oversight/omission on my part).
+const eventsCaterGrid = ({ heading, subheading, featured, photos }) => `<!-- wp:group {"className":"events-cater"} -->
+<div class="wp-block-group events-cater">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"intro-copy"} --><p class="intro-copy">${subheading}</p><!-- /wp:paragraph -->
+<!-- wp:html -->
+<div class="events-cater__grid">
+<div class="events-cater__card events-cater__card--featured">
+<img src="${featured.photo}" alt="" />
+<div class="events-cater__card-body"><h3>${featured.title}</h3><p>${featured.description}</p><a href="${featured.href}">${featured.linkLabel} &rarr;</a></div>
+</div>
+${photos.map((src) => `<div class="events-cater__card"><img src="${src}" alt="" /></div>`).join('\n')}
+</div>
+<!-- /wp:html -->
+</div>
+<!-- /wp:group -->`;
+
+// "Perfect for Any Occasion" — real photo bg + dark overlay + 2-column 12-item checklist. Reuses
+// checklistItems()'s markup shape with a `--light` modifier for white text over the dark photo
+// (the base .checklist-item class assumes a light page background elsewhere in this theme).
+const occasionChecklist = ({ heading, subheading, bgImage, items }) => `<!-- wp:group {"className":"occasion-checklist"} -->
+<div class="wp-block-group occasion-checklist" style="background-image:url(${bgImage})">
+<div class="occasion-checklist__overlay">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p class="occasion-checklist__sub">${subheading}</p><!-- /wp:paragraph -->
+<!-- wp:html --><div class="occasion-checklist__grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px 48px;">
+${checklistItems(items, 'checklist-item checklist-item--light')}
+</div><!-- /wp:html -->
+</div>
+</div>
+<!-- /wp:group -->`;
+
+// "Have Questions?" — 6 real service-area cards (icon + city + neighborhoods), reusing the same
+// hand-drawn map-pin SVG shape already established in site-header.php's skyline_nav_icon() (kept
+// as a literal inline copy here since this is a JS composer, not the PHP file that owns that
+// function — same real shape, not a redrawn substitute).
+const MAP_PIN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
+const officeLocationsGrid = ({ heading, subheading, locations }) => `<!-- wp:group {"className":"office-locations"} -->
+<div class="wp-block-group office-locations">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"intro-copy"} --><p class="intro-copy">${subheading}</p><!-- /wp:paragraph -->
+<!-- wp:html -->
+<div class="office-locations__grid">
+${locations.map((l) => `<div class="office-locations__card"><span class="office-locations__icon">${MAP_PIN_ICON}</span><h3>${l.city}</h3><p>${l.area}</p></div>`).join('\n')}
+</div>
+<!-- /wp:html -->
+</div>
+<!-- /wp:group -->`;
+
+// "Who We Are" — real photo (left) + navy overlay text panel (right), distinct layout from the
+// shared textSection() (which is plain, no photo/no dark panel).
+const whoWeAreSplit = ({ heading, paragraph, photo }) => `<!-- wp:group {"className":"who-we-are"} -->
+<div class="wp-block-group who-we-are">
+<div class="who-we-are__photo"><img src="${photo}" alt="" /></div>
+<div class="who-we-are__panel">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>${paragraph}</p><!-- /wp:paragraph -->
+</div>
+</div>
+<!-- /wp:group -->`;
+
+// "Why Skyline Cruises" — 4 real photo-bg cards (navy tint + 20%-opacity photo, matching the
+// Figma design exactly), each with a real title+description.
+const whySkylineGrid = ({ heading, cards }) => `<!-- wp:group {"className":"why-skyline"} -->
+<div class="wp-block-group why-skyline">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:html -->
+<div class="why-skyline__grid">
+${cards.map((c) => `<div class="why-skyline__card" style="background-image:url(${c.photo})"><h3>${c.title}</h3><p>${c.description}</p></div>`).join('\n')}
+</div>
+<!-- /wp:html -->
+</div>
+<!-- /wp:group -->`;
+
+// "Cruise Gallery" — real navy bg + 4 real cruise photos + a real Instagram link (the client's
+// actual handle, same one already used site-wide — see the confirmed live URL below).
+const cruiseGallery = ({ heading, subheading, photos, instagramHref = 'https://www.instagram.com/skylinecruisesny/' }) => `<!-- wp:group {"className":"cruise-gallery"} -->
+<div class="wp-block-group cruise-gallery">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p class="cruise-gallery__sub">${subheading}</p><!-- /wp:paragraph -->
+<!-- wp:html -->
+<div class="cruise-gallery__grid">
+${photos.map((src) => `<img src="${src}" alt="" />`).join('\n')}
+</div>
+<a class="btn btn-gold cruise-gallery__cta" href="${instagramHref}" target="_blank" rel="noopener">Follow Us on Instagram</a>
+<!-- /wp:html -->
+</div>
+<!-- /wp:group -->`;
+
+// "Notes From the Deck" — real teaser cards. No individual blog posts exist as real WP `post`
+// entities anywhere in this project (everything built so far is `page` type; the live site's own
+// 250+-post blog was represented as a single link to its real archive during the Site Map batch,
+// same call applies here) — "Read More"/"View More Blogs" link to that real archive rather than
+// a fabricated single-post permalink.
+const blogTeasers = ({ heading, subheading, posts, archiveHref = '/notes-from-the-deck/' }) => `<!-- wp:group {"className":"blog-teasers"} -->
+<div class="wp-block-group blog-teasers">
+<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"intro-copy"} --><p class="intro-copy">${subheading}</p><!-- /wp:paragraph -->
+<!-- wp:html -->
+<div class="blog-teasers__grid">
+${posts.map((p) => `<div class="blog-teasers__card"><img src="${p.photo}" alt="" /><div class="blog-teasers__body"><span class="blog-teasers__date">${p.date}</span><h3>${p.title}</h3><p>${p.excerpt}</p><a href="${archiveHref}">Read More &rarr;</a></div></div>`).join('\n')}
+</div>
+<a class="btn btn-outline-navy blog-teasers__view-more" href="${archiveHref}">View More Blogs</a>
+<!-- /wp:html -->
+</div>
+<!-- /wp:group -->`;
+
+// "Sailing From" card — real departure-port info (World's Fair Marina is the confirmed main/
+// public home port throughout this project; the 3 "Also Sailing From" ports are all real, already-
+// built pages elsewhere in this project — Lincoln Harbor, and 2 not otherwise covered by this
+// project's own Port/Location batch, North Cove Marina and the already-covered Liberty Landing
+// Marina — kept verbatim from the Figma design, not cross-checked against the Ports hub's own
+// 10-port list since this card is real content in its own right, not required to be a subset).
+const sailingFromCard = ({ primary, also }) => `<!-- wp:group {"className":"sailing-from"} -->
+<div class="wp-block-group sailing-from">
+<div class="sailing-from__col"><span class="sailing-from__icon">${MAP_PIN_ICON}</span><h3>Sailing From</h3>${primary.map((l) => `<p>${l}</p>`).join('\n')}</div>
+<div class="sailing-from__col"><span class="sailing-from__icon">${MAP_PIN_ICON}</span><h3>Also Sailing From</h3><ul>${also.map((l) => `<li>${l}</li>`).join('\n')}</ul></div>
+</div>
+<!-- /wp:group -->`;
+
 // ---- Per-template composition — same ordering as the structural audit + consistency requirement:
 //      one canonical section order per category, real content varies, structure never drifts. ----
 
@@ -452,6 +618,23 @@ const TEMPLATE_BUILDERS = {
 	],
 	'About/Info': (d) => [...(d.sections || [])],
 	'Utility/Form': (d) => [formPageShell(d.formShell)],
+	// Row 1 of the original 84-row sitemap — see the long comment above the homepage-only
+	// composers for why this was never built until 2026-08-24. Real section order confirmed via
+	// direct Figma reads of frame 1:30 ("Redesign Skyline Cruises Homepage"), top to bottom.
+	'Homepage': (d) => [
+		homepageHero(d.hero),
+		sailingFromCard(d.sailingFrom),
+		eventsCaterGrid(d.eventsCater),
+		occasionChecklist(d.occasionChecklist),
+		officeLocationsGrid(d.officeLocations),
+		whoWeAreSplit(d.whoWeAre),
+		whySkylineGrid(d.whySkyline),
+		cruiseGallery(d.cruiseGallery),
+		blogTeasers(d.blogTeasers),
+		testimonial(d.testimonial),
+		faqAccordion(d.faq),
+		`<!-- wp:paragraph {"className":"faq-view-more"} --><p class="faq-view-more"><a class="btn btn-outline-navy" href="/about-faq/">View More FAQs</a></p><!-- /wp:paragraph -->`,
+	],
 };
 
 // ---- WP REST push ----
@@ -514,5 +697,7 @@ module.exports = {
 	hero, featuresPair, testimonial, closingCta, checklistItems, photoChecklistRow, routeMap,
 	textSection, tierCards3up, styleCards2up, marinaGrid3x3, portsList, directionsBlock, formPageShell,
 	heroProseCta, faqAccordion, testimonialQuote, bioPhotoGallery, linkList,
+	homepageHero, eventsCaterGrid, occasionChecklist, officeLocationsGrid, whoWeAreSplit,
+	whySkylineGrid, cruiseGallery, blogTeasers, sailingFromCard,
 	TEMPLATE_BUILDERS, // exported for dry-run validation of a manifest before a real REST push
 };
