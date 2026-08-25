@@ -1404,18 +1404,19 @@
 }
 /* Real user request, round 3: after matching the sitewide .btn height/font, asked to narrow
    the buttons too — they were still stretching full-width (100%) even at the correct height.
-   align-items:flex-start so the column no longer stretches its flex children to full width;
-   .wp-block-button and .btn both drop width:100% so each button hugs its own text, matching
-   how every other button on the page (Book Now, Submit, etc.) is sized. */
+   Round 4: now asked for the SHORTER "Schedule a Public Skyline Cruise" button to match the
+   width of the longer "The Great Escape..." button, rather than each hugging its own text.
+   Single-column grid (not flex) so the column track sizes to the widest child's own content
+   (max-content), then both buttons fill that shared column width — matches automatically and
+   stays correct if either label's text ever changes, no hardcoded px value needed. */
 .homepage-hero__ctas {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: max-content;
   gap: 16px;
-  width: 100%;
 }
-.homepage-hero__ctas .wp-block-button {
-  width: auto;
+.homepage-hero__ctas .wp-block-button,
+.homepage-hero__ctas .btn {
+  width: 100%;
 }
 .homepage-hero__ctas .btn {
   white-space: normal;
