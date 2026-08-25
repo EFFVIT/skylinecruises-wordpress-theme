@@ -1411,17 +1411,15 @@
 .homepage-hero__ctas .wp-block-button {
   width: 100%;
 }
-/* Real user request: buttons felt too big. Dropped the fixed 64px height (which was forcing
-   extra bulk even where the wider 800px column now lets both CTAs fit on one line) in favor of
-   padding-based sizing, and brought the font down from 17px closer to the sitewide .btn
-   baseline (16px). */
+/* Real user request, round 2: still too big — user wants these to match the sitewide .btn size
+   used everywhere else on the page. Dropped the custom sizing (padding-based height, 15px/700
+   weight) entirely and matched the base .btn values exactly: height:50px, padding:0 32px,
+   font-size:16px, font-weight:500. Only width:100% stays as a deliberate override — these are
+   still full-width stacked CTAs in the hero, that part wasn't part of the complaint. */
 .homepage-hero__ctas .btn {
   width: 100%;
-  font-weight: 700;
-  font-size: 15px;
   white-space: normal;
   text-align: center;
-  padding: 16px 24px;
 }
 .homepage-lead-form {
   flex: 0 1 420px;
