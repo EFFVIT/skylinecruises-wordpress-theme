@@ -1819,26 +1819,40 @@
   position: relative;
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 60px var(--side-margin);
+  /* Top padding bumped 60px -> 140px specifically for this section, per a direct pixel-measured
+     comparison against the Figma reference (below) — the heading sits noticeably lower inside
+     its panel there than a plain 60px (this theme's normal section-padding default) gives it. */
+  padding: 140px var(--side-margin) 60px;
   text-align: center;
 }
 /* Real gap found via a user screenshot, confirmed against Figma (node 1:33, "Background"): a
    rounded light-blue panel is supposed to sit behind the heading, wider than the text column
-   and tall enough to dip slightly under the top edge of the photo row below it — the built page
+   and tall enough to dip well under the top edge of the photo row below it — the built page
    never had it at all (heading/subcopy/photos were rendered directly on the plain page
    background).
-   --ec-panel-extend is how far the panel pokes out past .events-cater's own padding box on each
-   side. A first pass just used a fixed `calc(var(--side-margin) * -0.45)` offset — looked right
-   at full desktop width, but real bodyScrollWidth overflow at 1100px (measured: 1171 vs a 1100px
-   viewport) exposed why that's unsafe: .events-cater has no width of its own, only
-   `max-width:var(--content-width)`, so between roughly 600-1400px viewport it fills the ENTIRE
-   viewport with zero spare margin around it — any fixed negative offset there pushes the panel
-   straight past both screen edges. Fixed with a real min(): only extend by the smaller of (a)
-   the desired amount or (b) however much genuinely empty gutter actually exists outside
-   .events-cater's box (`(100vw - content-width)/2`, floored at 0 so it's never negative) — so
-   the panel can never extend into space that isn't there, at any width. */
+
+   First-pass numbers (70.65px extend, 260px height) were guessed from Figma's raw node
+   coordinates and, per direct user feedback, still didn't actually look like the reference —
+   re-measured for real this time: downloaded the Figma screenshot and this theme's own live
+   screenshot and pixel-scanned both with PIL for the panel's real blue-pixel edges and the first
+   (most upward-staggered, margin-top:-67) photo card's real top edge, instead of trusting
+   Figma's auto-layout metadata alone (its text-node y-offsets are known to be unreliable — see
+   the container-vs-glyph mismatch noted below). Figma: panel spans 97.2% of the page's own
+   --page-width and overlaps ~50% of that first card's height. The first build only reached
+   ~10% extra width and ~27% overlap — both real, measurable shortfalls, not a subjective
+   "doesn't feel right".
+
+   --ec-panel-extend target is now derived from --page-width directly (page-width minus the
+   already-established 48px inset this same Figma file reuses for every full-bleed background
+   panel — see Who We Are's and the testimonials section's own matching rectangles — minus
+   content-width, halved) instead of an arbitrary fraction of --side-margin. Still wrapped in the
+   same min()/max() safety clamp as the first pass so it can never extend past a viewport that
+   has no spare gutter to extend into (confirmed zero overflow down to 375px after this pass). */
 .events-cater {
-  --ec-panel-extend: min(calc(var(--side-margin) * 0.45), max(0px, calc((100vw - var(--content-width)) / 2)));
+  --ec-panel-extend: min(
+    calc((var(--page-width) - 48px - var(--content-width)) / 2),
+    max(0px, calc((100vw - var(--content-width)) / 2))
+  );
 }
 .events-cater::before {
   content: "";
@@ -1846,7 +1860,11 @@
   top: 0;
   left: calc(-1 * var(--ec-panel-extend));
   right: calc(-1 * var(--ec-panel-extend));
-  height: 260px;
+  /* Tuned to overlap ~50% of the first (most-staggered) card's height, matching the Figma
+     pixel-scan above, given this section's new 140px top padding. Overridden smaller on mobile
+     (see mobile.css) where the stagger is flattened and photos are much shorter, so the same
+     absolute height would otherwise swallow the entire first stacked card. */
+  height: 430px;
   background: var(--color-bg-light-blue);
   border-radius: 20px;
   z-index: 0;

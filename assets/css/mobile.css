@@ -346,6 +346,15 @@
   .events-cater {
     padding: 48px 20px;
   }
+  /* The background panel's 430px desktop height (patterns.css) was tuned against the DESKTOP
+     140px top-padding + the first card's real -67px stagger — neither applies here (padding
+     drops to 48px above, and the ≤1100px breakpoint already flattens the stagger to 0 before
+     this one even applies), so 430px unchanged would swallow the entire first stacked card
+     (240px tall) and spill into the second one. Re-tuned to the same ~50% overlap of ONE card's
+     height, using this breakpoint's own real numbers instead of reusing the desktop value. */
+  .events-cater::before {
+    height: 290px;
+  }
   .events-cater__grid {
     flex-direction: column;
   }
