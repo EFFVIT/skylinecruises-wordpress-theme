@@ -360,22 +360,18 @@ ${paragraphs.map((p) => `<!-- wp:paragraph --><p>${p}</p><!-- /wp:paragraph -->`
 </div>
 <!-- /wp:group -->`;
 
-// Only the first ("Weddings") of the 5 offset photo cards has an always-visible
-// title/description/link in the Figma design — the other 4 are caption-less photos in a
-// staggered collage there (confirmed via get_design_context). Per real user request (not a
-// Figma-match item), the other 4 now reveal their own title+description as a hover/focus
-// overlay in the same visual style as Weddings' static caption — `photos` entries can be a
-// plain src string (no hover caption, old behavior) or `{photo, title, description}`.
-const eventsCaterGrid = ({ heading, subheading, featured, photos }) => `<!-- wp:group {"className":"events-cater"} -->
+// User later updated the Figma design so all 5 offset photo cards are the same shape (a real
+// full-height Weddings photo replaced the old short-photo-plus-white-caption-box version) and
+// asked for all 5 to look consistent — every card is now a plain full photo that reveals its
+// own title+description as a hover/focus overlay, Weddings included. `photos` is a flat array
+// of 5 `{photo, title, description}` entries (or a plain src string for a caption-less photo,
+// still supported for any future page that doesn't want the hover treatment on every slot).
+const eventsCaterGrid = ({ heading, subheading, photos }) => `<!-- wp:group {"className":"events-cater"} -->
 <div class="wp-block-group events-cater">
 <!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
 <!-- wp:paragraph {"className":"intro-copy"} --><p class="intro-copy">${subheading}</p><!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="events-cater__grid">
-<div class="events-cater__card events-cater__card--featured">
-<img src="${featured.photo}" alt="" />
-<div class="events-cater__card-body"><h3>${featured.title}</h3><p>${featured.description}</p><a href="${featured.href}">${featured.linkLabel} &rarr;</a></div>
-</div>
 ${photos
 	.map((p) =>
 		typeof p === 'string'
