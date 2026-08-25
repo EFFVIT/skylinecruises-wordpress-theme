@@ -32,10 +32,14 @@
   display: block;
 }
 
+/* Real Figma mismatch found via user feedback ("spacing feels too tight"): every gap in this
+   pill -- logo-to-links AND between each individual link -- is a uniform 41px in the real
+   design (confirmed via get_design_context node math: each nav item's own x-position minus the
+   previous item's end is 41px every time, not the 32px this was built with). */
 .nav-pill__links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 41px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -410,32 +414,47 @@
   max-width: 340px;
 }
 
+/* Real overflow bug found via user screenshot: "Book Now" was getting shoved off the right edge
+   of the page. Root cause was .header-right__phone's own white-space:nowrap forcing "Call (718)
+   446-1100 For The Next Event" onto one long line — but get_design_context on the real Figma
+   node (1:280/1:281) shows this was never meant to be one line: it's a fixed ~130px-wide column
+   that wraps the phone label to 2 lines, sized to fit inside the header's real 294px budget
+   (1400px total header width minus the 1055px-wide pill). Wrapping it the way Figma actually
+   does removes the overflow instead of just shrinking text/hiding it. */
 .header-right {
   display: flex;
   align-items: center;
   gap: 16px;
+  width: 294px;
+  flex-shrink: 0;
 }
 
 .header-right__phone {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.header-right__phone-label {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 20px;
   color: var(--color-white);
-  white-space: nowrap;
 }
 
 .header-right__phone svg {
   width: 23px;
   height: 23px;
+  flex-shrink: 0;
 }
 
 .header-right .btn-gold {
   width: 117px;
   height: 50px;
   padding: 0;
+  flex-shrink: 0;
 }
 
 /* ===== hero (patterns/hero.php) =====
