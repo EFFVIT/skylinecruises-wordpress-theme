@@ -1496,28 +1496,56 @@
   margin-bottom: 48px;
 }
 .events-cater__grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  align-items: flex-start;
   gap: 24px;
   text-align: left;
 }
 .events-cater__card {
+  flex: 1 1 0;
+  min-width: 0;
+}
+/* Real Figma mismatch found via side-by-side screenshot comparison: the design has no white
+   panel behind the 4 secondary photos at all (just the rounded photo itself, staggered up/down
+   for a masonry look) — only the featured Weddings card gets a real white caption panel below
+   its (shorter) photo. The old shared .events-cater__card rule put a full-height white box +
+   box-shadow behind every card, and CSS grid's default align-items:stretch then stretched that
+   box to match the tallest (featured) card, leaving visible empty white space under every photo
+   that had no caption. Scoped the box/shadow/background to --featured only; plain cards now
+   shadow the image directly and keep their own natural (tall) height. */
+.events-cater__card--featured {
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(11, 44, 77, 0.08);
   background: var(--color-white);
 }
-.events-cater__card img {
+.events-cater__card--featured img {
   width: 100%;
-  height: 320px;
+  height: 200px;
   object-fit: cover;
   display: block;
 }
-.events-cater__card--featured {
-  grid-row: span 1;
+.events-cater__card:not(.events-cater__card--featured) img {
+  width: 100%;
+  height: 410px;
+  object-fit: cover;
+  display: block;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(11, 44, 77, 0.08);
 }
-.events-cater__card--featured img {
-  height: 200px;
+/* Staggered vertical offsets pulled directly from the Figma design (node 1:39's real child
+   y-positions) — this row is a deliberate masonry stagger, not a flat aligned grid. */
+.events-cater__card--featured {
+  margin-top: -67px;
+}
+.events-cater__card:nth-child(3) {
+  margin-top: -38px;
+}
+.events-cater__card:nth-child(4) {
+  margin-top: 11px;
+}
+.events-cater__card:nth-child(5) {
+  margin-top: -55px;
 }
 .events-cater__card-body {
   padding: 24px;
@@ -1545,7 +1573,17 @@
 }
 @media (max-width: 1100px) {
   .events-cater__grid {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+  }
+  .events-cater__card {
+    flex: 1 1 calc(50% - 12px);
+  }
+  /* Stagger only reads correctly in the full 5-across row — flatten it once cards wrap to 2 columns. */
+  .events-cater__card--featured,
+  .events-cater__card:nth-child(3),
+  .events-cater__card:nth-child(4),
+  .events-cater__card:nth-child(5) {
+    margin-top: 0;
   }
 }
 
