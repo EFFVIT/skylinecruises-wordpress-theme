@@ -1470,12 +1470,33 @@
   border: none;
   margin-top: 8px;
 }
-@media (max-width: 1200px) {
+/* Real bug found via a real (non-2x-scaled) screen: the hero content column and the absolutely
+   positioned lead-form card are BOTH sized off fixed px values (800px content, form pinned via
+   `right: var(--side-margin)`) with nothing between them that scales with viewport width — the
+   form's position (but not the content's width) shrinks as the viewport narrows, so the two
+   collide well before this breakpoint used to kick in. This existed even at the old 700px
+   content width (latent, just less visible — overlap started ~1440px already); widening to
+   800px only made it start slightly sooner. Confirmed the actual safe/unsafe viewport widths by
+   live-measuring real clearance at several sizes rather than guessing.
+   The old fallback here was ALSO incomplete on its own: it set the form to position:static, but
+   since `.homepage-hero` is `display:flex` with the default row direction, an unwrapped static
+   form just became a second flex item squeezed into the same row — never actually stacking
+   below the content the way it looked like it should. Fixed for real this time:
+   flex-direction:column so content and form stack vertically regardless of their own widths,
+   and raised the trigger width from 1200px to 1700px (the measured safe threshold for the
+   side-by-side layout at 800px content width, with a real ~138px margin to spare). */
+@media (max-width: 1700px) {
+  .homepage-hero {
+    flex-direction: column;
+  }
+  /* Deliberately NOT relaxing .homepage-hero__content's max-width here — keeping it at its
+     usual 800px preserves the same 2-line H1 wrap in the stacked layout instead of letting it
+     collapse to 1 line once it has the full row to itself. */
   .homepage-lead-form {
     position: static;
-    width: auto;
-    max-width: none;
-    margin: 40px var(--side-margin) 0;
+    width: 420px;
+    max-width: 100%;
+    margin: 40px 0 0;
   }
 }
 
