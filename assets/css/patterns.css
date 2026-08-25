@@ -1939,7 +1939,14 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: 24px;
-  background: linear-gradient(180deg, rgba(11, 44, 77, 0) 45%, rgba(11, 44, 77, 0.88) 100%);
+  /* Real contrast bug found via hover screenshots on each real photo, not just eyeballing the
+     gradient value in isolation: the old gradient stayed fully transparent until 45% down and
+     only reached 0.88 opacity, so on any photo with a bright area right where the text sits
+     (worst case: "Holiday Cruises"' white napkin + red ribbon photo) the white heading nearly
+     disappeared into it. Darkens earlier (25% instead of 45%) and goes darker at the bottom
+     (0.94 instead of 0.88) so there's real, consistent contrast under the text on every photo,
+     not just the darker ones. */
+  background: linear-gradient(180deg, rgba(11, 44, 77, 0) 25%, rgba(11, 44, 77, 0.94) 100%);
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -1948,6 +1955,14 @@
 .events-cater__card:focus-within .events-cater__card-hover {
   opacity: 1;
   transform: translateY(0);
+}
+.events-cater__card-hover h3,
+.events-cater__card-hover p {
+  /* Second, independent line of defense on top of the strengthened gradient above — same
+     technique already established elsewhere in this theme for text sitting directly on a real
+     photo (.why-skyline__card h3/p) — guarantees legibility against ANY photo brightness at the
+     exact pixel under the text, not just wherever the gradient happens to be dark enough. */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 .events-cater__card-hover h3 {
   color: var(--color-white);
