@@ -465,6 +465,230 @@
   flex-shrink: 0;
 }
 
+/* ===== Mobile nav (site-header.php's .mobile-header-bar / .mobile-drawer) =====
+   Real user request: build a mobile nav matching biltmorehairrestoration.com's real pattern
+   (screenshotted live at 390px, not guessed) — a plain light bar (not the floating pill, which
+   doesn't read well over a photo with a hamburger) with a logo + toggle that morphs to an X,
+   opening a full-viewport accordion list below it. Hidden above the breakpoint; the desktop
+   .nav-pill/.header-right are hidden below it, in the same query. */
+.mobile-header-bar,
+.mobile-drawer {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    transform: none;
+    z-index: 100;
+    display: block;
+  }
+  .nav-pill,
+  .header-right {
+    display: none;
+  }
+
+  .mobile-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-white);
+    box-shadow: 0 2px 10px rgba(11, 44, 77, 0.12);
+    padding: 12px 20px;
+    height: 64px;
+  }
+  .mobile-header-bar__logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  .mobile-menu-toggle {
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .mobile-menu-toggle__bar {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--color-navy);
+    border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  /* Hamburger morphs into an X while the drawer is open — pure CSS, driven off a class
+     mobile-nav.js toggles on <body>. */
+  body.mobile-nav-open .mobile-menu-toggle__bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  body.mobile-nav-open .mobile-menu-toggle__bar:nth-child(2) {
+    opacity: 0;
+  }
+  body.mobile-nav-open .mobile-menu-toggle__bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .mobile-drawer {
+    display: block;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-white);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 99;
+    padding: 8px 20px 32px;
+  }
+  body.mobile-nav-open .mobile-drawer {
+    transform: translateX(0);
+  }
+  /* Lock page scroll behind the drawer while it's open — a real usability fix, not decoration:
+     without it, scrolling inside a full-height overlay on iOS also scrolls the page underneath. */
+  body.mobile-nav-open {
+    overflow: hidden;
+  }
+
+  .mobile-drawer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .mobile-drawer__item {
+    border-bottom: 1px solid #e5e9ef;
+  }
+  .mobile-drawer__item > a {
+    display: block;
+    padding: 16px 4px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+  .mobile-drawer__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    padding: 16px 4px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--color-navy);
+    cursor: pointer;
+    text-align: left;
+  }
+  .mobile-drawer__chevron {
+    width: 12px;
+    height: 8px;
+    flex-shrink: 0;
+    color: var(--color-navy);
+    transition: transform 0.2s ease;
+  }
+  .mobile-drawer__item--accordion.is-open .mobile-drawer__chevron {
+    transform: rotate(180deg);
+  }
+  .mobile-drawer__panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  /* Generous cap, not a measured height — "Our Departure Ports" alone has 11 real children.
+     overflow:hidden + max-height is only an upper bound, so shorter panels aren't stretched. */
+  .mobile-drawer__item--accordion.is-open .mobile-drawer__panel {
+    max-height: 3000px;
+  }
+  .mobile-drawer__group-heading {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 16px 4px 4px;
+  }
+  .mobile-drawer__rows {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 0;
+  }
+  /* Nested children (e.g. "NYC Dinner Cruises" -> "Buffet Menu") render as an always-visible
+     indented sub-list on mobile instead of the desktop's hover-triggered flyout — touch has no
+     hover, and with usually only 1-2 children (11 for the one real outlier, Departure Ports)
+     always-showing them reads fine as a simple nested list. The chevron that signals "hover to
+     reveal" on desktop is hidden here since there's nothing left for it to trigger. */
+  .mobile-drawer .nav-dropdown__flyout {
+    max-height: none;
+    padding-left: 32px;
+  }
+  .mobile-drawer .nav-flyout-chevron {
+    display: none;
+  }
+
+  .mobile-drawer__footer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e9ef;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .mobile-drawer__phone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+  .mobile-drawer__phone svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-navy);
+  }
+  .mobile-drawer__cta {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* The hero photo used to extend behind the floating desktop pill (position:absolute, no
+     margin needed) -- the mobile bar is a real position:fixed bar instead, so the hero needs
+     its own top clearance now. Non-hero pages already have a top-clearance rule for their first
+     section (this theme's existing "page-content > *:first-child:not(.hero-outer)" 130px rule)
+     which is plenty to also clear this 64px bar, so only .hero-outer needs a new rule here. */
+  .hero-outer {
+    margin-top: 64px;
+  }
+}
+
+@media (min-width: 901px) {
+  .mobile-header-bar,
+  .mobile-drawer {
+    display: none !important;
+  }
+}
+
 /* ===== hero (patterns/hero.php) =====
    Confirmed via direct Figma read of node 109:9 "Photo Card" (interior page 02): the hero photo
    is a ROUNDED CARD inset 28px on every side of the hero frame, border-radius 23px, not a flush

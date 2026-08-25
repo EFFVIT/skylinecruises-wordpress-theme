@@ -333,4 +333,75 @@ function skyline_render_nav_row( $item, $with_description = false ) {
 		</a>
 		<a class="btn btn-gold" href="/contact-us/request-your-quote/">Book Now</a>
 	</div>
+
+	<!-- Mobile nav: persistent light bar (logo + toggle) opening a full-viewport drawer below it,
+	     same real pattern as biltmorehairrestoration.com's own mobile nav (screenshotted live at
+	     390px width, not guessed from memory) -- a plain bar, a hamburger that morphs to an X, and
+	     an accordion list reusing the exact same content/icons as the desktop dropdowns above,
+	     reflowed for touch (Cruises' tabs become stacked headed groups, like Biltmore's own
+	     Surgical/Non-Surgical grouping). .nav-pill/.header-right above are hidden on mobile and
+	     this block is hidden on desktop, both via the same breakpoint in patterns.css. -->
+	<div class="mobile-header-bar">
+		<a class="mobile-header-bar__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<img src="<?php echo esc_url( $logo ); ?>" alt="Skyline Cruises" width="114" height="51" />
+		</a>
+		<button type="button" class="mobile-menu-toggle" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-drawer">
+			<span class="mobile-menu-toggle__bar"></span>
+			<span class="mobile-menu-toggle__bar"></span>
+			<span class="mobile-menu-toggle__bar"></span>
+		</button>
+	</div>
+
+	<div class="mobile-drawer" id="mobile-drawer">
+		<ul class="mobile-drawer__list">
+			<?php foreach ( $nav_menu as $item ) : ?>
+				<?php if ( empty( $item['style'] ) ) : ?>
+					<li class="mobile-drawer__item">
+						<a href="<?php echo esc_url( $item['href'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a>
+					</li>
+				<?php else : ?>
+					<li class="mobile-drawer__item mobile-drawer__item--accordion">
+						<button type="button" class="mobile-drawer__trigger" aria-expanded="false">
+							<span><?php echo esc_html( $item['label'] ); ?></span>
+							<svg class="mobile-drawer__chevron" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+						</button>
+						<div class="mobile-drawer__panel">
+							<?php if ( 'tabs' === $item['style'] ) : ?>
+								<?php foreach ( $item['tabs'] as $tab ) : ?>
+									<p class="mobile-drawer__group-heading"><?php echo esc_html( $tab['label'] ); ?></p>
+									<ul class="mobile-drawer__rows">
+										<?php foreach ( $tab['items'] as $row ) : ?>
+											<?php skyline_render_nav_row( $row, true ); ?>
+										<?php endforeach; ?>
+									</ul>
+								<?php endforeach; ?>
+							<?php elseif ( 'list' === $item['style'] ) : ?>
+								<?php foreach ( $item['columns'] as $column ) : ?>
+									<p class="mobile-drawer__group-heading"><?php echo esc_html( $column['heading'] ); ?></p>
+									<ul class="mobile-drawer__rows">
+										<?php foreach ( $column['items'] as $row ) : ?>
+											<?php skyline_render_nav_row( $row, false ); ?>
+										<?php endforeach; ?>
+									</ul>
+								<?php endforeach; ?>
+							<?php else : ?>
+								<ul class="mobile-drawer__rows">
+									<?php foreach ( $item['items'] as $row ) : ?>
+										<?php skyline_render_nav_row( $row, false ); ?>
+									<?php endforeach; ?>
+								</ul>
+							<?php endif; ?>
+						</div>
+					</li>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</ul>
+		<div class="mobile-drawer__footer">
+			<a class="mobile-drawer__phone" href="tel:17184461100">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+				<span>(718) 446-1100</span>
+			</a>
+			<a class="btn btn-gold mobile-drawer__cta" href="/contact-us/request-your-quote/">Book Now</a>
+		</div>
+	</div>
 </header>

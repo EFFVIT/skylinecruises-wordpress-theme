@@ -35,6 +35,7 @@ function skyline_enqueue_assets() {
 	// animations. Both degrade gracefully with no JS (dropdowns still work via CSS :hover, sections
 	// just render already-visible instead of animating in).
 	wp_enqueue_script( 'skyline-nav-menu', get_template_directory_uri() . '/assets/js/nav-menu.js', [], skyline_asset_version( '/assets/js/nav-menu.js' ), true );
+	wp_enqueue_script( 'skyline-mobile-nav', get_template_directory_uri() . '/assets/js/mobile-nav.js', [], skyline_asset_version( '/assets/js/mobile-nav.js' ), true );
 	wp_enqueue_script( 'skyline-scroll-reveal', get_template_directory_uri() . '/assets/js/scroll-reveal.js', [], skyline_asset_version( '/assets/js/scroll-reveal.js' ), true );
 
 	// Route Map pattern (Public Cruise Service pages only) embeds a real Leaflet/OpenStreetMap
