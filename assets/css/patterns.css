@@ -1727,6 +1727,13 @@
   font-size: 24px;
   font-weight: 500;
   margin: 0 0 12px;
+  /* Real bug found via computed-style check: the global `h3 { color: var(--color-navy) }` base
+     rule in tokens.css targets this element directly, and a rule declared on the element itself
+     always wins over an inherited color from its parent (.why-skyline__card sets color:white),
+     regardless of selector specificity. Every other dark-bg heading in this theme (hero h1,
+     who-we-are__panel h2, cruise-gallery h2, testimonial__heading) has its own explicit white
+     override for the same reason — this card component was the one missed. */
+  color: var(--color-white);
 }
 .why-skyline__card p {
   font-size: 15px;
