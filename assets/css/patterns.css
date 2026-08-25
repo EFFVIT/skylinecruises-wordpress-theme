@@ -697,6 +697,13 @@
   position: relative;
   width: var(--page-width);
   max-width: 100%;
+  /* Real bug on any screen wider than 1713px: .site-header centers itself against the actual
+     VIEWPORT (`left:50%` + a fixed transform, see below), but this — and every other top-level
+     section using `width:var(--page-width)` — was never given a matching margin, so it just sat
+     flush against the LEFT edge of <body> instead. Below 1713px this was invisible (max-width:
+     100% already shrinks it to fill the viewport, so there's no room for it to be off-center),
+     which is why it went unnoticed until someone actually looked at this on a wide monitor. */
+  margin-inline: auto;
   padding: 28px;
   background: var(--color-page-bg);
 }
@@ -1399,9 +1406,14 @@
 }
 
 /* ===== newsletter-cta (template-parts/newsletter-cta.php) ===== */
+/* Full-bleed band: on a screen wider than 1713px, the light-blue background now fills the whole
+   browser width instead of stopping at a fixed 1713px box (which was also, per the .hero-outer
+   fix above, never centered — sitting flush left). .newsletter-card already caps itself at
+   1664px with its own `margin-inline:auto` (below), so the actual visible card/copy/form stays
+   exactly the same size and centered as before; only the surrounding color band changes on large
+   screens, which is the standard treatment for a full-width footer/newsletter-style section. */
 .newsletter-section {
-  width: var(--page-width);
-  max-width: 100%;
+  width: 100%;
   background: var(--color-bg-light-blue);
   padding: 29px 24px;
 }
@@ -1476,11 +1488,24 @@
 }
 
 /* ===== site-footer (template-parts/site-footer.php) ===== */
+/* Same full-bleed treatment as newsletter-cta above: the light-blue band now fills the whole
+   browser width on large screens instead of a fixed 1713px box sitting flush left (unnoticed
+   below 1713px, where max-width:100% already fills the viewport with no room to be off-center).
+   The actual footer content (columns + copyright) moved into a new .site-footer__inner wrapper
+   (site-footer.php) that caps at the same --content-width every other section on this site
+   already uses and centers itself once the viewport exceeds that — the exact `max-width +
+   margin:auto + padding` formula already used by office-locations/why-skyline/etc., just applied
+   to the footer's own content instead of a section that never had this problem to begin with. */
 .site-footer {
-  width: var(--page-width);
-  max-width: 100%;
+  width: 100%;
   background: var(--color-bg-light-blue);
-  padding: 80px var(--side-margin) 33px;
+  padding: 80px 0 33px;
+}
+
+.site-footer__inner {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--side-margin);
 }
 
 .site-footer__columns {

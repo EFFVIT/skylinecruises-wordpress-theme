@@ -7,6 +7,7 @@ $logo = get_template_directory_uri() . '/assets/icons/logo.png'; // TODO: swap i
 $year = wp_date( 'Y' );
 ?>
 <footer class="site-footer">
+	<div class="site-footer__inner">
 	<div class="site-footer__columns">
 		<div class="site-footer__brand">
 			<img src="<?php echo esc_url( $logo ); ?>" alt="Skyline Cruises" width="114" height="51" />
@@ -65,4 +66,5 @@ $year = wp_date( 'Y' );
 	<div class="site-footer__copyright">
 		&copy; <?php echo esc_html( $year ); ?> Skyline Cruises. All rights reserved. | Proudly serving New York since 1993 | <a href="/privacy-policy/">Privacy Policy</a> | <a href="/cookie-policy/">Cookie Policy</a>
 	</div>
+	</div><!-- /.site-footer__inner -->
 </footer>
