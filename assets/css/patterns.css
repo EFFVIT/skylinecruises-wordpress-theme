@@ -17,11 +17,13 @@
 /* Real overflow found via user screenshot right after the 41px gap fix above: the pill's fixed
    1055px width was sized for the OLD 32px link gap, so widening the gap to Figma's real 41px
    made the actual content ~9px wider than the box, spilling "Contact" past the rounded edge.
-   There's real room to grow this now that .header-right shrank to a fixed 294px (was ~423px) —
-   1400 total minus 294 leaves up to 1106px before it would touch .header-right, so 1075px here
-   still leaves a comfortable gap between the pill and the phone/button group. */
+   Bumped to 1075px first, but the user flagged "Contact" still reads too close to the curved
+   cap at that size (a stadium-shaped edge visually crowds text sooner than a square corner
+   would at the same padding) — widened again to 1095px, borrowing from the dead space
+   .site-header's justify-content:space-between was leaving between the pill and the
+   phone/button group (that gap shrinks from 31px to ~11px, still a real visible gap, not zero). */
 .nav-pill {
-  width: 1075px;
+  width: 1095px;
   height: 72px;
   background: var(--color-white);
   border-radius: 9999px;
