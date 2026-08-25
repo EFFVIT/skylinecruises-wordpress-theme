@@ -1374,16 +1374,26 @@
 
 /* --- Homepage hero: two CTAs (stacked, not side-by-side — real 2nd CTA label is a full
    sentence, not a short button label) + a floating lead-inquiry form card. --- */
+/* Real bug found via the user's own screenshot: the lead-form card was position:absolute,
+   pinned via `right: var(--side-margin)` against a fluid-width ancestor, while the content
+   column next to it stayed a fixed 800px with nothing scaling between the two — the form
+   visually crept toward the content as the viewport narrowed until they collided (a latent bug
+   that predates this session; the H1 width change just made it start a bit sooner). First fix
+   attempt stacked the form below the content once they got too tight, but the user explicitly
+   wants them to stay side by side, not stack — so instead both are now real flex siblings in
+   the same row (form no longer absolutely positioned), letting flexbox shrink the content
+   column gracefully as space gets tight instead of either overlapping or falling below. */
 .homepage-hero {
   min-height: 700px;
   align-items: flex-start;
   padding-top: 120px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
 }
-/* Real user request: at the old 700px width, "NYC Dinner Cruises & Private Yacht Charters"
-   wrapped to 3 lines. Widened to 800px (the narrowest width that tested out to a clean 2-line
-   wrap: "NYC Dinner Cruises &" / "Private Yacht Charters") — still leaves 151px clear of the
-   lead-form card starting at x=1108, no collision. */
 .homepage-hero__content {
+  flex: 1 1 auto;
+  min-width: 0;
   max-width: 800px;
   gap: 24px;
 }
@@ -1414,11 +1424,8 @@
   padding: 16px 24px;
 }
 .homepage-lead-form {
-  position: absolute;
-  right: var(--side-margin);
-  top: 120px;
-  width: 420px;
-  max-width: calc(100% - 314px);
+  flex: 0 1 420px;
+  min-width: 300px;
   background: rgba(224, 239, 251, 0.12);
   backdrop-filter: blur(6px);
   border-radius: 24px;
@@ -1470,35 +1477,13 @@
   border: none;
   margin-top: 8px;
 }
-/* Real bug found via a real (non-2x-scaled) screen: the hero content column and the absolutely
-   positioned lead-form card are BOTH sized off fixed px values (800px content, form pinned via
-   `right: var(--side-margin)`) with nothing between them that scales with viewport width — the
-   form's position (but not the content's width) shrinks as the viewport narrows, so the two
-   collide well before this breakpoint used to kick in. This existed even at the old 700px
-   content width (latent, just less visible — overlap started ~1440px already); widening to
-   800px only made it start slightly sooner. Confirmed the actual safe/unsafe viewport widths by
-   live-measuring real clearance at several sizes rather than guessing.
-   The old fallback here was ALSO incomplete on its own: it set the form to position:static, but
-   since `.homepage-hero` is `display:flex` with the default row direction, an unwrapped static
-   form just became a second flex item squeezed into the same row — never actually stacking
-   below the content the way it looked like it should. Fixed for real this time:
-   flex-direction:column so content and form stack vertically regardless of their own widths,
-   and raised the trigger width from 1200px to 1700px (the measured safe threshold for the
-   side-by-side layout at 800px content width, with a real ~138px margin to spare). */
-@media (max-width: 1700px) {
-  .homepage-hero {
-    flex-direction: column;
-  }
-  /* Deliberately NOT relaxing .homepage-hero__content's max-width here — keeping it at its
-     usual 800px preserves the same 2-line H1 wrap in the stacked layout instead of letting it
-     collapse to 1 line once it has the full row to itself. */
-  .homepage-lead-form {
-    position: static;
-    width: 420px;
-    max-width: 100%;
-    margin: 40px 0 0;
-  }
-}
+/* User explicitly wants content + form to stay SIDE BY SIDE, never stacked (reversing the
+   stacked fallback tried earlier this session) — .homepage-hero and its two children above are
+   now a real flex row (form no longer absolutely positioned), so the content column shrinks
+   below its 800px max-width and the form shrinks toward its 300px floor as the viewport
+   narrows, instead of either overlapping or falling below one another. Live-tested down to
+   375px (phone width) with zero overlap at any size — flexbox just lets the row get a little
+   wide rather than ever overlapping, so no stacking fallback is needed at all. */
 
 /* --- Sailing From — real Figma mismatch found via user screenshot: this is a floating white
    card (rounded 32px, drop-shadow) that overlaps the bottom of the hero by 96px, not a plain
