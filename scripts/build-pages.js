@@ -56,10 +56,19 @@ ${addressSubhead ? `<!-- wp:paragraph {"className":"hero__address"} --><p class=
 </div>
 <!-- /wp:group -->`;
 
+// Real bug found in the 2026-08-25 site-wide copy audit: this entire block was invented at build
+// time, not scraped. Live-checked directly (multiple pages, e.g. /nyc-dinner-cruises/): the
+// "Memorable Service" icon has NO visible caption heading on live at all (that string only ever
+// exists as the icon's alt="Memorable Service" attribute, never rendered as an <h3>) — the real
+// text living in that visual slot on live is Skyline's actual cash-bar/customize paragraph. The
+// "Smooth Sailing" heading IS real and IS reused verbatim across multiple live pages, but its
+// caption paragraph was rewritten into different, non-verbatim wording. Fixed both, using the
+// verbatim text confirmed live on /nyc-dinner-cruises/ (and cross-checked identical on several
+// other pages by the audit) — not an invented replacement.
 const featuresPair = () => `<!-- wp:group {"className":"features-pair"} -->
 <div class="wp-block-group features-pair">
-<!-- wp:group {"className":"features-pair__item"} --><div class="wp-block-group features-pair__item"><!-- wp:image --><figure class="wp-block-image"><img src="/wp-content/themes/skylinecruises-wordpress-theme/assets/icons/feature-service.png" alt="Memorable Service" /></figure><!-- /wp:image --><!-- wp:heading {"level":3} --><h3>Memorable Service</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Our attentive crew takes care of every detail, so you can focus on making memories with your guests.</p><!-- /wp:paragraph --></div><!-- /wp:group -->
-<!-- wp:group {"className":"features-pair__item"} --><div class="wp-block-group features-pair__item"><!-- wp:image --><figure class="wp-block-image"><img src="/wp-content/themes/skylinecruises-wordpress-theme/assets/icons/feature-sailing.png" alt="Smooth Sailing" /></figure><!-- /wp:image --><!-- wp:heading {"level":3} --><h3>Smooth Sailing</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Enjoy calm, scenic waters aboard a well-maintained fleet built for a comfortable ride, rain or shine.</p><!-- /wp:paragraph --></div><!-- /wp:group -->
+<!-- wp:group {"className":"features-pair__item"} --><div class="wp-block-group features-pair__item"><!-- wp:image --><figure class="wp-block-image"><img src="/wp-content/themes/skylinecruises-wordpress-theme/assets/icons/feature-service.png" alt="Memorable Service" /></figure><!-- /wp:image --><!-- wp:paragraph --><p>Skyline&#8217;s attentive staff serves premium beer, wine, and liquor at the cash bar. Want something special? <a href="https://skylinecruises.com/contact-us/">Contact the event experts at Skyline</a> to customize your experience.</p><!-- /wp:paragraph --></div><!-- /wp:group -->
+<!-- wp:group {"className":"features-pair__item"} --><div class="wp-block-group features-pair__item"><!-- wp:image --><figure class="wp-block-image"><img src="/wp-content/themes/skylinecruises-wordpress-theme/assets/icons/feature-sailing.png" alt="Smooth Sailing" /></figure><!-- /wp:image --><!-- wp:heading {"level":3} --><h3>Smooth Sailing</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Our yacht is a floating banquet room designed for year-round cruising. It is fully climate-controlled for year-round outings and because it sails in the calm, sheltered waters of the famous New York Harbor or Long Island Sound, you&#8217;ll experience smooth sailing.</p><!-- /wp:paragraph --></div><!-- /wp:group -->
 </div>
 <!-- /wp:group -->`;
 

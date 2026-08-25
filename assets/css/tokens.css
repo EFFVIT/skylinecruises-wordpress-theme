@@ -160,6 +160,19 @@ figure.wp-block-image {
   box-sizing: border-box;
 }
 
+/* Real bug found 2026-08-25 while patching Corporate Cruises' ports list: check-circle.svg has a
+   viewBox but no width/height on its own <svg> root, and every existing use of `.check-icon`
+   only ever gets sized via a scoping parent class (.checklist-item .check-icon, .marina-grid
+   .check-icon, etc.) — there was never a bare default. The first page to reuse the icon outside
+   one of those scopes rendered it at the browser's unconstrained intrinsic size, ballooning a
+   13-item list to over 15,000px tall. A bare default here means any future reuse is safe by
+   construction; every existing scoped rule still wins on specificity and overrides it as needed. */
+.check-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
 .container {
   max-width: var(--content-width);
   margin-inline: auto;

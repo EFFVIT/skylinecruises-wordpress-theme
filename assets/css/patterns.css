@@ -1189,6 +1189,16 @@
   padding: 80px var(--side-margin);
 }
 
+/* Real bug found via screenshot on the Corporate Cruises fix (2026-08-25): a region label
+   (.text-section__cta-line, reused here as a bold sub-heading like "New Jersey") has no margin
+   of its own, so it sits flush against the port list ABOVE it with zero gap, while the 32px gap
+   below only separates it from its OWN list below — the label visually read as trailing the
+   wrong group. Scoped to .ports-list only, so this doesn't affect that class's other single-use
+   spots elsewhere on the site (e.g. Dinner Cruises' "Your Skyline Experience Includes:" line). */
+.ports-list .text-section__cta-line {
+  margin-top: 32px;
+}
+
 .ports-list__items {
   display: flex;
   flex-direction: column;
