@@ -1002,6 +1002,44 @@
   color: var(--color-navy);
 }
 
+/* Optional 2-col text+photo variant (added fixing NYC Holiday Cruises' "Holiday Dates Book Fast"
+   section, which live pairs with a real photo — see the textSection() comment in build-pages.js). */
+.text-section--with-photo {
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+.text-section--with-photo .text-section__col {
+  flex: 1 1 420px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.text-section--with-photo .text-section__photo {
+  flex: 0 1 380px;
+  min-width: 260px;
+  margin: 0;
+}
+.text-section--with-photo .text-section__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Optional small centered icon above the heading (added fixing NYC Holiday Cruises' "Smooth
+   Sailing" section, which had no icon at all despite live showing one there). */
+.text-section__icon {
+  margin: 0 0 12px;
+}
+.text-section__icon img {
+  display: block;
+  margin: 0 auto;
+  width: 64px;
+  height: auto;
+}
+
 .photo-checklist-row__body {
   display: flex;
   gap: 40px;

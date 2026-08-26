@@ -89,8 +89,8 @@
 				"paragraphs": [
 					"For unforgettable holiday celebrations, make Skyline Cruises your destination.",
 					"You'll make unforgettable memories and cherish the fabulous photos you'll take with the Statue of Liberty and other world-famous New York landmarks in the background. The Skyline Princess offers unparalleled access to its three decks, including our all-weather rooftop deck with a dance floor and dedicated DJ space, if you hire one. Event/party hosts can hire a caterer to provide food and drinks and can bring in their own staff to accommodate guest needs during private events. Alcohol is allowed on a limited basis. We can provide a list of recommended vendors or you can choose your own. We provide the space; you bring the party!",
-					"Why watch fireworks on TV when you can see spectacular <a href=\"/nyc-holiday-cruises/4th-of-july/\">4th of July</a> and <a href=\"/nyc-holiday-cruises/new-years-eve/\">New Year's Eve</a> fireworks from the skylight deck of the Skyline Princess? The climate-controlled cabin and enclosed all-weather rooftop deck provide spectacular views of the celebrations. Bring that special someone or a group of special someones. Our popular cruises are sure to make these holidays even more fun.",
-					"For <a href=\"/nyc-holiday-cruises/valentines-day/\">Valentine's Day</a>, <a href=\"/nyc-holiday-cruises/mothers-day/\">Mother's Day</a>, and <a href=\"/nyc-holiday-cruises/fathers-day/\">Father's Day</a>, Skyline offers special holiday cruises that will make it a magical day for your loved ones. Lovely brunch cruises are a great way to let Mom and Dad know how special they are to the family. A dinner cruise on Valentine's Day is a romantic and unique way to say I love you to that special person in your life. The Skyline Princess is always a popular choice for company holiday celebrations as well."
+					"Why watch fireworks on TV when you can see spectacular <a href=\"/nyc-holiday-cruises-4th-of-july/\">4th of July</a> and <a href=\"/nyc-holiday-cruises-new-years-eve/\">New Year's Eve</a> fireworks from the skylight deck of the Skyline Princess? The climate-controlled cabin and enclosed all-weather rooftop deck provide spectacular views of the celebrations. Bring that special someone or a group of special someones. Our popular cruises are sure to make these holidays even more fun.",
+					"For <a href=\"/nyc-holiday-cruises-valentines-day/\">Valentine's Day</a>, <a href=\"/nyc-holiday-cruises-mothers-day/\">Mother's Day</a>, and <a href=\"/nyc-holiday-cruises-fathers-day/\">Father's Day</a>, Skyline offers special holiday cruises that will make it a magical day for your loved ones. Lovely brunch cruises are a great way to let Mom and Dad know how special they are to the family. A dinner cruise on Valentine's Day is a romantic and unique way to say I love you to that special person in your life. The Skyline Princess is always a popular choice for company holiday celebrations as well."
 				]
 			},
 			"features": {
@@ -106,12 +106,14 @@
 			},
 			"smoothSailing": {
 				"heading": "Smooth Sailing",
+				"icon": "/wp-content/themes/skylinecruises-wordpress-theme/assets/icons/feature-sailing.png",
 				"paragraphs": [
 					"Our yacht is designed for year-round cruising. It is fully climate-controlled for year-round outings and because it sails in the calm, sheltered waters of the famous New York Harbor or Long Island Sound, you'll experience smooth sailing."
 				]
 			},
 			"datesBookFast": {
 				"heading": "Holiday Dates Book Fast",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/holiday-group-1024x577.jpg",
 				"paragraphs": [
 					"Prime holiday dates and times book up fast! Contact Skyline Cruises for our holiday party options, which are perfect for groups of any size.",
 					"If you want to reserve a spot on one of our holiday cruises or if you are interested in booking a full ship yacht charter, a private party, or a corporate party, then call (718) 446-1100 now or use our form to contact us today."

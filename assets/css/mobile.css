@@ -35,6 +35,17 @@
     max-width: 560px;
   }
 
+  /* text-section--with-photo (NYC Holiday Cruises' "Holiday Dates Book Fast") — same class of
+     fixed-width-flex-row overflow as features-pair/photo-checklist-row above. */
+  .text-section--with-photo {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .text-section--with-photo .text-section__photo {
+    width: 100%;
+    flex: none;
+  }
+
   /* photo-checklist-row__body (Public Cruise Service intro, Buffet Menu, etc.) — flex row with a
      flex-shrink:0, 560px-wide photo never had a breakpoint either; same class of overflow. */
   .photo-checklist-row__body {

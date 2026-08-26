@@ -186,12 +186,22 @@ ${routes.map((r) => `<!-- wp:paragraph {"className":"directions-block__route"} -
 // Text section — plain heading + paragraphs, no photo. Confirmed as a genuinely shared shape
 // across Private Event/Party, School Events, and Port/Location intro sections (not invented).
 // `ctaLine` is School Events' bold "Contact Us To Plan Your School Event!" trailing line — omit
-// for categories that don't have one.
-const textSection = ({ heading, paragraphs, ctaLine = '' }) => `<!-- wp:group {"className":"text-section"} -->
-<div class="wp-block-group text-section">
+// for categories that don't have one. `photo` (optional, added 2026-08-25 fixing NYC Holiday
+// Cruises' "Holiday Dates Book Fast" section, which live pairs with a real photo this generic
+// heading+paragraphs shape never had room for) renders a real 2-col text+photo row, matching the
+// same "one-half/one-half" layout live already uses there — not a new visual language, just
+// giving this composer the option other pages' checklist rows already have via photoChecklistRow.
+// `icon` (optional, same fix) is a small centered icon above the heading, matching live's own
+// treatment of "Smooth Sailing" (which real live pages show with a small icon, unlike this
+// composer's previous bare heading+paragraph) — pass an existing theme icon path, don't invent one.
+const textSection = ({ heading, paragraphs, ctaLine = '', photo = '', icon = '' }) => `<!-- wp:group {"className":"text-section${photo ? ' text-section--with-photo' : ''}"} -->
+<div class="wp-block-group text-section${photo ? ' text-section--with-photo' : ''}">
+${photo ? '<div class="text-section__col">' : ''}
+${icon ? `<!-- wp:image --><figure class="wp-block-image text-section__icon"><img src="${icon}" alt="" /></figure><!-- /wp:image -->` : ''}
 ${heading ? `<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->` : ''}
 ${paragraphs.map((p) => `<!-- wp:paragraph --><p>${p}</p><!-- /wp:paragraph -->`).join('\n')}
 ${ctaLine ? `<!-- wp:paragraph {"className":"text-section__cta-line"} --><p class="text-section__cta-line">${ctaLine}</p><!-- /wp:paragraph -->` : ''}
+${photo ? `</div><!-- wp:image {"className":"text-section__photo"} --><figure class="wp-block-image text-section__photo"><img src="${photo}" alt="" /></figure><!-- /wp:image -->` : ''}
 </div>
 <!-- /wp:group -->`;
 
