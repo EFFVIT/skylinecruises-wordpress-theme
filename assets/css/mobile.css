@@ -197,6 +197,12 @@
     line-height: 1.55;
   }
 
+  /* photo-checklist-row__list--card (Mother's Day) — 48px/56px desktop padding leaves almost no
+     room for content at 375px, same class of fix as every other hardcoded desktop padding here. */
+  .photo-checklist-row__list--card {
+    padding: 28px 24px;
+  }
+
   /* ===== hero ===== */
   /* Redefine the shared --hero-inset variable itself (tokens.css) rather than overriding
      .hero-outer's padding directly — the events-cater panel below reads this same variable to

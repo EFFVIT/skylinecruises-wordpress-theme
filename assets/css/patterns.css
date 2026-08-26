@@ -1028,6 +1028,13 @@
   border-radius: 12px;
 }
 
+/* Alternates photo to the left of the text column (markup order unchanged — photo stays last
+   in the DOM/reading order, only the visual position flips). Added 2026-08-26 for Mother's Day's
+   2 consecutive photo+text sections, per direct user request for visual left/right alternation. */
+.text-section--photo-left {
+  flex-direction: row-reverse;
+}
+
 /* Optional small centered icon above the heading (added fixing NYC Holiday Cruises' "Smooth
    Sailing" section, which had no icon at all despite live showing one there). */
 .text-section__icon {
@@ -1084,6 +1091,17 @@
 
 .checklist-item--lg {
   line-height: 40px;
+}
+
+/* Card treatment for a photo-less checklist (added 2026-08-26, Mother's Day — the only page in
+   this category with no real checklist photo on live; a bare centered column read as sparse in
+   an otherwise-empty full-width section). Fills the space with a light-blue panel instead. */
+.photo-checklist-row__list--card {
+  max-width: 900px;
+  margin-inline: auto;
+  background: var(--color-bg-light-blue);
+  border-radius: 24px;
+  padding: 48px 56px;
 }
 
 .checklist-item .check-icon {

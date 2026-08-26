@@ -111,13 +111,19 @@ const checklistItems = (items, itemClass = 'checklist-item') => items.map(
 // genuinely has no adjacent photo at all (not every cruise-type page pairs one), so forcing an
 // `<img src="">` would render a broken image. Omit the photo figure entirely when absent instead
 // of inventing one, and let the list use the freed-up width.
-const photoChecklistRow = ({ heading, intro, photo = '', items, gridCols = 1, itemClass = 'checklist-item', cta = 'Book Now' }) => `<!-- wp:group {"className":"photo-checklist-row"} -->
+// `photo` empty (no image for this category on the real live page, e.g. Mother's Day) used to
+// just center a single narrow column in an otherwise-empty full-width section — read as sparse
+// on a page with no photo to fill the other half. Added 2026-08-26 (Mother's Day, per direct
+// user request): a no-photo list gets a light-blue card treatment (`--card`) instead of just a
+// max-width clamp, and defaults to a 2-col grid (still overridable) so it fills the space
+// properly. `photo`-present pages are completely unaffected (this only applies when !photo).
+const photoChecklistRow = ({ heading, intro, photo = '', items, gridCols = photo ? 1 : 2, itemClass = 'checklist-item', cta = 'Book Now' }) => `<!-- wp:group {"className":"photo-checklist-row"} -->
 <div class="wp-block-group photo-checklist-row">
 <!-- wp:group {"className":"photo-checklist-row__intro"} --><div class="wp-block-group photo-checklist-row__intro"><!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->${intro ? `<!-- wp:paragraph {"className":"intro-copy"} --><p class="intro-copy">${intro}</p><!-- /wp:paragraph -->` : ''}</div><!-- /wp:group -->
 <!-- wp:group {"className":"photo-checklist-row__body"} -->
 <div class="wp-block-group photo-checklist-row__body">
 ${photo ? `<!-- wp:image {"className":"photo-checklist-row__photo"} --><figure class="wp-block-image photo-checklist-row__photo"><img src="${photo}" alt="" /></figure><!-- /wp:image -->` : ''}
-<!-- wp:group {"className":"photo-checklist-row__list"} --><div class="wp-block-group photo-checklist-row__list"${gridCols > 1 ? ` style="display:grid;grid-template-columns:repeat(${gridCols},1fr);gap:16px 32px;"` : (!photo ? ' style="max-width:800px;margin-inline:auto;"' : '')}>
+<!-- wp:group {"className":"photo-checklist-row__list${!photo ? ' photo-checklist-row__list--card' : ''}"} --><div class="wp-block-group photo-checklist-row__list${!photo ? ' photo-checklist-row__list--card' : ''}"${gridCols > 1 ? ` style="display:grid;grid-template-columns:repeat(${gridCols},1fr);gap:16px 32px;"` : ''}>
 ${checklistItems(items, itemClass)}
 <!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link btn btn-gold" href="/contact-us/request-your-quote/">${cta}</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
 </div><!-- /wp:group -->
@@ -194,8 +200,13 @@ ${routes.map((r) => `<!-- wp:paragraph {"className":"directions-block__route"} -
 // `icon` (optional, same fix) is a small centered icon above the heading, matching live's own
 // treatment of "Smooth Sailing" (which real live pages show with a small icon, unlike this
 // composer's previous bare heading+paragraph) — pass an existing theme icon path, don't invent one.
-const textSection = ({ heading, paragraphs, ctaLine = '', photo = '', icon = '' }) => `<!-- wp:group {"className":"text-section${photo ? ' text-section--with-photo' : ''}"} -->
-<div class="wp-block-group text-section${photo ? ' text-section--with-photo' : ''}">
+// `photoSide` ('right' default, or 'left') — added 2026-08-26 for Mother's Day, whose 2
+// consecutive photo+text sections the user asked to alternate sides for visual rhythm rather
+// than both defaulting to the same photo-on-the-right layout. Markup order is unchanged (photo
+// stays last in the DOM, keeping reading order sane); `text-section--photo-left` just flips the
+// flex visual order via row-reverse.
+const textSection = ({ heading, paragraphs, ctaLine = '', photo = '', icon = '', photoSide = 'right' }) => `<!-- wp:group {"className":"text-section${photo ? ` text-section--with-photo${photoSide === 'left' ? ' text-section--photo-left' : ''}` : ''}"} -->
+<div class="wp-block-group text-section${photo ? ` text-section--with-photo${photoSide === 'left' ? ' text-section--photo-left' : ''}` : ''}">
 ${photo ? '<div class="text-section__col">' : ''}
 ${icon ? `<!-- wp:image --><figure class="wp-block-image text-section__icon"><img src="${icon}" alt="" /></figure><!-- /wp:image -->` : ''}
 ${heading ? `<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->` : ''}
@@ -551,12 +562,16 @@ const TEMPLATE_BUILDERS = {
 	// `introExtra`/`giftOfTimeSection` (added 2026-08-26 fixing Mother's Day, which the 8/24 batch
 	// scrape missed 2 whole real photo+copy blocks from) are optional textSection() slots — a
 	// page with neither renders identically to before every other page in this category.
+	// `giftOfTimeSection` sits ABOVE photoChecklistRow (moved 2026-08-26 per direct user request,
+	// not live's own order — live has it after featuresPair) so the 2 photo+text sections run
+	// back-to-back for a real left/right alternating rhythm (`introExtra` defaults photo-right,
+	// `giftOfTimeSection` passes `photoSide:'left'` in the manifest data).
 	'Public Cruise Service': (d) => [
 		hero(d.hero),
 		...(d.introExtra ? [textSection(d.introExtra)] : []),
+		...(d.giftOfTimeSection ? [textSection(d.giftOfTimeSection)] : []),
 		photoChecklistRow(d.checklist),
 		featuresPair(),
-		...(d.giftOfTimeSection ? [textSection(d.giftOfTimeSection)] : []),
 		...(d.noRouteMap ? [] : [routeMap(d.routeMap)]),
 		testimonial(d.testimonial),
 		...(d.extraTextSections || []).map(textSection),
