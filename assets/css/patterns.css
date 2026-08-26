@@ -1095,13 +1095,19 @@
 
 /* Card treatment for a photo-less checklist (added 2026-08-26, Mother's Day — the only page in
    this category with no real checklist photo on live; a bare centered column read as sparse in
-   an otherwise-empty full-width section). Fills the space with a light-blue panel instead. */
+   an otherwise-empty full-width section). Fills the space with a navy panel (switched from the
+   initial light-blue per direct user request — matches this theme's other dark-panel sections
+   like closing-cta/testimonial) with white checklist text; the gold check-icon and the "Book
+   Now" button are untouched — both are already colored assets/components, not inherited text. */
 .photo-checklist-row__list--card {
   max-width: 900px;
   margin-inline: auto;
-  background: var(--color-bg-light-blue);
+  background: var(--color-navy);
   border-radius: 24px;
   padding: 48px 56px;
+}
+.photo-checklist-row__list--card .checklist-item {
+  color: var(--color-white);
 }
 
 .checklist-item .check-icon {
