@@ -122,9 +122,14 @@ const checklistItems = (items, itemClass = 'checklist-item') => items.map(
 // user request): a no-photo list gets a light-blue card treatment (`--card`) instead of just a
 // max-width clamp, and defaults to a 2-col grid (still overridable) so it fills the space
 // properly. `photo`-present pages are completely unaffected (this only applies when !photo).
-const photoChecklistRow = ({ heading, intro, photo = '', items, gridCols = photo ? 1 : 2, itemClass = 'checklist-item', cta = 'Book Now' }) => `<!-- wp:group {"className":"photo-checklist-row"} -->
+// `introPhoto` (optional, added 2026-08-26 fixing Dinner/Brunch/Lunch/Anniversary Cruises —
+// each pairs its intro heading+paragraph with its own real photo on live, separate from the
+// checklist's own photo, which this composer never had room for) renders the intro block as a
+// 2-col text+photo row via `--with-photo`, matching the same pattern already established for
+// textSection()'s `photo` param.
+const photoChecklistRow = ({ heading, intro, photo = '', introPhoto = '', items, gridCols = photo ? 1 : 2, itemClass = 'checklist-item', cta = 'Book Now' }) => `<!-- wp:group {"className":"photo-checklist-row"} -->
 <div class="wp-block-group photo-checklist-row">
-<!-- wp:group {"className":"photo-checklist-row__intro"} --><div class="wp-block-group photo-checklist-row__intro"><!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->${intro ? `<!-- wp:paragraph {"className":"intro-copy"} --><p class="intro-copy">${intro}</p><!-- /wp:paragraph -->` : ''}</div><!-- /wp:group -->
+<!-- wp:group {"className":"photo-checklist-row__intro${introPhoto ? ' photo-checklist-row__intro--with-photo' : ''}"} --><div class="wp-block-group photo-checklist-row__intro${introPhoto ? ' photo-checklist-row__intro--with-photo' : ''}">${introPhoto ? '<div class="photo-checklist-row__intro-col">' : ''}<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->${intro ? `<!-- wp:paragraph {"className":"intro-copy"} --><p class="intro-copy">${intro}</p><!-- /wp:paragraph -->` : ''}${introPhoto ? `</div><!-- wp:image {"className":"photo-checklist-row__intro-photo"} --><figure class="wp-block-image photo-checklist-row__intro-photo"><img src="${introPhoto}" alt="" /></figure><!-- /wp:image -->` : ''}</div><!-- /wp:group -->
 <!-- wp:group {"className":"photo-checklist-row__body"} -->
 <div class="wp-block-group photo-checklist-row__body">
 ${photo ? `<!-- wp:image {"className":"photo-checklist-row__photo"} --><figure class="wp-block-image photo-checklist-row__photo"><img src="${photo}" alt="" /></figure><!-- /wp:image -->` : ''}

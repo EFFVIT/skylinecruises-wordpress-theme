@@ -985,6 +985,30 @@
   margin-bottom: 48px;
 }
 
+/* Optional intro+photo variant (added 2026-08-26 fixing Dinner/Brunch/Lunch/Anniversary Cruises,
+   which each pair their intro copy with a real photo on live — separate from the checklist's own
+   photo, which this row never had room to also show the intro's photo alongside). */
+.photo-checklist-row__intro--with-photo {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.photo-checklist-row__intro--with-photo .photo-checklist-row__intro-col {
+  flex: 1 1 420px;
+  min-width: 280px;
+}
+.photo-checklist-row__intro--with-photo .photo-checklist-row__intro-photo {
+  flex: 0 1 420px;
+  min-width: 280px;
+  margin: 0;
+}
+.photo-checklist-row__intro--with-photo .photo-checklist-row__intro-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
 /* ===== text-section (patterns/text-section.php) =====
    Plain heading + paragraphs, no photo — shared across Private Event/Party, School Events, and
    Port/Location intro sections (confirmed via direct Figma read, not a category-specific shape). */

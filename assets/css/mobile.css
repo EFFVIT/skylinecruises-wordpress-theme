@@ -46,6 +46,17 @@
     flex: none;
   }
 
+  /* photo-checklist-row__intro--with-photo (Dinner/Brunch/Lunch/Anniversary Cruises) — same class
+     of fixed-width-flex-row overflow as text-section--with-photo above. */
+  .photo-checklist-row__intro--with-photo {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .photo-checklist-row__intro--with-photo .photo-checklist-row__intro-photo {
+    width: 100%;
+    flex: none;
+  }
+
   /* photo-checklist-row__body (Public Cruise Service intro, Buffet Menu, etc.) — flex row with a
      flex-shrink:0, 560px-wide photo never had a breakpoint either; same class of overflow. */
   .photo-checklist-row__body {
