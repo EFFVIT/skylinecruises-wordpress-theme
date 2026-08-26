@@ -561,16 +561,21 @@ const TEMPLATE_BUILDERS = {
 	// occasions, not a standard cruise-product page. Composed directly from its own real section
 	// order (confirmed via live-site extraction 2026-08-24) rather than forced into the standard
 	// recipe: intro (with inline links to the 5 sub-pages) -> features checklist w/ photo ->
-	// "Smooth Sailing" (shared static block, same as featuresPair conceptually but this page's
-	// real copy is prose, not the icon pair) -> "Holiday Dates Book Fast" -> an unheaded
-	// departure-marina paragraph -> an unheaded testimonial -> closing CTA. A dated 2020-era
-	// COVID-19 safety section on the live page was deliberately dropped as outdated, not carried
-	// forward (same call made on a similar section during the Private Event/Party batch).
+	// featuresPair() -> "Holiday Dates Book Fast" -> an unheaded departure-marina paragraph -> an
+	// unheaded testimonial -> closing CTA. A dated 2020-era COVID-19 safety section on the live
+	// page was deliberately dropped as outdated, not carried forward (same call made on a similar
+	// section during the Private Event/Party batch).
+	// 2026-08-26 fix: this slot originally used a one-off `textSection(d.smoothSailing)` (bare
+	// heading+paragraph, reasoned at build time as "this page's real copy is prose, not the icon
+	// pair") — user asked directly for it to match every OTHER page on the site instead, which
+	// all use the shared `featuresPair()` icon-badge card here. Swapped to the real shared
+	// component for consistency; `d.smoothSailing`'s bespoke copy is no longer used (featuresPair
+	// is fully static/shared, same verbatim text as every other page).
 	'Holiday Hub': (d) => [
 		hero(d.hero),
 		textSection(d.intro),
 		photoChecklistRow(d.features),
-		textSection(d.smoothSailing),
+		featuresPair(),
 		textSection(d.datesBookFast),
 		textSection(d.marinaNote),
 		testimonial(d.testimonial),
