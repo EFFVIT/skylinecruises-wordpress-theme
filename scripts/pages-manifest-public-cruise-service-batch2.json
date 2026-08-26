@@ -141,6 +141,21 @@
 				"cta": "Book Now",
 				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/nye-hero.jpg"
 			},
+			"introExtra": {
+				"heading": "Ring in the New Year in New York Harbor with Skyline Cruises",
+				"paragraphs": [
+					"Start the New Year off right with a dinner cruise aboard a luxury yacht! Skyline Cruises' New Year's Eve dinner/dance party fireworks cruise is an extremely popular way to cap off both the holiday season and the old year."
+				]
+			},
+			"giftOfTimeSection": {
+				"heading": "",
+				"paragraphs": [
+					"The world-renowned New York City skyline provides a beautiful backdrop for the celebration and the Skyline Princess gives you an amazing view of the fireworks. That's why so many of our guests return annually, and that's why our New Year's Eve dinner cruise has been highlighted in Newsday and several web sites.",
+					"The New Year's Eve dinner cruise is one of Skyline Cruises' most popular cruises of the year, with tickets selling out early so sign up now for an unforgettable experience."
+				],
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/nye-pairA-1024x576.jpg",
+				"photoSide": "right"
+			},
 			"checklist": {
 				"heading": "Your Skyline Experience Includes:",
 				"intro": "Whether you're looking for fun or romance \u2013 or both \u2013 on New Year's Eve, Skyline Cruises will make sure that you have the time of your life. Our special New Year's Eve packages include:",
@@ -157,6 +172,16 @@
 					"Free parking at the marina."
 				]
 			},
+			"postChecklistSections": [
+				{
+					"heading": "",
+					"paragraphs": [
+						"Treat yourself and your friends and family to a spectacular New Year's Eve celebration and set the tone for a fabulous new year. Skyline Cruises has been providing our guests with memorable experiences since 1993. Allow the staff of the Skyline Princess to pamper you while you ring in the New Year with your friends and family. Discover for yourself why so many of our guests return again and again."
+					],
+					"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/nye-pairC-1024x576.jpg",
+					"photoSide": "left"
+				}
+			],
 			"testimonial": {
 				"quote": "We had an amazing night at the skyline princess on new year's eve!!! Lovely furniture with round tables, funny celebration stuff on them (like hats, crowns, bracelets\u2026) for the guests, very friendly and obliging staff, good music and dance possibilities on a separate deck, and a stunning view over the skyline, Statue of Liberty, and the fireworks right next to it. All drinks and food were included. The food was very delicious and the drinks were good mixed. They even had Malibu!!! We would definitely recommend these guys!! It was an excellent experience and definitely the better option than spending New Year's Eve at the cold and overcrowded Times Square.",
 				"attribution": "Elena S",
@@ -180,6 +205,21 @@
 				"cta": "Book Now",
 				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/vday-hero.jpg"
 			},
+			"introExtra": {
+				"heading": "Celebrate Valentine's Day Aboard Skyline Cruises",
+				"paragraphs": [
+					"This is truly a unique dining experience aboard the Skyline Princess celebrating love and toasting your relationship. Our four-hour dinner cruise of New York Harbor features music from our DJ so you can dance the night away with your partner on a spacious enclosed rooftop dance floor."
+				],
+				"ctaLine": "All tables are private on Valentine's Day…"
+			},
+			"giftOfTimeSection": {
+				"heading": "",
+				"paragraphs": [
+					"Our accommodating staff will take care of all your needs, including serving our famous three-course buffet dinner prepared by our talented chef. The Valentine's Day dinner menu features something for everyone to enjoy while you take in stunning views of the New York City lights. Sail with us one time and you'll understand why so many of our customers return over and over. Skyline Cruises has been providing the premier yacht experience for every occasion since 1993."
+				],
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/vday-pairA-1024x576.jpg",
+				"photoSide": "right"
+			},
 			"checklist": {
 				"heading": "The Skyline Valentine's Day Experience includes:",
 				"intro": "",
@@ -191,6 +231,17 @@
 					"Free parking at the marina"
 				]
 			},
+			"postChecklistSections": [
+				{
+					"heading": "",
+					"paragraphs": [
+						"Celebrate the most romantic day of the year with our spectacular cruise of NY Harbor. Whether you're a new couple celebrating Valentine's Day for the first time, married, and looking to put some zing back into your relationship, or celebrating being fabulously single with your friends, a cruise on the Skyline Princess will be a memorable experience. Our attentive staff will take care of everything so you can fully enjoy the experience.",
+						"The gorgeous New York City skyline will provide beautiful backdrops for photos you'll always treasure. Seating is limited so it sells out quickly."
+					],
+					"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/vday-pairB-1024x576.jpg",
+					"photoSide": "left"
+				}
+			],
 			"testimonial": {
 				"quote": "My hubby surprised me with this beautiful Valentine's Day dinner. Filled with family and friends. We had friends who were running late, the captain held the ship for them to board. They also called to verify where they were. I was blown away by the customer service, food, and the great DJ. We had an amazing time! Even my mother-in-law who isn't easily impressed enjoyed her time as well, which made me really happy. Overall I recommend this dinner cruise and will probably be back during the summer.",
 				"attribution": "Patti E. Bronx, NY",
@@ -267,9 +318,15 @@
 				"cta": "Book Now",
 				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/fathersday-hero.jpg"
 			},
-			"checklist": {
+			"introExtra": {
 				"heading": "Father\u2019s Day Brunch and Dinner Cruises",
-				"intro": "Do something different for dad and spend Father\u2019s Day on the Skyline Princess, NYC\u2019s number one luxury yacht tour. A stately excursion around historic New York Harbor with Skyline Cruises is the perfect Father\u2019s Day celebration.",
+				"paragraphs": [
+					"Do something different for dad and spend Father\u2019s Day on the Skyline Princess, NYC\u2019s number one luxury yacht tour. A stately excursion around historic New York Harbor with Skyline Cruises is the perfect Father\u2019s Day celebration."
+				]
+			},
+			"checklist": {
+				"heading": "Our Father's Day Cruise Includes:",
+				"intro": "",
 				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/fathersday-checklist.jpg",
 				"items": [
 					"A relaxing 4-hour cruise of NYC harbor",
@@ -281,6 +338,30 @@
 					"Free parking at the marina"
 				]
 			},
+			"postChecklistSections": [
+				{
+					"heading": "",
+					"paragraphs": [
+						"A four-hour cruise means family time taking in the sites while being waited on by our attentive staff, which will serve you a fantastic brunch or three-course dinner. Make new memories and give your dad a day he'll never forget."
+					]
+				},
+				{
+					"heading": "Spend Father's Day Cruising On New York Harbor",
+					"paragraphs": [
+						"Whether you're getting the entire family together or you want a special day for just you and dad, spending time cruising New York Harbor, sailing past the Statue of Liberty and the famous Manhattan skyline will create memories you will cherish. The popular brunch and dinner cruises aboard the Skyline Princess are a wonderful way to celebrate the man who did so much for you."
+					],
+					"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/fathersday-pairA-1024x576.jpg",
+					"photoSide": "right"
+				},
+				{
+					"heading": "",
+					"paragraphs": [
+						"Take photographs on the deck. Savor our chef's delicious meals. Enjoy music and maybe take a twirl around the enclosed, top deck dance floor. You'll discover why people return again and again for a Skyline Cruise."
+					],
+					"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/fathersday-pairB-1024x576.jpg",
+					"photoSide": "left"
+				}
+			],
 			"testimonial": {
 				"quote": "My family and I had a great experience on Father\u2019s Day. The food (brunch and dessert) was delicious and the drinks were good (paid extra for unlimited drinks which was worth it). We took beautiful pictures outside as we passed by NYC landmarks. My family had a memorable time and are looking forward to making this experience a yearly one.",
 				"attribution": "L. Zhinin",
@@ -331,14 +412,16 @@
 					"Free parking at the marina"
 				]
 			},
-			"postChecklistSection": {
-				"heading": "",
-				"paragraphs": [
-					"Celebrate 4th of July in style on board the Skyline Princess. With our attentive staff taking care of your every need and the famous New York City skyline providing beautiful backdrops for photos that you'll treasure forever, it will truly be a night to remember. July 4th cruise tickets come with an open bar for everyone 21+ permitted to drink, soda, juice, coffee, tea, and water. Limited seating means it sells out quickly."
-				],
-				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-pair2-1024x576.jpg",
-				"photoSide": "left"
-			},
+			"postChecklistSections": [
+				{
+					"heading": "",
+					"paragraphs": [
+						"Celebrate 4th of July in style on board the Skyline Princess. With our attentive staff taking care of your every need and the famous New York City skyline providing beautiful backdrops for photos that you'll treasure forever, it will truly be a night to remember. July 4th cruise tickets come with an open bar for everyone 21+ permitted to drink, soda, juice, coffee, tea, and water. Limited seating means it sells out quickly."
+					],
+					"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-pair2-1024x576.jpg",
+					"photoSide": "left"
+				}
+			],
 			"testimonial": {
 				"quote": "I could not have thought of a better way to spend my 4th of July. Worth every penny.",
 				"attribution": "Dennis H.",

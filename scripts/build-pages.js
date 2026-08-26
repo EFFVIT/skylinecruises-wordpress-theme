@@ -95,9 +95,14 @@ ${card ? '' : `<!-- wp:paragraph {"className":"testimonial__attribution"} --><p 
 </div>
 <!-- /wp:group -->`;
 
+// `heading` is genuinely absent on several live pages (NYE, Valentine's Day, Holiday Hub all
+// close with just phone/contact copy, no heading line) — was unconditionally rendering an empty
+// `<h2></h2>` in that case (a real, if minor, semantic bug: an empty heading element in the DOM).
+// Fixed 2026-08-26 to omit the tag entirely when heading is falsy, matching every other optional-
+// heading composer in this file (textSection, photoChecklistRow__intro, etc.).
 const closingCta = ({ heading, body, cta = 'Book Now' }) => `<!-- wp:group {"className":"closing-cta"} -->
 <div class="wp-block-group closing-cta">
-<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
+${heading ? `<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->` : ''}
 <!-- wp:paragraph --><p>${body}</p><!-- /wp:paragraph -->
 <!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link btn btn-gold" href="/contact-us/request-your-quote/">${cta}</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
 </div>
@@ -559,22 +564,24 @@ const TEMPLATE_BUILDERS = {
 	// for Long Island Lighthouse Cruise and Connecticut Cruises at the user's explicit request.
 	// Omitting `routeMap` from `d` (the default, most pages) still renders the section with the
 	// standard NYC Harbor route; `noRouteMap: true` is a distinct signal from "use the default."
-	// `introExtra`/`giftOfTimeSection`/`postChecklistSection` (added 2026-08-26 fixing Mother's
-	// Day, then reused fixing 4th of July — both had the 8/24 batch scrape miss real photo+copy
-	// blocks) are generic optional textSection() slots, despite `giftOfTimeSection`'s
-	// Mother's-Day-specific name — a page with none of the three renders identically to before
-	// every other page in this category. `introExtra`/`giftOfTimeSection` sit ABOVE
-	// photoChecklistRow (not necessarily live's own order — e.g. Mother's Day moved
-	// `giftOfTimeSection` up from after featuresPair per direct user request, for a real
-	// left/right alternating rhythm across the 2 photo+text sections); `postChecklistSection`
-	// sits directly after it, before featuresPair, for a 3rd slot when a page has one there too
-	// (4th of July's "empire state building" photo+copy block).
+	// `introExtra`/`giftOfTimeSection`/`postChecklistSections` (added 2026-08-26 fixing Mother's
+	// Day, then reused fixing 4th of July/New Year's Eve/Valentine's Day/Father's Day — the
+	// entire 8/24 holiday-occasion batch scrape systematically missed real photo+copy blocks past
+	// the first checklist) are generic optional textSection() slots, despite `giftOfTimeSection`'s
+	// Mother's-Day-specific name — a page with none renders identically to before every other
+	// page in this category. `introExtra`/`giftOfTimeSection` sit ABOVE photoChecklistRow (not
+	// necessarily live's own order — e.g. Mother's Day moved `giftOfTimeSection` up from after
+	// featuresPair per direct user request, for a real left/right alternating rhythm across the 2
+	// photo+text sections); `postChecklistSections` (an ARRAY — generalized 2026-08-26 from the
+	// single-object `postChecklistSection` once a page needed more than one, e.g. Father's Day's
+	// 3 real post-checklist blocks) sits directly after it, before featuresPair, mapped through
+	// textSection() in order.
 	'Public Cruise Service': (d) => [
 		hero(d.hero),
 		...(d.introExtra ? [textSection(d.introExtra)] : []),
 		...(d.giftOfTimeSection ? [textSection(d.giftOfTimeSection)] : []),
 		photoChecklistRow(d.checklist),
-		...(d.postChecklistSection ? [textSection(d.postChecklistSection)] : []),
+		...(d.postChecklistSections || []).map(textSection),
 		featuresPair(),
 		...(d.noRouteMap ? [] : [routeMap(d.routeMap)]),
 		testimonial(d.testimonial),
