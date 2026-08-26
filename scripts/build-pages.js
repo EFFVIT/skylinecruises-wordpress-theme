@@ -548,10 +548,15 @@ const TEMPLATE_BUILDERS = {
 	// for Long Island Lighthouse Cruise and Connecticut Cruises at the user's explicit request.
 	// Omitting `routeMap` from `d` (the default, most pages) still renders the section with the
 	// standard NYC Harbor route; `noRouteMap: true` is a distinct signal from "use the default."
+	// `introExtra`/`giftOfTimeSection` (added 2026-08-26 fixing Mother's Day, which the 8/24 batch
+	// scrape missed 2 whole real photo+copy blocks from) are optional textSection() slots — a
+	// page with neither renders identically to before every other page in this category.
 	'Public Cruise Service': (d) => [
 		hero(d.hero),
+		...(d.introExtra ? [textSection(d.introExtra)] : []),
 		photoChecklistRow(d.checklist),
 		featuresPair(),
+		...(d.giftOfTimeSection ? [textSection(d.giftOfTimeSection)] : []),
 		...(d.noRouteMap ? [] : [routeMap(d.routeMap)]),
 		testimonial(d.testimonial),
 		...(d.extraTextSections || []).map(textSection),

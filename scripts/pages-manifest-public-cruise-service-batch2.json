@@ -214,9 +214,17 @@
 				"cta": "Book Now",
 				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/mothersday-hero.jpg"
 			},
-			"checklist": {
+			"introExtra": {
 				"heading": "A Truly Memorable Mothers Day Event",
-				"intro": "Show your mom how special she is with one of Skyline Cruises\u2019 stunning Mother\u2019s Day brunch cruises or dinner cruises. Flowers fade but memories of your NY Harbor cruise will last a lifetime.",
+				"paragraphs": [
+					"Show your mom how special she is with one of Skyline Cruises\u2019 stunning Mother\u2019s Day brunch cruises or dinner cruises. Flowers fade but memories of your NY Harbor cruise will last a lifetime.",
+					"During a Mother's Day cruise on the yacht Skyline Princess, your mother will be treated like a queen by our attentive staff. The famous New York City skyline will provide beautiful backdrops for family photos that she will treasure for a lifetime. The unforgettable views combined with a delicious meal from our talented chefs make it easy to see why our Mother's Day Cruises sell out quickly."
+				],
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/skyline-may11-1024x536.jpg"
+			},
+			"checklist": {
+				"heading": "The Skyline Mother's Day Cruise Includes:",
+				"intro": "",
 				"photo": "",
 				"items": [
 					"A lovely 4-hour cruise of NYC harbor",
@@ -227,6 +235,13 @@
 					"Three all-weather decks and climate-controlled cabins",
 					"Free parking at the marina"
 				]
+			},
+			"giftOfTimeSection": {
+				"heading": "",
+				"paragraphs": [
+					"Your loved ones want the gift of your time. A four-hour cruise of New York harbor with a fabulous buffet brunch or dinner and personalized seating is a great way to show mom how much you care and create new memories. Skyline Cruises is the premier NYC yacht excursion. Since 1993, we've been giving our guests one-of-a-kind experiences. From stunning views to delicious food, excellent service, and lively entertainment, it's no wonder people come back again and again."
+				],
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/ny-lunch-cruises-1024x576.jpg"
 			},
 			"testimonial": {
 				"quote": "Mother\u2019s Day dinner cruise 2018, had a wonderful time with family and friends. The staff was great, wonderful crowd, overall it was a beautiful evening although the weather wasn\u2019t very good.",
