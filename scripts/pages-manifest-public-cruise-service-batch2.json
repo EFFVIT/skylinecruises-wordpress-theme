@@ -304,10 +304,24 @@
 				"cta": "Book Now",
 				"bgImage": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-hero.jpg"
 			},
-			"checklist": {
+			"introExtra": {
 				"heading": "4th of July Fireworks Cruises In NYC",
-				"intro": "Book a front-row seat now on board the Skyline Princess for the famous Macy\u2019s Fireworks Spectacular against the world-famous New York skyline. Our 4th of July fireworks dinner cruise is our most popular event every year and sells out well in advance because of its stunning views of the legendary fireworks show.",
-				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-checklist.jpg",
+				"paragraphs": [
+					"Book a front-row seat now on board the Skyline Princess for the famous Macy\u2019s Fireworks Spectacular against the world-famous New York skyline. Our 4th of July fireworks dinner cruise is our most popular event every year and sells out well in advance because of its stunning views of the legendary fireworks show."
+				]
+			},
+			"giftOfTimeSection": {
+				"heading": "4th of July And Skyline Cruises",
+				"paragraphs": [
+					"This five-hour dinner cruise of New York harbor features music and dancing from a DJ to keep you entertained before the fireworks begin. The three-course buffet dinner from our talented chefs has something for everyone and provides stunning views of the Independence Day fireworks. Skyline Cruises has provided the premier yacht experience for stellar occasions since 1993. That's why so many of our customers return for it again and again."
+				],
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-pair1-1024x576.jpg",
+				"photoSide": "right"
+			},
+			"checklist": {
+				"heading": "The Skyline 4th of July Experience Includes:",
+				"intro": "",
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-checklist-real.jpg",
 				"items": [
 					"The best view for the fabulous NY Harbor fireworks",
 					"A 5-hour cruise featuring iconic sights including the United Nations Building, Roosevelt Island, Riker\u2019s Island, and more",
@@ -316,6 +330,14 @@
 					"A 4 1/2 hour open bar and a delicious three-course meal",
 					"Free parking at the marina"
 				]
+			},
+			"postChecklistSection": {
+				"heading": "",
+				"paragraphs": [
+					"Celebrate 4th of July in style on board the Skyline Princess. With our attentive staff taking care of your every need and the famous New York City skyline providing beautiful backdrops for photos that you'll treasure forever, it will truly be a night to remember. July 4th cruise tickets come with an open bar for everyone 21+ permitted to drink, soda, juice, coffee, tea, and water. Limited seating means it sells out quickly."
+				],
+				"photo": "https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/july4-pair2-1024x576.jpg",
+				"photoSide": "left"
 			},
 			"testimonial": {
 				"quote": "I could not have thought of a better way to spend my 4th of July. Worth every penny.",

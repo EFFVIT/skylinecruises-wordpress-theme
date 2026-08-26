@@ -559,18 +559,22 @@ const TEMPLATE_BUILDERS = {
 	// for Long Island Lighthouse Cruise and Connecticut Cruises at the user's explicit request.
 	// Omitting `routeMap` from `d` (the default, most pages) still renders the section with the
 	// standard NYC Harbor route; `noRouteMap: true` is a distinct signal from "use the default."
-	// `introExtra`/`giftOfTimeSection` (added 2026-08-26 fixing Mother's Day, which the 8/24 batch
-	// scrape missed 2 whole real photo+copy blocks from) are optional textSection() slots — a
-	// page with neither renders identically to before every other page in this category.
-	// `giftOfTimeSection` sits ABOVE photoChecklistRow (moved 2026-08-26 per direct user request,
-	// not live's own order — live has it after featuresPair) so the 2 photo+text sections run
-	// back-to-back for a real left/right alternating rhythm (`introExtra` defaults photo-right,
-	// `giftOfTimeSection` passes `photoSide:'left'` in the manifest data).
+	// `introExtra`/`giftOfTimeSection`/`postChecklistSection` (added 2026-08-26 fixing Mother's
+	// Day, then reused fixing 4th of July — both had the 8/24 batch scrape miss real photo+copy
+	// blocks) are generic optional textSection() slots, despite `giftOfTimeSection`'s
+	// Mother's-Day-specific name — a page with none of the three renders identically to before
+	// every other page in this category. `introExtra`/`giftOfTimeSection` sit ABOVE
+	// photoChecklistRow (not necessarily live's own order — e.g. Mother's Day moved
+	// `giftOfTimeSection` up from after featuresPair per direct user request, for a real
+	// left/right alternating rhythm across the 2 photo+text sections); `postChecklistSection`
+	// sits directly after it, before featuresPair, for a 3rd slot when a page has one there too
+	// (4th of July's "empire state building" photo+copy block).
 	'Public Cruise Service': (d) => [
 		hero(d.hero),
 		...(d.introExtra ? [textSection(d.introExtra)] : []),
 		...(d.giftOfTimeSection ? [textSection(d.giftOfTimeSection)] : []),
 		photoChecklistRow(d.checklist),
+		...(d.postChecklistSection ? [textSection(d.postChecklistSection)] : []),
 		featuresPair(),
 		...(d.noRouteMap ? [] : [routeMap(d.routeMap)]),
 		testimonial(d.testimonial),
