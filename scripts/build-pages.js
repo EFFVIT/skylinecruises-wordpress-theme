@@ -65,9 +65,14 @@ ${addressSubhead ? `<!-- wp:paragraph {"className":"hero__address"} --><p class=
 // caption paragraph was rewritten into different, non-verbatim wording. Fixed both, using the
 // verbatim text confirmed live on /nyc-dinner-cruises/ (and cross-checked identical on several
 // other pages by the audit) — not an invented replacement.
-const featuresPair = () => `<!-- wp:group {"className":"features-pair"} -->
+// `serviceAlso` (default false): the live site's Public Cruise Service pages (e.g.
+// /nyc-dinner-cruises/) say "Skyline's attentive staff serves..." but the 3 Buffet Menu pages
+// (/nyc-dinner-cruises/menu/, /nyc-brunch-cruises/brunch-menu/, /nyc-lunch-cruises/lunch-menu/)
+// say "...staff ALSO serves..." — confirmed via direct live-page diff, a genuine real variance
+// between templates, not a scrape inconsistency. Pass true only for Buffet Menu.
+const featuresPair = ({ serviceAlso = false } = {}) => `<!-- wp:group {"className":"features-pair"} -->
 <div class="wp-block-group features-pair">
-<!-- wp:group {"className":"features-pair__item"} --><div class="wp-block-group features-pair__item"><!-- wp:image --><figure class="wp-block-image"><img src="/wp-content/themes/skylinecruises-wordpress-theme/assets/icons/feature-service.png" alt="Memorable Service" /></figure><!-- /wp:image --><!-- wp:paragraph --><p>Skyline&#8217;s attentive staff serves premium beer, wine, and liquor at the cash bar. Want something special? <a href="https://skylinecruises.com/contact-us/">Contact the event experts at Skyline</a> to customize your experience.</p><!-- /wp:paragraph --></div><!-- /wp:group -->
+<!-- wp:group {"className":"features-pair__item"} --><div class="wp-block-group features-pair__item"><!-- wp:image --><figure class="wp-block-image"><img src="/wp-content/themes/skylinecruises-wordpress-theme/assets/icons/feature-service.png" alt="Memorable Service" /></figure><!-- /wp:image --><!-- wp:paragraph --><p>Skyline&#8217;s attentive staff${serviceAlso ? ' also' : ''} serves premium beer, wine, and liquor at the cash bar. Want something special? <a href="https://skylinecruises.com/contact-us/">Contact the event experts at Skyline</a> to customize your experience.</p><!-- /wp:paragraph --></div><!-- /wp:group -->
 <!-- wp:group {"className":"features-pair__item"} --><div class="wp-block-group features-pair__item"><!-- wp:image --><figure class="wp-block-image"><img src="/wp-content/themes/skylinecruises-wordpress-theme/assets/icons/feature-sailing.png" alt="Smooth Sailing" /></figure><!-- /wp:image --><!-- wp:heading {"level":3} --><h3>Smooth Sailing</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Our yacht is a floating banquet room designed for year-round cruising. It is fully climate-controlled for year-round outings and because it sails in the calm, sheltered waters of the famous New York Harbor or Long Island Sound, you&#8217;ll experience smooth sailing.</p><!-- /wp:paragraph --></div><!-- /wp:group -->
 </div>
 <!-- /wp:group -->`;
@@ -127,13 +132,18 @@ const checklistItems = (items, itemClass = 'checklist-item') => items.map(
 // checklist's own photo, which this composer never had room for) renders the intro block as a
 // 2-col text+photo row via `--with-photo`, matching the same pattern already established for
 // textSection()'s `photo` param.
-const photoChecklistRow = ({ heading, intro, photo = '', introPhoto = '', items, gridCols = photo ? 1 : 2, itemClass = 'checklist-item', cta = 'Book Now' }) => `<!-- wp:group {"className":"photo-checklist-row"} -->
+// `listHeading` (optional): the 3 Buffet Menu pages' live checklist column has its own real h3
+// subheading right above the <ul> (e.g. "Dinner Entrée Choices" / "Brunch Entrée Choices" /
+// "Lunch Entrée Choices") — confirmed via live diff, was missing entirely from this composer.
+// No other category's checklist has this on live, so it's optional and a no-op when absent.
+const photoChecklistRow = ({ heading, intro, photo = '', introPhoto = '', listHeading = '', items, gridCols = photo ? 1 : 2, itemClass = 'checklist-item', cta = 'Book Now' }) => `<!-- wp:group {"className":"photo-checklist-row"} -->
 <div class="wp-block-group photo-checklist-row">
 <!-- wp:group {"className":"photo-checklist-row__intro${introPhoto ? ' photo-checklist-row__intro--with-photo' : ''}"} --><div class="wp-block-group photo-checklist-row__intro${introPhoto ? ' photo-checklist-row__intro--with-photo' : ''}">${introPhoto ? '<div class="photo-checklist-row__intro-col">' : ''}<!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->${intro ? `<!-- wp:paragraph {"className":"intro-copy"} --><p class="intro-copy">${intro}</p><!-- /wp:paragraph -->` : ''}${introPhoto ? `</div><!-- wp:image {"className":"photo-checklist-row__intro-photo"} --><figure class="wp-block-image photo-checklist-row__intro-photo"><img src="${introPhoto}" alt="" /></figure><!-- /wp:image -->` : ''}</div><!-- /wp:group -->
 <!-- wp:group {"className":"photo-checklist-row__body"} -->
 <div class="wp-block-group photo-checklist-row__body">
 ${photo ? `<!-- wp:image {"className":"photo-checklist-row__photo"} --><figure class="wp-block-image photo-checklist-row__photo"><img src="${photo}" alt="" /></figure><!-- /wp:image -->` : ''}
 <!-- wp:group {"className":"photo-checklist-row__list${!photo ? ' photo-checklist-row__list--card' : ''}"} --><div class="wp-block-group photo-checklist-row__list${!photo ? ' photo-checklist-row__list--card' : ''}"${gridCols > 1 ? ` style="display:grid;grid-template-columns:repeat(${gridCols},1fr);gap:16px 32px;"` : ''}>
+${listHeading ? `<!-- wp:heading {"level":3,"className":"photo-checklist-row__list-heading"} --><h3 class="photo-checklist-row__list-heading" style="grid-column:1/-1;">${listHeading}</h3><!-- /wp:heading -->` : ''}
 ${checklistItems(items, itemClass)}
 <!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link btn btn-gold" href="/contact-us/request-your-quote/">${cta}</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
 </div><!-- /wp:group -->
@@ -623,7 +633,7 @@ const TEMPLATE_BUILDERS = {
 		hero(d.hero),
 		textSection(d.intro),
 		photoChecklistRow({ ...d.checklist, gridCols: 2, itemClass: 'checklist-item--lg' }),
-		featuresPair(),
+		featuresPair({ serviceAlso: true }),
 		testimonial(d.testimonial),
 		closingCta(d.closingCta),
 	],

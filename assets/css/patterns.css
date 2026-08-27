@@ -1103,6 +1103,13 @@
   gap: 20px;
 }
 
+/* Buffet Menu pages' real live checklist heading (e.g. "Dinner Entrée Choices"), sitting above
+   the item list inside the same grid/flex list container — spans the full width via an inline
+   grid-column:1/-1 set in build-pages.js so it doesn't get boxed into the first grid cell. */
+.photo-checklist-row__list-heading {
+  margin-bottom: 4px;
+}
+
 .checklist-item {
   display: flex;
   align-items: center;
