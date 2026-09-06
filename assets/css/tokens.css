@@ -115,6 +115,16 @@ figure.wp-block-image {
   padding: 0;
 }
 
+/* Real bug found on /weddings/ (and any other plain-image .text-section on the site): a bare
+   wp-block-image figure had no responsive-image rule anywhere in this theme -- only named
+   component variants such as .text-section--with-photo ever got width/height:auto -- so a
+   native-resolution upload rendered at its own pixel width and overflowed its .text-section
+   wrap instead of being constrained to it. */
+.wp-block-image img {
+  max-width: 100%;
+  height: auto;
+}
+
 .wp-block-buttons {
   display: contents;
 }

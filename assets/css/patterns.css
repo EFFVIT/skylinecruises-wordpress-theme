@@ -712,7 +712,14 @@
   position: relative;
   border-radius: 23px;
   overflow: hidden;
-  min-height: 564px; /* 620 hero frame - 28*2 inset */
+  /* Was a fixed 564px (620 hero frame - 28*2 inset), same static-height issue as .homepage-hero
+     below -- didn't scale across screen sizes and the two banner treatments didn't match each
+     other. 100vh (100dvh override for mobile browser-chrome accuracy) unifies both, on every
+     breakpoint. .hero--short below is untouched -- its shorter height is a deliberate,
+     Figma-confirmed variant that exists specifically to keep long 2-line titles from clipping
+     behind the floating nav pill on lighter pages, not part of this fix. */
+  min-height: 100vh;
+  min-height: 100dvh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -1753,7 +1760,10 @@
    the same row (form no longer absolutely positioned), letting flexbox shrink the content
    column gracefully as space gets tight instead of either overlapping or falling below. */
 .homepage-hero {
-  min-height: 700px;
+  /* Was a fixed 700px -- static, didn't scale across screen sizes and didn't match the interior
+     .hero's own (also-fixed) height. 100vh/100dvh unifies both -- see .hero's comment above. */
+  min-height: 100vh;
+  min-height: 100dvh;
   align-items: flex-start;
   padding-top: 120px;
   display: flex;
@@ -2452,6 +2462,16 @@
 .blog-teasers__card a:hover {
   text-decoration: underline;
 }
+
+/* Archive pagination (home.php) — .btn/.btn-outline-navy classes are applied via the
+   previous_posts_link_attributes/next_posts_link_attributes filters in home.php itself, since
+   WordPress's pagination functions don't take a class argument directly. */
+.blog-teasers-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
 @media (max-width: 900px) {
   .blog-teasers__grid {
     grid-template-columns: 1fr;
