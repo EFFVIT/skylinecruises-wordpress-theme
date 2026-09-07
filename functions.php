@@ -24,7 +24,7 @@ function skyline_asset_version( $relative_path ) {
 function skyline_enqueue_assets() {
 	wp_enqueue_style(
 		'skyline-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Poppins:ital,wght@0,400;0,500;0,700&family=Lato:wght@400&display=swap',
+		'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Poppins:ital,wght@0,400;0,500;0,700&family=Lato:wght@400&family=Montserrat:wght@400&display=swap',
 		[],
 		null
 	);

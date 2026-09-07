@@ -222,9 +222,7 @@
     --hero-inset: 16px;
   }
   .hero {
-    /* No longer overriding min-height here -- the base .hero rule (patterns.css) is now
-       100vh/100dvh at every breakpoint, replacing this phone-only fixed 460px so the banner
-       height stays consistent instead of shrinking on small screens. */
+    min-height: 460px;
     border-radius: 16px;
     padding: 0 20px 40px;
   }

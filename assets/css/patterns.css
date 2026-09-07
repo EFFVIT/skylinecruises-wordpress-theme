@@ -712,14 +712,7 @@
   position: relative;
   border-radius: 23px;
   overflow: hidden;
-  /* Was a fixed 564px (620 hero frame - 28*2 inset), same static-height issue as .homepage-hero
-     below -- didn't scale across screen sizes and the two banner treatments didn't match each
-     other. 100vh (100dvh override for mobile browser-chrome accuracy) unifies both, on every
-     breakpoint. .hero--short below is untouched -- its shorter height is a deliberate,
-     Figma-confirmed variant that exists specifically to keep long 2-line titles from clipping
-     behind the floating nav pill on lighter pages, not part of this fix. */
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 564px; /* 620 hero frame - 28*2 inset */
   background-size: cover;
   background-position: center;
   display: flex;
@@ -1760,12 +1753,10 @@
    the same row (form no longer absolutely positioned), letting flexbox shrink the content
    column gracefully as space gets tight instead of either overlapping or falling below. */
 .homepage-hero {
-  /* Was a fixed 700px -- static, didn't scale across screen sizes and didn't match the interior
-     .hero's own (also-fixed) height. 100vh/100dvh unifies both -- see .hero's comment above. */
   min-height: 100vh;
   min-height: 100dvh;
   align-items: flex-start;
-  padding-top: 120px;
+  padding-top: 200px;
   display: flex;
   justify-content: space-between;
   gap: 40px;
@@ -2408,6 +2399,7 @@
 }
 .blog-teasers .intro-copy {
   color: var(--color-body-gray);
+  font-size: 18px;
   margin-bottom: 32px;
 }
 .blog-teasers__grid {
@@ -2441,7 +2433,7 @@
 }
 .blog-teasers__card h3 {
   font-family: var(--font-body);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 500;
   color: var(--color-navy);
   margin: 16px 0 12px;
