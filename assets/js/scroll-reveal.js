@@ -23,8 +23,10 @@
 		// client grid; a full article body), so the fade-up-on-scroll that works well for normal-height
 		// sections instead reads as the whole block lurching/popping into place at once. Every other
 		// top-level section keeps the animation — this is a two-section exclusion, not a global removal.
+		// main.hp2 > section covers Homepage 2 (page-templates/homepage-2.php), which uses its own
+		// <main class="hp2"> rather than page.php's main.page-content.
 		var targets = document.querySelectorAll(
-			'main.page-content > *:not(.testimonial-quote):not(.post-article), .newsletter-section'
+			'main.page-content > *:not(.testimonial-quote):not(.post-article), main.hp2 > section, .newsletter-section'
 		);
 
 		if ( ! targets.length ) {
