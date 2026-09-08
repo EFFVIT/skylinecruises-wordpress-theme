@@ -18,13 +18,13 @@
 	}
 
 	document.addEventListener( 'DOMContentLoaded', function () {
-		// .testimonial-quote (About/Info "Clients & Testimonials" page, /about-clients-testimonials/)
-		// is excluded by direct request: it's a single very tall section (2 quote cards + a ~40-name
-		// client grid), so the fade-up-on-scroll that works well for normal-height sections instead
-		// reads as the whole page content lurching/popping into place at once. Every other top-level
-		// section keeps the animation — this is a one-section exclusion, not a global removal.
+		// .testimonial-quote (About/Info "Clients & Testimonials" page) and .post-article (single.php's
+		// post-content wrapper) are excluded by direct request: both can run very long (a ~40-name
+		// client grid; a full article body), so the fade-up-on-scroll that works well for normal-height
+		// sections instead reads as the whole block lurching/popping into place at once. Every other
+		// top-level section keeps the animation — this is a two-section exclusion, not a global removal.
 		var targets = document.querySelectorAll(
-			'main.page-content > *:not(.testimonial-quote), .newsletter-section'
+			'main.page-content > *:not(.testimonial-quote):not(.post-article), .newsletter-section'
 		);
 
 		if ( ! targets.length ) {

@@ -1011,11 +1011,25 @@
 
 /* ===== text-section (patterns/text-section.php) =====
    Plain heading + paragraphs, no photo — shared across Private Event/Party, School Events, and
-   Port/Location intro sections (confirmed via direct Figma read, not a category-specific shape). */
+   Port/Location intro sections (confirmed via direct Figma read, not a category-specific shape).
+
+   Real bug (2026-09-08, direct user report on /yacht-charter/): `max-width:var(--content-width)`
+   (1400px, a FIXED cap) plus `padding-inline:var(--side-margin)` (157px) on top of it double-
+   counted the inset at wide viewports. hero-outer uses a totally different box model
+   (`width:var(--page-width); max-width:100%`, i.e. the box itself shrinks to fill the viewport
+   below 1713px, only capping at 1713px above it) — its content always ends up exactly
+   `side-margin` from the viewport edge at every width. text-section's old model kept the box
+   pinned to 1400px even as the viewport grew past that, so its own text drifted 100-260px+
+   further inset than the hero above it the wider the screen got — the text never actually lined
+   up with the hero/nav "wrap" it's supposed to share. Switching to hero-outer's exact box model
+   fixes the alignment at every breakpoint (content-width is no longer needed here: at desktop
+   this box model already resolves to ~1399px content width on its own, matching content-width's
+   original intent almost exactly). */
 .text-section {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
-  max-width: var(--content-width);
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
