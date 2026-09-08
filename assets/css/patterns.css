@@ -976,7 +976,13 @@
 }
 
 /* ===== photo-checklist-row (patterns/photo-checklist-row.php) — Public Cruise Service ===== */
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08 -- see .text-section's
+   comment for the full explanation). Same "no cap at all" bug as .ports-list had: grows wider
+   than the hero above the 1713px page-width breakpoint instead of capping at the same point. */
 .photo-checklist-row {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -1177,7 +1183,11 @@
    Real Leaflet/OpenStreetMap embed (self-hosted, assets/vendor/leaflet), NOT a static image —
    pins the real departure marina + real NYC landmarks, no fabricated route line. See
    assets/js/route-map.js for the init script and patterns/route-map.php for the coordinate data. */
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .route-map {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
   text-align: center;
 }
@@ -1223,7 +1233,11 @@
 }
 
 /* ===== tier-cards-3up / style-cards-2up (patterns/*.php) — Private Event/Party ===== */
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .card-grid-section {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -1279,10 +1293,14 @@
 /* ===== marina-grid-3x3 / ports-list (patterns/*.php) — School Events =====
    Confirmed via direct Figma read (node 120:236 "Check circle" instance): this category's
    marina-grid checkmark is 28px, distinct from both the 24px default and the 40px Buffet grid. */
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .marina-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px 40px;
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -1333,7 +1351,11 @@
 }
 
 /* ===== entertainment-chips (patterns/entertainment-chips.php) — School Events (Graduation) ===== */
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .entertainment-chips {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -1367,7 +1389,11 @@
 }
 
 /* ===== directions-block (patterns/directions-block.php) — Port/Location ===== */
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .directions-block {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -1388,7 +1414,11 @@
 }
 
 /* ===== hero-prose-cta / faq-accordion / testimonial-quote / bio-photo-gallery — About/Info ===== */
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .hero-prose-cta {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -1409,7 +1439,11 @@
   margin-top: 24px;
 }
 
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .faq-accordion {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -1444,7 +1478,11 @@
   padding: 0 0 24px;
 }
 
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .testimonial-quote {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -1455,7 +1493,11 @@
   margin-top: 32px;
 }
 
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .bio-photo-gallery {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -1487,10 +1529,14 @@
 /* ===== link-list (new 2026-08-24, build-pages.js linkList()) — Site Map / Friends & Affiliates,
    real link directories, not prose. No PHP pattern registered for this one (added directly to
    build-pages.js for the About/Info batch, not authored in the block-editor first). ===== */
+/* Same double-inset bug .text-section originally had (audit fix, 2026-09-08): max-width:content-width
+   PLUS side-margin padding on top of it double-counted the inset, so this ran narrower than the
+   hero above it at wide viewports. Switched to hero-outer's box model. */
 .link-list {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
-  max-width: var(--content-width);
-  margin: 0 auto;
 }
 
 .link-list__items {
@@ -1564,7 +1610,11 @@
 }
 
 /* ===== form-page-shell (patterns/form-page-shell.php) — Utility/Form ===== */
+/* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
 .form-page-shell {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
