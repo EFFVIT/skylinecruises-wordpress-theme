@@ -2542,20 +2542,23 @@
 }
 
 /* ===== single post (single.php) =====
-   Outer wrapper follows the same "max-width:var(--content-width), padding:Npx var(--side-margin)"
-   shape as every other top-level section (.text-section, .blog-teasers, etc.) so it inherits the
-   existing --side-margin responsive shrink for free. Reading column itself is capped narrower
-   (760px) inside that, since --content-width (1400px) is tuned for multi-column marketing
-   sections, not a single column of body copy. */
+   Same box model as hero-outer/.text-section (fixed 2026-09-08, see .text-section's own comment)
+   so the post body's wrap lines up with the banner and every other page's content width. Originally
+   shipped with a narrower 760px reading column inside this wrap for prose readability, but real
+   user feedback called that "too short" next to the hero/other pages' full width — removed in
+   favor of matching the site wrap exactly. */
 .post-article {
-  max-width: var(--content-width);
-  margin: 0 auto;
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin) 0;
 }
 
+/* No longer capped to a narrower 760px reading column (real user feedback: read as "too short"
+   next to the hero/other pages' full wrap width) -- .post-article already provides the wrap,
+   this is just a plain inner container now. */
 .post-article__inner {
-  max-width: 760px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 /* Prose scoped to migrated/editorial post content only — every element below is real output the
