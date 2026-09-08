@@ -1091,6 +1091,20 @@
   height: auto;
 }
 
+/* Real bug found 2026-09-08 (direct user report on /quinceanera-cruises/, also present on
+   /bar-bat-mitzvah-cruises/ and /sweet-16-party-cruise/ -- same "Special Events" template, all
+   three built from the same composer): the icon above was centered but its heading/paragraph
+   siblings stayed left-aligned like every plain .text-section, so the section read as
+   mismatched/off-balance -- a narrow centered icon sitting over the far-left edge of a full-width
+   left-aligned paragraph. The icon was always meant to anchor a fully centered feature block, not
+   just center itself in isolation; completing that here rather than un-centering the icon to
+   match, since a centered icon+heading+short-paragraph is the more deliberate, modern layout of
+   the two options. */
+.text-section:has(.text-section__icon) {
+  align-items: center;
+  text-align: center;
+}
+
 .photo-checklist-row__body {
   display: flex;
   gap: 40px;
