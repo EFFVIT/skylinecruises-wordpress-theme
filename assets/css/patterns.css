@@ -2461,6 +2461,15 @@
   padding: 60px var(--side-margin);
   text-align: center;
 }
+
+/* Related-posts usage only (single.php, directly after the post content) -- direct user request
+   to drop the left/right inset there specifically, not on the homepage/archive's own use of this
+   same grid. Vertical padding (breathing room above/below) is unchanged, just the sides. */
+.post-article + .blog-teasers {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .blog-teasers .intro-copy {
   color: var(--color-body-gray);
   font-size: 18px;
