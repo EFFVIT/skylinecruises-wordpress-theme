@@ -1292,7 +1292,14 @@
   height: 28px;
 }
 
+/* Same box model as hero-outer/.text-section (fixed 2026-09-08, direct user report that this
+   looked "off from other sections" -- .ports-list had no max-width/margin at all, just padding on
+   a full-width block, so above the 1713px page-width breakpoint it kept growing wider than the
+   hero/text-section instead of capping out at the same point they do). */
 .ports-list {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 80px var(--side-margin);
 }
 
@@ -2710,11 +2717,22 @@
 }
 
 /* Prev/Next/All-Posts row, same .btn-outline-navy pill already used for archive pagination
-   (home.php) rather than a new button style. */
+   (home.php) rather than a new button style.
+
+   Real bug (2026-09-08, confirmed via actual browser measurement, not guessed): the first/last
+   posts in the archive have no previous/next post, so single.php renders an empty <span></span>
+   in that slot rather than a link. With the old `display:flex; justify-content:space-between`,
+   that empty span still counted as a full flex item -- on a no-next-post page, space-between
+   distributed the row across 3 slots (prev, all-posts, invisible-empty-span) instead of 2, which
+   dragged "All Posts" noticeably right of true center (measured center ~1183px vs the wrap's real
+   center ~960px on a 1920px viewport) even though prev/next themselves DID sit flush with the
+   wrap edges. Grid with an explicit center column fixes this at the layout level: "All Posts"
+   always sits in its own middle column regardless of whether prev/next exist, rather than being
+   positioned relative to however many real items happen to be present. */
 .post-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
   margin-top: 64px;
   padding-top: 40px;
@@ -2722,13 +2740,21 @@
 }
 
 .post-nav .btn {
-  max-width: 32%;
+  max-width: 100%;
   white-space: normal;
   height: auto;
   min-height: 50px;
   text-align: center;
 }
 
+.post-nav__prev {
+  justify-self: start;
+}
+
 .post-nav__all {
-  flex-shrink: 0;
+  justify-self: center;
+}
+
+.post-nav__next {
+  justify-self: end;
 }

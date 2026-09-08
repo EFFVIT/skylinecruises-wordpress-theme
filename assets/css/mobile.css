@@ -397,12 +397,13 @@
      Celebration Your Guests Will Never Forget") — a 3-across row leaves too little width per
      button to wrap comfortably at true phone width, so stack instead. */
   .post-nav {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
     gap: 12px;
   }
-  .post-nav .btn {
-    max-width: 100%;
+  .post-nav__prev,
+  .post-nav__all,
+  .post-nav__next {
+    justify-self: stretch;
   }
 
   /* ===== events-cater — the 5-card masonry collage already collapses to a 2-col wrap at 1100px
