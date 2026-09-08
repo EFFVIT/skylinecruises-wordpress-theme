@@ -1492,6 +1492,56 @@
   color: var(--color-gold);
 }
 
+/* Optional photo-card variant, added 2026-09-08 for /yacht-charter/'s link-list (2 links out to
+   Waterfront Event Venue / Connecticut Cruises) — a bare 2-item text-link list read as almost
+   nothing on the page. Each card's photo is the linked page's OWN real hero image
+   (row35-hero.jpg, connecting-hero.jpg — same photo a visitor sees again once they click
+   through), not a stock/fabricated image. Purely additive: plain `.link-list__items` with no
+   `--photos` modifier (Site Map, Friends & Affiliates, every other hub page's link-list) is
+   untouched. */
+.link-list__items--photos {
+  gap: 32px;
+}
+
+.link-list__item a {
+  display: block;
+  background: var(--color-white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(11, 44, 77, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.15s ease;
+}
+
+.link-list__item a:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(11, 44, 77, 0.14);
+}
+
+.link-list__item img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.link-list__item span {
+  display: block;
+  padding: 20px 24px;
+  font-weight: 500;
+}
+
+/* Two "plain" sections (no card/photo boundary of their own, same page background) stacked
+   directly against each other each contribute a full top+bottom padding to the seam between
+   them — 80px + 80px reads as an unexplained 160px dead gap, not intentional breathing room
+   (real example: /yacht-charter/'s "Smooth Sailing" text-section running straight into "Virtual
+   Tour" with nothing marking why there's a gap at all). The first section's own bottom padding
+   is already a full unit of spacing; the second one doesn't need to stack a second on top of it. */
+.text-section + .text-section,
+.text-section + .link-list,
+.link-list + .text-section {
+  padding-top: 0;
+}
+
 /* ===== form-page-shell (patterns/form-page-shell.php) — Utility/Form ===== */
 .form-page-shell {
   padding: 80px var(--side-margin);
@@ -2475,4 +2525,184 @@
 .faq-view-more {
   text-align: center;
   padding: 0 var(--side-margin) 60px;
+}
+
+/* ===== single post (single.php) =====
+   Outer wrapper follows the same "max-width:var(--content-width), padding:Npx var(--side-margin)"
+   shape as every other top-level section (.text-section, .blog-teasers, etc.) so it inherits the
+   existing --side-margin responsive shrink for free. Reading column itself is capped narrower
+   (760px) inside that, since --content-width (1400px) is tuned for multi-column marketing
+   sections, not a single column of body copy. */
+.post-article {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 80px var(--side-margin) 0;
+}
+
+.post-article__inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* Prose scoped to migrated/editorial post content only — every element below is real output the
+   live-site migration + RankMath editor actually produces (confirmed via direct REST inspection
+   of 8 migrated posts: headings, paragraphs, wp-block-list uls, links, images/figcaptions, and a
+   rank-math-toc block on ~half of them). blockquote/table/ol are the same class of standard
+   block-editor output an editor will reach for eventually even though this migration batch
+   happened not to use them — styled alongside the rest rather than left to render bare. */
+.post-article__body {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-body-gray);
+}
+
+.post-article__body > * + * {
+  margin-top: 24px;
+}
+
+.post-article__body h2 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.3;
+  color: var(--color-navy);
+  margin-top: 48px;
+}
+
+.post-article__body h3 {
+  margin-top: 36px;
+}
+
+.post-article__body h2:first-child,
+.post-article__body h3:first-child {
+  margin-top: 0;
+}
+
+.post-article__body ul,
+.post-article__body ol {
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-article__body li {
+  line-height: 1.6;
+}
+
+.post-article__body li::marker {
+  color: var(--color-navy);
+}
+
+.post-article__body a {
+  color: var(--color-navy);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold);
+  text-underline-offset: 3px;
+}
+
+.post-article__body a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.post-article__body figure.wp-block-image {
+  margin: 0;
+}
+
+.post-article__body .wp-block-image img {
+  border-radius: 16px;
+  display: block;
+}
+
+.post-article__body figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--color-placeholder);
+  text-align: center;
+}
+
+.post-article__body blockquote {
+  margin: 0;
+  padding: 4px 0 4px 28px;
+  border-left: 4px solid var(--color-gold);
+  font-family: var(--font-intro);
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-navy);
+}
+
+.post-article__body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.post-article__body th,
+.post-article__body td {
+  padding: 12px 16px;
+  border: 1px solid var(--color-divider);
+  text-align: left;
+}
+
+.post-article__body iframe {
+  max-width: 100%;
+}
+
+/* RankMath's auto table-of-contents block — bare nested <ul><li><a> with no styling of its own,
+   rendered on roughly half of the migrated posts (confirmed via REST scan). Boxed as its own card
+   so it reads as a real "jump to a section" component instead of an unstyled bullet dump before
+   the first paragraph. */
+.post-article__body .wp-block-rank-math-toc-block {
+  background: var(--color-white);
+  border: 1px solid var(--color-divider);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+
+.post-article__body .wp-block-rank-math-toc-block nav > ul {
+  padding-left: 20px;
+  gap: 8px;
+}
+
+.post-article__body .wp-block-rank-math-toc-block ul ul {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+.post-article__body .wp-block-rank-math-toc-block a {
+  font-family: var(--font-body);
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--color-body-gray);
+}
+
+.post-article__body .wp-block-rank-math-toc-block a:hover {
+  color: var(--color-navy);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold);
+}
+
+/* Prev/Next/All-Posts row, same .btn-outline-navy pill already used for archive pagination
+   (home.php) rather than a new button style. */
+.post-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-divider);
+}
+
+.post-nav .btn {
+  max-width: 32%;
+  white-space: normal;
+  height: auto;
+  min-height: 50px;
+  text-align: center;
+}
+
+.post-nav__all {
+  flex-shrink: 0;
 }

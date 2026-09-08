@@ -383,6 +383,28 @@
     padding: 48px 20px;
   }
 
+  /* ===== single post (single.php) ===== */
+  .post-article {
+    padding-top: 48px;
+  }
+  .post-article__body {
+    font-size: 16px;
+  }
+  .post-article__body .wp-block-rank-math-toc-block {
+    padding: 20px 24px;
+  }
+  /* Prev/Next/All-Posts row: post titles can run long ("How to Host a Milestone Birthday
+     Celebration Your Guests Will Never Forget") — a 3-across row leaves too little width per
+     button to wrap comfortably at true phone width, so stack instead. */
+  .post-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .post-nav .btn {
+    max-width: 100%;
+  }
+
   /* ===== events-cater — the 5-card masonry collage already collapses to a 2-col wrap at 1100px
      (patterns.css), which is fine down to tablet width, but at true phone width a 410px-tall photo
      inside a ~155px-wide column (half of ~340px available after side-margin) is a very tall,
