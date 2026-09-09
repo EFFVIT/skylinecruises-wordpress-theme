@@ -4,9 +4,11 @@
  * header comment). Desktop-only in effect: .site-header is already position:fixed unconditionally
  * below the 900px breakpoint (patterns.css), so toggling this class there is a harmless no-op.
  *
- * Threshold is the pill's own resting offset (86px, patterns.css .site-header) rather than a
- * round number — that's the exact point the floating pill would start overlapping page content
- * if it didn't switch to fixed, so it flips right as it would otherwise start looking wrong.
+ * THRESHOLD is 70, not the pill's 86px resting offset — see patterns.css's own comment on
+ * .site-header.is-scrolled for the seamless-handoff math (86 - 70 = 16, matching that rule's
+ * `top: 16px`). Switching at 86 itself left an 16px pop/jump at the handoff instant; 70 is the
+ * value that makes the absolute->fixed switch land the header in the exact same screen position
+ * it was already in, so it reads as one continuous scroll instead of a snap.
  */
 ( function () {
 	var header = document.querySelector( '.site-header' );
@@ -14,7 +16,7 @@
 		return;
 	}
 
-	var THRESHOLD = 86;
+	var THRESHOLD = 70;
 	var ticking = false;
 
 	function update() {

@@ -12,19 +12,31 @@
   align-items: center;
   justify-content: space-between;
   z-index: 20;
-  transition: top 0.25s ease;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Sticky-on-scroll (assets/js/sticky-header.js toggles this class past the pill's own 86px
-   resting offset). Desktop only -- below 900px .site-header is already position:fixed
-   unconditionally (mobile nav block below), so this never needs to apply there.
-   .header-right__phone-label/svg default to white for legibility over the hero photo; pinned to
-   the top of the viewport the header can end up over any page background, so both switch to navy
-   here to stay readable. */
+/* Sticky-on-scroll (assets/js/sticky-header.js toggles this class). Desktop only -- below 900px
+   .site-header is already position:fixed unconditionally (mobile nav block below), so this never
+   needs to apply there.
+
+   The JS threshold (70px) is deliberately NOT the pill's 86px resting offset -- it's chosen so
+   the absolute-positioned header's on-screen position at the moment of the switch (86 - 70 = 16px
+   from the viewport top) lands exactly on this rule's own `top: 16px` fixed target. Both states
+   put the header in the identical screen spot at the handoff instant, so switching from
+   absolute->fixed reads as one continuous scroll instead of a jump/snap. Change one of these two
+   numbers and you have to change the other the same way (86 - JS threshold = this `top` value) or
+   the seam comes back.
+
+   .header-right__phone-label/svg default to white for legibility over the hero photo; once
+   pinned, the header sits on its own solid white bar instead (below) rather than the hero, so
+   both switch to navy to stay readable against that. */
 @media (min-width: 901px) {
   .site-header.is-scrolled {
     position: fixed;
     top: 16px;
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(11, 44, 77, 0.18);
   }
   .site-header.is-scrolled .header-right__phone-label {
     color: var(--color-navy);
