@@ -23,6 +23,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* z-index needs to live HERE, not just on .site-header -- it only has any effect on an element
+     that's actually positioned, and in the normal (non-scrolled) state .site-header itself is
+     static while this is the one that's position:absolute. Without it, .hero-outer's own
+     position:relative (patterns.css) gives the hero a stacking context of its own, and since it
+     comes after the header in the DOM, it painted on top and hid the header entirely until the
+     .is-scrolled state (where .site-header itself finally becomes position:fixed and its OWN
+     z-index:20 starts applying) kicked in. Real bug found live: header invisible on load, only
+     appeared after scrolling. */
+  z-index: 20;
   transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
