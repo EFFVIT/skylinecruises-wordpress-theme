@@ -305,7 +305,7 @@
 
   /* ===== photo-checklist-row / text-section / route-map / card-grid-section / marina-grid /
      ports-list / entertainment-chips / directions-block / hero-prose-cta / faq-accordion /
-     testimonial-quote / bio-photo-gallery / link-list / form-page-shell / site-footer —
+     testimonial-quote / bio-photo-gallery / link-list / form-page-shell / quote-split / site-footer —
      every one of these shares the same `padding: 80px var(--side-margin)` shape. --side-margin
      already shrunk above; this just tightens the vertical rhythm to match on a short viewport. */
   .photo-checklist-row,
@@ -321,7 +321,8 @@
   .testimonial-quote,
   .bio-photo-gallery,
   .link-list,
-  .form-page-shell {
+  .form-page-shell,
+  .quote-split {
     padding-top: 48px;
     padding-bottom: 48px;
   }
