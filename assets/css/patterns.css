@@ -1732,9 +1732,20 @@
   margin-bottom: 12px;
 }
 
+/* Elevated white card instead of a bare iframe sitting directly on the page background --
+   matches the same card language used elsewhere (.link-list__item a: white bg, rounded corners,
+   soft shadow). Sitewide, every Utility/Form page (contact-us, request-your-quote, etc.) gets
+   this, not a one-off treatment for a single page. */
 .form-page-shell__embed {
   max-width: 720px;
   margin: 0 auto;
+  background: var(--color-white);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(11, 44, 77, 0.12);
+  padding: 24px;
+}
+.form-page-shell__embed iframe {
+  display: block;
 }
 
 /* ===== newsletter-cta (template-parts/newsletter-cta.php) ===== */
@@ -2427,6 +2438,11 @@
   background: var(--color-navy);
   border-radius: 10px;
   padding: 32px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.office-locations__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(11, 44, 77, 0.25);
 }
 .office-locations__icon svg {
   width: 32px;
@@ -2516,6 +2532,11 @@
   background-position: center;
   background-blend-mode: luminosity;
   color: var(--color-white);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.why-skyline__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(11, 44, 77, 0.3);
 }
 .why-skyline__card::before {
   content: "";
