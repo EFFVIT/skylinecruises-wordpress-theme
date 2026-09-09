@@ -284,6 +284,25 @@ const formPageShell = ({ heading, intro, embedHtml }) => `<!-- wp:group {"classN
 </div>
 <!-- /wp:group -->`;
 
+// "Get a quote" split hero, added 2026-09-09 for /contact-us/request-your-quote/ — real info
+// about Skyline on the left, the actual live quote form on the right, both as the FIRST section
+// on the page rather than the form sitting alone at the bottom below a photo hero + several info
+// sections. Doubles as this page's hero (own h1 + trust-badges), so it's used INSTEAD OF hero(),
+// not alongside it — see .quote-split's own comment in patterns.css for why it needs its own
+// top-padding math (no photo card for the floating nav pill to sit over, unlike hero()/
+// homepageHero()). `checklist` is optional, same convention as every other composer here.
+const quoteFormSplit = ({ heading, paragraphs, checklist = [], formEmbed }) => `<!-- wp:group {"className":"quote-split"} -->
+<div class="wp-block-group quote-split">
+<div class="quote-split__info">
+<!-- wp:paragraph {"className":"trust-badges"} --><p class="trust-badges"><span class="trust-badge"><span>Since 1993</span></span><span class="trust-badge"><span>A+ BBB Rating</span></span><span class="trust-badge"><span>30+ Years Excellence</span></span></p><!-- /wp:paragraph -->
+<!-- wp:heading {"level":1} --><h1>${heading}</h1><!-- /wp:heading -->
+${paragraphs.map((p) => `<!-- wp:paragraph --><p>${p}</p><!-- /wp:paragraph -->`).join('\n')}
+${checklist.length ? `<!-- wp:html --><div class="quote-split__checklist">${checklistItems(checklist)}</div><!-- /wp:html -->` : ''}
+</div>
+<!-- wp:html --><div class="quote-split__form">${formEmbed}</div><!-- /wp:html -->
+</div>
+<!-- /wp:group -->`;
+
 // ---- About/Info composers, added 2026-08-24 for the 23-page About/Info + 6-page Utility/Form
 // batch — these mirror patterns/hero-prose-cta.php, faq-accordion.php, testimonial-quote.php, and
 // bio-photo-gallery.php exactly, just parameterized (the PHP patterns only ever shipped with
@@ -791,6 +810,7 @@ if (require.main === module) {
 module.exports = {
 	hero, featuresPair, testimonial, closingCta, checklistItems, photoChecklistRow, routeMap,
 	textSection, tierCards3up, styleCards2up, marinaGrid3x3, portsList, directionsBlock, formPageShell,
+	quoteFormSplit,
 	heroProseCta, faqAccordion, testimonialQuote, bioPhotoGallery, linkList,
 	homepageHero, eventsCaterGrid, occasionChecklist, officeLocationsGrid, whoWeAreSplit,
 	whySkylineGrid, cruiseGallery, blogTeasers, sailingFromCard,

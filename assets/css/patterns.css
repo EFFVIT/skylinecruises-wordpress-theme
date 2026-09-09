@@ -1748,6 +1748,48 @@
   display: block;
 }
 
+/* ===== quote-split (build-pages.js's quoteFormSplit()) — /contact-us/request-your-quote/ =====
+   Two-column "get a quote" hero: real info about Skyline on the left, the actual live quote form
+   on the right. Used as the FIRST section on the page INSTEAD OF hero() (own h1 lives here), so
+   the padding-top is deliberately much larger than every other section's standard 80px -- every
+   other first-section pattern (hero(), homepageHero()) clears the floating nav pill because the
+   pill sits OVER a tall photo card; this section has no photo card, so it needs real padding
+   instead. .quote-split__form reuses the exact same white-card treatment as
+   .form-page-shell__embed just above (same iframe, same visual language). */
+.quote-split {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 220px var(--side-margin) 80px;
+  display: flex;
+  align-items: flex-start;
+  gap: 56px;
+}
+.quote-split__info {
+  flex: 1 1 480px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.quote-split__checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+.quote-split__form {
+  flex: 1 1 480px;
+  min-width: 320px;
+  background: var(--color-white);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(11, 44, 77, 0.12);
+  padding: 24px;
+}
+.quote-split__form iframe {
+  display: block;
+}
+
 /* ===== newsletter-cta (template-parts/newsletter-cta.php) ===== */
 /* Full-bleed band: on a screen wider than 1713px, the light-blue background now fills the whole
    browser width instead of stopping at a fixed 1713px box (which was also, per the .hero-outer

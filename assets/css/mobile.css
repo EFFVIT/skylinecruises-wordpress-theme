@@ -57,6 +57,21 @@
     flex: none;
   }
 
+  /* quote-split (/contact-us/request-your-quote/) — same fixed-width-flex-row overflow as every
+     other --with-photo pattern above, PLUS a real problem those don't have: below 900px the
+     floating desktop nav pill switches to the fixed mobile bar (patterns.css), which is
+     position:fixed and so doesn't push page content down on its own -- every other page's first
+     section is a tall photo hero that simply extends up underneath that bar (fine, it's a photo);
+     this section's real text/trust-badges have nothing to extend under, so without its own
+     padding-top the mobile bar would sit directly on top of the h1. 96px covers the bar's own
+     64px height plus real breathing room. Desktop's much larger 220px isn't needed here since the
+     nav pill isn't floating over anything at this width. */
+  .quote-split {
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 96px;
+  }
+
   /* photo-checklist-row__body (Public Cruise Service intro, Buffet Menu, etc.) — flex row with a
      flex-shrink:0, 560px-wide photo never had a breakpoint either; same class of overflow. */
   .photo-checklist-row__body {
