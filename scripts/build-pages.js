@@ -747,7 +747,7 @@ const TEMPLATE_BUILDERS = {
 		blogTeasers(d.blogTeasers),
 		testimonial(d.testimonial),
 		faqAccordion(d.faq),
-		`<!-- wp:paragraph {"className":"faq-view-more"} --><p class="faq-view-more"><a class="btn btn-outline-navy" href="/about-faq/">View More FAQs</a></p><!-- /wp:paragraph -->`,
+		`<!-- wp:paragraph {"className":"faq-view-more"} --><p class="faq-view-more"><a class="btn btn-outline-navy" href="/about-skyline-cruises/about-faq/">View More FAQs</a></p><!-- /wp:paragraph -->`,
 	],
 };
 
