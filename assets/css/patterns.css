@@ -1,7 +1,19 @@
 /* Section-scoped styles. One block per pattern/template-part, matching the plan's file list. */
 
-/* ===== site-header (template-parts/site-header.php) ===== */
+/* ===== site-header (template-parts/site-header.php) =====
+   Split into two elements on purpose: .site-header (the outer <header>) only ever carries
+   position/background/shadow, never the nav layout itself -- that's so the sticky-on-scroll
+   background (below) can go full viewport width while .site-header__inner (the div wrapping
+   nav-pill + header-right in the PHP template) stays centered at the normal content-width,
+   exactly where it sits today. A single element can't do both: an element wide enough to paint
+   edge-to-edge can't also be the same box whose children are centered at a narrower fixed width
+   via transform. */
 .site-header {
+  z-index: 20;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-header__inner {
   position: absolute;
   top: 86px;
   left: 50%;
@@ -11,32 +23,49 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 20;
-  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Sticky-on-scroll (assets/js/sticky-header.js toggles this class). Desktop only -- below 900px
-   .site-header is already position:fixed unconditionally (mobile nav block below), so this never
-   needs to apply there.
+/* Sticky-on-scroll (assets/js/sticky-header.js toggles this class on .site-header). Desktop only
+   -- below 900px .site-header is already position:fixed unconditionally (mobile nav block
+   below), so this never needs to apply there.
 
    The JS threshold (70px) is deliberately NOT the pill's 86px resting offset -- it's chosen so
-   the absolute-positioned header's on-screen position at the moment of the switch (86 - 70 = 16px
-   from the viewport top) lands exactly on this rule's own `top: 16px` fixed target. Both states
-   put the header in the identical screen spot at the handoff instant, so switching from
-   absolute->fixed reads as one continuous scroll instead of a jump/snap. Change one of these two
-   numbers and you have to change the other the same way (86 - JS threshold = this `top` value) or
-   the seam comes back.
+   .site-header__inner's on-screen position at the moment of the switch (86 - 70 = 16px from the
+   viewport top) lands exactly on this rule's own `padding-top` below. Both states put the nav row
+   in the identical screen spot at the handoff instant, so switching from absolute->fixed reads as
+   one continuous scroll instead of a jump/snap. Change one of these two numbers and you have to
+   change the other the same way (86 - JS threshold = the padding value) or the seam comes back.
+
+   .is-scrolled becomes the full-width bar itself (position:fixed, no left/transform centering --
+   that's the whole point, edge to edge) and lays .site-header__inner out with plain flexbox
+   centering instead of the absolute+transform trick the unscrolled state needs (it has no
+   surrounding bar to center within yet). .nav-pill's own box-shadow is dropped here too -- it
+   would double up with this bar's own shadow once the pill is sitting flush on a matching white
+   background instead of floating over the hero photo.
 
    .header-right__phone-label/svg default to white for legibility over the hero photo; once
-   pinned, the header sits on its own solid white bar instead (below) rather than the hero, so
-   both switch to navy to stay readable against that. */
+   pinned, the header sits on its own solid white bar instead, so both switch to navy to stay
+   readable against that. */
 @media (min-width: 901px) {
   .site-header.is-scrolled {
     position: fixed;
-    top: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
     background: var(--color-white);
-    border-radius: 16px;
     box-shadow: 0 4px 16px rgba(11, 44, 77, 0.18);
+  }
+  .site-header.is-scrolled .site-header__inner {
+    position: static;
+    transform: none;
+  }
+  .site-header.is-scrolled .nav-pill {
+    box-shadow: none;
   }
   .site-header.is-scrolled .header-right__phone-label {
     color: var(--color-navy);

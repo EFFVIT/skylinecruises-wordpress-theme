@@ -241,6 +241,12 @@ function skyline_render_nav_row( $item, $with_description = false ) {
 }
 ?>
 <header class="site-header">
+	<!-- Separate from .site-header itself so the sticky-on-scroll background (patterns.css
+	     .site-header.is-scrolled) can go full viewport width while this inner group -- logo, nav
+	     pill, phone/button -- stays centered at the normal content-width, exactly like it sits
+	     when NOT scrolled. See patterns.css's own comment on .site-header__inner for why this is
+	     a separate element rather than styling .site-header directly. -->
+	<div class="site-header__inner">
 	<nav class="nav-pill">
 		<a class="nav-pill__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<img src="<?php echo esc_url( $logo ); ?>" alt="Skyline Cruises" width="114" height="51" />
@@ -332,6 +338,7 @@ function skyline_render_nav_row( $item, $with_description = false ) {
 			<span class="header-right__phone-label">Call (718) 446-1100 For The Next Event</span>
 		</a>
 		<a class="btn btn-gold" href="/contact-us/request-your-quote/">Book Now</a>
+	</div>
 	</div>
 
 	<!-- Mobile nav: persistent light bar (logo + toggle) opening a full-viewport drawer below it,
