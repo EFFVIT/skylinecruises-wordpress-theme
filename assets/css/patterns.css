@@ -1749,18 +1749,17 @@
 }
 
 /* ===== quote-split (build-pages.js's quoteFormSplit()) — /contact-us/request-your-quote/ =====
-   Two-column "get a quote" hero: real info about Skyline on the left, the actual live quote form
-   on the right. Used as the FIRST section on the page INSTEAD OF hero() (own h1 lives here), so
-   the padding-top is deliberately much larger than every other section's standard 80px -- every
-   other first-section pattern (hero(), homepageHero()) clears the floating nav pill because the
-   pill sits OVER a tall photo card; this section has no photo card, so it needs real padding
-   instead. .quote-split__form reuses the exact same white-card treatment as
-   .form-page-shell__embed just above (same iframe, same visual language). */
+   Two-column "get a quote" section: real info about Skyline on the left, the actual live quote
+   form on the right. Sits right after the page's normal hero() (not instead of it), so it uses
+   the same standard 80px padding every other non-first section does -- no special nav-pill
+   clearance needed here, hero() above it already handles that. .quote-split__form reuses the
+   exact same white-card treatment as .form-page-shell__embed just above (same iframe, same
+   visual language). */
 .quote-split {
   width: var(--page-width);
   max-width: 100%;
   margin-inline: auto;
-  padding: 220px var(--side-margin) 80px;
+  padding: 80px var(--side-margin);
   display: flex;
   align-items: flex-start;
   gap: 56px;
