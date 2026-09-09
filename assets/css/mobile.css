@@ -176,7 +176,15 @@
   .homepage-hero__ctas {
     grid-template-columns: 1fr;
   }
-  .homepage-hero__ctas .btn {
+
+  /* Bug (2) above was only ever fixed for .homepage-hero__ctas's buttons specifically -- real
+     report (2026-09-09) on /about-skyline-cruises/, whose hero-prose-cta__cta buttons carry the
+     same long, multi-line-on-mobile labels ("Come Out And Experience It For Yourself - Book
+     Now!") with nothing narrowing them into a grid track first. Confirms this was never a
+     homepage-only bug: ANY .btn whose label wraps at this width overflows past its own fixed
+     50px height the same way. Generalized to every button site-wide instead of special-casing
+     each page it turns up on. */
+  .btn {
     height: auto;
     min-height: 50px;
     padding: 14px 24px;
