@@ -1616,10 +1616,17 @@
    them — 80px + 80px reads as an unexplained 160px dead gap, not intentional breathing room
    (real example: /yacht-charter/'s "Smooth Sailing" text-section running straight into "Virtual
    Tour" with nothing marking why there's a gap at all). The first section's own bottom padding
-   is already a full unit of spacing; the second one doesn't need to stack a second on top of it. */
+   is already a full unit of spacing; the second one doesn't need to stack a second on top of it.
+   .ports-list shares the exact same box model (padding: 80px var(--side-margin), see its own
+   comment above) but was missed from this list when it was first written — same doubled-gap bug
+   on School Events (non-hub) pages whose textSection() intro runs straight into portsList(), e.g.
+   /graduation-cruises-parties/ (also affects prom-after-prom-cruises, college-cruises,
+   college-alumni-cruises, which share the same template/section order). */
 .text-section + .text-section,
 .text-section + .link-list,
-.link-list + .text-section {
+.link-list + .text-section,
+.text-section + .ports-list,
+.ports-list + .text-section {
   padding-top: 0;
 }
 
