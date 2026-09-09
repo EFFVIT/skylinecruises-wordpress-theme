@@ -12,6 +12,26 @@
   align-items: center;
   justify-content: space-between;
   z-index: 20;
+  transition: top 0.25s ease;
+}
+
+/* Sticky-on-scroll (assets/js/sticky-header.js toggles this class past the pill's own 86px
+   resting offset). Desktop only -- below 900px .site-header is already position:fixed
+   unconditionally (mobile nav block below), so this never needs to apply there.
+   .header-right__phone-label/svg default to white for legibility over the hero photo; pinned to
+   the top of the viewport the header can end up over any page background, so both switch to navy
+   here to stay readable. */
+@media (min-width: 901px) {
+  .site-header.is-scrolled {
+    position: fixed;
+    top: 16px;
+  }
+  .site-header.is-scrolled .header-right__phone-label {
+    color: var(--color-navy);
+  }
+  .site-header.is-scrolled .header-right__phone svg {
+    stroke: var(--color-navy);
+  }
 }
 
 /* Real overflow found via user screenshot right after the 41px gap fix above: the pill's fixed
