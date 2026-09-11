@@ -29,24 +29,38 @@ $uploads = 'https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/';
 <main class="hp2">
 
 	<!-- ===== Hero ===== -->
-	<section class="hp2-hero" style="background-image:url(<?php echo esc_url( $uploads . 'home-hero-bg-1024x683.jpg' ); ?>)">
+	<section class="hp2-hero">
+		<div class="hp2-hero__bg" style="background-image:url(<?php echo esc_url( $uploads . 'home-hero-bg-1024x683.jpg' ); ?>)" data-parallax></div>
 		<div class="hp2-hero__inner">
-			<div>
-				<span class="hp2__eyebrow">New York Harbor &middot; Since 1993</span>
-				<h1>NYC Dinner Cruises &amp; Private Yacht Charters</h1>
+			<div class="hp2-hero__content">
+				<span class="hp2__eyebrow hp2__eyebrow--light">New York Harbor &middot; Since 1993</span>
+				<h1 class="hp2-hero__headline" data-split-lines>
+					<span class="hp2-hero__line"><span>NYC Dinner Cruises</span></span>
+					<span class="hp2-hero__line"><span>&amp; Private Yacht Charters</span></span>
+				</h1>
 				<p class="hp2-hero__sub">Our &ldquo;Super Yacht&rdquo; Skyline Princess is the only vessel sailing New York Harbor with an enclosed rooftop deck &mdash; the most versatile charter yacht in the Northeast, sailing past the Statue of Liberty in every season.</p>
 				<div class="hp2-hero__ctas">
 					<a class="btn btn-gold" href="/contact-us/request-your-quote/">Schedule a Public Cruise</a>
-					<a class="hp2-hero__link" href="/the-great-escape-yacht-rental/">The Great Escape &mdash; Private Charter for Up to 6 &rarr;</a>
+					<a class="btn btn-outline-white" href="/the-great-escape-yacht-rental/">The Great Escape &mdash; Private Charter</a>
+				</div>
+				<div class="hp2-hero__badges">
+					<span class="hp2-hero__badge"><strong>1993</strong>Est.</span>
+					<span class="hp2-hero__badge"><strong>A+</strong>BBB Rating</span>
+					<span class="hp2-hero__badge"><strong>450</strong>Guest Capacity</span>
+					<span class="hp2-hero__badge"><strong>30+</strong>Years Excellence</span>
 				</div>
 			</div>
-			<div class="hp2-hero__badges">
-				<span class="hp2-hero__badge"><strong>1993</strong>Est.</span>
-				<span class="hp2-hero__badge"><strong>A+</strong>BBB Rating</span>
-				<span class="hp2-hero__badge"><strong>450</strong>Guest Capacity</span>
-				<span class="hp2-hero__badge"><strong>30+</strong>Years Excellence</span>
-			</div>
+
+			<form class="hp2-hero__form">
+				<h3>Submit an Inquiry</h3>
+				<label>Full Name <span>*</span><input type="text" name="full_name" required /></label>
+				<label>Email Address <span>*</span><input type="email" name="email" required /></label>
+				<label>Phone Number <span>*</span><input type="tel" name="phone" required /></label>
+				<button type="submit" class="btn btn-gold">Submit</button>
+			</form>
 		</div>
+
+		<div class="hp2-hero__scrollcue" aria-hidden="true"><span></span><em>Scroll</em></div>
 	</section>
 
 	<!-- ===== Stat strip ===== -->
@@ -85,6 +99,7 @@ $uploads = 'https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/';
 			<div class="hp2-exp-grid">
 				<a class="hp2-exp-card" href="/weddings/">
 					<img src="<?php echo esc_url( $uploads . 'home-events-featured-full.png' ); ?>" alt="Wedding aboard Skyline Cruises" />
+					<span class="hp2-exp-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
 					<div class="hp2-exp-card__body">
 						<span class="hp2-exp-card__num">01</span>
 						<h3>Weddings</h3>
@@ -93,6 +108,7 @@ $uploads = 'https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/';
 				</a>
 				<a class="hp2-exp-card" href="/corporate-cruises/">
 					<img src="<?php echo esc_url( $uploads . 'home-events-photo2.png' ); ?>" alt="Corporate cruise" />
+					<span class="hp2-exp-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
 					<div class="hp2-exp-card__body">
 						<span class="hp2-exp-card__num">02</span>
 						<h3>Corporate Cruises</h3>
@@ -101,6 +117,7 @@ $uploads = 'https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/';
 				</a>
 				<a class="hp2-exp-card" href="/nyc-party-cruises/">
 					<img src="<?php echo esc_url( $uploads . 'home-events-photo3.png' ); ?>" alt="Private party cruise" />
+					<span class="hp2-exp-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
 					<div class="hp2-exp-card__body">
 						<span class="hp2-exp-card__num">03</span>
 						<h3>Private Parties</h3>
@@ -109,6 +126,7 @@ $uploads = 'https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/';
 				</a>
 				<a class="hp2-exp-card" href="/nyc-holiday-cruises/">
 					<img src="<?php echo esc_url( $uploads . 'home-events-photo4.png' ); ?>" alt="Holiday cruise" />
+					<span class="hp2-exp-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
 					<div class="hp2-exp-card__body">
 						<span class="hp2-exp-card__num">04</span>
 						<h3>Holiday Cruises</h3>
@@ -117,6 +135,7 @@ $uploads = 'https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/';
 				</a>
 				<a class="hp2-exp-card" href="/the-great-escape-yacht-rental/">
 					<img src="<?php echo esc_url( $uploads . 'home-events-photo5.png' ); ?>" alt="Private event cruise" />
+					<span class="hp2-exp-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
 					<div class="hp2-exp-card__body">
 						<span class="hp2-exp-card__num">05</span>
 						<h3>Private Event Cruises</h3>
@@ -127,7 +146,11 @@ $uploads = 'https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/';
 		</div>
 	</section>
 
-	<!-- ===== Why Skyline — alternating rows ===== -->
+	<!-- ===== Why Skyline — pinned scroll stack: section stays pinned in the viewport while its
+	     4 text+photo panels crossfade over one another as the user scrolls; once the last panel
+	     has been seen, the page continues scrolling normally into the next section. Driven by
+	     hp2.js (data-pin-stack), pure CSS fallback (plain stacked rows) if JS/IntersectionObserver
+	     is unavailable or prefers-reduced-motion is set — see homepage-2.css. ===== -->
 	<section class="hp2-why">
 		<div class="hp2-section-head">
 			<div>
@@ -136,40 +159,47 @@ $uploads = 'https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/';
 			</div>
 		</div>
 
-		<div class="hp2-why-row reveal">
-			<div class="hp2-why-row__text">
-				<span class="hp2-why-row__num">01</span>
-				<h3>Unmatched Views</h3>
-				<p>Sail past iconic landmarks including the Statue of Liberty, Brooklyn Bridge, and the glittering Manhattan skyline &mdash; routes carefully planned to showcase the best of New York Harbor.</p>
+		<div class="hp2-why-stack" data-pin-stack>
+			<div class="hp2-why-sticky">
+				<div class="hp2-why-panel is-active" data-panel="0">
+					<div class="hp2-why-panel__text">
+						<span class="hp2-why-row__num">01 / 04</span>
+						<h3>Unmatched Views</h3>
+						<p>Sail past iconic landmarks including the Statue of Liberty, Brooklyn Bridge, and the glittering Manhattan skyline &mdash; routes carefully planned to showcase the best of New York Harbor.</p>
+					</div>
+					<div class="hp2-why-panel__photo"><img src="<?php echo esc_url( $uploads . 'home-why-1-1024x683.jpg' ); ?>" alt="Manhattan skyline view from the water" /></div>
+				</div>
+				<div class="hp2-why-panel" data-panel="1">
+					<div class="hp2-why-panel__text">
+						<span class="hp2-why-row__num">02 / 04</span>
+						<h3>Exceptional Cuisine</h3>
+						<p>Our culinary team creates custom menus featuring fresh, locally-sourced ingredients &mdash; from elegant plated dinners to lavish buffets, every dish prepared to perfection.</p>
+					</div>
+					<div class="hp2-why-panel__photo"><img src="<?php echo esc_url( $uploads . 'home-why-2-1024x683.jpg' ); ?>" alt="Onboard dining" /></div>
+				</div>
+				<div class="hp2-why-panel" data-panel="2">
+					<div class="hp2-why-panel__text">
+						<span class="hp2-why-row__num">03 / 04</span>
+						<h3>Professional Service</h3>
+						<p>Our experienced crew and event coordinators ensure every detail is flawlessly executed &mdash; from planning to execution, we&rsquo;re with you every step of the way.</p>
+					</div>
+					<div class="hp2-why-panel__photo"><img src="<?php echo esc_url( $uploads . 'home-why-3-1024x683.jpg' ); ?>" alt="Skyline Cruises crew" /></div>
+				</div>
+				<div class="hp2-why-panel" data-panel="3">
+					<div class="hp2-why-panel__text">
+						<span class="hp2-why-row__num">04 / 04</span>
+						<h3>Flexible Options</h3>
+						<p>Choose from our public dinner cruises or charter an entire yacht for your private event &mdash; customizable packages built to fit any budget and vision.</p>
+					</div>
+					<div class="hp2-why-panel__photo"><img src="<?php echo esc_url( $uploads . 'home-why-4-1024x683.jpg' ); ?>" alt="Private charter yacht" /></div>
+				</div>
+				<div class="hp2-why-progress" aria-hidden="true">
+					<span data-dot="0" class="is-active"></span>
+					<span data-dot="1"></span>
+					<span data-dot="2"></span>
+					<span data-dot="3"></span>
+				</div>
 			</div>
-			<div class="hp2-why-row__photo"><img src="<?php echo esc_url( $uploads . 'home-why-1-1024x683.jpg' ); ?>" alt="Manhattan skyline view from the water" /></div>
-		</div>
-
-		<div class="hp2-why-row hp2-why-row--reverse reveal">
-			<div class="hp2-why-row__text">
-				<span class="hp2-why-row__num">02</span>
-				<h3>Exceptional Cuisine</h3>
-				<p>Our culinary team creates custom menus featuring fresh, locally-sourced ingredients &mdash; from elegant plated dinners to lavish buffets, every dish prepared to perfection.</p>
-			</div>
-			<div class="hp2-why-row__photo"><img src="<?php echo esc_url( $uploads . 'home-why-2-1024x683.jpg' ); ?>" alt="Onboard dining" /></div>
-		</div>
-
-		<div class="hp2-why-row reveal">
-			<div class="hp2-why-row__text">
-				<span class="hp2-why-row__num">03</span>
-				<h3>Professional Service</h3>
-				<p>Our experienced crew and event coordinators ensure every detail is flawlessly executed &mdash; from planning to execution, we&rsquo;re with you every step of the way.</p>
-			</div>
-			<div class="hp2-why-row__photo"><img src="<?php echo esc_url( $uploads . 'home-why-3-1024x683.jpg' ); ?>" alt="Skyline Cruises crew" /></div>
-		</div>
-
-		<div class="hp2-why-row hp2-why-row--reverse reveal">
-			<div class="hp2-why-row__text">
-				<span class="hp2-why-row__num">04</span>
-				<h3>Flexible Options</h3>
-				<p>Choose from our public dinner cruises or charter an entire yacht for your private event &mdash; customizable packages built to fit any budget and vision.</p>
-			</div>
-			<div class="hp2-why-row__photo"><img src="<?php echo esc_url( $uploads . 'home-why-4-1024x683.jpg' ); ?>" alt="Private charter yacht" /></div>
 		</div>
 	</section>
 
@@ -279,27 +309,31 @@ $uploads = 'https://178-156-192-164.sslip.io/wp-content/uploads/2026/08/';
 
 	<!-- ===== FAQ ===== -->
 	<section class="hp2-faq reveal">
-		<span class="hp2__eyebrow">Good to Know</span>
-		<h2>Frequently Asked Questions</h2>
+		<div class="hp2-faq__head">
+			<span class="hp2__eyebrow">Good to Know</span>
+			<h2>Frequently Asked Questions</h2>
+		</div>
 
-		<details class="hp2-faq-item">
-			<summary>Isn&rsquo;t chartering a yacht more expensive than a catering hall?</summary>
-			<p>The costs are not as different as you think &mdash; many pricing options meet most budgets, and seasonal rates can run lower than land-based venues. It&rsquo;s also about value: an event that&rsquo;s unique and unforgettable is worth a little more.</p>
-		</details>
-		<details class="hp2-faq-item">
-			<summary>What happens if the weather is bad? Will my guests get seasick?</summary>
-			<p>No need to worry &mdash; the Skyline Princess is fully climate-controlled and sails rain or shine. We sail in calm, sheltered harbor waters, not the open ocean, so seasickness is never a problem.</p>
-		</details>
-		<details class="hp2-faq-item">
-			<summary>Is the food as good as a restaurant?</summary>
-			<p>Our food is some of the best in the harbor, prepared on board in our full galley the day of your event by our own chef, paired with high-quality premium liquors.</p>
-		</details>
-		<details class="hp2-faq-item">
-			<summary>I have a large party &mdash; are there boats big enough?</summary>
-			<p>The Skyline Princess is 120 feet long with three full passenger levels, US Coast Guard certified for up to 450 passengers &mdash; the most versatile dinner cruise charter yacht based outside Manhattan.</p>
-		</details>
+		<div class="hp2-faq__list">
+			<details class="hp2-faq-item">
+				<summary><span>Isn&rsquo;t chartering a yacht more expensive than a catering hall?</span></summary>
+				<p>The costs are not as different as you think &mdash; many pricing options meet most budgets, and seasonal rates can run lower than land-based venues. It&rsquo;s also about value: an event that&rsquo;s unique and unforgettable is worth a little more.</p>
+			</details>
+			<details class="hp2-faq-item">
+				<summary><span>What happens if the weather is bad? Will my guests get seasick?</span></summary>
+				<p>No need to worry &mdash; the Skyline Princess is fully climate-controlled and sails rain or shine. We sail in calm, sheltered harbor waters, not the open ocean, so seasickness is never a problem.</p>
+			</details>
+			<details class="hp2-faq-item">
+				<summary><span>Is the food as good as a restaurant?</span></summary>
+				<p>Our food is some of the best in the harbor, prepared on board in our full galley the day of your event by our own chef, paired with high-quality premium liquors.</p>
+			</details>
+			<details class="hp2-faq-item">
+				<summary><span>I have a large party &mdash; are there boats big enough?</span></summary>
+				<p>The Skyline Princess is 120 feet long with three full passenger levels, US Coast Guard certified for up to 450 passengers &mdash; the most versatile dinner cruise charter yacht based outside Manhattan.</p>
+			</details>
+		</div>
 
-		<p class="faq-view-more" style="text-align:center;margin-top:40px"><a class="btn btn-outline-navy" href="/about-faq/">View More FAQs</a></p>
+		<p class="faq-view-more" style="text-align:center;margin-top:48px"><a class="btn btn-outline-navy" href="/about-faq/">View More FAQs</a></p>
 	</section>
 
 </main>

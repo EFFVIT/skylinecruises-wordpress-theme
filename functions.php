@@ -63,11 +63,12 @@ function skyline_enqueue_assets() {
 	}
 
 	// Homepage 2 (page-templates/homepage-2.php) — kept fully isolated from the rest of the
-	// theme's own design: its own stylesheet + the stat count-up script, only ever loaded on
-	// this one template, so it can't affect page.php's homepage or any other page.
+	// theme's own design: its own stylesheet + script (hero parallax/reveal, stat count-up, the
+	// Why Skyline pinned scroll-stack), only ever loaded on this one template, so it can't affect
+	// page.php's homepage or any other page.
 	if ( is_page_template( 'page-templates/homepage-2.php' ) ) {
 		wp_enqueue_style( 'skyline-homepage-2', get_template_directory_uri() . '/assets/css/homepage-2.css', [ 'skyline-tokens', 'skyline-patterns' ], skyline_asset_version( '/assets/css/homepage-2.css' ) );
-		wp_enqueue_script( 'skyline-stat-count', get_template_directory_uri() . '/assets/js/stat-count.js', [], skyline_asset_version( '/assets/js/stat-count.js' ), true );
+		wp_enqueue_script( 'skyline-hp2', get_template_directory_uri() . '/assets/js/hp2.js', [], skyline_asset_version( '/assets/js/hp2.js' ), true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'skyline_enqueue_assets' );

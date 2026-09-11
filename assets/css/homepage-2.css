@@ -44,24 +44,36 @@
   color: var(--hp2-cream-deep);
 }
 
-/* ===== Hero ===== */
+/* ===== Hero =====
+   Full-bleed parallax photo (a separate absolutely-positioned layer, oversized + translated on
+   scroll via hp2.js's [data-parallax] handler, not the section background itself, so the
+   overlay/content never moves) behind an asymmetric two-column layout: headline+CTAs on the
+   left, a real lead-capture form on the right (same fields as the live homepage's own
+   .homepage-lead-form) in a frosted glass card. Headline splits into per-line spans that slide
+   up on load (see homepage-2.css's [data-split-lines] + hp2.js). */
 .hp2-hero {
   position: relative;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
-  align-items: flex-end;
-  background-size: cover;
-  background-position: center;
-  padding: 220px 0 96px;
+  align-items: center;
+  overflow: hidden;
 }
 
-.hp2-hero::before {
+.hp2-hero__bg {
+  position: absolute;
+  inset: -10% 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.hp2-hero__bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(11, 44, 77, 0.15) 0%, rgba(11, 44, 77, 0.2) 45%, rgba(9, 26, 43, 0.92) 100%);
+    linear-gradient(115deg, rgba(9, 26, 43, 0.88) 0%, rgba(11, 44, 77, 0.6) 42%, rgba(11, 44, 77, 0.32) 100%);
 }
 
 .hp2-hero__inner {
@@ -71,25 +83,49 @@
   max-width: 100%;
   margin-inline: auto;
   padding-inline: var(--side-margin);
+  padding-top: 140px;
   display: grid;
-  grid-template-columns: minmax(0, 780px) 1fr;
-  gap: 40px;
-  align-items: end;
+  grid-template-columns: minmax(0, 680px) 380px;
+  gap: 64px;
+  align-items: start;
 }
 
-.hp2-hero h1 {
+.hp2-hero__headline {
   margin: 20px 0 0;
-  font-size: 92px;
-  line-height: 0.98;
+  overflow: hidden;
+}
+
+.hp2-hero__line {
+  display: block;
+  overflow: hidden;
+}
+
+.hp2-hero__line span {
+  display: block;
+  font-size: 78px;
+  line-height: 1.04;
   color: var(--color-white);
   letter-spacing: -0.5px;
+  transform: translateY(110%);
+  transition: transform 0.9s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+.hp2-hero__line:nth-child(1) span {
+  transition-delay: 0.15s;
+}
+.hp2-hero__line:nth-child(2) span {
+  transition-delay: 0.3s;
+}
+
+.hp2-hero.is-loaded .hp2-hero__line span {
+  transform: translateY(0);
 }
 
 .hp2-hero__sub {
   margin-top: 28px;
-  max-width: 560px;
+  max-width: 540px;
   font-family: var(--font-intro);
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.82);
 }
@@ -97,40 +133,22 @@
 .hp2-hero__ctas {
   display: flex;
   align-items: center;
-  gap: 28px;
-  margin-top: 40px;
+  gap: 18px;
+  margin-top: 36px;
   flex-wrap: wrap;
 }
 
-.hp2-hero__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 16px;
-  color: var(--color-white);
-  padding-bottom: 4px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  transition: border-color 0.25s ease, gap 0.25s ease;
-}
-.hp2-hero__link:hover {
-  border-color: var(--color-gold);
-  gap: 14px;
-}
-
 .hp2-hero__badges {
-  grid-column: 1 / -1;
   display: flex;
-  gap: 48px;
-  margin-top: 72px;
-  padding-top: 28px;
+  gap: 40px;
+  margin-top: 56px;
+  padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .hp2-hero__badge {
   font-family: var(--font-intro);
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.65);
@@ -139,11 +157,110 @@
   display: block;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 22px;
+  font-size: 21px;
   letter-spacing: 0;
   text-transform: none;
   color: var(--color-white);
   margin-bottom: 4px;
+}
+
+/* Lead form — frosted glass card, floating over the hero photo. */
+.hp2-hero__form {
+  background: rgba(11, 44, 77, 0.42);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.hp2-hero__form h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--color-white);
+  margin: 0 0 6px;
+}
+.hp2-hero__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-intro);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.hp2-hero__form label span {
+  color: var(--color-gold);
+}
+.hp2-hero__form input {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+.hp2-hero__form input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+.hp2-hero__form input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  background: rgba(255, 255, 255, 0.12);
+}
+.hp2-hero__form .btn {
+  margin-top: 6px;
+  width: 100%;
+}
+
+/* Scroll cue — small animated line + label, bottom-center of the hero, invites scrolling. */
+.hp2-hero__scrollcue {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  z-index: 1;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.hp2-hero__scrollcue span {
+  width: 1px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+.hp2-hero__scrollcue span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--color-gold);
+  animation: hp2-scrollcue 1.8s ease-in-out infinite;
+}
+.hp2-hero__scrollcue em {
+  font-style: normal;
+  font-family: var(--font-intro);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+@keyframes hp2-scrollcue {
+  0% { top: -100%; }
+  60% { top: 100%; }
+  100% { top: 100%; }
 }
 
 /* ===== Stat strip ===== */
@@ -270,10 +387,14 @@
 .hp2-exp-card {
   position: relative;
   grid-row: span 2;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
   display: block;
   color: var(--color-white);
+  box-shadow: 0 1px 2px rgba(11, 44, 77, 0.1);
+}
+.hp2-exp-card:hover {
+  box-shadow: 0 24px 48px rgba(9, 26, 43, 0.28);
 }
 .hp2-exp-card:nth-child(n + 2) {
   grid-row: span 1;
@@ -284,10 +405,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);
+  transition: transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 .hp2-exp-card:hover img {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 .hp2-exp-card::before {
   content: "";
@@ -295,6 +416,41 @@
   inset: 0;
   background: linear-gradient(180deg, rgba(11, 44, 77, 0) 40%, rgba(9, 26, 43, 0.86) 100%);
   z-index: 1;
+  transition: background 0.4s ease;
+}
+.hp2-exp-card:hover::before {
+  background: linear-gradient(180deg, rgba(11, 44, 77, 0.05) 20%, rgba(9, 26, 43, 0.92) 100%);
+}
+.hp2-exp-card__arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.9);
+  transition: opacity 0.35s ease, transform 0.35s ease, background-color 0.25s ease;
+}
+.hp2-exp-card__arrow svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--color-white);
+}
+.hp2-exp-card:hover .hp2-exp-card__arrow {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+}
+.hp2-exp-card:hover .hp2-exp-card__arrow svg {
+  stroke: var(--color-navy);
 }
 .hp2-exp-card__body {
   position: absolute;
@@ -316,6 +472,10 @@
   font-weight: 400;
   font-size: 26px;
   color: var(--color-white);
+  transition: transform 0.4s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+.hp2-exp-card:hover h3 {
+  transform: translateY(-4px);
 }
 .hp2-exp-card p {
   margin-top: 8px;
@@ -333,61 +493,133 @@
   opacity: 1;
 }
 
-/* ===== Why Skyline — alternating rows ===== */
+/* ===== Why Skyline — pinned scroll stack =====
+   .hp2-why-stack is a TALL element (4 x 100vh, set inline via hp2.js so it always matches the
+   real panel count). .hp2-why-sticky pins to the viewport while its parent scrolls past
+   underneath it. The 4 .hp2-why-panel are stacked exactly on top of each other (position:
+   absolute) and hp2.js toggles .is-active/.is-prev based on how far the user has scrolled
+   through the tall parent, giving the "next panel overlaps this one in place" effect, then
+   normal scrolling resumes once the parent's height is exhausted. */
 .hp2-why {
   width: var(--page-width);
   max-width: 100%;
   margin-inline: auto;
-  padding: 160px var(--side-margin);
+  padding: 120px var(--side-margin) 0;
 }
 .hp2-why > .hp2-section-head {
   justify-content: flex-start;
 }
-.hp2-why-row {
+
+.hp2-why-stack {
+  position: relative;
+}
+
+.hp2-why-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hp2-why-panel {
+  position: absolute;
+  inset: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 100px;
   align-items: center;
-  padding: 64px 0;
-  border-top: 1px solid var(--color-divider);
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.7s cubic-bezier(0.16, 0.84, 0.44, 1), transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);
+  pointer-events: none;
 }
-.hp2-why-row:first-of-type {
-  border-top: none;
+.hp2-why-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  z-index: 2;
 }
-.hp2-why-row--reverse .hp2-why-row__photo {
-  order: 2;
+.hp2-why-panel.is-prev {
+  opacity: 0;
+  transform: translateY(-48px);
 }
+
 .hp2-why-row__num {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 20px;
   color: var(--color-gold);
 }
-.hp2-why-row__text h3 {
+.hp2-why-panel__text h3 {
   margin: 12px 0 16px;
-  font-size: 38px;
+  font-size: 42px;
   color: var(--color-navy);
 }
-.hp2-why-row__text p {
-  font-size: 16px;
+.hp2-why-panel__text p {
+  font-size: 17px;
   line-height: 1.8;
   color: var(--color-body-gray);
   max-width: 460px;
 }
-.hp2-why-row__photo {
+.hp2-why-panel__photo {
   aspect-ratio: 3 / 2;
   border-radius: 4px;
   overflow: hidden;
 }
-.hp2-why-row__photo img {
+.hp2-why-panel__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
-.hp2-why-row:hover .hp2-why-row__photo img {
-  transform: scale(1.04);
+
+.hp2-why-progress {
+  position: absolute;
+  left: 0;
+  bottom: 48px;
+  z-index: 3;
+  display: flex;
+  gap: 10px;
+}
+.hp2-why-progress span {
+  width: 28px;
+  height: 2px;
+  background: var(--color-divider);
+  transition: background-color 0.3s ease;
+}
+.hp2-why-progress span.is-active {
+  background: var(--color-gold);
+}
+
+/* No-JS / reduced-motion / narrow-viewport fallback: unwind the pin entirely and show every
+   panel stacked in normal document flow, each fully visible. Applied both as a plain media query
+   (mobile — see the bottom of this file) and via .no-pin-stack, which hp2.js adds up front on
+   prefers-reduced-motion or when it can't measure the stack (progressive enhancement: never
+   depend on JS to make content reachable, only to animate it). */
+.hp2-why-stack.no-pin-stack {
+  height: auto !important;
+}
+.hp2-why-stack.no-pin-stack .hp2-why-sticky {
+  position: static;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.hp2-why-stack.no-pin-stack .hp2-why-panel {
+  position: static;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  padding: 56px 0;
+  border-top: 1px solid var(--color-divider);
+}
+.hp2-why-stack.no-pin-stack .hp2-why-panel:first-child {
+  border-top: none;
+}
+.hp2-why-stack.no-pin-stack .hp2-why-progress {
+  display: none;
 }
 
 /* ===== Occasions — dark band, pill cloud ===== */
@@ -629,30 +861,45 @@
   color: var(--color-body-gray);
 }
 
-/* ===== FAQ ===== */
+/* ===== FAQ =====
+   Widened from a cramped 760px text column to the standard page wrap, each question its own
+   breathing-room card (not a tight bordered list) -- real user feedback that the original read
+   as "congested". */
 .hp2-faq {
-  width: 760px;
+  width: var(--page-width);
   max-width: 100%;
   margin-inline: auto;
   padding: 140px var(--side-margin) 180px;
 }
-.hp2-faq > .hp2__eyebrow,
-.hp2-faq > h2 {
-  display: block;
+.hp2-faq__head {
   text-align: center;
+  margin-bottom: 56px;
 }
-.hp2-faq .hp2__eyebrow {
+.hp2-faq__head .hp2__eyebrow {
   justify-content: center;
 }
-.hp2-faq > h2 {
+.hp2-faq__head h2 {
   margin-top: 16px;
-  font-size: 44px;
+  font-size: 48px;
   color: var(--color-navy);
-  text-align: center;
+}
+.hp2-faq__list {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 .hp2-faq-item {
-  border-bottom: 1px solid var(--color-divider);
-  padding: 28px 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-divider);
+  border-radius: 4px;
+  padding: 28px 36px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.hp2-faq-item[open] {
+  border-color: var(--color-gold);
+  box-shadow: 0 12px 32px rgba(11, 44, 77, 0.08);
 }
 .hp2-faq-item summary {
   cursor: pointer;
@@ -660,11 +907,12 @@
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 18px;
+  line-height: 1.5;
   color: var(--color-navy);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
 }
 .hp2-faq-item summary::-webkit-details-marker {
   display: none;
@@ -672,7 +920,7 @@
 .hp2-faq-item summary::after {
   content: "+";
   font-family: var(--font-display);
-  font-size: 26px;
+  font-size: 28px;
   color: var(--color-gold);
   flex-shrink: 0;
   transition: transform 0.25s ease;
@@ -681,11 +929,66 @@
   transform: rotate(45deg);
 }
 .hp2-faq-item p {
-  margin-top: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-divider);
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--color-body-gray);
 }
+
+/* ===== Staggered grid reveals =====
+   The parent section is still the single IntersectionObserver target (scroll-reveal.js only
+   toggles classes on main.hp2 > section), but each CARD gets its own opacity/transform + a
+   per-index transition-delay, so cards animate in one after another rather than all at once —
+   the "everything just appears" flatness was a real part of why the page read as static. */
+.hp2-exp-card,
+.hp2-gallery__grid a,
+.hp2-note,
+.hp2-region,
+.hp2-pill {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1), border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+.hp2-experiences:not(.is-pending) .hp2-exp-card,
+.hp2-gallery:not(.is-pending) .hp2-gallery__grid a,
+.hp2-notes:not(.is-pending) .hp2-note,
+.hp2-sail:not(.is-pending) .hp2-region,
+.hp2-occasions:not(.is-pending) .hp2-pill {
+  opacity: 1;
+  transform: none;
+}
+.hp2-exp-grid a:nth-child(1) { transition-delay: 0s; }
+.hp2-exp-grid a:nth-child(2) { transition-delay: 0.1s; }
+.hp2-exp-grid a:nth-child(3) { transition-delay: 0.2s; }
+.hp2-exp-grid a:nth-child(4) { transition-delay: 0.3s; }
+.hp2-exp-grid a:nth-child(5) { transition-delay: 0.4s; }
+.hp2-gallery__grid a:nth-child(1) { transition-delay: 0s; }
+.hp2-gallery__grid a:nth-child(2) { transition-delay: 0.1s; }
+.hp2-gallery__grid a:nth-child(3) { transition-delay: 0.2s; }
+.hp2-gallery__grid a:nth-child(4) { transition-delay: 0.3s; }
+.hp2-notes__grid a:nth-child(1) { transition-delay: 0s; }
+.hp2-notes__grid a:nth-child(2) { transition-delay: 0.12s; }
+.hp2-notes__grid a:nth-child(3) { transition-delay: 0.24s; }
+.hp2-region-grid div:nth-child(1) { transition-delay: 0s; }
+.hp2-region-grid div:nth-child(2) { transition-delay: 0.06s; }
+.hp2-region-grid div:nth-child(3) { transition-delay: 0.12s; }
+.hp2-region-grid div:nth-child(4) { transition-delay: 0.18s; }
+.hp2-region-grid div:nth-child(5) { transition-delay: 0.24s; }
+.hp2-region-grid div:nth-child(6) { transition-delay: 0.3s; }
+.hp2-pill-cloud .hp2-pill:nth-child(1) { transition-delay: 0s; }
+.hp2-pill-cloud .hp2-pill:nth-child(2) { transition-delay: 0.04s; }
+.hp2-pill-cloud .hp2-pill:nth-child(3) { transition-delay: 0.08s; }
+.hp2-pill-cloud .hp2-pill:nth-child(4) { transition-delay: 0.12s; }
+.hp2-pill-cloud .hp2-pill:nth-child(5) { transition-delay: 0.16s; }
+.hp2-pill-cloud .hp2-pill:nth-child(6) { transition-delay: 0.2s; }
+.hp2-pill-cloud .hp2-pill:nth-child(7) { transition-delay: 0.24s; }
+.hp2-pill-cloud .hp2-pill:nth-child(8) { transition-delay: 0.28s; }
+.hp2-pill-cloud .hp2-pill:nth-child(9) { transition-delay: 0.32s; }
+.hp2-pill-cloud .hp2-pill:nth-child(10) { transition-delay: 0.36s; }
+.hp2-pill-cloud .hp2-pill:nth-child(11) { transition-delay: 0.4s; }
+.hp2-pill-cloud .hp2-pill:nth-child(12) { transition-delay: 0.44s; }
 
 /* ===== Scroll reveal (reuses the site's existing .reveal/.is-pending mechanism + JS) ===== */
 .hp2 .reveal.is-pending {
@@ -698,16 +1001,26 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hp2 .reveal,
-  .hp2 .reveal.is-pending {
+  .hp2 .reveal.is-pending,
+  .hp2-exp-card,
+  .hp2-gallery__grid a,
+  .hp2-note,
+  .hp2-region,
+  .hp2-pill,
+  .hp2-hero__line span {
     opacity: 1;
     transform: none;
     transition: none;
   }
   .hp2-exp-card img,
-  .hp2-why-row__photo img,
+  .hp2-why-panel__photo img,
   .hp2-gallery__grid img,
-  .hp2-note__photo img {
+  .hp2-note__photo img,
+  .hp2-hero__bg {
     transition: none;
+  }
+  .hp2-why-panel {
+    transition: opacity 0.3s ease;
   }
 }
 
@@ -716,18 +1029,19 @@
   .hp2-hero__inner {
     grid-template-columns: 1fr;
   }
+  .hp2-hero__form {
+    max-width: 420px;
+  }
   .hp2-story,
   .hp2-sail__inner {
     grid-template-columns: 1fr;
     gap: 48px;
   }
-  .hp2-why-row,
-  .hp2-why-row--reverse {
+  .hp2-why-panel,
+  .hp2-why-stack.no-pin-stack .hp2-why-panel {
     grid-template-columns: 1fr;
     gap: 32px;
-  }
-  .hp2-why-row--reverse .hp2-why-row__photo {
-    order: 0;
+    align-content: start;
   }
   .hp2-exp-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -751,18 +1065,54 @@
   }
 }
 
-@media (max-width: 600px) {
-  .hp2-hero {
-    padding: 140px 0 56px;
-    align-items: flex-end;
+/* Pinned scroll-stack is a desktop technique (needs real vertical scroll room and a viewport tall
+   enough that pinned text/photo panels don't feel cramped) -- unwound to plain stacked rows below
+   1100px, same fallback markup state as .no-pin-stack, applied here purely via CSS so it doesn't
+   depend on hp2.js's viewport check running before paint. */
+@media (max-width: 1100px) {
+  .hp2-why-stack {
+    height: auto !important;
   }
-  .hp2-hero h1 {
-    font-size: 46px;
+  .hp2-why-sticky {
+    position: static;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  .hp2-why-panel {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    padding: 48px 0;
+    border-top: 1px solid var(--color-divider);
+  }
+  .hp2-why-panel:first-child {
+    border-top: none;
+  }
+  .hp2-why-progress {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hp2-hero__inner {
+    padding-top: 120px;
+    gap: 40px;
+  }
+  .hp2-hero__line span {
+    font-size: 40px;
+  }
+  .hp2-hero__form {
+    padding: 28px 22px;
   }
   .hp2-hero__badges {
     flex-wrap: wrap;
     gap: 24px;
     margin-top: 40px;
+  }
+  .hp2-hero__scrollcue {
+    display: none;
   }
   .hp2-stats__row {
     grid-template-columns: repeat(2, 1fr);
@@ -793,7 +1143,8 @@
   }
   .hp2-section-head h2,
   .hp2-occasions h2,
-  .hp2-testimonial blockquote {
+  .hp2-testimonial blockquote,
+  .hp2-faq__head h2 {
     font-size: 32px;
   }
   .hp2-exp-grid {
@@ -808,6 +1159,9 @@
     opacity: 1;
     margin-top: 8px;
   }
+  .hp2-why-panel__text h3 {
+    font-size: 30px;
+  }
   .hp2-notes__grid,
   .hp2-gallery__grid,
   .hp2-region-grid {
@@ -819,5 +1173,8 @@
   }
   .hp2-gallery__grid a {
     height: 260px;
+  }
+  .hp2-faq-item {
+    padding: 22px 20px;
   }
 }
