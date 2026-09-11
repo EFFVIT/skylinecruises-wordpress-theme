@@ -254,6 +254,7 @@ figure.wp-block-image {
     transition: none;
   }
 
+  .testimonial-quote__track--animated,
   .offering-card,
   .offering-card:hover,
   .photo-checklist-row__photo img,

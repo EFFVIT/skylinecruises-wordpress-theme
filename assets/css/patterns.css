@@ -1630,7 +1630,12 @@
   flex: 0 0 360px;
   width: 360px;
   height: 280px;
-  cursor: default;
+  cursor: pointer;
+}
+
+.testimonial-quote__grid .offering-card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
 }
 
 .testimonial-quote__grid .offering-card p.wp-block-paragraph {
@@ -1643,6 +1648,81 @@
 .testimonial-quote__track--static {
   flex-wrap: wrap;
   padding-left: var(--side-margin);
+}
+
+/* Click-to-expand modal (2026-09-12) — the card clamp above exists purely for the marquee's even
+   rhythm; this is how a reader gets the rest without breaking that layout. One shared dialog
+   (built once by testimonial-marquee.js), populated per card on click/Enter/Space.
+   max-height + overflow-y:auto rather than any fixed height on the dialog itself — several of
+   these real quotes run 100+ words and must never be silently cut off the way the card's own
+   7-line clamp intentionally is; a reader can always scroll to see the rest here. */
+.testimonial-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.testimonial-modal.is-open {
+  display: flex;
+}
+
+.testimonial-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 44, 77, 0.55);
+}
+
+.testimonial-modal__dialog {
+  position: relative;
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 48px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.testimonial-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--color-body-gray);
+  cursor: pointer;
+}
+
+.testimonial-modal__close:hover,
+.testimonial-modal__close:focus-visible {
+  color: var(--color-navy);
+}
+
+.testimonial-modal__quote {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(17, 24, 39, 0.9);
+  margin: 0 0 24px;
+  padding-right: 24px;
+}
+
+.testimonial-modal__attribution {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-navy);
+  margin: 0;
+}
+
+body.testimonial-modal-open {
+  overflow: hidden;
 }
 
 /* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */
