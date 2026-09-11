@@ -23,10 +23,14 @@
 		// client grid; a full article body), so the fade-up-on-scroll that works well for normal-height
 		// sections instead reads as the whole block lurching/popping into place at once. Every other
 		// top-level section keeps the animation — this is a two-section exclusion, not a global removal.
-		// main.hp2 > section covers Homepage 2 (page-templates/homepage-2.php), which uses its own
-		// <main class="hp2"> rather than page.php's main.page-content.
+		// .hp2-page (Homepage 2's page content, a single Custom HTML block) is excluded for a
+		// different reason: that block's raw output is `<style>`, then the real content div, then
+		// `<script>` — three separate direct children of main.page-content, not one — and the page
+		// already animates its own sections in via its own embedded script. Letting this observer
+		// also grab the content div would fade the hero itself in on a delay despite being above the
+		// fold on load, and grab the bare <style>/<script> siblings for no visual purpose either way.
 		var targets = document.querySelectorAll(
-			'main.page-content > *:not(.testimonial-quote):not(.post-article), main.hp2 > section, .newsletter-section'
+			'main.page-content > *:not(.testimonial-quote):not(.post-article):not(.hp2-page):not(style):not(script), .newsletter-section'
 		);
 
 		if ( ! targets.length ) {
