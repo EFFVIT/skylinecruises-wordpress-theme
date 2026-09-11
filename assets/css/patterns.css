@@ -1570,11 +1570,79 @@
   padding: 80px var(--side-margin);
 }
 
+/* Continuous right-to-left marquee (2026-09-12), edge-to-edge regardless of .testimonial-quote's
+   own centered/padded --page-width box above it. `left:50%` + `margin-left:-50vw` on a `100vw`-wide
+   element is the standard breakout-from-a-centered-container technique — unlike the vw-arithmetic
+   already used elsewhere in this file (search "min(var(--page-width),100vw)"), this one needs the
+   literal viewport edge even past 1713px, not just the section's own box, so vw is load-bearing
+   here rather than a width cap.
+   .testimonial-quote__track (the actual scrolling row, doubled + animated) is built by
+   testimonial-marquee.js, not authored here — this file only owns the static grid fallback
+   (no-JS/JS-not-yet-run) and the animated states once the script has run. */
 .testimonial-quote__grid {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  overflow: hidden;
+  margin-top: 32px;
+  /* Static fallback before JS runs (or if it fails to load): plain wrapped grid, same as before. */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-  margin-top: 32px;
+  padding-inline: var(--side-margin);
+}
+
+/* Once JS wraps the cards into a track (static or animated), the grid just needs to get out of
+   the way and let the track run its own flex layout full-bleed — no side padding, since a
+   continuously-scrolling strip has no fixed "first/last card" resting at the edge to inset. */
+.testimonial-quote__grid:has(.testimonial-quote__track) {
+  display: block;
+  padding-inline: 0;
+}
+
+.testimonial-quote__track {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+}
+
+.testimonial-quote__track--animated {
+  animation: testimonial-marquee var(--marquee-duration, 60s) linear infinite;
+}
+
+/* Pause on hover or keyboard focus so a reader can actually finish a quote mid-scroll. */
+.testimonial-quote__grid:hover .testimonial-quote__track--animated,
+.testimonial-quote__track--animated:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes testimonial-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Uniform card size so the strip scrolls at an even rhythm instead of wildly different widths —
+   these 24 real guest quotes range from one sentence to 100+ words. Longer quotes clip after 7
+   lines (the full quote is still in the page source, just visually truncated in the marquee). */
+.testimonial-quote__grid .offering-card {
+  flex: 0 0 360px;
+  width: 360px;
+  height: 280px;
+  cursor: default;
+}
+
+.testimonial-quote__grid .offering-card p.wp-block-paragraph {
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.testimonial-quote__track--static {
+  flex-wrap: wrap;
+  padding-left: var(--side-margin);
 }
 
 /* Width-capped to match hero-outer/.text-section (audit fix, 2026-09-08). */

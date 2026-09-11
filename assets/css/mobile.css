@@ -231,6 +231,15 @@
     padding: 28px 24px;
   }
 
+  /* testimonial-quote__grid marquee (patterns.css) — 360px desktop card is nearly the full width
+     of a 375px phone with no room to hint that the strip keeps scrolling. Narrower + shorter card
+     leaves a peek of the next one, same affordance the desktop gap already gives for free. */
+  .testimonial-quote__grid .offering-card {
+    flex-basis: 280px;
+    width: 280px;
+    height: 320px;
+  }
+
   /* ===== hero ===== */
   /* Redefine the shared --hero-inset variable itself (tokens.css) rather than overriding
      .hero-outer's padding directly — the events-cater panel below reads this same variable to

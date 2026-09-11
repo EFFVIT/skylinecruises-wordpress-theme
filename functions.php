@@ -56,6 +56,12 @@ function skyline_enqueue_assets() {
 		wp_enqueue_script( 'skyline-route-map', get_template_directory_uri() . '/assets/js/route-map.js', [ 'leaflet' ], skyline_asset_version( '/assets/js/route-map.js' ), true );
 	}
 
+	// Testimonial marquee (About/Info "Clients & Testimonials" page) — same conditional-enqueue
+	// pattern as route-map above: only load it on pages that actually contain the pattern.
+	if ( is_singular() && is_a( get_post(), 'WP_Post' ) && str_contains( get_post()->post_content, 'testimonial-quote__grid' ) ) {
+		wp_enqueue_script( 'skyline-testimonial-marquee', get_template_directory_uri() . '/assets/js/testimonial-marquee.js', [], skyline_asset_version( '/assets/js/testimonial-marquee.js' ), true );
+	}
+
 	// Homepage 2 (page-templates/homepage-2.php) — kept fully isolated from the rest of the
 	// theme's own design: its own stylesheet + the stat count-up script, only ever loaded on
 	// this one template, so it can't affect page.php's homepage or any other page.

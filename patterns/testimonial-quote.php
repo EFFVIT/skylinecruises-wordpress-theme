@@ -1,8 +1,10 @@
 <?php
 /**
  * Testimonial quote — About/Info category, /about/clients-testimonials/. The live site uses the
- * Strong Testimonials plugin here (a slider of quotes + a name/company list). This pattern is a
- * static grid version for the rebuild; real quotes need to be pulled verbatim from the live page
+ * Strong Testimonials plugin here (a slider of quotes + a name/company list). This pattern's
+ * markup (.testimonial-quote__grid > .offering-card) is turned into a continuous right-to-left
+ * marquee by testimonial-marquee.js + the matching rules in patterns.css — no markup changes
+ * needed here, just those two files. Real quotes need to be pulled verbatim from the live page
  * (or the Strong Testimonials data export) when composed into the actual page.
  */
 return [
