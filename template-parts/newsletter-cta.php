@@ -2,6 +2,11 @@
 /**
  * Newsletter signup — full-bleed photo card, gold "Subscribe" pill.
  * Pixel-identical across all 55 sampled Figma pages. Always injected, not page content.
+ *
+ * 2026-09-15: the hardcoded <form> (no method/action wired to anything real) replaced with the
+ * real GHL newsletter form (assets/js/ghl-form-embed.js — params-before-mount, form_embed.js
+ * required). This template part is injected on every page (page.php/single.php/index.php/
+ * home.php), so this is the single edit point for the newsletter form sitewide.
  */
 $bg_image = get_template_directory_uri() . '/assets/images/newsletter-bg.jpg'; // TODO: swap in the real photo
 ?>
@@ -10,10 +15,7 @@ $bg_image = get_template_directory_uri() . '/assets/images/newsletter-bg.jpg'; /
 		<div class="newsletter-card__inner">
 			<h2>Sign Up For <em>Our Newsletter</em></h2>
 			<p>Get exclusive offers, event tips, and the latest news from the deck</p>
-			<form class="newsletter-form" method="post" action="">
-				<input type="email" name="newsletter_email" placeholder="Enter your email address" required />
-				<button type="submit" class="btn btn-gold">Subscribe</button>
-			</form>
+			<div class="ghl-form-embed newsletter-form" data-ghl-form-id="mIDvPYGXwOFDNhOfLEGO" data-ghl-form-name="Website Newsletter" style="min-height:340px"></div>
 		</div>
 	</div>
 </section>

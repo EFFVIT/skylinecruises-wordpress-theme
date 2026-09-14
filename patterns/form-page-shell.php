@@ -1,21 +1,23 @@
 <?php
 /**
- * Form page shell — Utility/Form category. Per the user's explicit decision (2026-08-21), the
- * existing third-party forms are kept as-is, not consolidated onto one form plugin. This pattern
- * only provides the new page design (intro copy + embed container) around whichever real embed
- * belongs on that specific page — the embed itself must be pasted in verbatim when the page is
- * actually composed, never fabricated here. Real embed identifiers confirmed via live-site audit
- * (2026-08-20), for reference when composing each real page:
- *   - /contact-us/                                  -> EmailMeForm embed id rUx0EcCWN5ZfX42
- *   - /contact-us/request-your-quote/               -> EmailMeForm embed id rUx0EcCWN5ZfX42 (main)
- *                                                       + a second EmailMeForm id tA8789pefQi08Ulw (sidebar)
- *   - /sign-up-form/                                -> Mailchimp form, posts to skylinecruises.us20.list-manage.com
- *   - /school-events/school-cruise-quote-and-itinerary/ -> Infusionsoft/Keap form, posts to skyline.infusionsoft.com/app/form/process/...
+ * Form page shell — Utility/Form category. Superseded 2026-09-15: the 2026-08-21 "keep every
+ * third-party embed as-is" decision was reversed — hardcoded/third-party forms sitewide are being
+ * consolidated onto GHL (see assets/js/ghl-form-embed.js for the embed contract: params-before-
+ * mount, form_embed.js required, never a second iframe-resizer). This pattern's embed container
+ * now takes a .ghl-form-embed placeholder with the real GHL form id for that page, not a pasted-
+ * in third-party snippet. Real embed history (for reference — most of these are now replaced):
+ *   - /contact-us/, /contact-us/request-your-quote/,
+ *     /request-a-proposal/, /request-a-quote-special-occasion/ -> was EmailMeForm rUx0EcCWN5ZfX42,
+ *                                                                   now GHL form ci4lPfPZnWiuuOYq9pMG
+ *   - /sign-up-form/                                -> was Mailchimp, now GHL form mIDvPYGXwOFDNhOfLEGO
+ *   - /school-events/school-cruise-quote-and-itinerary/ -> Infusionsoft/Keap form (school name +
+ *                                                       trip-type fields) — NOT replaced, no GHL
+ *                                                       form with matching fields provided yet
  *   - /contact-us/employment/                        -> no form, mailto instructions only
  */
 return [
 	'title'       => __( 'Form Page Shell', 'skyline-cruises' ),
-	'description' => __( 'Hero + intro wrapping an existing third-party form embed (EmailMeForm/Mailchimp/Infusionsoft), kept as-is per client decision.', 'skyline-cruises' ),
+	'description' => __( 'Hero + intro wrapping a GHL form embed placeholder (.ghl-form-embed).', 'skyline-cruises' ),
 	'categories'  => [ 'skyline-sections' ],
 	'content'     => '<!-- wp:group {"className":"form-page-shell"} -->
 <div class="wp-block-group form-page-shell">
@@ -31,8 +33,8 @@ return [
 <!-- /wp:group -->
 <!-- wp:html -->
 <div class="form-page-shell__embed">
-<!-- TODO: paste the real, existing third-party form embed for this specific page here, verbatim.
-     Do not replace with a different form vendor per the 2026-08-21 decision to keep forms as-is. -->
+<!-- TODO: set the real GHL form id for this specific page, e.g.
+     <div class="ghl-form-embed" data-ghl-form-id="ci4lPfPZnWiuuOYq9pMG" data-ghl-form-name="Contact Page Form" style="min-height:620px"></div> -->
 </div>
 <!-- /wp:html -->
 </div>

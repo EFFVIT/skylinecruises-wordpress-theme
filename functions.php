@@ -47,6 +47,13 @@ function skyline_enqueue_assets() {
 	wp_enqueue_script( 'skyline-scroll-reveal', get_template_directory_uri() . '/assets/js/scroll-reveal.js', [], skyline_asset_version( '/assets/js/scroll-reveal.js' ), true );
 	wp_enqueue_script( 'skyline-sticky-header', get_template_directory_uri() . '/assets/js/sticky-header.js', [], skyline_asset_version( '/assets/js/sticky-header.js' ), true );
 
+	// GHL form embed — site-wide, not conditional on post_content, because template-parts/
+	// newsletter-cta.php (the newsletter signup form) is injected on every page via
+	// page.php/single.php/index.php/home.php regardless of that page's own content, so a
+	// post_content-based check (like route-map/testimonial-marquee below) would miss it on
+	// every page that has no OTHER .ghl-form-embed placeholder of its own.
+	wp_enqueue_script( 'skyline-ghl-form-embed', get_template_directory_uri() . '/assets/js/ghl-form-embed.js', [], skyline_asset_version( '/assets/js/ghl-form-embed.js' ), true );
+
 	// Route Map pattern (Public Cruise Service pages only) embeds a real Leaflet/OpenStreetMap
 	// map — self-hosted (not a CDN) so the page never depends on a third party being up. Only
 	// enqueued on pages that actually contain the pattern's markup, not site-wide.

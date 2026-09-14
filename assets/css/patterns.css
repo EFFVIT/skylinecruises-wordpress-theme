@@ -1880,6 +1880,16 @@ body.testimonial-modal-open {
   margin-bottom: 12px;
 }
 
+/* ===== GHL form embed (assets/js/ghl-form-embed.js) — generic placeholder wrapper, used sitewide
+   2026-09-15 replacing the various third-party embeds (EmailMeForm/Mailchimp) this theme used to
+   carry per the now-superseded 2026-08-21 "keep forms as-is" decision. The actual iframe is
+   injected client-side only after gclid/utm params are resolved (params-before-mount — see that
+   file's own header for why). No card chrome of its own: it always sits inside an existing card
+   wrapper (.homepage-lead-form, .form-page-shell__embed, .quote-split__form,
+   .newsletter-card__inner), each already styled for the raw form/iframe it used to hold. ===== */
+.ghl-form-embed { display: block; width: 100%; }
+.ghl-form-embed iframe { display: block; width: 100%; border: none; }
+
 /* Elevated white card instead of a bare iframe sitting directly on the page background --
    matches the same card language used elsewhere (.link-list__item a: white bg, rounded corners,
    soft shadow). Sitewide, every Utility/Form page (contact-us, request-your-quote, etc.) gets
