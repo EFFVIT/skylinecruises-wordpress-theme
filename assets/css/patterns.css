@@ -2125,6 +2125,16 @@ body.testimonial-modal-open {
   color: var(--color-body-gray);
 }
 
+/* VMMG credit badge (template-parts/site-footer.php) relocates itself to the end of <footer> via
+   its own vsc-move script, landing right after .site-footer__copyright with only the shared
+   component's own 14px margin-top -- read as crowding/overlapping the copyright line's text.
+   Selector needs 3 simple selectors (0,3,0) to reliably beat the inline vsc-css <style> block's
+   own `.vsc-wrap` (0,1,0) and `.vsc-wrap[data-p="footer"]` (0,2,0) rules regardless of load
+   order, without editing that shared/verbatim component itself. */
+.site-footer .vsc-wrap[data-p] {
+  margin-top: 40px;
+}
+
 /* ===== page shell (page.php / index.php) ===== */
 .page-content {
   position: relative;
