@@ -21,6 +21,36 @@ function skyline_asset_version( $relative_path ) {
 	return file_exists( $file ) ? filemtime( $file ) : '0.1.0';
 }
 
+/**
+ * Footer widget areas — the header's mega-menu (site-header.php: tabs/list/simple dropdowns,
+ * icon badges, per-item descriptions, flyouts, its own mobile-accordion duplicate) stays
+ * code-only per explicit decision (2026-09-15): it can't be represented as a widget without
+ * rebuilding it and losing that functionality. The footer has no such complexity — logo+contact,
+ * three plain link columns, a copyright line — so it moves to real wp-admin-editable widget
+ * areas instead. template-parts/site-footer.php falls back to today's hardcoded markup via
+ * is_active_sidebar() until each area actually has a widget in it, so nothing changes visually
+ * until someone edits Appearance > Widgets.
+ */
+add_action( 'widgets_init', function () {
+	$areas = [
+		'footer-brand'      => 'Footer: Brand & Contact',
+		'footer-services'   => 'Footer: Our Services',
+		'footer-quicklinks' => 'Footer: Quick Links',
+		'footer-legal'      => 'Footer: Legal',
+	];
+	foreach ( $areas as $id => $name ) {
+		register_sidebar( [
+			'id'            => $id,
+			'name'          => $name,
+			'description'   => 'Edit this footer column from Appearance > Widgets. Empty = falls back to the theme default.',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '<h4>',
+			'after_title'   => '</h4>',
+		] );
+	}
+} );
+
 function skyline_enqueue_assets() {
 	wp_enqueue_style(
 		'skyline-google-fonts',
