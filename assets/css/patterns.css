@@ -2832,10 +2832,19 @@ body.testimonial-modal-open {
 }
 
 /* --- Notes From the Deck — real blog teaser cards, link to the real archive (no individual
-   post entities exist yet, same call made for the Site Map's blog-index link). --- */
+   post entities exist yet, same call made for the Site Map's blog-index link).
+
+   Same box-model bug already fixed on .text-section (2026-09-08, see that section's own comment
+   above): `max-width:var(--content-width)` (1400px, a fixed cap) plus `padding-inline:
+   var(--side-margin)` (157px) on top of it double-counted the inset, leaving this section's
+   actual content ~157px narrower on each side than the header/hero wrap it's supposed to share
+   (1400 - 2*157 = 1086px here vs. the ~1399px every properly-aligned section resolves to).
+   Switched to hero-outer/text-section's exact box model -- content-width isn't needed here, this
+   already lands at ~1399px content width on its own. --- */
 .blog-teasers {
-  max-width: var(--content-width);
-  margin: 0 auto;
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 60px var(--side-margin);
   text-align: center;
 }
