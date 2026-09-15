@@ -137,9 +137,10 @@ $nav_menu = [
 					] ],
 					[ 'icon' => 'anchor', 'label' => 'Private Yacht Charters', 'href' => '/yacht-charter/', 'children' => [
 						[ 'icon' => 'map-pin', 'label' => 'Waterfront Event Venue', 'href' => '/yacht-charter/waterfront-event-venue/' ],
-						[ 'icon' => 'anchor', 'label' => 'Great Escape Yacht Rental', 'href' => '/the-great-escape-yacht-rental/' ],
 					] ],
 					[ 'icon' => 'utensils', 'label' => 'Cruise Catering', 'href' => '/about/catering/' ],
+					[ 'icon' => 'anchor', 'label' => 'The Great Escape Yacht Rental', 'href' => '/the-great-escape-yacht-rental/' ],
+					[ 'icon' => 'anchor', 'label' => 'Glen Cove Dinner Cruises', 'href' => '/glen-cove-dinner-cruises/' ],
 				],
 			],
 		],
