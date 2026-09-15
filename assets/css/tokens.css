@@ -250,6 +250,13 @@ figure.wp-block-image {
   transform: translateX(48px);
 }
 
+/* Same directional treatment for photoChecklistRow() (patterns/photo-checklist-row.php) -- its
+   photo always renders on the left (plain flex, no row-reverse variant exists), so it always
+   slides in from the left rather than using the generic vertical fade. */
+.photo-checklist-row.reveal.is-pending {
+  transform: translateX(-48px);
+}
+
 /* Staggered card-grid reveal (card-grid, build-pages.js's photoCardGrid()/tierCards3up()/
    styleCards2up()) -- cards rise in one after another instead of the whole grid appearing as one
    flat block. Layered on the SAME parent .reveal/.is-pending state, no second observer needed: a
