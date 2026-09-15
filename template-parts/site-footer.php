@@ -13,14 +13,20 @@ $year = wp_date( 'Y' );
  * routed through the old live site's bit.ly tracking links used on /followus/.
  */
 function skyline_social_icon( $name ) {
+	// Each glyph stands alone -- no outer circle/square of its own -- since .site-footer__social a
+	// is already the circular badge container; wrapping a shape in its own container shape too
+	// just fights the button and reads as clutter. Facebook is a real filled "f" ribbon (a stroke-
+	// only centerline reads as an abstract squiggle, not a letterform); Instagram keeps its rounded
+	// square + ring + dot since that shape *is* the recognizable mark, just sized to sit inside the
+	// button with breathing room; Twitter/X and YouTube are bold solid glyphs, no extra frame.
 	$paths = [
-		'facebook'  => '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M14 21v-7h2.2l.4-3H14V9c0-.9.3-1.5 1.6-1.5h1.4V4.8c-.3 0-1.2-.1-2.2-.1-2.2 0-3.8 1.4-3.8 3.9V11H9v3h2v7"/>',
-		'instagram' => '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/>',
-		'twitter'   => '<circle cx="12" cy="12" r="9"/><line x1="8" y1="8" x2="16" y2="16"/><line x1="16" y1="8" x2="8" y2="16"/>',
-		'youtube'   => '<rect x="2" y="6" width="20" height="12" rx="4"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/>',
+		'facebook'  => '<path d="M15.5 21v-8h2.4l.4-3.2h-2.8V7.8c0-.9.3-1.5 1.7-1.5h1.4V3.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H9.4v3.2h2.7v8z" fill="currentColor" stroke="none"/>',
+		'instagram' => '<rect x="4.5" y="4.5" width="15" height="15" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.3" cy="7.7" r="0.9" fill="currentColor" stroke="none"/>',
+		'twitter'   => '<path d="M5.5 5.5l13 13M18.5 5.5l-13 13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+		'youtube'   => '<rect x="3.5" y="7" width="17" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.3 10.2l4.6 1.8-4.6 1.8z" fill="currentColor" stroke="none"/>',
 	];
 	$inner = $paths[ $name ] ?? '';
-	return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $inner . '</svg>';
+	return '<svg viewBox="0 0 24 24" aria-hidden="true">' . $inner . '</svg>';
 }
 
 $social_links = [
