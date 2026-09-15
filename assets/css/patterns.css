@@ -1374,6 +1374,64 @@
   color: var(--color-body-gray);
 }
 
+/* Photo variant (photoCardGrid(), build-pages.js) -- an <a>, not a <div>, so the whole card links
+   to the real sub-page it represents. Padding moves from the card itself onto __body so the photo
+   can sit flush at the card's own rounded top corners instead of being inset like plain text
+   cards. Fixed aspect-ratio + object-fit:cover for an even row of cards regardless of each real
+   photo's own native size, same reasoning as the bio-photo-gallery grid fix (2026-09-15). */
+.offering-card--photo {
+  padding: 0;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.offering-card--photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+.offering-card--photo:hover img,
+.offering-card--photo:focus-visible img {
+  transform: scale(1.06);
+}
+
+.offering-card--photo:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: -2px;
+}
+
+.offering-card__body {
+  padding: 24px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offering-card__body h3 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-navy);
+}
+
+.offering-card__body p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--color-body-gray);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offering-card--photo img {
+    transition: none;
+  }
+}
+
 /* ===== marina-grid-3x3 / ports-list (patterns/*.php) — School Events =====
    Confirmed via direct Figma read (node 120:236 "Check circle" instance): this category's
    marina-grid checkmark is 28px, distinct from both the 24px default and the 40px Buffet grid. */

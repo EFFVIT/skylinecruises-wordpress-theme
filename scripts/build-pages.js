@@ -258,6 +258,23 @@ ${cards.map((c) => `<!-- wp:group {"className":"offering-card"} --><div class="w
 </div>
 <!-- /wp:group -->`;
 
+// Photo card grid — added 2026-09-15 for hub pages (Weddings, NYC Party Cruises, Corporate
+// Cruises, Yacht Charter, School Events) whose "Private Event/Party (hub)"/"School Events" recipe
+// only ever had a plain linkList() for its sub-pages: a bare bullet list, no photos. Real request:
+// turn that into an image card grid. Extends the SAME .card-grid/.offering-card system already
+// used by tierCards3up/styleCards2up (not the homepage's eventsCaterGrid(), which is a bespoke
+// component whose background-panel math is tuned specifically to sit under the homepage's own
+// hero -- reusing it on any other page would carry that homepage-specific positioning along with
+// it). Each card is a real link to the real sub-page it represents, not a decorative photo.
+const photoCardGrid = ({ heading, subheading, cards }) => `<!-- wp:group {"className":"card-grid-section"} -->
+<div class="wp-block-group card-grid-section">
+<!-- wp:group {"className":"card-grid-section__intro"} --><div class="wp-block-group card-grid-section__intro"><!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->${subheading ? `<!-- wp:paragraph --><p>${subheading}</p><!-- /wp:paragraph -->` : ''}</div><!-- /wp:group -->
+<!-- wp:group {"className":"card-grid card-grid--3up"} --><div class="wp-block-group card-grid card-grid--3up">
+${cards.map((c) => `<!-- wp:html --><a href="${c.link}" class="offering-card offering-card--photo"><img src="${c.photo}" alt="" /><div class="offering-card__body"><h3>${c.title}</h3><p>${c.description}</p></div></a><!-- /wp:html -->`).join('\n')}
+</div><!-- /wp:group -->
+</div>
+<!-- /wp:group -->`;
+
 // Marina grid (3x3) — School Events hub, real items must include the location suffix
 // (e.g. "Pier 36 – Downtown Manhattan, NY"), confirmed via direct Figma read (node 120:234).
 const marinaGrid3x3 = ({ items }) => `<!-- wp:group {"className":"marina-grid"} -->
@@ -809,7 +826,7 @@ if (require.main === module) {
 
 module.exports = {
 	hero, featuresPair, testimonial, closingCta, checklistItems, photoChecklistRow, routeMap,
-	textSection, tierCards3up, styleCards2up, marinaGrid3x3, portsList, directionsBlock, formPageShell,
+	textSection, tierCards3up, styleCards2up, photoCardGrid, marinaGrid3x3, portsList, directionsBlock, formPageShell,
 	quoteFormSplit,
 	heroProseCta, faqAccordion, testimonialQuote, bioPhotoGallery, linkList,
 	homepageHero, eventsCaterGrid, occasionChecklist, officeLocationsGrid, whoWeAreSplit,
