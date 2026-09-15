@@ -140,7 +140,7 @@ $nav_menu = [
 					] ],
 					[ 'icon' => 'utensils', 'label' => 'Cruise Catering', 'href' => '/about/catering/' ],
 					[ 'icon' => 'anchor', 'label' => 'The Great Escape Yacht Rental', 'href' => '/the-great-escape-yacht-rental/' ],
-					[ 'icon' => 'anchor', 'label' => 'Glen Cove Dinner Cruises', 'href' => '/glen-cove-dinner-cruises/' ],
+					[ 'icon' => 'anchor', 'label' => 'Glen Cove Dinner Cruises', 'href' => 'https://fareharbor.com/embeds/book/skylinecruises/items/593840/calendar/2026/07/?flow=549824&full-items=yes&back=https%3A%2F%2Fskylinecruises.com%2F&g4=yes&from-ssl=yes&cp=no&csp=no&language=en-us&u=c4b933b8-3cd9-48a7-98b0-611b34634264' ],
 				],
 			],
 		],
