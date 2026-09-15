@@ -15,7 +15,7 @@ $bg_image = get_template_directory_uri() . '/assets/images/newsletter-bg.jpg'; /
 		<div class="newsletter-card__inner">
 			<h2>Sign Up For <em>Our Newsletter</em></h2>
 			<p>Get exclusive offers, event tips, and the latest news from the deck</p>
-			<div class="ghl-form-embed newsletter-form" data-ghl-form-id="mIDvPYGXwOFDNhOfLEGO" data-ghl-form-name="Website Newsletter" style="min-height:340px"></div>
+			<div class="ghl-form-embed newsletter-form" data-ghl-form-id="mIDvPYGXwOFDNhOfLEGO" data-ghl-form-name="Website Newsletter" style="min-height:80px"></div>
 		</div>
 	</div>
 </section>

@@ -99,6 +99,12 @@ function skyline_enqueue_assets() {
 		wp_enqueue_script( 'skyline-testimonial-marquee', get_template_directory_uri() . '/assets/js/testimonial-marquee.js', [], skyline_asset_version( '/assets/js/testimonial-marquee.js' ), true );
 	}
 
+	// Gallery lightbox (bioPhotoGallery()'s photo grid, e.g. Captain Arnold Wonsever, Picture
+	// Gallery pages) — same conditional-enqueue pattern as route-map/testimonial-marquee above.
+	if ( is_singular() && is_a( get_post(), 'WP_Post' ) && str_contains( get_post()->post_content, 'bio-photo-gallery__gallery' ) ) {
+		wp_enqueue_script( 'skyline-gallery-lightbox', get_template_directory_uri() . '/assets/js/gallery-lightbox.js', [], skyline_asset_version( '/assets/js/gallery-lightbox.js' ), true );
+	}
+
 }
 add_action( 'wp_enqueue_scripts', 'skyline_enqueue_assets' );
 
