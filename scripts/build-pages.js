@@ -191,6 +191,17 @@ const routeMap = ({ departure = DEFAULT_DEPARTURE, landmarks = DEFAULT_LANDMARKS
 <!-- /wp:group -->`;
 };
 
+// Video embed -- added 2026-09-15 for NYC Dinner Cruises, which has a real YouTube promo video on
+// live sitting right after the checklist section, before featuresPair(). No prior convention in
+// this theme for an embedded video (only form iframes existed); .video-embed gives it the same
+// centered, width-capped section treatment as text-section, with a responsive 16:9 wrapper so the
+// iframe scales instead of using YouTube's fixed 560x315 embed size verbatim.
+const videoEmbed = ({ youtubeId, title = 'Skyline Cruises video' }) => `<!-- wp:group {"className":"video-embed"} -->
+<div class="wp-block-group video-embed">
+<!-- wp:html --><div class="video-embed__frame"><iframe src="https://www.youtube.com/embed/${youtubeId}" title="${title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><!-- /wp:html -->
+</div>
+<!-- /wp:group -->`;
+
 // Directions heading is real per-page copy ("Directions to Liberty Landing Marina"), never a
 // generic "Getting There" — confirmed via direct Figma read (node 134:137).
 // `r.from` is optional per-route (added 2026-08-24, gap-fill batch) — several real port pages
@@ -826,7 +837,7 @@ if (require.main === module) {
 
 module.exports = {
 	hero, featuresPair, testimonial, closingCta, checklistItems, photoChecklistRow, routeMap,
-	textSection, tierCards3up, styleCards2up, photoCardGrid, marinaGrid3x3, portsList, directionsBlock, formPageShell,
+	textSection, tierCards3up, styleCards2up, photoCardGrid, marinaGrid3x3, portsList, directionsBlock, formPageShell, videoEmbed,
 	quoteFormSplit,
 	heroProseCta, faqAccordion, testimonialQuote, bioPhotoGallery, linkList,
 	homepageHero, eventsCaterGrid, occasionChecklist, officeLocationsGrid, whoWeAreSplit,
