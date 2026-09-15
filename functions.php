@@ -72,6 +72,14 @@ function skyline_enqueue_assets() {
 	// animations + sticky header on scroll. All degrade gracefully with no JS (dropdowns still
 	// work via CSS :hover, sections just render already-visible instead of animating in, header
 	// just stays in its normal overlaid-on-hero position instead of pinning on scroll).
+	// FareHarbor's own "auto-lightframe" embed script -- confirmed on live (skylinecruises.com):
+	// once loaded, it automatically intercepts any <a href> pointing at a fareharbor.com/embeds/
+	// booking URL and opens it in a popup overlay instead of a normal navigation. No custom JS of
+	// ours is involved; this is FareHarbor's own hosted script, same URL live uses verbatim.
+	// Enqueued site-wide (not conditional on page content) since the header's "Book Now" button --
+	// which needs this behavior -- is injected on every page.
+	wp_enqueue_script( 'fareharbor-autolightframe', 'https://fareharbor.com/embeds/api/v1/?autolightframe=yes', [], null, true );
+
 	wp_enqueue_script( 'skyline-nav-menu', get_template_directory_uri() . '/assets/js/nav-menu.js', [], skyline_asset_version( '/assets/js/nav-menu.js' ), true );
 	wp_enqueue_script( 'skyline-mobile-nav', get_template_directory_uri() . '/assets/js/mobile-nav.js', [], skyline_asset_version( '/assets/js/mobile-nav.js' ), true );
 	wp_enqueue_script( 'skyline-scroll-reveal', get_template_directory_uri() . '/assets/js/scroll-reveal.js', [], skyline_asset_version( '/assets/js/scroll-reveal.js' ), true );
