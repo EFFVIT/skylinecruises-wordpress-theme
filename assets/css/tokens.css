@@ -238,6 +238,42 @@ figure.wp-block-image {
   transition: opacity 0.7s cubic-bezier(0.16, 0.84, 0.44, 1), transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 
+/* Directional reveal for photo+text pairs (text-section--with-photo, textSection()'s `photo`
+   param) -- slides in from the side the photo/text actually sits on instead of the generic
+   vertical fade every other top-level section uses. Same .reveal/.is-pending mechanism scroll-
+   reveal.js already manages; just a more specific transform for this one section shape, so no JS
+   changes needed. */
+.text-section--with-photo.reveal.is-pending {
+  transform: translateX(-48px);
+}
+.text-section--with-photo.text-section--photo-left.reveal.is-pending {
+  transform: translateX(48px);
+}
+
+/* Staggered card-grid reveal (card-grid, build-pages.js's photoCardGrid()/tierCards3up()/
+   styleCards2up()) -- cards rise in one after another instead of the whole grid appearing as one
+   flat block. Layered on the SAME parent .reveal/.is-pending state, no second observer needed: a
+   card is only ever offset while its ancestor section still carries .is-pending, which only
+   happens once scroll-reveal.js has confirmed IntersectionObserver support and prefers-reduced-
+   motion is off. If JS never runs, no ancestor ever gets .is-pending, so this never applies and
+   cards render in their normal state from the start -- same progressive-enhancement guarantee as
+   .reveal itself. */
+.reveal.is-pending .card-grid > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.card-grid > * {
+  transition: opacity 0.55s cubic-bezier(0.16, 0.84, 0.44, 1), transform 0.55s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+.card-grid > *:nth-child(1) { transition-delay: 0.05s; }
+.card-grid > *:nth-child(2) { transition-delay: 0.12s; }
+.card-grid > *:nth-child(3) { transition-delay: 0.19s; }
+.card-grid > *:nth-child(4) { transition-delay: 0.26s; }
+.card-grid > *:nth-child(5) { transition-delay: 0.33s; }
+.card-grid > *:nth-child(6) { transition-delay: 0.4s; }
+
 /* Respect prefers-reduced-motion sitewide: turn off every custom animation/transition added for
    polish (hero entrance, scroll-reveal, hover-lift, nav dropdown motion) without touching layout.
    Anything essential to using the page (e.g. the FAQ accordion's open/close) is untouched since
@@ -249,6 +285,12 @@ figure.wp-block-image {
 
   .reveal,
   .reveal.is-pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .card-grid > * {
     opacity: 1;
     transform: none;
     transition: none;
