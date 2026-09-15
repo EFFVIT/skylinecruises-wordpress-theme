@@ -5,6 +5,30 @@
  */
 $logo = get_template_directory_uri() . '/assets/icons/logo.png'; // TODO: swap in the real logo asset
 $year = wp_date( 'Y' );
+
+/**
+ * Social icon set — same convention as site-header.php's skyline_nav_icon(): original stroke-only
+ * line-icon shapes (not copied from any icon library), 24x24 viewBox. Real destination URLs
+ * pulled directly from the live skylinecruises.com homepage/footer (2026-09-15), not invented or
+ * routed through the old live site's bit.ly tracking links used on /followus/.
+ */
+function skyline_social_icon( $name ) {
+	$paths = [
+		'facebook'  => '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M14 21v-7h2.2l.4-3H14V9c0-.9.3-1.5 1.6-1.5h1.4V4.8c-.3 0-1.2-.1-2.2-.1-2.2 0-3.8 1.4-3.8 3.9V11H9v3h2v7"/>',
+		'instagram' => '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/>',
+		'twitter'   => '<circle cx="12" cy="12" r="9"/><line x1="8" y1="8" x2="16" y2="16"/><line x1="16" y1="8" x2="8" y2="16"/>',
+		'youtube'   => '<rect x="2" y="6" width="20" height="12" rx="4"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/>',
+	];
+	$inner = $paths[ $name ] ?? '';
+	return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $inner . '</svg>';
+}
+
+$social_links = [
+	[ 'label' => 'Facebook', 'href' => 'https://www.facebook.com/SkylineCruises/', 'icon' => 'facebook' ],
+	[ 'label' => 'Instagram', 'href' => 'https://www.instagram.com/skylinecruises/', 'icon' => 'instagram' ],
+	[ 'label' => 'Twitter', 'href' => 'https://twitter.com/SkylinePrincess/', 'icon' => 'twitter' ],
+	[ 'label' => 'YouTube', 'href' => 'https://www.youtube.com/channel/UCbJ3-e6Vn_A0E9Wzpsht7ow', 'icon' => 'youtube' ],
+];
 ?>
 <footer class="site-footer">
 	<div class="site-footer__inner">
@@ -28,6 +52,11 @@ $year = wp_date( 'Y' );
 						<svg viewBox="0 0 24 24" fill="none" stroke="#252a32" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 						<span><strong>World's Fair Marina</strong><br />Flushing, NY 11368</span>
 					</div>
+				</div>
+				<div class="site-footer__social">
+					<?php foreach ( $social_links as $social ) : ?>
+						<a href="<?php echo esc_url( $social['href'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $social['label'] ); ?>"><?php echo skyline_social_icon( $social['icon'] ); ?></a>
+					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
 		</div>

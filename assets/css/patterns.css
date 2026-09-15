@@ -2192,6 +2192,36 @@ body.gallery-lightbox-open {
   margin-top: 2px;
 }
 
+.site-footer__social {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.site-footer__social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-divider);
+  color: var(--color-navy);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.site-footer__social a svg {
+  width: 18px;
+  height: 18px;
+}
+
+.site-footer__social a:hover,
+.site-footer__social a:focus-visible {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  color: var(--color-white);
+}
+
 .site-footer h4 {
   font-family: var(--font-body);
   font-weight: 700;

@@ -191,3 +191,49 @@ function skyline_register_block_patterns() {
 	}
 }
 add_action( 'init', 'skyline_register_block_patterns' );
+
+/**
+ * [skyline_latest_posts] — homepage "Notes From the Deck" section, real posts instead of fabricated
+ * teasers. The homepage's own build-pages.js blogTeasers() composer hardcoded 3 made-up post
+ * previews with every "Read More" pointing at the /notes-from-the-deck/ archive -- accurate when
+ * this interior-pages project was built (no real WP `post` entities existed yet in this project),
+ * stale now that the separate 343-post blog migration happened. Pulls the 3 real latest posts with
+ * real featured images and real per-post permalinks. Same .blog-teasers__grid/__card markup the
+ * composer already produces, so patterns.css needs no changes.
+ */
+function skyline_latest_posts_shortcode() {
+	$query = new WP_Query( [
+		'post_type'           => 'post',
+		'posts_per_page'      => 3,
+		'post_status'         => 'publish',
+		'ignore_sticky_posts' => true,
+	] );
+
+	if ( ! $query->have_posts() ) {
+		wp_reset_postdata();
+		return '';
+	}
+
+	ob_start();
+	?>
+	<div class="blog-teasers__grid">
+		<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+			<div class="blog-teasers__card">
+				<?php if ( has_post_thumbnail() ) : ?>
+					<?php the_post_thumbnail( 'large' ); ?>
+				<?php endif; ?>
+				<div class="blog-teasers__body">
+					<span class="blog-teasers__date"><?php echo esc_html( get_the_date() ); ?></span>
+					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<p><?php echo esc_html( wp_trim_words( get_the_excerpt(), 22 ) ); ?></p>
+					<a href="<?php the_permalink(); ?>">Read More &rarr;</a>
+				</div>
+			</div>
+		<?php endwhile; ?>
+	</div>
+	<a class="btn btn-outline-navy blog-teasers__view-more" href="<?php echo esc_url( home_url( '/notes-from-the-deck/' ) ); ?>">View More Blogs</a>
+	<?php
+	wp_reset_postdata();
+	return ob_get_clean();
+}
+add_shortcode( 'skyline_latest_posts', 'skyline_latest_posts_shortcode' );
