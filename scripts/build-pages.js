@@ -43,14 +43,21 @@ const checkIcon = '/wp-content/themes/skylinecruises-wordpress-theme/assets/icon
 // Hero photo is a rounded card (border-radius 23px) inset 28px on every side of the hero frame,
 // confirmed via direct Figma read of node 109:9 "Photo Card" — not a flush full-bleed rectangle.
 // ".hero-outer" is the inset/page-bg frame; ".hero" is the rounded card itself.
-const hero = ({ h1, addressSubhead = '', cta = 'Book Now', bgImage = '', short = false }) => `<!-- wp:group {"className":"hero-outer"} -->
+// `ctaHref` (added 2026-09-15, direct request): defaults to the generic quote-request page, same
+// as every hero built before this -- but several real pages have their own actual FareHarbor
+// booking link on live (a specific item id for Dinner/Lunch Cruises, a specific flow id for Brunch,
+// a generic items/calendar/ link for the 3 Buffet Menu pages) rather than sending visitors to the
+// quote form. Only pass a real, confirmed-on-live URL here -- never a guessed/generic FareHarbor
+// link for a page that hasn't actually been checked, since a wrong item id silently books the
+// wrong cruise.
+const hero = ({ h1, addressSubhead = '', cta = 'Book Now', bgImage = '', short = false, ctaHref = '/contact-us/request-your-quote/' }) => `<!-- wp:group {"className":"hero-outer"} -->
 <div class="wp-block-group hero-outer">
 <div class="hero${short ? ' hero--short' : ''}" style="background-image:url(${bgImage})">
 <div class="hero__content">
 <!-- wp:heading {"level":1} --><h1>${h1}</h1><!-- /wp:heading -->
 ${addressSubhead ? `<!-- wp:paragraph {"className":"hero__address"} --><p class="hero__address">${addressSubhead}</p><!-- /wp:paragraph -->` : ''}
 <!-- wp:paragraph {"className":"trust-badges"} --><p class="trust-badges"><span class="trust-badge"><span>Since 1993</span></span><span class="trust-badge"><span>A+ BBB Rating</span></span><span class="trust-badge"><span>30+ Years Excellence</span></span></p><!-- /wp:paragraph -->
-<!-- wp:buttons {"className":"hero__cta"} --><div class="wp-block-buttons hero__cta"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link btn btn-gold" href="/contact-us/request-your-quote/">${cta}</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
+<!-- wp:buttons {"className":"hero__cta"} --><div class="wp-block-buttons hero__cta"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link btn btn-gold" href="${ctaHref}">${cta}</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
 </div>
 </div>
 </div>
