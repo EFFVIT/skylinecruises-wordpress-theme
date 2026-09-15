@@ -1925,6 +1925,53 @@ body.testimonial-modal-open {
   }
 }
 
+/* Landscape-grid variant (bioPhotoGallery({ layout: 'grid' }), e.g. The Great Escape Yacht
+   Rental's 3 real ~16:9 interior photos) -- a plain static row instead of the fan carousel, since
+   the fan's 220x300 portrait cards crop wide landscape source photos down to a narrow sliver.
+   gallery-lightbox.js checks for this modifier class and skips the fan-positioning/nav-button
+   logic for these galleries, wiring up only the click-to-expand-slider handler. */
+.bio-photo-gallery__gallery--grid {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  height: auto;
+  perspective: none;
+  overflow: visible;
+}
+
+.bio-photo-gallery__gallery--grid figure.wp-block-image {
+  position: static;
+  flex: 1 1 260px;
+  width: auto;
+  aspect-ratio: 3 / 2;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(11, 44, 77, 0.1);
+  transition: box-shadow 0.3s ease;
+  opacity: 1;
+  transform: none !important;
+}
+
+.bio-photo-gallery__gallery--grid figure.wp-block-image:hover,
+.bio-photo-gallery__gallery--grid figure.wp-block-image:focus-visible {
+  box-shadow: 0 12px 32px rgba(11, 44, 77, 0.2);
+}
+
+.bio-photo-gallery__gallery--grid img {
+  transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+.bio-photo-gallery__gallery--grid figure.wp-block-image:hover img,
+.bio-photo-gallery__gallery--grid figure.wp-block-image:focus-visible img {
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-photo-gallery__gallery--grid img {
+    transition: none;
+  }
+}
+
 /* ===== gallery-lightbox (assets/js/gallery-lightbox.js) — click-to-expand for
    .bio-photo-gallery__gallery, same visual/structural language as .testimonial-modal above. ===== */
 .gallery-lightbox {

@@ -392,7 +392,14 @@ ${items.map((i) => `<!-- wp:group {"className":"offering-card"} --><div class="w
 // + paragraphs + gallery) AND a pure photo-gallery page (Picture Gallery, Party Pictures, etc. —
 // just omit `photo`/`paragraphs` and this renders as a heading + gallery grid only, arbitrary
 // image count, not the PHP pattern's hardcoded 3).
-const bioPhotoGallery = ({ heading, photo = '', paragraphs = [], galleryImages }) => `<!-- wp:group {"className":"bio-photo-gallery"} -->
+// `layout` ('fan' default, or 'grid') -- added 2026-09-15. The fan carousel (220x300 portrait
+// cards) assumes portrait/near-square source photos; forced onto a small set of wide landscape
+// photos (e.g. The Great Escape's 3 real interior shots, all ~16:9) it crops away most of each
+// image. 'grid' renders a plain static row of landscape-cropped tiles instead -- same click-to-
+// expand slider modal (gallery-lightbox.js checks for the --grid modifier and skips the fan
+// positioning/nav-button logic for those galleries, wiring up just the click handler). Real photo
+// shape should decide which layout a given gallery uses, not a blanket site-wide default.
+const bioPhotoGallery = ({ heading, photo = '', paragraphs = [], galleryImages, layout = 'fan' }) => `<!-- wp:group {"className":"bio-photo-gallery"} -->
 <div class="wp-block-group bio-photo-gallery">
 <!-- wp:heading {"level":2} --><h2>${heading}</h2><!-- /wp:heading -->
 ${(photo || paragraphs.length) ? `<!-- wp:group {"className":"bio-photo-gallery__body"} -->
@@ -401,8 +408,8 @@ ${photo ? `<!-- wp:image --><figure class="wp-block-image"><img src="${photo}" a
 ${paragraphs.map((p) => `<!-- wp:paragraph --><p>${p}</p><!-- /wp:paragraph -->`).join('\n')}
 </div>
 <!-- /wp:group -->` : ''}
-<!-- wp:gallery {"columns":3,"className":"bio-photo-gallery__gallery"} -->
-<figure class="wp-block-gallery bio-photo-gallery__gallery">
+<!-- wp:gallery {"columns":3,"className":"bio-photo-gallery__gallery${layout === 'grid' ? ' bio-photo-gallery__gallery--grid' : ''}"} -->
+<figure class="wp-block-gallery bio-photo-gallery__gallery${layout === 'grid' ? ' bio-photo-gallery__gallery--grid' : ''}">
 ${galleryImages.map((src) => `<figure class="wp-block-image"><img src="${src}" alt="" /></figure>`).join('\n')}
 </figure>
 <!-- /wp:gallery -->

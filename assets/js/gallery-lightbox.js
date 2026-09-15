@@ -119,6 +119,27 @@
 				return;
 			}
 
+			// Plain landscape-grid galleries (bioPhotoGallery({ layout: 'grid' }), e.g. The Great
+			// Escape's real ~16:9 photos, which the fan's portrait cards would crop badly) render
+			// as a static CSS grid -- skip the fan positioning/nav-button setup entirely and just
+			// wire up the click-to-expand slider below.
+			if ( gallery.classList.contains( 'bio-photo-gallery__gallery--grid' ) ) {
+				figures.forEach( function ( fig, i ) {
+					fig.setAttribute( 'role', 'button' );
+					fig.setAttribute( 'tabindex', '0' );
+					fig.addEventListener( 'click', function () {
+						openModal( images, i );
+					} );
+					fig.addEventListener( 'keydown', function ( e ) {
+						if ( e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' ) {
+							e.preventDefault();
+							openModal( images, i );
+						}
+					} );
+				} );
+				return;
+			}
+
 			var center = Math.min( 2, Math.floor( figures.length / 2 ) );
 			var VISIBLE_RANGE = 3; // cards more than this many steps from center fully fade/clip out
 
