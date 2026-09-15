@@ -65,13 +65,13 @@ $nav_menu = [
 				'label' => 'Public Cruises',
 				'items' => [
 					[ 'icon' => 'moon', 'label' => 'NYC Dinner Cruises', 'href' => '/nyc-dinner-cruises/', 'description' => 'An evening cruise with dinner, live DJ, and skyline views.', 'children' => [
-						[ 'icon' => 'utensils', 'label' => 'Dinner Cruise Buffet Menu', 'href' => '/nyc-dinner-cruises/nyc-dinner-cruise-buffet-menu/' ],
+						[ 'icon' => 'utensils', 'label' => 'Dinner Cruise Buffet Menu', 'href' => '/nyc-dinner-cruises/menu/' ],
 					] ],
 					[ 'icon' => 'clock', 'label' => 'NYC Lunch Cruises', 'href' => '/nyc-lunch-cruises/', 'description' => 'A midday cruise with lunch and skyline views.', 'children' => [
-						[ 'icon' => 'utensils', 'label' => 'Lunch Cruise Buffet Menu', 'href' => '/nyc-lunch-cruises/nyc-lunch-cruise-buffet-menu/' ],
+						[ 'icon' => 'utensils', 'label' => 'Lunch Cruise Buffet Menu', 'href' => '/nyc-lunch-cruises/lunch-menu/' ],
 					] ],
 					[ 'icon' => 'sun', 'label' => 'NYC Brunch Cruises', 'href' => '/nyc-brunch-cruises/', 'description' => 'A daytime cruise with brunch and harbor views.', 'children' => [
-						[ 'icon' => 'utensils', 'label' => 'Brunch Cruise Buffet Menu', 'href' => '/nyc-brunch-cruises/nyc-brunch-cruise-buffet-menu/' ],
+						[ 'icon' => 'utensils', 'label' => 'Brunch Cruise Buffet Menu', 'href' => '/nyc-brunch-cruises/brunch-menu/' ],
 					] ],
 				],
 			],
@@ -79,20 +79,20 @@ $nav_menu = [
 				'label' => 'Holiday Cruises',
 				'items' => [
 					[ 'icon' => 'gift', 'label' => 'All Holiday Cruises', 'href' => '/nyc-holiday-cruises/', 'description' => 'Seasonal cruises for every holiday on the calendar.' ],
-					[ 'icon' => 'star', 'label' => "New Year's Eve", 'href' => '/nyc-holiday-cruises/nyc-holiday-cruises-new-years-eve/', 'description' => 'Ring in the new year on the water.' ],
-					[ 'icon' => 'heart', 'label' => "Valentine's Day", 'href' => '/nyc-holiday-cruises/nyc-holiday-cruises-valentines-day/', 'description' => 'A romantic cruise for two.' ],
-					[ 'icon' => 'gift', 'label' => "Mother's Day", 'href' => '/nyc-holiday-cruises/nyc-holiday-cruises-mothers-day/', 'description' => 'Celebrate Mom with brunch on the harbor.' ],
-					[ 'icon' => 'gift', 'label' => "Father's Day", 'href' => '/nyc-holiday-cruises/nyc-holiday-cruises-fathers-day/', 'description' => 'Celebrate Dad with a cruise on the water.' ],
-					[ 'icon' => 'flag', 'label' => '4th of July Cruise', 'href' => '/nyc-holiday-cruises/nyc-holiday-cruises-4th-of-july/', 'description' => 'Watch the fireworks from the water.' ],
+					[ 'icon' => 'star', 'label' => "New Year's Eve", 'href' => '/nyc-holiday-cruises/new-years-eve/', 'description' => 'Ring in the new year on the water.' ],
+					[ 'icon' => 'heart', 'label' => "Valentine's Day", 'href' => '/nyc-holiday-cruises/valentines-day/', 'description' => 'A romantic cruise for two.' ],
+					[ 'icon' => 'gift', 'label' => "Mother's Day", 'href' => '/nyc-holiday-cruises/mothers-day/', 'description' => 'Celebrate Mom with brunch on the harbor.' ],
+					[ 'icon' => 'gift', 'label' => "Father's Day", 'href' => '/nyc-holiday-cruises/fathers-day/', 'description' => 'Celebrate Dad with a cruise on the water.' ],
+					[ 'icon' => 'flag', 'label' => '4th of July Cruise', 'href' => '/nyc-holiday-cruises/4th-of-july/', 'description' => 'Watch the fireworks from the water.' ],
 				],
 			],
 			[
 				'label' => 'More Ways to Cruise',
 				'items' => [
-					[ 'icon' => 'compass', 'label' => 'Lighthouse Cruises', 'href' => '/nyc-party-cruises/long-island-lighthouse-cruise/', 'description' => "A scenic cruise past Long Island's lighthouses." ],
-					[ 'icon' => 'wine', 'label' => 'Booze Cruises', 'href' => '/nyc-party-cruises/nyc-booze-cruises/', 'description' => 'A cash bar cruise built for a night out.' ],
-					[ 'icon' => 'flag', 'label' => 'US Open Charters & Transportation', 'href' => '/us-open-charters/', 'description' => 'Charter transportation to the US Open.' ],
-					[ 'icon' => 'anchor', 'label' => 'Connecticut Cruises & Yacht Charters', 'href' => '/yacht-charter/connecticut-cruises/', 'description' => 'Cruises and charters departing Connecticut.' ],
+					[ 'icon' => 'compass', 'label' => 'Lighthouse Cruises', 'href' => '/nyc-party-cruises/lighthouse-cruise/', 'description' => "A scenic cruise past Long Island's lighthouses." ],
+					[ 'icon' => 'wine', 'label' => 'Booze Cruises', 'href' => '/nyc-party-cruises/booze-cruises/', 'description' => 'A cash bar cruise built for a night out.' ],
+					[ 'icon' => 'flag', 'label' => 'US Open Charters & Transportation', 'href' => '/us-open-charters-and-transportation/', 'description' => 'Charter transportation to the US Open.' ],
+					[ 'icon' => 'anchor', 'label' => 'Connecticut Cruises & Yacht Charters', 'href' => '/yacht-charter/connecticut/', 'description' => 'Cruises and charters departing Connecticut.' ],
 					[ 'icon' => 'calendar', 'label' => 'Public Cruise Schedule', 'href' => 'https://fareharbor.com/embeds/book/skylinecruises/items/date/?full-items=yes', 'description' => 'See dates and book your seat.', 'external' => true ],
 				],
 			],
@@ -110,11 +110,11 @@ $nav_menu = [
 			[
 				'heading' => 'Celebrations',
 				'items'   => [
-					[ 'icon' => 'gift', 'label' => 'Birthday Party Cruises', 'href' => '/nyc-party-cruises/birthday-party-cruises/' ],
-					[ 'icon' => 'star', 'label' => 'Celebration Cruises', 'href' => '/nyc-party-cruises/celebration-cruises-nyc/' ],
-					[ 'icon' => 'star', 'label' => 'Bar/Bat Mitzvah Cruises', 'href' => '/nyc-party-cruises/bar-bat-mitzvah-cruises/' ],
+					[ 'icon' => 'gift', 'label' => 'Birthday Party Cruises', 'href' => '/nyc-party-cruises/birthday-party/' ],
+					[ 'icon' => 'star', 'label' => 'Celebration Cruises', 'href' => '/nyc-party-cruises/celebration-cruises/' ],
+					[ 'icon' => 'star', 'label' => 'Bar/Bat Mitzvah Cruises', 'href' => '/nyc-party-cruises/nyc-bar-bat-mitzvah-cruise/' ],
 					[ 'icon' => 'star', 'label' => 'Sweet 16 Cruises', 'href' => '/nyc-party-cruises/sweet-16-party-cruise/' ],
-					[ 'icon' => 'star', 'label' => 'Quinceañera Cruises', 'href' => '/nyc-party-cruises/quinceanera-cruises/' ],
+					[ 'icon' => 'star', 'label' => 'Quinceañera Cruises', 'href' => '/nyc-party-cruises/quinceanera-cruises-nyc/' ],
 					[ 'icon' => 'users', 'label' => 'Church Group Cruises', 'href' => '/nyc-party-cruises/church-group-outings/' ],
 				],
 			],
@@ -123,7 +123,7 @@ $nav_menu = [
 				'items'   => [
 					[ 'icon' => 'grad-cap', 'label' => 'All School Events', 'href' => '/school-events/' ],
 					[ 'icon' => 'grad-cap', 'label' => 'Graduation Cruises & Parties', 'href' => '/school-events/graduation-cruises-parties/' ],
-					[ 'icon' => 'star', 'label' => 'Prom & After Prom', 'href' => '/school-events/prom-after-prom-cruises/' ],
+					[ 'icon' => 'star', 'label' => 'Prom & After Prom', 'href' => '/school-events/prom/' ],
 					[ 'icon' => 'grad-cap', 'label' => 'College Cruises', 'href' => '/school-events/college-cruises/' ],
 					[ 'icon' => 'grad-cap', 'label' => 'College Alumni Cruises', 'href' => '/school-events/college-alumni-cruises/' ],
 				],
@@ -132,14 +132,14 @@ $nav_menu = [
 				'heading' => 'Corporate & Charters',
 				'items'   => [
 					[ 'icon' => 'briefcase', 'label' => 'Corporate Cruises', 'href' => '/corporate-cruises/', 'children' => [
-						[ 'icon' => 'heart', 'label' => 'Fundraisers', 'href' => '/corporate-cruises/fundraiser-cruises/' ],
+						[ 'icon' => 'heart', 'label' => 'Fundraisers', 'href' => '/corporate-cruises/fundraisers/' ],
 						[ 'icon' => 'anchor', 'label' => 'Connecticut Corporate Cruises', 'href' => '/corporate-cruises/connecticut-corporate-cruises/' ],
 					] ],
 					[ 'icon' => 'anchor', 'label' => 'Private Yacht Charters', 'href' => '/yacht-charter/', 'children' => [
 						[ 'icon' => 'map-pin', 'label' => 'Waterfront Event Venue', 'href' => '/yacht-charter/waterfront-event-venue/' ],
 						[ 'icon' => 'anchor', 'label' => 'Great Escape Yacht Rental', 'href' => '/the-great-escape-yacht-rental/' ],
 					] ],
-					[ 'icon' => 'utensils', 'label' => 'Cruise Catering', 'href' => '/about-skyline-cruises/cruise-catering/' ],
+					[ 'icon' => 'utensils', 'label' => 'Cruise Catering', 'href' => '/about/catering/' ],
 				],
 			],
 		],
@@ -151,10 +151,10 @@ $nav_menu = [
 		'items' => [
 			[ 'icon' => 'heart', 'label' => 'Weddings', 'href' => '/weddings/' ],
 			[ 'icon' => 'users', 'label' => 'Meet Captain Arnold', 'href' => '/weddings/captain-arnold-wedding-officiant/' ],
-			[ 'icon' => 'heart', 'label' => 'LGBTQ+ Wedding Cruises', 'href' => '/weddings/lgbtq-wedding-cruises/' ],
-			[ 'icon' => 'heart', 'label' => 'Anniversary Cruise', 'href' => '/weddings/nyc-anniversary-cruise/' ],
-			[ 'icon' => 'gem', 'label' => 'Engagement Party', 'href' => '/weddings/engagement-party-cruises/' ],
-			[ 'icon' => 'gift', 'label' => 'Bridal Showers', 'href' => '/weddings/bridal-shower-cruises/' ],
+			[ 'icon' => 'heart', 'label' => 'LGBTQ+ Wedding Cruises', 'href' => '/weddings/lgbt-wedding-cruises/' ],
+			[ 'icon' => 'heart', 'label' => 'Anniversary Cruise', 'href' => '/weddings/anniversary-cruise-nyc/' ],
+			[ 'icon' => 'gem', 'label' => 'Engagement Party', 'href' => '/weddings/engagement-party-cruises-nyc/' ],
+			[ 'icon' => 'gift', 'label' => 'Bridal Showers', 'href' => '/weddings/bridal-showers/' ],
 			[ 'icon' => 'users', 'label' => 'Bridal Shows', 'href' => '/weddings/bridal-show-cruises/' ],
 		],
 	],
@@ -169,28 +169,28 @@ $nav_menu = [
 			// All 11 real port pages now exist (10 pushed 2026-08-24 gap-fill batch + Liberty
 			// Landing already live) — this flyout genuinely needs to hold more than 1-2 children
 			// for the first time, see the bumped .nav-dropdown__flyout max-height in patterns.css.
-			[ 'icon' => 'map-pin', 'label' => 'Our Departure Ports', 'href' => '/departure-ports/', 'children' => [
-				[ 'icon' => 'anchor', 'label' => "World's Fair Marina", 'href' => '/departure-ports/worlds-fair-marina/' ],
-				[ 'icon' => 'anchor', 'label' => 'Chelsea Piers', 'href' => '/departure-ports/chelsea-piers/' ],
-				[ 'icon' => 'anchor', 'label' => 'Pier 36', 'href' => '/departure-ports/pier-36/' ],
-				[ 'icon' => 'anchor', 'label' => 'Liberty Landing Marina', 'href' => '/departure-ports/liberty-landing-marina/' ],
-				[ 'icon' => 'anchor', 'label' => 'Town Dock Park', 'href' => '/departure-ports/town-dock-park/' ],
-				[ 'icon' => 'anchor', 'label' => 'Ponus Yacht Club', 'href' => '/departure-ports/ponus-yacht-club/' ],
-				[ 'icon' => 'anchor', 'label' => 'Veterans Memorial Park', 'href' => '/departure-ports/veterans-memorial-park-marina/' ],
-				[ 'icon' => 'anchor', 'label' => 'New Rochelle Municipal Marina', 'href' => '/departure-ports/new-rochelle-municipal-marina/' ],
-				[ 'icon' => 'anchor', 'label' => 'Yonkers City Pier', 'href' => '/departure-ports/yonkers-city-pier/' ],
-				[ 'icon' => 'anchor', 'label' => 'Glen Cove Ferry Terminal', 'href' => '/departure-ports/glen-cove-ferry-terminal/' ],
-				[ 'icon' => 'anchor', 'label' => 'Lincoln Harbor', 'href' => '/departure-ports/lincoln-harbor/' ],
+			[ 'icon' => 'map-pin', 'label' => 'Our Departure Ports', 'href' => '/ports/', 'children' => [
+				[ 'icon' => 'anchor', 'label' => "World's Fair Marina", 'href' => '/ports/worlds-fair-marina-flushing-ny/' ],
+				[ 'icon' => 'anchor', 'label' => 'Chelsea Piers', 'href' => '/ports/chelsea-piers-manhattan/' ],
+				[ 'icon' => 'anchor', 'label' => 'Pier 36', 'href' => '/ports/pier-36-manhattan-nyc/' ],
+				[ 'icon' => 'anchor', 'label' => 'Liberty Landing Marina', 'href' => '/ports/liberty-landing-marina-new-jersey/' ],
+				[ 'icon' => 'anchor', 'label' => 'Town Dock Park', 'href' => '/ports/town-dock-park-port-washington/' ],
+				[ 'icon' => 'anchor', 'label' => 'Ponus Yacht Club', 'href' => '/ports/ponus-yacht-club-stamford-ct/' ],
+				[ 'icon' => 'anchor', 'label' => 'Veterans Memorial Park', 'href' => '/ports/veterans-memorial-park-and-marina-norwalk-ct/' ],
+				[ 'icon' => 'anchor', 'label' => 'New Rochelle Municipal Marina', 'href' => '/ports/municipal-marina-new-rochelle/' ],
+				[ 'icon' => 'anchor', 'label' => 'Yonkers City Pier', 'href' => '/ports/yonkers-city-pier-yonkers-new-york/' ],
+				[ 'icon' => 'anchor', 'label' => 'Glen Cove Ferry Terminal', 'href' => '/ports/garvies-point-glen-cove/' ],
+				[ 'icon' => 'anchor', 'label' => 'Lincoln Harbor', 'href' => '/ports/lincoln-harbor-new-jersey/' ],
 			] ],
 		],
 	],
 	[
 		'label' => 'Testimonials',
-		'href'  => '/about-skyline-cruises/about-clients-testimonials/',
+		'href'  => '/about/clients-testimonials/',
 	],
 	[
 		'label' => 'FAQs',
-		'href'  => '/about-skyline-cruises/about-faq/',
+		'href'  => '/about/faq/',
 	],
 	[
 		'label' => 'Blog',

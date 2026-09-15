@@ -53,12 +53,12 @@ $year = wp_date( 'Y' );
 			<?php else : ?>
 				<h4>Quick Links</h4>
 				<ul>
-					<li><a href="/about-skyline-cruises/">About Us</a></li>
+					<li><a href="/about/">About Us</a></li>
 					<li><a href="/the-ship/">Our Fleet</a></li>
-					<li><a href="/about-clients-testimonials/">Testimonials</a></li>
-					<li><a href="/picture-gallery/">Gallery</a></li>
+					<li><a href="/about/clients-testimonials/">Testimonials</a></li>
+					<li><a href="/picture-gallery-of-skyline-cruises/">Gallery</a></li>
 					<li><a href="/notes-from-the-deck/">Blog</a></li>
-					<li><a href="/about-faq/">FAQs</a></li>
+					<li><a href="/about/faq/">FAQs</a></li>
 				</ul>
 			<?php endif; ?>
 		</div>
