@@ -1924,6 +1924,14 @@ body.testimonial-modal-open {
   max-height: 88vh;
   border-radius: 12px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  /* Crossfade between slides -- gallery-lightbox.js toggles .is-transitioning on the modal (not
+     this element) right before swapping `src`, so the fade-out/fade-in brackets the actual image
+     change instead of the browser coalescing both into one paint. */
+  transition: opacity 0.25s ease;
+}
+
+.gallery-lightbox.is-transitioning .gallery-lightbox__image {
+  opacity: 0;
 }
 
 .gallery-lightbox__close {
@@ -1946,8 +1954,75 @@ body.testimonial-modal-open {
   color: var(--color-gold);
 }
 
+/* Prev/next slider controls -- same circular white-badge language as the close button, just
+   vertically centered at the dialog's own left/right edge instead of pinned to a corner. */
+.gallery-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-white);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--color-navy);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-lightbox__nav--prev {
+  left: -20px;
+}
+
+.gallery-lightbox__nav--next {
+  right: -20px;
+}
+
+.gallery-lightbox__nav:hover,
+.gallery-lightbox__nav:focus-visible {
+  color: var(--color-gold);
+  transform: translateY(-50%) scale(1.08);
+}
+
+@media (max-width: 720px) {
+  .gallery-lightbox__nav--prev {
+    left: 4px;
+  }
+  .gallery-lightbox__nav--next {
+    right: 4px;
+  }
+}
+
+.gallery-lightbox__counter {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-white);
+  background: rgba(11, 44, 77, 0.55);
+  padding: 4px 14px;
+  border-radius: 9999px;
+}
+
 body.gallery-lightbox-open {
   overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-lightbox__image,
+  .gallery-lightbox__nav {
+    transition: none;
+  }
 }
 
 /* ===== link-list (new 2026-08-24, build-pages.js linkList()) — Site Map / Friends & Affiliates,
