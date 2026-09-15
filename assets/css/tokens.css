@@ -281,31 +281,6 @@ figure.wp-block-image {
 .card-grid > *:nth-child(5) { transition-delay: 0.33s; }
 .card-grid > *:nth-child(6) { transition-delay: 0.4s; }
 
-/* Same staggered-cascade treatment for the photo gallery grid (bioPhotoGallery(), e.g. The Ship /
-   Picture Gallery) -- up to 12 photos per category here (vs. card-grid's usual 3-6), so a shorter
-   per-step delay (0.04s) keeps the full cascade from taking too long to finish. */
-.reveal.is-pending .bio-photo-gallery__gallery > * {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.bio-photo-gallery__gallery > * {
-  transition: opacity 0.5s cubic-bezier(0.16, 0.84, 0.44, 1), transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
-}
-
-.bio-photo-gallery__gallery > *:nth-child(1) { transition-delay: 0.03s; }
-.bio-photo-gallery__gallery > *:nth-child(2) { transition-delay: 0.07s; }
-.bio-photo-gallery__gallery > *:nth-child(3) { transition-delay: 0.11s; }
-.bio-photo-gallery__gallery > *:nth-child(4) { transition-delay: 0.15s; }
-.bio-photo-gallery__gallery > *:nth-child(5) { transition-delay: 0.19s; }
-.bio-photo-gallery__gallery > *:nth-child(6) { transition-delay: 0.23s; }
-.bio-photo-gallery__gallery > *:nth-child(7) { transition-delay: 0.27s; }
-.bio-photo-gallery__gallery > *:nth-child(8) { transition-delay: 0.31s; }
-.bio-photo-gallery__gallery > *:nth-child(9) { transition-delay: 0.35s; }
-.bio-photo-gallery__gallery > *:nth-child(10) { transition-delay: 0.39s; }
-.bio-photo-gallery__gallery > *:nth-child(11) { transition-delay: 0.43s; }
-.bio-photo-gallery__gallery > *:nth-child(12) { transition-delay: 0.47s; }
-
 /* Respect prefers-reduced-motion sitewide: turn off every custom animation/transition added for
    polish (hero entrance, scroll-reveal, hover-lift, nav dropdown motion) without touching layout.
    Anything essential to using the page (e.g. the FAQ accordion's open/close) is untouched since

@@ -1835,38 +1835,37 @@ body.testimonial-modal-open {
   flex-shrink: 0;
 }
 
-/* Bento masonry grid -- redesigned 2026-09-15 per direct request ("Framify" gallery style: tight,
-   edge-to-edge grid, varying tile sizes, no borders/shadows/rounding, full-bleed). Replaces the
-   earlier uniform fixed-aspect 3-col grid (2026-09-15, same day -- this design brief specifically
-   called for the tile-size variation that version deliberately avoided).
-   `grid-auto-flow: dense` repacks around the wide/tall tiles automatically regardless of how many
-   images a given category has (5 to 12 across this page's 4 real categories) -- no manual curation
-   needed per photo. The wide/tall spans repeat on a 6-tile cycle (nth-child(6n+3)/(6n+4)) so the
-   rhythm holds no matter the total count. */
+/* Fanned 3D coverflow carousel -- redesigned 2026-09-15 per a real screenshot reference (the
+   Framify.design landing page itself): a row of rounded, floating cards tilted in 3D perspective,
+   center-most card upright, cards fanning outward and shrinking/receding the further they sit from
+   center, outermost cards clipped at the container edge. Replaces the bento-grid attempt from
+   earlier the same day, which didn't match what "Framify design" actually meant.
+   JS (gallery-lightbox.js) positions each figure absolutely and sets a per-card transform based on
+   its offset from the gallery's own current center index; this stylesheet owns the constant part
+   of that look (card size, radius, shadow, the transition so moving the center animates smoothly)
+   while the offset-dependent transform itself is necessarily inline per card, computed in JS. */
 .bio-photo-gallery__gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 220px;
-  grid-auto-flow: dense;
-  gap: 0;
-  margin-top: 32px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 340px;
+  margin-top: 48px;
+  perspective: 1600px;
+  overflow: hidden;
 }
 
 .bio-photo-gallery__gallery figure.wp-block-image {
+  position: absolute;
   margin: 0;
+  width: 220px;
+  height: 300px;
+  border-radius: 28px;
   overflow: hidden;
   cursor: zoom-in;
-  position: relative;
-}
-
-/* Wide tile: spans 2 columns, still 1 row tall. */
-.bio-photo-gallery__gallery figure.wp-block-image:nth-child(6n + 3) {
-  grid-column: span 2;
-}
-
-/* Tall tile: spans 2 rows, still 1 column wide. */
-.bio-photo-gallery__gallery figure.wp-block-image:nth-child(6n + 4) {
-  grid-row: span 2;
+  box-shadow: 0 30px 60px rgba(11, 44, 77, 0.28);
+  transition: transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1), opacity 0.6s ease;
+  will-change: transform;
 }
 
 .bio-photo-gallery__gallery img {
@@ -1874,39 +1873,55 @@ body.testimonial-modal-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 
-/* Edge-to-edge tiles touch, so a focus ring drawn with `outline` would bleed into the neighboring
-   tile -- an inset box-shadow stays contained within this tile's own bounds instead. */
 .bio-photo-gallery__gallery figure.wp-block-image:focus-visible {
   outline: none;
-  box-shadow: inset 0 0 0 3px var(--color-gold);
-  z-index: 1;
+  box-shadow: 0 30px 60px rgba(11, 44, 77, 0.28), inset 0 0 0 4px var(--color-gold);
 }
 
-.bio-photo-gallery__gallery figure.wp-block-image:hover img,
-.bio-photo-gallery__gallery figure.wp-block-image:focus-visible img {
-  transform: scale(1.08);
+/* Prev/next -- shift which card sits at center (JS: .bio-photo-gallery__fan-nav-wrap sibling). */
+.bio-photo-gallery__fan-nav-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.bio-photo-gallery__fan-nav {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-divider);
+  background: var(--color-white);
+  color: var(--color-navy);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.bio-photo-gallery__fan-nav:hover,
+.bio-photo-gallery__fan-nav:focus-visible {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  color: var(--color-white);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bio-photo-gallery__gallery img {
+  .bio-photo-gallery__gallery figure.wp-block-image {
     transition: none;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 720px) {
   .bio-photo-gallery__gallery {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 180px;
+    height: 260px;
   }
-
-  /* The wide tile (span 2) already reads fine as "full row" in a 2-col grid; the tall tile's
-     span-2-rows starts feeling cramped once tiles are this narrow, so it's dropped back to a
-     normal 1x1 tile below this breakpoint rather than forcing an oddly narrow-and-tall photo. */
-  .bio-photo-gallery__gallery figure.wp-block-image:nth-child(6n + 4) {
-    grid-row: span 1;
+  .bio-photo-gallery__gallery figure.wp-block-image {
+    width: 160px;
+    height: 220px;
+    border-radius: 20px;
   }
 }
 
