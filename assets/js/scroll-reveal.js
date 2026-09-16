@@ -18,6 +18,14 @@
 	}
 
 	document.addEventListener( 'DOMContentLoaded', function () {
+		// Party Pictures (page-id-347) excluded entirely -- same reasoning as the .testimonial-quote/
+		// .post-article exclusion below (a very long section lurching/popping in at once instead of
+		// reading as a real reveal), just page-scoped rather than class-scoped: its one gallery section
+		// holds all 131 photos, by far the longest single section on the site.
+		if ( document.body.classList.contains( 'page-id-347' ) ) {
+			return;
+		}
+
 		// .testimonial-quote (About/Info "Clients & Testimonials" page) and .post-article (single.php's
 		// post-content wrapper) are excluded by direct request: both can run very long (a ~40-name
 		// client grid; a full article body), so the fade-up-on-scroll that works well for normal-height
