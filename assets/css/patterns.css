@@ -1988,6 +1988,28 @@ body.testimonial-modal-open {
   }
 }
 
+/* Square-grid variant -- the 3 pages linked from picture-gallery's "More Photo Galleries" card
+   grid (Views from the Skyline, Skyline Princess & NYC, Party Pictures) use real 1024x1024 square
+   source photos, not the 16:9 photography --grid-large was built for. Checked before assuming --
+   forcing these into 16:9 tiles would crop ~44% off the top/bottom of every photo, the same class
+   of defect --grid-large was built to fix in the first place. Same base rules (hover zoom, lift,
+   lightbox) via --grid; only the tile ratio/size changes. */
+.bio-photo-gallery__gallery--grid-square {
+  gap: 20px;
+}
+
+.bio-photo-gallery__gallery--grid-square figure.wp-block-image {
+  flex: 1 1 300px;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+}
+
+@media (max-width: 720px) {
+  .bio-photo-gallery__gallery--grid-square figure.wp-block-image {
+    flex-basis: calc(50% - 10px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bio-photo-gallery__gallery--grid img {
     transition: none;
