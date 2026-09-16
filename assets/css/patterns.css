@@ -2010,6 +2010,65 @@ body.testimonial-modal-open {
   }
 }
 
+/* Masonry variant -- Captain Arnold's memorial page gallery has genuinely mixed source photo
+   ratios (checked: landscape 3:2 and 4:3, portrait 2:3, and a wide ~1.86:1 all in the same 16-photo
+   set), unlike every other bioPhotoGallery() user which is one consistent ratio. Neither --grid-large
+   nor --grid-square fits a mixed set without cropping roughly half of it, so this uses a CSS-only
+   multi-column masonry instead: each figure keeps its own native aspect ratio, nothing is cropped.
+   gallery-lightbox.js skips fan-positioning for this class the same way it does for --grid. */
+.bio-photo-gallery__gallery--masonry {
+  position: static;
+  display: block;
+  column-count: 3;
+  column-gap: 20px;
+  height: auto;
+  perspective: none;
+  overflow: visible;
+}
+
+.bio-photo-gallery__gallery--masonry figure.wp-block-image {
+  position: static;
+  width: 100%;
+  height: auto;
+  margin: 0 0 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  break-inside: avoid;
+  box-shadow: 0 4px 16px rgba(11, 44, 77, 0.1);
+  transition: box-shadow 0.3s ease;
+  opacity: 1;
+  transform: none !important;
+}
+
+.bio-photo-gallery__gallery--masonry img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+.bio-photo-gallery__gallery--masonry figure.wp-block-image:hover,
+.bio-photo-gallery__gallery--masonry figure.wp-block-image:focus-visible {
+  box-shadow: 0 12px 32px rgba(11, 44, 77, 0.2);
+}
+
+.bio-photo-gallery__gallery--masonry figure.wp-block-image:hover img,
+.bio-photo-gallery__gallery--masonry figure.wp-block-image:focus-visible img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .bio-photo-gallery__gallery--masonry {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .bio-photo-gallery__gallery--masonry {
+    column-count: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bio-photo-gallery__gallery--grid img {
     transition: none;

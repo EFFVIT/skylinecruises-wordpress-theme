@@ -119,11 +119,12 @@
 				return;
 			}
 
-			// Plain landscape-grid galleries (bioPhotoGallery({ layout: 'grid' }), e.g. The Great
-			// Escape's real ~16:9 photos, which the fan's portrait cards would crop badly) render
-			// as a static CSS grid -- skip the fan positioning/nav-button setup entirely and just
-			// wire up the click-to-expand slider below.
-			if ( gallery.classList.contains( 'bio-photo-gallery__gallery--grid' ) ) {
+			// Plain landscape/square-grid galleries (bioPhotoGallery({ layout: 'grid' }), e.g. The
+			// Great Escape's real ~16:9 photos, which the fan's portrait cards would crop badly) and
+			// masonry galleries (mixed-ratio photo sets, e.g. Captain Arnold's memorial page) render
+			// as static CSS layouts -- skip the fan positioning/nav-button setup entirely for both and
+			// just wire up the click-to-expand slider below.
+			if ( gallery.classList.contains( 'bio-photo-gallery__gallery--grid' ) || gallery.classList.contains( 'bio-photo-gallery__gallery--masonry' ) ) {
 				figures.forEach( function ( fig, i ) {
 					fig.setAttribute( 'role', 'button' );
 					fig.setAttribute( 'tabindex', '0' );
