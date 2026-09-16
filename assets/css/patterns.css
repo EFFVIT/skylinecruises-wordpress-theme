@@ -1966,6 +1966,28 @@ body.testimonial-modal-open {
   transform: scale(1.08);
 }
 
+/* Large landscape-grid variant -- /the-ship/picture-gallery/'s 4 category galleries (Exterior,
+   Interior, Views, Experiences) are real ~16:9 harbor/ship/event photography (source images verified
+   2560x1440); the base --grid variant's 3:2 tiles still crop a meaningful sliver off a 16:9 source,
+   and its 260px min-width reads as a thumbnail strip rather than a gallery page's main event. This
+   modifier stacks on top of --grid (same base rules, same lightbox wiring) and only changes tile
+   size/ratio: true 16:9 (no crop) at a much larger minimum width, fewer/bigger tiles per row. */
+.bio-photo-gallery__gallery--grid-large {
+  gap: 24px;
+}
+
+.bio-photo-gallery__gallery--grid-large figure.wp-block-image {
+  flex: 1 1 420px;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+}
+
+@media (max-width: 720px) {
+  .bio-photo-gallery__gallery--grid-large figure.wp-block-image {
+    flex-basis: 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bio-photo-gallery__gallery--grid img {
     transition: none;
