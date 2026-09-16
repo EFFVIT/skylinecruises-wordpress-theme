@@ -2010,6 +2010,27 @@ body.testimonial-modal-open {
   }
 }
 
+/* Large 3:2 variant -- /picture-gallery-of-skyline-cruises/'s 20 photos are checked: 16 of 20 are an
+   exact 3:2 ratio, the other 4 range 1.00-1.33 (squarer, not wider) -- much closer to --grid's
+   existing 3:2 than to --grid-large's 16:9 or --grid-square's 1:1, so neither of those fits as well
+   as a larger version of the ratio --grid already uses. Same base rules via --grid; only tile size
+   changes, same way --grid-large does for 16:9 content. */
+.bio-photo-gallery__gallery--grid-large-32 {
+  gap: 24px;
+}
+
+.bio-photo-gallery__gallery--grid-large-32 figure.wp-block-image {
+  flex: 1 1 380px;
+  aspect-ratio: 3 / 2;
+  border-radius: 20px;
+}
+
+@media (max-width: 720px) {
+  .bio-photo-gallery__gallery--grid-large-32 figure.wp-block-image {
+    flex-basis: 100%;
+  }
+}
+
 /* Masonry variant -- Captain Arnold's memorial page gallery has genuinely mixed source photo
    ratios (checked: landscape 3:2 and 4:3, portrait 2:3, and a wide ~1.86:1 all in the same 16-photo
    set), unlike every other bioPhotoGallery() user which is one consistent ratio. Neither --grid-large
