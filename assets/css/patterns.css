@@ -1791,16 +1791,24 @@
   padding: 80px var(--side-margin);
 }
 
+/* Card treatment (Port sub-pages, e.g. /ports/municipal-marina-new-rochelle/) — the Driving/Mass
+   Transit sub-sections were bare stacked text with nothing to distinguish them from the intro
+   text-section above, so the whole page read as one long wall of copy. Light-blue card matches
+   the same visual language as checklist-card/text-section__icon elsewhere on the site. */
 .directions-block__group {
-  margin-top: 32px;
+  margin-top: 24px;
+  background: var(--color-bg-light-blue);
+  border-radius: 16px;
+  padding: 32px 40px;
 }
 
 .directions-block__group h3 {
-  margin-bottom: 12px;
+  margin: 0 0 12px;
+  color: var(--color-navy);
 }
 
-.directions-block__route {
-  margin-bottom: 20px;
+.directions-block__group p {
+  margin: 0;
 }
 
 .directions-block__route strong {
@@ -2538,7 +2546,9 @@ body.gallery-lightbox-open {
 .text-section + .link-list,
 .link-list + .text-section,
 .text-section + .ports-list,
-.ports-list + .text-section {
+.ports-list + .text-section,
+.text-section + .directions-block,
+.directions-block + .text-section {
   padding-top: 0;
 }
 

@@ -358,6 +358,11 @@
     padding: 28px 20px;
   }
 
+  /* directions-block__group (Port sub-pages' new Driving/Mass Transit card) — same cut. */
+  .directions-block__group {
+    padding: 24px 20px;
+  }
+
   /* photo-text-card (T2, e.g. "Smooth Sailing") — desktop padding leaves almost no room for the
      navy panel's own text once it's stacked full-width under the photo at phone width. */
   .photo-text-card__panel {
