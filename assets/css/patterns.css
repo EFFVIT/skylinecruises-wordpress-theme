@@ -3866,77 +3866,10 @@ body.gallery-lightbox-open {
   }
 }
 
-/* ===== Page-specific: Graduation Cruises & Parties (page-id-410) ONLY =====
-   Everything in this block is scoped to this one page's body class (or uses a class name
-   unique to this page, e.g. .grad-ports-*) — none of it touches .hero/.text-section/
-   .closing-cta/.ports-list for any other page. Corrections after Noman's first-pass review
-   of the pilot: wrong GHL form, hero didn't match Figma's actual (taller, 2-paragraph)
-   version, ports list needs real headings/grid/bullets, too much stacked section padding,
-   and the closing band needs an exact hex, not the shared --color-navy. */
-
-/* Hero: this page's real Figma frame is 1117px tall with a 2-paragraph intro + 2 CTAs +
-   trust badges — taller than the generic .hero--short (540px) every other interior page
-   uses. 1117 - 2*28 (--hero-inset) = 1061. */
-body.page-id-410 .hero {
-  min-height: 1061px;
-}
-
-body.page-id-410 .hero h1 {
-  font-size: 75px;
-  line-height: 79px;
-}
-
-body.page-id-410 .hero__content {
-  max-width: 680px;
-}
-
-body.page-id-410 .hero__content p {
-  color: var(--color-white);
-  font-family: var(--font-intro);
-  font-size: 16px;
-  line-height: 22px;
-}
-
-@media (max-width: 900px) {
-  body.page-id-410 .hero h1 {
-    font-size: 48px;
-    line-height: 1.15;
-  }
-  body.page-id-410 .hero {
-    min-height: auto;
-  }
-}
-
-/* Spacing: site default is 80px top+bottom per section; stacked across 7 sections on one
-   page that reads as excessive air. Tightened here only. */
-body.page-id-410 .content-sidebar,
-body.page-id-410 .text-section,
-body.page-id-410 .entertainment-chips,
-body.page-id-410 .banquet-band,
-body.page-id-410 .closing-cta,
-body.page-id-410 .testimonial-grid-section {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-body.page-id-410 .content-sidebar {
-  padding-top: 56px;
-  gap: 40px;
-}
-
-body.page-id-410 .content-sidebar__main {
-  gap: 20px;
-}
-
-body.page-id-410 .ports-list {
-  padding: 0;
-}
-
-/* Ports list rebuilt to match Figma: serif subheadings, 2-column grid, diamond bullets —
-   was a plain single-column list with no bullets. Unique class names (not a modifier on
-   the shared .ports-list/.ports-list__item), so no other page using the plain component
-   can be affected even without the body-class scope. */
-.grad-ports-heading {
+/* ----- event-ports: 2-column grid + serif subheading + diamond bullets for a port/marina
+   list — reusable across any event page that lists departure ports (not just Graduation).
+   Replaces the plain single-column .ports-list__item list with no bullets. ----- */
+.event-ports-heading {
   font-family: var(--font-display);
   font-weight: 400;
   font-size: 22px;
@@ -3944,7 +3877,7 @@ body.page-id-410 .ports-list {
   margin: 0;
 }
 
-.grad-ports-grid {
+.event-ports-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px 28px;
@@ -3955,31 +3888,25 @@ body.page-id-410 .ports-list {
   color: #1c354e;
 }
 
-.grad-ports-grid > div {
+.event-ports-grid > div {
   padding-left: 22px;
   position: relative;
 }
 
-.grad-ports-grid > div::before {
+.event-ports-grid > div::before {
   content: "\2726";
   position: absolute;
   left: 0;
   color: var(--color-gold);
 }
 
-.grad-ports-grid a {
+.event-ports-grid a {
   color: #1c354e;
   text-decoration: underline;
 }
 
 @media (max-width: 700px) {
-  .grad-ports-grid {
+  .event-ports-grid {
     grid-template-columns: 1fr;
   }
-}
-
-/* Discuss Your Graduation Party band: exact Figma hex (#101C3D), distinct from every other
-   page's .closing-cta (--color-navy/#0b2c4d) — this page only. */
-body.page-id-410 .closing-cta {
-  background: #101c3d;
 }
