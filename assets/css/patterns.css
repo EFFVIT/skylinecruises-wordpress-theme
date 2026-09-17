@@ -1177,6 +1177,32 @@
   margin: 0;
 }
 
+/* Generic gold-diamond-bullet list, reusable anywhere plain paragraphs need to read as a real
+   bulleted list (same visual language as buffet-menu-cards/event-ports-grid's diamond bullets) --
+   introduced for the T4 Weddings family pages, 2026-09-17. */
+.diamond-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.diamond-list li {
+  position: relative;
+  padding-left: 24px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-navy);
+}
+.diamond-list li::before {
+  content: "\2726";
+  position: absolute;
+  left: 0;
+  color: var(--color-gold);
+}
+
 /* Optional 2-col text+photo variant (added fixing NYC Holiday Cruises' "Holiday Dates Book Fast"
    section, which live pairs with a real photo — see the textSection() comment in build-pages.js). */
 .text-section--with-photo {
