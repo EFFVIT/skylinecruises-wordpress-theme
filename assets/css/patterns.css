@@ -1164,6 +1164,19 @@
   text-align: center;
 }
 
+/* Small italic eyebrow line above a centered intro heading (e.g. "NYC Boat Wedding Venue |
+   Waterfront Wedding Venue") -- confirmed via direct screenshot reference for the T4 Weddings
+   family of pages, 2026-09-17. Reusable anywhere a text-section--centered intro wants a short
+   venue-type label above its h2. */
+.text-section__eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--color-navy);
+  opacity: 0.7;
+  margin: 0;
+}
+
 /* Optional 2-col text+photo variant (added fixing NYC Holiday Cruises' "Holiday Dates Book Fast"
    section, which live pairs with a real photo — see the textSection() comment in build-pages.js). */
 .text-section--with-photo {
