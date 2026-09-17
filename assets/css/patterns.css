@@ -3672,7 +3672,37 @@ body.gallery-lightbox-open {
   flex: 0 1 500px;
 }
 
+/* Figma's hero CTAs are full-width stacked pills, same treatment .homepage-hero__ctas
+   already uses -- .hero__cta's base rule (tokens.css) doesn't force width, so buttons were
+   shrinking to fit their text instead of spanning the column. The outline secondary button's
+   label is long ("The Great Escape -- Private Yacht Charter for Up to 6 Guests, Discover More
+   Here") and was wrapping to 2 lines at the base 16px/32px-padding size; sized down and
+   tightened padding here specifically so it fits one line without affecting the primary gold
+   button or any other page's plain single-button .hero__cta. */
+.hero--with-form .hero__cta {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.hero--with-form .hero__cta .wp-block-button {
+  width: 100%;
+}
+
+.hero--with-form .hero__cta .btn {
+  width: 100%;
+}
+
+.hero--with-form .hero__cta .btn-outline-white {
+  font-size: 14px;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
 @media (max-width: 600px) {
+  .hero--with-form .hero__cta .btn-outline-white {
+    white-space: normal;
+  }
   .hero--with-form {
     flex-direction: column;
     align-items: stretch;
