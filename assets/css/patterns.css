@@ -1335,6 +1335,14 @@
   gap: 16px 40px;
 }
 
+/* 3-column variant (Holiday sub-pages: New Year's Eve, Valentine's Day, Mother's/Father's Day,
+   4th of July — confirmed via direct Figma screenshot reference for New Year's Eve, 2026-09-17;
+   these pages' checklists run 9 short items instead of the 7-8 longer ones on Dinner/Brunch/Lunch,
+   so 3 columns reads better than 2). */
+.checklist-card__grid--3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .checklist-card-cta {
   text-align: center;
 }
