@@ -1300,6 +1300,79 @@
   top: 14px;
 }
 
+/* ===== buffet-menu-cards (Buffet Menu category: Brunch/Lunch/Dinner Menu pages) =====
+   Replaces the old photo-checklist-row layout for the "Some X Buffet Options" section on these
+   3 pages with a light-blue background band, centered heading/subheading, two side-by-side white
+   item cards (gold diamond bullets, no photo), and a centered gold CTA button below — matched
+   directly against a design reference screenshot supplied by the user, 2026-09-17. */
+.buffet-menu-cards {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 80px var(--side-margin);
+  background: var(--color-bg-light-blue);
+  text-align: center;
+}
+
+.buffet-menu-cards__heading {
+  color: var(--color-navy);
+  margin: 0 0 4px;
+}
+
+.buffet-menu-cards__subheading {
+  margin: 0 0 32px;
+}
+
+.buffet-menu-cards__row {
+  display: flex;
+  gap: 24px;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.buffet-menu-cards__card {
+  flex: 1;
+  background: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(11, 44, 77, 0.08);
+  padding: 32px 40px;
+}
+
+.buffet-menu-cards__card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.buffet-menu-cards__card li {
+  position: relative;
+  padding-left: 24px;
+  font-family: var(--font-intro);
+  font-size: 15px;
+  color: #1c354e;
+}
+
+.buffet-menu-cards__card li::before {
+  content: "\2726";
+  position: absolute;
+  left: 0;
+  color: var(--color-gold);
+}
+
+.buffet-menu-cards__cta {
+  margin-top: 40px;
+}
+
+@media (max-width: 700px) {
+  .buffet-menu-cards__row {
+    flex-direction: column;
+  }
+}
+
 /* ===== route-map (patterns/route-map.php) — Public Cruise Service only =====
    Real Leaflet/OpenStreetMap embed (self-hosted, assets/vendor/leaflet), NOT a static image —
    pins the real departure marina + real NYC landmarks, no fabricated route line. See
