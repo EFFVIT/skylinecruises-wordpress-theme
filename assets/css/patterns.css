@@ -2548,7 +2548,9 @@ body.gallery-lightbox-open {
 .text-section + .ports-list,
 .ports-list + .text-section,
 .text-section + .directions-block,
-.directions-block + .text-section {
+.directions-block + .text-section,
+.link-list + .photo-text-card-section,
+.photo-text-card-section + .link-list {
   padding-top: 0;
 }
 
