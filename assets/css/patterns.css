@@ -868,6 +868,15 @@
   margin-top: 8px;
 }
 
+/* .wp-block-buttons is display:contents (tokens.css) so its own gap/flex properties never
+   apply -- School Events pages with 2 hero buttons (e.g. Graduation's gold CTA + "The Great
+   Escape" outline link) were rendering back-to-back with zero space between them because the
+   real flex gap lives on .hero__content, which this rule can't reach. Target the promoted
+   .wp-block-button children directly instead. */
+.hero__cta .wp-block-button + .wp-block-button {
+  margin-top: 16px;
+}
+
 /* ===== trust-badges (part of hero) ===== */
 .trust-badges {
   display: flex;
