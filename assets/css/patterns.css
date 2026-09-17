@@ -4204,6 +4204,14 @@ body.gallery-lightbox-open {
   text-decoration: underline;
 }
 
+/* When two port groups stack in the same .ports-list (e.g. School Events hub's "Private and
+   Public Cruise Ports:" followed by "Private Cruises Only:"), the grid's own margin:0-top-only
+   left zero breathing room between the end of one grid and the next heading -- real gap reported
+   by direct user feedback, 2026-09-17. */
+.event-ports-grid + .event-ports-heading {
+  margin-top: 40px;
+}
+
 @media (max-width: 700px) {
   .event-ports-grid {
     grid-template-columns: 1fr;
