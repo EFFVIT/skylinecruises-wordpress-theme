@@ -1364,13 +1364,7 @@
 }
 
 .buffet-menu-cards__cta {
-  margin-top: 40px;
-}
-
-@media (max-width: 700px) {
-  .buffet-menu-cards__row {
-    flex-direction: column;
-  }
+  margin-top: 56px;
 }
 
 /* ===== route-map (patterns/route-map.php) — Public Cruise Service only =====

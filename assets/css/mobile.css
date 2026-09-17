@@ -191,6 +191,12 @@
     line-height: 1.35;
   }
 
+  /* buffet-menu-cards__row (Brunch/Lunch/Dinner Menu pages) — two fixed-width white cards side by
+     side, same class of missing breakpoint as features-pair above; same 900px collapse point. */
+  .buffet-menu-cards__row {
+    flex-direction: column;
+  }
+
   /* events-cater's background panel (patterns.css) is tuned to pull up behind .sailing-from by a
      fixed px amount, sized against THIS theme's own real .sailing-from height at each of its two
      shapes (not Figma's, which is a different fixed-height component) — .sailing-from collapses
@@ -339,9 +345,25 @@
   .bio-photo-gallery,
   .link-list,
   .form-page-shell,
-  .quote-split {
+  .quote-split,
+  .buffet-menu-cards {
     padding-top: 48px;
     padding-bottom: 48px;
+  }
+
+  /* buffet-menu-cards (Brunch/Lunch/Dinner Menu pages) — the two white item cards keep the same
+     desktop padding otherwise, leaving almost no room for the bulleted text at 375px. */
+  .buffet-menu-cards__card {
+    padding: 24px 20px;
+  }
+  .buffet-menu-cards__cta {
+    margin-top: 40px;
+  }
+
+  /* banquet-band (also reused for the Buffet Menu pages' "Memorable Service" section) — same
+     desktop-scale padding cut as closing-cta/testimonial above. */
+  .banquet-band {
+    padding: 40px 20px;
   }
 
   /* ===== occasion-checklist ("Perfect for Any Occasion") ===== */
