@@ -1164,13 +1164,14 @@
   text-align: center;
 }
 
-/* Small italic eyebrow line above a centered intro heading (e.g. "NYC Boat Wedding Venue |
+/* Small eyebrow line above a centered intro heading (e.g. "NYC Boat Wedding Venue |
    Waterfront Wedding Venue") -- confirmed via direct screenshot reference for the T4 Weddings
    family of pages, 2026-09-17. Reusable anywhere a text-section--centered intro wants a short
-   venue-type label above its h2. */
+   venue-type label above its h2. Non-italic per direct user feedback, 2026-09-18 -- reads as the
+   same serif used in every real heading sitewide, just smaller, rather than a separate italic
+   treatment. */
 .text-section__eyebrow {
   font-family: var(--font-display);
-  font-style: italic;
   font-size: 16px;
   color: var(--color-navy);
   opacity: 0.7;
