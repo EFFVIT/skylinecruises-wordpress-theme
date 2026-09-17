@@ -1363,7 +1363,9 @@
   color: var(--color-gold);
 }
 
-.buffet-menu-cards__cta {
+/* .wp-block-buttons is display:contents (tokens.css) -- it generates no box of its own, so
+   margin-top on the class itself has zero effect; target the actual button box instead. */
+.buffet-menu-cards__cta .wp-block-button {
   margin-top: 56px;
 }
 

@@ -356,7 +356,7 @@
   .buffet-menu-cards__card {
     padding: 24px 20px;
   }
-  .buffet-menu-cards__cta {
+  .buffet-menu-cards__cta .wp-block-button {
     margin-top: 40px;
   }
 
