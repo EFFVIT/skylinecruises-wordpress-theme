@@ -346,9 +346,22 @@
   .link-list,
   .form-page-shell,
   .quote-split,
-  .buffet-menu-cards {
+  .buffet-menu-cards,
+  .photo-text-card-section {
     padding-top: 48px;
     padding-bottom: 48px;
+  }
+
+  /* checklist-card (T2 Public Cruise Service, e.g. NYC Dinner Cruises) — same desktop-scale
+     padding cut as every other hardcoded-padding card on a short viewport. */
+  .checklist-card {
+    padding: 28px 20px;
+  }
+
+  /* photo-text-card (T2, e.g. "Smooth Sailing") — desktop padding leaves almost no room for the
+     navy panel's own text once it's stacked full-width under the photo at phone width. */
+  .photo-text-card__panel {
+    padding: 32px 24px;
   }
 
   /* buffet-menu-cards (Brunch/Lunch/Dinner Menu pages) — the two white item cards keep the same

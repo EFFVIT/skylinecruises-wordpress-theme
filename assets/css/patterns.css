@@ -1147,6 +1147,14 @@
   color: var(--color-navy);
 }
 
+/* Centered variant (T2 Public Cruise Service category, e.g. NYC Dinner Cruises' intro heading —
+   confirmed via direct Figma screenshot reference, 2026-09-17): same box model as the base
+   text-section, just centers heading/paragraph instead of the default left alignment. */
+.text-section--centered {
+  align-items: center;
+  text-align: center;
+}
+
 /* Optional 2-col text+photo variant (added fixing NYC Holiday Cruises' "Holiday Dates Book Fast"
    section, which live pairs with a real photo — see the textSection() comment in build-pages.js). */
 .text-section--with-photo {
@@ -1298,6 +1306,124 @@
      instead — verified by re-measuring pixels after applying, not assumed. */
   position: relative;
   top: 14px;
+}
+
+/* ===== checklist-card (T2 Public Cruise Service category, e.g. NYC Dinner Cruises' "Your
+   Skyline Experience Includes:" card) =====
+   A photo-less, light-blue-background variant of the checklist, laid out as a 2-column grid
+   instead of photo-checklist-row__list's default single flex column — confirmed via direct
+   Figma screenshot reference, 2026-09-17. Kept as its own component rather than another
+   photo-checklist-row__list modifier since it drops the photo entirely (no __body flex row) and
+   uses a real grid, not a flex column. */
+.checklist-card {
+  background: var(--color-bg-light-blue);
+  border-radius: 16px;
+  padding: 48px 56px;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.checklist-card__label {
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0 0 20px;
+}
+
+.checklist-card__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 40px;
+}
+
+.checklist-card-cta {
+  text-align: center;
+}
+.checklist-card-cta .wp-block-button {
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .checklist-card__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== photo-text-card (T2 Public Cruise Service category, e.g. "Smooth Sailing") =====
+   A real photo alongside a navy text panel, both inside one rounded card, sitting on a light-blue
+   full-width section — confirmed via direct Figma screenshot reference, 2026-09-17. Distinct from
+   text-section--with-photo (that one is a plain 2-col text+photo with NO card/panel background). */
+.photo-text-card-section {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 80px var(--side-margin);
+  background: var(--color-bg-light-blue);
+}
+
+.photo-text-card {
+  display: flex;
+  align-items: stretch;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.photo-text-card__photo {
+  flex: 1 1 45%;
+  margin: 0;
+}
+.photo-text-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-text-card__panel {
+  flex: 1 1 55%;
+  background: var(--color-navy);
+  color: var(--color-white);
+  padding: 56px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.photo-text-card__panel h2,
+.photo-text-card__panel h3 {
+  color: var(--color-white);
+  font-weight: 400;
+  margin: 0 0 16px;
+}
+.photo-text-card__panel p {
+  color: #dae5f4;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .photo-text-card {
+    flex-direction: column;
+  }
+  .photo-text-card__photo {
+    min-height: 260px;
+  }
+}
+
+/* Light variant of banquet-band (T2 Public Cruise Service's "Memorable Service" section) — same
+   full-width centered band, but a light-gray background with navy/gray text instead of the navy
+   band used elsewhere (e.g. the Buffet Menu pages' own "Memorable Service"), confirmed via direct
+   Figma screenshot reference, 2026-09-17 — the two categories use different color treatments for
+   the same copy, not a mistake in either place. */
+.banquet-band--light {
+  background: #f4f6fa;
+  color: inherit;
+}
+.banquet-band--light h2,
+.banquet-band--light h3 {
+  color: var(--color-navy);
+}
+.banquet-band--light p {
+  color: var(--color-body-gray);
 }
 
 /* ===== buffet-menu-cards (Buffet Menu category: Brunch/Lunch/Dinner Menu pages) =====
