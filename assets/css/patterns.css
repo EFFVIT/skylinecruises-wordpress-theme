@@ -1539,21 +1539,24 @@
   margin-top: 32px;
 }
 
+/* Colors corrected against the real Figma design (2026-09-17): was light-blue bg + navy text,
+   Figma has this inverted -- dark navy bg (#1c354e, a distinct shade from --color-navy/#0b2c4d,
+   not a typo for it) + gold text. */
 .entertainment-chip {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--color-bg-light-blue);
+  background: #1c354e;
   border-radius: 9999px;
   padding: 10px 20px;
   font-size: 15px;
-  color: var(--color-navy);
+  color: var(--color-gold);
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .entertainment-chip:hover {
   transform: translateY(-3px);
-  background: var(--color-gold);
+  background: var(--color-navy);
 }
 
 .entertainment-chip .check-icon {
@@ -3640,4 +3643,225 @@ body.gallery-lightbox-open {
 
 .post-nav__next {
   justify-self: end;
+}
+
+/* ===== Skyline Redesign 2026 — interior "special event" pages =====
+   Built 2026-09-17 against the Figma redesign file (Graduation Cruises & Parties frame),
+   piloted on that one page before rolling to the rest of School Events / Party Cruises /
+   Public Cruise Service / Weddings. See daily note for the full page list. */
+
+/* ----- hero--with-form: embeds the real GHL "Contact Page Form" (ci4lPfPZnWiuuOYq9pMG,
+   same form used on /contact-us/request-your-quote/) directly into an interior hero, next to
+   the headline/CTA column. Reuses .homepage-lead-form verbatim for the form box itself (same
+   rgba(224,239,251,0.12) glass panel Figma uses on both the homepage and interior heroes) —
+   only the surrounding .hero layout needed a new modifier, not a second form style. ----- */
+.hero--with-form {
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.hero--with-form .hero__content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.hero--with-form .homepage-lead-form {
+  flex: 0 1 500px;
+}
+
+@media (max-width: 600px) {
+  .hero--with-form {
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 40px;
+    gap: 32px;
+  }
+  .hero--with-form .homepage-lead-form {
+    flex-basis: auto;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* ----- content-sidebar: two-column body layout (main content + .event-sidebar). ----- */
+.content-sidebar {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 72px var(--side-margin);
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.content-sidebar__main {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ----- event-sidebar: "Want to Learn More? Speak to an Event Planner" callout — net-new,
+   didn't exist anywhere in the theme before this. ----- */
+.event-sidebar {
+  flex: 0 0 368px;
+  background: var(--color-bg-light-blue);
+  border-radius: 12px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.event-sidebar h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--color-navy);
+}
+
+.event-sidebar__phone {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-navy);
+}
+
+.event-sidebar__points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: var(--font-intro);
+  font-size: 14px;
+  line-height: 22px;
+  color: #1c354e;
+}
+
+.event-sidebar__points li::before {
+  content: "\2726  ";
+  color: var(--color-gold);
+}
+
+.event-sidebar__testimonial {
+  background: var(--color-white);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-sidebar__testimonial p:first-child {
+  font-family: var(--font-intro);
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-navy);
+}
+
+.event-sidebar__testimonial p:last-child {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-body-gray);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .content-sidebar {
+    flex-direction: column;
+  }
+  .event-sidebar {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+/* ----- banquet-band: full-width navy photo-adjacent band (e.g. "A Floating Banquet for
+   Stellar Events"). Distinct from .closing-cta (same --color-navy, different padding/copy
+   width) — kept separate so a future copy change to one doesn't silently affect the other. ----- */
+.banquet-band {
+  background: var(--color-navy);
+  padding: 64px var(--side-margin);
+  text-align: center;
+  color: var(--color-white);
+}
+
+.banquet-band h2, .banquet-band h3 {
+  color: var(--color-white);
+  font-weight: 400;
+}
+
+.banquet-band p {
+  color: #dae5f4;
+  max-width: 925px;
+  margin-inline: auto;
+  font-family: var(--font-intro);
+  font-size: 17px;
+  line-height: 28px;
+}
+
+.banquet-band a {
+  text-decoration: underline;
+}
+
+/* ----- testimonial-grid: bottom-of-page "What Our Guests Say" 3-card section — net-new,
+   distinct from the existing single-quote .testimonial--card used mid-page. ----- */
+.testimonial-grid-section {
+  background: #f7f7fc;
+  padding: 72px var(--side-margin);
+  text-align: center;
+}
+
+.testimonial-grid-section h2 {
+  font-weight: 700;
+  font-size: 32px;
+  color: #101c3d;
+  margin-bottom: 40px;
+}
+
+.testimonial-grid {
+  width: var(--page-width);
+  max-width: 100%;
+  margin-inline: auto;
+  display: flex;
+  gap: 24px;
+  text-align: left;
+}
+
+.testimonial-grid__card {
+  flex: 1 1 0;
+  min-width: 0;
+  background: var(--color-white);
+  border-radius: 8px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.testimonial-grid__quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 22px;
+  color: #101c3d;
+}
+
+.testimonial-grid__author {
+  font-family: var(--font-intro);
+  font-size: 14px;
+  color: var(--color-gold);
+}
+
+@media (max-width: 900px) {
+  .testimonial-grid {
+    flex-direction: column;
+  }
 }
