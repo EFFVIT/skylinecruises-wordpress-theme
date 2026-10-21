@@ -3088,7 +3088,12 @@ body.gallery-lightbox-open {
   border-radius: 32px;
   box-shadow: 0 20px 30px rgba(11, 44, 77, 0.15);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* Client request (86bcp777u): two equal 1fr halves left both columns' short text hugging the
+     left of each half, so the pair read as left-weighted. Content-sized columns distributed
+     evenly center the pair as a group; text inside each column stays left-aligned. The 900px
+     single-column override below is unaffected. */
+  grid-template-columns: repeat(2, auto);
+  justify-content: space-evenly;
   gap: 48px;
   padding: 40px 65px;
 }
