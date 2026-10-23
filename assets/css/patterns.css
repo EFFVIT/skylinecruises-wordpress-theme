@@ -3395,6 +3395,13 @@ body.gallery-lightbox-open {
   max-width: 900px;
   margin: 0 auto;
   text-align: left;
+  /* Client request (86bcp777u): center the two checklist columns as a group in the card. The
+     inline repeat(2,1fr) gave each column half the box while the short items hugged the left of
+     each half (353px empty left vs 515px right at 1920). Content-sized columns + centering gives
+     equal space both sides; text stays left-aligned so the checkmarks still line up. !important
+     because the column template is an inline style from build-pages.js's occasionChecklist(). */
+  grid-template-columns: repeat(2, max-content) !important;
+  justify-content: center;
 }
 .checklist-item--light {
   color: var(--color-white);

@@ -153,7 +153,9 @@
      short, e.g. "Live DJ & Dance Floor"), but the overlay's own 64px padding (fixed below) was
      eating real width first — collapsing to 1 column here removes the last real cramping risk. */
   .occasion-checklist__grid {
-    grid-template-columns: 1fr !important;
+    /* fit-content instead of 1fr so the single stacked column is centered by patterns.css's
+       justify-content, like the 2-column desktop group (86bcp777u). */
+    grid-template-columns: fit-content(100%) !important;
     gap: 12px !important;
   }
 
