@@ -93,6 +93,10 @@
     grid-template-columns: 1fr;
   }
 
+  .card-grid--3up.card-grid--center > * {
+    flex-basis: 100%;
+  }
+
   /* marina-grid-3x3 (School Events) — same missing breakpoint. */
   .marina-grid {
     grid-template-columns: 1fr;

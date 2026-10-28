@@ -151,7 +151,6 @@ $nav_menu = [
 		'style' => 'simple',
 		'items' => [
 			[ 'icon' => 'heart', 'label' => 'Weddings', 'href' => '/weddings/' ],
-			[ 'icon' => 'users', 'label' => 'Meet Captain Arnold', 'href' => '/weddings/captain-arnold-wedding-officiant/' ],
 			[ 'icon' => 'heart', 'label' => 'LGBTQ+ Wedding Cruises', 'href' => '/weddings/lgbt-wedding-cruises/' ],
 			[ 'icon' => 'heart', 'label' => 'Anniversary Cruise', 'href' => '/weddings/anniversary-cruise-nyc/' ],
 			[ 'icon' => 'gem', 'label' => 'Engagement Party', 'href' => '/weddings/engagement-party-cruises-nyc/' ],

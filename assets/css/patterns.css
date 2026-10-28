@@ -1632,6 +1632,18 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+/* Centered 3-up variant: a short last row (e.g. 5 cards = 3 + 2) sits centered instead of
+   left-aligned. Same card width as .card-grid--3up. Used on /weddings/ (86bcu5w9r). */
+.card-grid--3up.card-grid--center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-grid--3up.card-grid--center > * {
+  flex: 0 1 calc((100% - 64px) / 3);
+}
+
 /* Confirmed via direct Figma read (node 96:152 "Tier Card"): white bg, 12px radius (not 24px),
    padding 32px/28px, no box-shadow, Poppins BOLD 20px navy heading, 15px/24px gray body. */
 .offering-card {
