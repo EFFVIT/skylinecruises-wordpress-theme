@@ -60,7 +60,15 @@ add_filter( 'next_posts_link_attributes', fn() => 'class="btn btn-outline-navy"'
 						</a>
 						<div class="blog-teasers__body">
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-							<p><?php echo esc_html( wp_trim_words( get_the_excerpt(), 24 ) ); ?></p>
+							<?php
+							// Pages have no hand-written excerpt, so the auto one starts with the hero badges
+							// ("Since 1993A+ BBB Rating..."). Prefer the Rank Math meta description when set.
+							$summary = get_post_meta( get_the_ID(), 'rank_math_description', true );
+							if ( ! $summary || false !== strpos( $summary, '%' ) ) {
+								$summary = get_the_excerpt();
+							}
+							?>
+							<p><?php echo esc_html( wp_trim_words( $summary, 24 ) ); ?></p>
 							<a href="<?php the_permalink(); ?>">Read More &rarr;</a>
 						</div>
 					</div>

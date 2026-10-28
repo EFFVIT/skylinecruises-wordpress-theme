@@ -25,6 +25,10 @@
     flex-direction: column;
   }
 
+  .site-search input {
+    flex: none;
+  }
+
   .site-search .btn-gold {
     width: 100%;
   }
