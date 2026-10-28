@@ -180,7 +180,7 @@ $nav_menu = [
 				[ 'icon' => 'anchor', 'label' => 'New Rochelle Municipal Marina', 'href' => '/ports/municipal-marina-new-rochelle/' ],
 				[ 'icon' => 'anchor', 'label' => 'Yonkers City Pier', 'href' => '/ports/yonkers-city-pier-yonkers-new-york/' ],
 				[ 'icon' => 'anchor', 'label' => 'Glen Cove Ferry Terminal', 'href' => '/ports/garvies-point-glen-cove/' ],
-				[ 'icon' => 'anchor', 'label' => 'Lincoln Harbor', 'href' => '/ports/lincoln-harbor-new-jersey/' ],
+				[ 'icon' => 'map-pin', 'label' => 'Other ports may be available', 'href' => '/ports/' ],
 			] ],
 		],
 	],
