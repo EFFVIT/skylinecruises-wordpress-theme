@@ -61,11 +61,27 @@ add_filter( 'next_posts_link_attributes', fn() => 'class="btn btn-outline-navy"'
 						<div class="blog-teasers__body">
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<?php
-							// Pages have no hand-written excerpt, so the auto one starts with the hero badges
-							// ("Since 1993A+ BBB Rating..."). Prefer the Rank Math meta description when set.
+							// Pages have no hand-written excerpt, so the auto one starts with the hero banner
+							// (H1, "Since 1993A+ BBB Rating...", CTA). Use a saved Rank Math description if
+							// there is one, else summarize the content with the hero's H1, badges and CTA removed
+							// (heroes are block-commented on some pages, plain HTML on others).
 							$summary = get_post_meta( get_the_ID(), 'rank_math_description', true );
 							if ( ! $summary || false !== strpos( $summary, '%' ) ) {
-								$summary = get_the_excerpt();
+								if ( has_excerpt() ) {
+									$summary = get_the_excerpt();
+								} else {
+									$raw     = get_post_field( 'post_content', get_the_ID() );
+									$raw     = preg_replace(
+										array(
+											'#<h1[^>]*>.*?</h1>#s',
+											'#<p class="trust-badges[^"]*">.*?</p>#s',
+											'#<div class="wp-block-buttons hero__cta">.*?</div>(?:<!-- /wp:button -->)?</div>#s',
+										),
+										'',
+										$raw
+									);
+									$summary = wp_strip_all_tags( strip_shortcodes( $raw ) );
+								}
 							}
 							?>
 							<p><?php echo esc_html( wp_trim_words( $summary, 24 ) ); ?></p>
