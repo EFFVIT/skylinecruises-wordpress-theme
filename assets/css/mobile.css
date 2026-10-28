@@ -20,6 +20,15 @@
 
 /* ===== 900px: finish multi-column -> single-column collapses that were never given one ===== */
 @media (max-width: 900px) {
+  /* site search (searchform.php): stack the input over a full-width button. */
+  .site-search {
+    flex-direction: column;
+  }
+
+  .site-search .btn-gold {
+    width: 100%;
+  }
+
   /* features-pair (Public Cruise Service / Buffet Menu / Private Event/Party) — two 620px-wide
      flex items side by side never had a breakpoint at all; 620*2 + 80px gap = 1320px minimum
      content width, so this was overflowing horizontally on every screen under ~1650px wide

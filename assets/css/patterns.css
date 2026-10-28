@@ -2787,6 +2787,57 @@ body.gallery-lightbox-open {
   color: #000000;
 }
 
+/* ===== site search (searchform.php) — 404.php and search.php ===== */
+/* Same pill input + gold button as .newsletter-form, with a border so the white input reads
+   on the page background instead of on the newsletter photo. */
+.site-search {
+  display: flex;
+  gap: 16px;
+  width: 576px;
+  max-width: 100%;
+  margin-top: 24px;
+}
+
+.site-search input {
+  flex: 1;
+  min-width: 0;
+  height: 56px;
+  border-radius: 9999px;
+  border: 1px solid rgba(11, 44, 77, 0.25);
+  background: var(--color-white);
+  padding: 0 24px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: rgba(17, 24, 39, 0.9);
+}
+
+.site-search input::placeholder {
+  color: var(--color-placeholder);
+}
+
+.site-search .btn-gold {
+  width: 148.6px;
+  height: 56px;
+  padding: 0;
+  color: #000000;
+}
+
+.site-search__home {
+  margin-top: 24px;
+}
+
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ===== site-footer (template-parts/site-footer.php) ===== */
 /* Same full-bleed treatment as newsletter-cta above: the light-blue band now fills the whole
    browser width on large screens instead of a fixed 1713px box sitting flush left (unnoticed
